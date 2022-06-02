@@ -10,14 +10,23 @@ namespace Core.Infrastructure
         [SerializeField]
         private GameObject Prefab;
 
+        public override void Start()
+        {
+            Container.Resolve<PlayerController>();           
+        }
+
         public override void InstallBindings()
         {
             Container.Bind<PlayerController>()
-                .FromComponentInNewPrefab(Prefab)
-                .AsSingle()
-                .NonLazy();
+                .FromComponentInNewPrefab(Prefab)               
+                .AsSingle() 
+                .OnInstantiated<PlayerController>(OnPlayerInstantiated);                   
+        }
 
-            PlayerController playerController = Container.Resolve<PlayerController>();           
+        private void OnPlayerInstantiated(InjectContext context, PlayerController player)
+        {
+            player.transform.position = LocationPoint.position;
+            Debug.Log("Player Instantiated!");
         }
     }
 }
