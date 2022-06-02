@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using NUnit.Framework;
 using Moq;
 using UnityEngine.TestTools;
@@ -20,7 +21,7 @@ namespace TestFramework.Playmode
         [TearDown]
         public void TearDown()
         {
-            Object.Destroy(_obj);
+            Object.FindObjectsOfType<GameObject>().ToList().ForEach(x => Object.DestroyImmediate(x));
         }
 
         [Test]
