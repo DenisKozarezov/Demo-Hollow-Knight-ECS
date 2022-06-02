@@ -5,47 +5,50 @@ using UnityEngine.TestTools;
 using UnityEngine;
 using Core.Units;
 
-public class MyTest1
+namespace TestFramework.Playmode
 {
-    private GameObject _obj;
-
-    [SetUp]
-    public void Setup()
+    public class MyTest1
     {
-        _obj = new GameObject("My Test Object");
-    }
+        private GameObject _obj;
 
-    [TearDown]
-    public void TearDown()
-    {
-        Object.Destroy(_obj);
-    }
+        [SetUp]
+        public void Setup()
+        {
+            _obj = new GameObject("My Test Object");
+        }
 
-    [Test]
-    public void EnemyTauntedAndTargetIsNotNull()
-    {
-        var enemy = new GameObject();
-        var zombie = enemy.AddComponent<Zombie>();
+        [TearDown]
+        public void TearDown()
+        {
+            Object.Destroy(_obj);
+        }
 
-        zombie.Taunt(_obj.transform);
+        [Test]
+        public void EnemyTauntedAndTargetIsNotNull()
+        {
+            var enemy = new GameObject();
+            var zombie = enemy.AddComponent<Zombie>();
 
-        Assert.True(zombie.Taunted);
-        Assert.True(zombie.Target != null);
-    }
+            zombie.Taunt(_obj.transform);
 
-    [Test]
-    public void MyTestObjectHasName()
-    {
-        Assert.AreEqual(_obj.name, "My Test Object");
-    }
+            Assert.True(zombie.Taunted);
+            Assert.True(zombie.Target != null);
+        }
 
-    // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
-    // `yield return null;` to skip a frame.
-    [UnityTest]
-    public IEnumerator SomeTest1WithEnumeratorPasses()
-    {
-        // Use the Assert class to test conditions.
-        // Use yield to skip a frame.
-        yield return null;
+        [Test]
+        public void MyTestObjectHasName()
+        {
+            Assert.AreEqual(_obj.name, "My Test Object");
+        }
+
+        // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
+        // `yield return null;` to skip a frame.
+        [UnityTest]
+        public IEnumerator SomeTest1WithEnumeratorPasses()
+        {
+            // Use the Assert class to test conditions.
+            // Use yield to skip a frame.
+            yield return null;
+        }
     }
 }
