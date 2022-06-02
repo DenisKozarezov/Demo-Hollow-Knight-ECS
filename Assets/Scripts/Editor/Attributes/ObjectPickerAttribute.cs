@@ -1,6 +1,9 @@
 using System;
 using UnityEngine;
+
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 
 namespace Editor
 {
@@ -13,6 +16,7 @@ namespace Editor
         }
     }
 
+#if UNITY_EDITOR
     [CustomPropertyDrawer(typeof(ObjectPickerAttribute))]
     class ObjectPickerAttributeDrawer : PropertyDrawer
     {
@@ -20,16 +24,25 @@ namespace Editor
         private UnityEngine.Object _prefab;
         private const string PathPrefix = "Assets/Resources/";
 
+        public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
+        {
+            return base.GetPropertyHeight(property, label) * 2.5f;
+        }
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
-            EditorGUILayout.PropertyField(property, new GUIContent(property.displayName));
-            EditorGUILayout.BeginHorizontal();
-            GUILayout.FlexibleSpace();
-            if (GUILayout.Button("Find", EditorStyles.miniButtonRight, GUILayout.Width(50)))
+            if (property.propertyType != SerializedPropertyType.String) return;
+
+            position.height = EditorGUIUtility.singleLineHeight;
+            EditorGUI.PropertyField(position, property, new GUIContent(property.displayName));
+
+            position.y += EditorGUIUtility.singleLineHeight;
+            position.x += position.width - 50;
+
+            Rect buttonRect = new Rect(position.position, new Vector2(50, EditorGUIUtility.singleLineHeight));
+            if (GUI.Button(buttonRect, "Find", EditorStyles.miniButtonRight))
             {
                 OpenFilePanel();
             }
-            EditorGUILayout.EndHorizontal();
 
             switch (Event.current.commandName)
             {
@@ -58,4 +71,5 @@ namespace Editor
             EditorGUIUtility.ShowObjectPicker<GameObject>(null, false, null, _currentPickerWindow);
         }
     }
+#endif
 }

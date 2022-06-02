@@ -12,12 +12,12 @@ namespace Core.Infrastructure
 
         public override void InstallBindings()
         {
-            PlayerController playerController = Container.InstantiatePrefabForComponent<PlayerController>(Prefab, LocationPoint.position, Quaternion.identity, null);
-
             Container.Bind<PlayerController>()
-                .FromInstance(playerController)
+                .FromComponentInNewPrefab(Prefab)
                 .AsSingle()
                 .NonLazy();
+
+            PlayerController playerController = Container.Resolve<PlayerController>();           
         }
     }
 }
