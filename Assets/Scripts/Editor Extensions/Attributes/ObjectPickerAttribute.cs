@@ -8,7 +8,7 @@ using UnityEditor;
 namespace Editor
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Field)]
-    public class ObjectPickerAttribute : PropertyAttribute
+    internal class ObjectPickerAttribute : PropertyAttribute
     {
         public ObjectPickerAttribute()
         {
@@ -18,11 +18,12 @@ namespace Editor
 
 #if UNITY_EDITOR
     [CustomPropertyDrawer(typeof(ObjectPickerAttribute))]
-    class ObjectPickerAttributeDrawer : PropertyDrawer
+    internal class ObjectPickerAttributeDrawer : PropertyDrawer
     {
-        private int _currentPickerWindow;
-        private UnityEngine.Object _prefab;
+        private const float ButtonWidth = 50f;
         private const string PathPrefix = "Assets/Resources/";
+
+        private int _currentPickerWindow;     
 
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
@@ -36,24 +37,26 @@ namespace Editor
             EditorGUI.PropertyField(position, property, new GUIContent(property.displayName));
 
             position.y += EditorGUIUtility.singleLineHeight;
-            position.x += position.width - 50;
+            position.x += position.width - ButtonWidth;
 
-            Rect buttonRect = new Rect(position.position, new Vector2(50, EditorGUIUtility.singleLineHeight));
-            if (GUI.Button(buttonRect, "Find", EditorStyles.miniButtonRight))
+            Rect buttonRect = new Rect(position.position, new Vector2(ButtonWidth, EditorGUIUtility.singleLineHeight));
+            if (GUI.Button(buttonRect, new GUIContent("Find", "Opens an object picker dialog, which injects in this field the asset's path."), EditorStyles.miniButtonRight))
             {
                 OpenFilePanel();
             }
 
+            ProcessEventCommand(property);
+        }
+
+        private void ProcessEventCommand(SerializedProperty property)
+        {
             switch (Event.current.commandName)
             {
                 case "ObjectSelectorUpdated":
                     if (EditorGUIUtility.GetObjectPickerControlID() == _currentPickerWindow)
                     {
-                        _prefab = EditorGUIUtility.GetObjectPickerObject();
-                        string path = !_prefab ? string.Empty : AssetDatabase.GetAssetPath(_prefab);
-
-                        path = path.Substring(0, path.IndexOf('.'));
-                        path = path.Remove(0, PathPrefix.Length);
+                        var prefab = EditorGUIUtility.GetObjectPickerObject();
+                        string path = GetAssetPath(prefab);
 
                         property.stringValue = path;
                         property.serializedObject.ApplyModifiedProperties();
@@ -63,6 +66,14 @@ namespace Editor
                     _currentPickerWindow = -1;
                     break;
             }
+        }
+
+        private string GetAssetPath(UnityEngine.Object prefab)
+        {
+            string path = !prefab ? string.Empty : AssetDatabase.GetAssetPath(prefab);
+            path = path.Substring(0, path.IndexOf('.'));
+            path = path.Remove(0, PathPrefix.Length);
+            return path;
         }
 
         private void OpenFilePanel()
