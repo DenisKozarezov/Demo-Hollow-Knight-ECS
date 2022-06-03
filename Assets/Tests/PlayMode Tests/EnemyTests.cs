@@ -8,7 +8,7 @@ using Core.Units;
 
 namespace TestFramework.Playmode
 {
-    public class MyTest1
+    public class EnemyTests
     {
         private GameObject _obj;
 
@@ -34,22 +34,6 @@ namespace TestFramework.Playmode
 
             Assert.True(zombie.Taunted);
             Assert.True(zombie.Target != null);
-        }
-
-        [Test]
-        public void MyTestObjectHasName()
-        {
-            Assert.AreEqual(_obj.name, "My Test Object");
-        }
-
-        // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
-        // `yield return null;` to skip a frame.
-        [UnityTest]
-        public IEnumerator SomeTest1WithEnumeratorPasses()
-        {
-            // Use the Assert class to test conditions.
-            // Use yield to skip a frame.
-            yield return null;
         }
     }
 }
