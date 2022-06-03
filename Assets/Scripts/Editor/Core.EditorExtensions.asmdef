@@ -1,8 +1,10 @@
 {
-    "name": "Leopotam.Ecs",
+    "name": "Core.EditorExtensions",
     "rootNamespace": "",
     "references": [],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

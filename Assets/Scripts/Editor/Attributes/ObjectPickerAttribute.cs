@@ -8,7 +8,7 @@ using UnityEditor;
 namespace Editor
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Field)]
-    internal class ObjectPickerAttribute : PropertyAttribute
+    public sealed class ObjectPickerAttribute : PropertyAttribute
     {
         public ObjectPickerAttribute()
         {
@@ -18,7 +18,7 @@ namespace Editor
 
 #if UNITY_EDITOR
     [CustomPropertyDrawer(typeof(ObjectPickerAttribute))]
-    internal class ObjectPickerAttributeDrawer : PropertyDrawer
+    internal sealed class ObjectPickerAttributeDrawer : PropertyDrawer
     {
         private const float ButtonWidth = 50f;
         private const string PathPrefix = "Assets/Resources/";

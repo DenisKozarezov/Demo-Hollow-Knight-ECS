@@ -8,12 +8,12 @@ using UnityEditor;
 namespace Editor
 {
     [AttributeUsage(AttributeTargets.Struct | AttributeTargets.Field)]
-    internal class RangeSliderAttribute : PropertyAttribute
+    public sealed class MinMaxSliderAttribute : PropertyAttribute
     {
         public readonly float MinLimit;
         public readonly float MaxLimit;
 
-        public RangeSliderAttribute(float minLimit, float maxLimit)
+        public MinMaxSliderAttribute(float minLimit, float maxLimit)
         {
             MinLimit = minLimit;
             MaxLimit = maxLimit;
@@ -21,8 +21,8 @@ namespace Editor
     }
 
 #if UNITY_EDITOR
-    [CustomPropertyDrawer(typeof(RangeSliderAttribute))]
-    internal class RangeSliderDrawer : PropertyDrawer
+    [CustomPropertyDrawer(typeof(MinMaxSliderAttribute))]
+    internal sealed class MinMaxSliderDrawer : PropertyDrawer
     {
         private const float FloatWidth = 35f;
 
@@ -31,7 +31,7 @@ namespace Editor
             bool isVector2Int = property.propertyType == SerializedPropertyType.Vector2Int;
             if (property.propertyType != SerializedPropertyType.Vector2 && !isVector2Int) return;
 
-            var rangeAttribute = (RangeSliderAttribute)attribute;
+            var rangeAttribute = (MinMaxSliderAttribute)attribute;
 
             EditorGUI.LabelField(position, new GUIContent(property.displayName));
             
