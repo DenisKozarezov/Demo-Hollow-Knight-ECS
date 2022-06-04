@@ -31,7 +31,11 @@ namespace Editor
         }
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
-            if (property.propertyType != SerializedPropertyType.String) return;
+            if (property.propertyType != SerializedPropertyType.String)
+            {
+                Debug.LogWarning("ObjectPickerAttribute requires a String property");
+                return;
+            }
 
             position.height = EditorGUIUtility.singleLineHeight;
             EditorGUI.PropertyField(position, property, new GUIContent(property.displayName));

@@ -18,11 +18,15 @@ namespace Editor
 
 #if UNITY_EDITOR
     [CustomPropertyDrawer(typeof(ProgressBarAttribute))]
-    internal sealed class ProgressBarDrawer : PropertyDrawer
+    internal sealed class ProgressBarAttributeDrawer : PropertyDrawer
     {
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
-            if (property.propertyType != SerializedPropertyType.Float) return;
+            if (property.propertyType != SerializedPropertyType.Float)
+            {
+                Debug.LogWarning("ProgressBarAttribute requires a Float property");
+                return;
+            }
 
             EditorGUI.LabelField(position, label);
             position.x += EditorGUIUtility.labelWidth;
