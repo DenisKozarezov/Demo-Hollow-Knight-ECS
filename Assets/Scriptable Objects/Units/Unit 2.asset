@@ -16,3 +16,4 @@ MonoBehaviour:
   _displayName: Unit 2
   _description: 
   _prefabPath: Prefabs/Units/Hero
+  _trackball: {x: 0, y: 0, z: 0, w: 0}
