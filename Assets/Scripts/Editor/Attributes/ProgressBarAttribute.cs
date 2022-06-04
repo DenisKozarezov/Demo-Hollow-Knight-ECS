@@ -10,6 +10,8 @@ namespace Editor
     [AttributeUsage(AttributeTargets.Struct | AttributeTargets.Field)]
     public sealed class ProgressBarAttribute : PropertyAttribute
     {
+        public float MinValue { get; set; } = 0f;
+        public float MaxValue { get; set; } = 1f;
         public ProgressBarAttribute()
         {
 
@@ -28,11 +30,13 @@ namespace Editor
                 return;
             }
 
+            var attr = (ProgressBarAttribute)attribute;
+
             EditorGUI.LabelField(position, label);
             position.x += EditorGUIUtility.labelWidth;
             position.width = position.width - EditorGUIUtility.labelWidth;
 
-            float progress = Mathf.Clamp01(property.floatValue);
+            float progress = (property.floatValue - attr.MinValue) / (attr.MaxValue - attr.MinValue);
 
             EditorGUI.BeginProperty(position, label, property);
             EditorGUI.ProgressBar(position, progress, $"{progress * 100}%");
