@@ -22,14 +22,18 @@ namespace Editor
 
 #if UNITY_EDITOR
     [CustomPropertyDrawer(typeof(MinMaxSliderAttribute))]
-    internal sealed class MinMaxSliderDrawer : PropertyDrawer
+    internal sealed class MinMaxSliderAttributeDrawer : PropertyDrawer
     {
         private const float FloatWidth = 35f;
 
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             bool isVector2Int = property.propertyType == SerializedPropertyType.Vector2Int;
-            if (property.propertyType != SerializedPropertyType.Vector2 && !isVector2Int) return;
+            if (property.propertyType != SerializedPropertyType.Vector2 && !isVector2Int)
+            {
+                Debug.LogWarning("MinMaxSliderAttribute requires a Vector2 or Vector2Int property");
+                return;
+            }
 
             var rangeAttribute = (MinMaxSliderAttribute)attribute;
 

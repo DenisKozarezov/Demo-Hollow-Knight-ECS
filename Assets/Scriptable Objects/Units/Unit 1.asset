@@ -16,3 +16,6 @@ MonoBehaviour:
   _displayName: Unit 1
   _description: 
   _prefabPath: Prefabs/Units/Hero
+  _color: {x: 0, y: 0, z: 0, w: 0.42657343}
+  a: 0
+  b: 
