@@ -17,5 +17,5 @@ MonoBehaviour:
   _description: 
   _prefabPath: Prefabs/Units/Hero
   _trackball: {x: 0, y: 0, z: 0, w: 0}
-  _minMaxSlider: {x: 6.1695275, y: 44.527897}
+  _minMaxSlider: {x: 18.079401, y: 38.465675}
   _progressBar: 0
