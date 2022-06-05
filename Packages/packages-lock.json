@@ -7,11 +7,10 @@
       "dependencies": {}
     },
     "com.leopotam.ecs": {
-      "version": "https://github.com/Leopotam/ecs.git",
+      "version": "file:ecs-2022.4.22",
       "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "f237756b2a256e112f6ae2eb314fae9682c05310"
+      "source": "embedded",
+      "dependencies": {}
     },
     "com.unity.addressables": {
       "version": "1.19.19",
@@ -188,11 +187,10 @@
       }
     },
     "com.voody.unileo": {
-      "version": "https://github.com/voody2506/UniLeo.git",
+      "version": "file:UniLeo-1.2.1",
       "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "bbaed2aec8231b6e79369eecd5c3a9f3b80a97e2"
+      "source": "embedded",
+      "dependencies": {}
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",
