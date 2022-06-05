@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.2125242, g: 0.2125242, b: 0.2125242, a: 1}
+  m_IndirectSpecularColor: {r: 0.036559988, g: 0.036559988, b: 0.036559988, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -187,8 +187,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 870053498}
-  - component: {fileID: 870053499}
   - component: {fileID: 870053500}
+  - component: {fileID: 870053499}
   m_Layer: 3
   m_Name: '[FloorCollider]'
   m_TagString: Untagged
@@ -275,8 +275,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -2118654183
-  m_SortingLayer: 15
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ad4e5850b5d85fb4581268e8ce1a9ef8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -465,7 +465,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1966934839
-  m_SortingLayer: 1
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 73ad8421f8aed0a409db545a78ea3070, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
