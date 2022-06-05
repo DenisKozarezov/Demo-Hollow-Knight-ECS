@@ -1,5 +1,18 @@
 {
   "dependencies": {
+    "com.korolev.uilityai-package": {
+      "version": "file:com.korolev.uilityai-package",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
+    "com.leopotam.ecs": {
+      "version": "https://github.com/Leopotam/ecs.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "f237756b2a256e112f6ae2eb314fae9682c05310"
+    },
     "com.unity.addressables": {
       "version": "1.19.19",
       "depth": 0,
@@ -15,7 +28,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.burst": {
-      "version": "1.6.4",
+      "version": "1.6.5",
       "depth": 1,
       "source": "registry",
       "dependencies": {
@@ -40,7 +53,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.ide.rider": {
-      "version": "3.0.12",
+      "version": "3.0.13",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -173,6 +186,13 @@
         "com.unity.modules.ui": "1.0.0",
         "com.unity.modules.imgui": "1.0.0"
       }
+    },
+    "com.voody.unileo": {
+      "version": "https://github.com/voody2506/UniLeo.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "bbaed2aec8231b6e79369eecd5c3a9f3b80a97e2"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",

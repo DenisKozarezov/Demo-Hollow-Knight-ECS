@@ -1,0 +1,136 @@
+#node-border {
+    background-color: rgb(70, 70, 70);
+    border-left-color: rgb(60, 60, 60);
+    border-right-color: rgb(60, 60, 60);
+    border-top-color: rgb(60, 60, 60);
+    border-bottom-color: rgb(60, 60, 60);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background-image: none;
+}
+
+#input {
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    top: auto;
+    margin-bottom: 0;
+    margin-top: 0;
+    bottom: auto;
+    position: relative;
+    padding-bottom: 20%;
+}
+
+#output {
+    align-items: flex-end;
+    bottom: auto;
+    margin-bottom: 0;
+    margin-top: 0;
+    padding-top: 0;
+    background-image: none;
+    min-width: auto;
+    min-height: auto;
+}
+
+#title-label {
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    -unity-font: url('project://database/Assets/TextMesh%20Pro/Fonts/LiberationSans.ttf?fileID=12800000&guid=e3265ab4bf004d28a9537516768c1c75&type=3#LiberationSans');
+    -unity-font-style: bold-and-italic;
+    background-color: rgb(53, 53, 53);
+    margin-bottom: 0;
+}
+
+#node-icon {
+    min-width: 20%;
+    min-height: 50%;
+    background-color: rgb(253, 216, 216);
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    background-image: url('project://database/Assets/Editor/BehaviorTreeEditor/Sprites/ActionIcon.png?fileID=2800000&guid=6fe7102c6155e4c859579d289add886e&type=3#ActionIcon');
+}
+
+#top {
+    background-color: rgb(67, 67, 67);
+    align-items: flex-start;
+    flex-direction: row;
+    justify-content: space-between;
+    background-image: none;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-right: 0;
+    padding-left: 0;
+    width: auto;
+    height: auto;
+}
+
+#selection-border {
+    border-left-color: rgb(103, 163, 245);
+    border-right-color: rgb(103, 163, 245);
+    border-top-color: rgb(103, 163, 245);
+    border-bottom-color: rgb(103, 163, 245);
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+}
+
+:selected > #selection-border {
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+}
+
+:hover > #node-border {
+    border-left-color: rgb(113, 113, 113);
+    border-right-color: rgb(113, 113, 113);
+    border-top-color: rgb(113, 113, 113);
+    border-bottom-color: rgb(113, 113, 113);
+}
+
+.node {
+}
+
+.connectorText {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+#node-state {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.running #node-state {
+    background-color: rgb(0, 152, 245);
+}
+
+.success #node-state {
+    background-color: rgb(48, 255, 0);
+}
+
+.failure #node-state {
+    background-color: rgba(255, 16, 16, 255);
+}

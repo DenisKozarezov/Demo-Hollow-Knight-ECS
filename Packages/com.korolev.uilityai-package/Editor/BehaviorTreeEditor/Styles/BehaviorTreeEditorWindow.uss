@@ -1,0 +1,17 @@
+Label {
+    font-size: 14px;
+    -unity-font-style: italic;
+    color: rgb(188, 188, 188);
+    -unity-text-align: upper-center;
+    white-space: nowrap;
+    text-shadow: 0 0 0 rgba(0, 0, 0, 0.86);
+    -unity-text-outline-width: 0;
+    -unity-font: url('project://database/Library/unity%20default%20resources?fileID=10102&guid=0000000000000000e000000000000000&type=0#Arial');
+    background-color: rgb(51, 50, 50);
+    padding-left: 0;
+}
+
+Toolbar {
+    background-color: rgb(48, 48, 48);
+}
+
