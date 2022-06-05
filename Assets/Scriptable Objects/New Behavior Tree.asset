@@ -58,7 +58,7 @@ MonoBehaviour:
   BehaviorTreeRef: {fileID: 0}
   Parent: {fileID: 0}
   GroupSo: {fileID: 0}
-  Position: {x: 0, y: 0}
+  Position: {x: 315, y: 322}
   GUID: af606635b2ebbf84593ad861b6e21c94
   Curve:
     serializedVersion: 2

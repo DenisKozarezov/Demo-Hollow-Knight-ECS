@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6888128297050948833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e9ecb1e61bd41b79d65b9c21c90a3d2, type: 3}
+  m_Name: Group
+  m_EditorClassIdentifier: 
+  Position: {x: -14, y: -26}
+  GUID: 4a66309a322874b19aa0e43ca50198b5
+  Title: Group
+--- !u!114 &-4407682157320369612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 283c64a2e07e4fffa7b31a78c4e60f98, type: 3}
+  m_Name: Attack
+  m_EditorClassIdentifier: 
+  BehaviorTreeRef: {fileID: 0}
+  Parent: {fileID: -568919804256173499}
+  GroupSo: {fileID: -6888128297050948833}
+  Position: {x: 143, y: 39}
+  GUID: 3b9d4089401a04aa1a03dc86831747ba
+  Curve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &-568919804256173499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a9398fe5e7b4bcfa6249b7446caf861, type: 3}
+  m_Name: RootNode
+  m_EditorClassIdentifier: 
+  BehaviorTreeRef: {fileID: 0}
+  Parent: {fileID: 0}
+  GroupSo: {fileID: -6888128297050948833}
+  Position: {x: 11, y: 33}
+  GUID: e9af8c4cc949749c6ae174d565fd807b
+  Curve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  Child: {fileID: -4407682157320369612}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e079b22fc2924114b8b38ab9616f5d12, type: 3}
+  m_Name: New Behavior Tree
+  m_EditorClassIdentifier: 
+  RootNode: {fileID: -568919804256173499}
+  Nodes:
+  - {fileID: -568919804256173499}
+  - {fileID: -4407682157320369612}
+  Groups:
+  - {fileID: -6888128297050948833}
+  GameObjectRef: {fileID: 0}
+  OrientationTree: 1
