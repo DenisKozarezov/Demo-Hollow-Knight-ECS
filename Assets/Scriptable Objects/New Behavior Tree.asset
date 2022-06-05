@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6105721352378097436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a9398fe5e7b4bcfa6249b7446caf861, type: 3}
+  m_Name: RootNode
+  m_EditorClassIdentifier: 
+  BehaviorTreeRef: {fileID: 0}
+  Parent: {fileID: 0}
+  GroupSo: {fileID: 0}
+  Position: {x: 0, y: 0}
+  GUID: a0468a2e8fcabbd4b82931247b0e90c7
+  Curve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  Child: {fileID: 0}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e079b22fc2924114b8b38ab9616f5d12, type: 3}
+  m_Name: New Behavior Tree
+  m_EditorClassIdentifier: 
+  RootNode: {fileID: -6105721352378097436}
+  Nodes:
+  - {fileID: -6105721352378097436}
+  - {fileID: 6971790034397707378}
+  Groups: []
+  GameObjectRef: {fileID: 0}
+  OrientationTree: 1
+--- !u!114 &6971790034397707378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b39742b41d544086bd41590d5e8b25e0, type: 3}
+  m_Name: DebugLogNode
+  m_EditorClassIdentifier: 
+  BehaviorTreeRef: {fileID: 0}
+  Parent: {fileID: 0}
+  GroupSo: {fileID: 0}
+  Position: {x: 0, y: 0}
+  GUID: af606635b2ebbf84593ad861b6e21c94
+  Curve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  Message: 
