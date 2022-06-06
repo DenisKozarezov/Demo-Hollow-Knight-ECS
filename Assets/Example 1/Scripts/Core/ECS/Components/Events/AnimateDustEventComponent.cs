@@ -7,7 +7,7 @@ namespace Examples.Example_1.ECS.Events
     public struct AnimateDustEventComponent
     {
         //** ПААМЕТРЫ ДЛЯ ИЗМЕНЕНИЯ ИЗВНЕ** //
-        public Transform Parent;
+        public Vector3 Point;
         public Vector3 Scale;
 
         //** ПААМЕТРЫ ДЛЯ ИЗМЕНЕНИЯ ВНУТРИ СИСТЕМЫ DustCloudAnimationSystem** //

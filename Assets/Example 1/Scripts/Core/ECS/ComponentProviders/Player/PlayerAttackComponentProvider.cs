@@ -3,6 +3,6 @@ using Voody.UniLeo;
 
 namespace Examples.Example_1.ECS.ComponentProviders.Player
 {
-    public sealed class PlayerAttackComponentProvider : MonoProvider<PlayerAttackComponent> { }
+    internal sealed class PlayerAttackComponentProvider : MonoProvider<PlayerAttackComponent> { }
     
 }

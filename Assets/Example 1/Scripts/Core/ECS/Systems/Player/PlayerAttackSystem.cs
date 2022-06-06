@@ -1,58 +1,80 @@
 using System.Collections.Generic;
-using System.Linq;
-using Examples.Example_1.ECS.Components.Player;
-using Examples.Example_1.ECS.Events;
-using Leopotam.Ecs;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Examples.Example_1.ECS.Events;
+using Leopotam.Ecs;
 
 namespace Examples.Example_1.ECS.Systems.Player
 {
-    public class PlayerAttackSystem : IEcsInitSystem
+    internal class PlayerAttackSystem : IEcsInitSystem, IEcsDestroySystem
     {
-        protected EcsWorld _world = null; // Переменная _world автоматически инициализируется
-        protected EcsFilter<PlayerMoveComponent> _filter = null;
-        
-        private PlayerInputController _playerInput;
+        private readonly EcsFilter<ColliderComponent, HealthComponent, HittableComponent>
+            .Exclude<DiedComponent> _filter = null;
+
+        private readonly PlayerInputController _playerInput;
         private float _damage = 5;
         private float _sqrDistance = 9f;
         
         private GameObject _gameObject;
 
-        public PlayerAttackSystem(PlayerInputController playerInputController) { _playerInput = playerInputController; }
-       
+        internal PlayerAttackSystem(PlayerInputController playerInputController) { _playerInput = playerInputController; }
+
         public virtual void Init()
         {
             // Input
             _playerInput.Keyboard.Attack.performed += OnAttack;
-            _playerInput.Enable();
-            
-            // Initialize references
-            ref var ecsEntity = ref _filter.GetEntity (0);
-            _gameObject = ecsEntity.Get<PlayerAnimationComponent>().GameObject;
-        }      
- 
+
+            // Player
+            foreach (var i in _filter)
+            {
+                ref var collider = ref _filter.Get1(i);
+
+                if (collider.Value.gameObject.layer == Constants.PlayerLayer)
+                {
+                    _gameObject = collider.Value.gameObject;
+                    break;
+                }
+            }
+        }
+        public void Destroy()
+        {
+            _playerInput.Keyboard.Attack.performed -= OnAttack;
+        }
+
+        private bool ReachedTarget(GameObject target)
+        {
+            if (target == null) return false;
+            return (_gameObject.transform.position - target.transform.position).sqrMagnitude <= _sqrDistance;
+        }
+        private IEnumerable<EcsEntity> GetNearestEnemies()
+        {
+            foreach (var i in _filter)
+            {
+                var entity = _filter.GetEntity(i);
+                var collider = _filter.Get1(i).Value;
+
+                if (collider.gameObject == _gameObject) continue;
+
+                // If player hits the enemy, return the target
+                if (ReachedTarget(collider.gameObject))
+                {
+                    yield return entity;
+                }
+            }
+        }
+
         private void OnAttack(InputAction.CallbackContext context)
         {
-             GameObject enemy =
-                 GameObject.FindObjectsOfType<GameObject>().
-                     Where(i => i.layer == Constants.EnemyLayer).FirstOrDefault();
+            foreach (var entity in GetNearestEnemies())
+            {
+                ref var collider = ref entity.Get<ColliderComponent>();           
 
-             if (enemy != null)
-             {
-                 var sqrDistance = (_gameObject.transform.position - enemy.transform.position).sqrMagnitude;
-                
-                 if (sqrDistance <= _sqrDistance)
-                 {
-                     foreach (var i in _filter)
-                     {
-                         EcsEntity attackAnimationEntity = _world.NewEntity();
-                         ref var ecsEntity = ref _filter.GetEntity(i);
-
-                         attackAnimationEntity.Get<AnimateDamageEventComponent>().GameObjectRef = enemy;
-                     }     
-                 }
-             }           
+                // Hit the enemy
+                ref var damageComponent = ref entity.Get<DamageEventComponent>();
+                damageComponent.Damage = _damage;
+                damageComponent.Target = collider.Value.gameObject;
+                damageComponent.Source = _gameObject;
+            }
         }
     }
 }

@@ -4,6 +4,8 @@
  *******************************************/
 
 using AI.ECS.Systems;
+using Core.Models;
+using Examples.Example_1.ECS.Events;
 using Examples.Example_1.ECS.Systems;
 using Examples.Example_1.ECS.Systems.FalseKnight;
 using Examples.Example_1.ECS.Systems.Player;
@@ -15,21 +17,25 @@ namespace Examples.Example_1.ECS
 {
     public class SceneECSManager : MonoBehaviour
     {
-        EcsWorld _world;
-        EcsSystems _systems;
+        private EcsWorld _world;
+        private EcsSystems _systems;
         private PlayerInputController _playerInputController;
 
-        [SerializeField] private GameObject PrefubDustAnimation;
-        
-        void Start ()
+        [SerializeField] 
+        private GameObject _prefabDustAnimation;
+        [SerializeField]
+        private UnitFactory _unitFactory;
+
+        private void Awake()
+        {
+            _playerInputController = new PlayerInputController();
+            _playerInputController.Enable();
+        }
+        private void Start ()
         {
             Time.timeScale = 1.4f;
-            //Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("FalseKnight"), LayerMask.NameToLayer("Character"));
-            //Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("FalseKnight"), LayerMask.NameToLayer("FireBall"));
-            //Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Character"), LayerMask.NameToLayer("FireBall"));
             
-            _playerInputController = new PlayerInputController();
-            _world = new EcsWorld ();
+            _world = new EcsWorld();
             _systems = new EcsSystems(_world)
                 .ConvertScene() // Этот метод сконвертирует GO в Entity;
                 .Add(new BehaviorTreeSystem())
@@ -38,21 +44,27 @@ namespace Examples.Example_1.ECS
                 .Add(new FalseKnightJumpAnimationSystem())
                 .Add(new FalseKnightAttackAnimationSystem())
                 .Add(new PlayerJumpSystem(_playerInputController))
-                .Add(new DustCloudAnimationSystem(PrefubDustAnimation))
+                .Add(new DustCloudAnimationSystem(_prefabDustAnimation))
                 .Add(new PlayerAttackSystem(_playerInputController))
                 .Add(new DamageAnimationSystem())
-                .Add(new CameraShakeAnimationSystem(Camera.main));
+                .Add(new DamageSystem())
+                .Add(new HealthSystem())
+                .Add(new GroundSystem())
+                .Add(new UnitSpawnSystem(_unitFactory))
+                .Add(new CameraShakeAnimationSystem(Camera.main));        
                 
-            _systems.Init ();
+            _systems?.Init();
         }
     
-        void FixedUpdate () {
-            _systems.Run ();
+        void FixedUpdate() 
+        {
+            _systems?.Run();
         }
 
-        void OnDestroy () {
-            _systems.Destroy ();
-            _world.Destroy ();
+        private void OnDestroy() 
+        {
+            _systems?.Destroy();
+            _world?.Destroy();
         }
     }
 }

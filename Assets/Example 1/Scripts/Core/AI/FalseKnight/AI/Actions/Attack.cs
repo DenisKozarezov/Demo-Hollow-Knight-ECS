@@ -1,10 +1,8 @@
 using System.Linq;
 using AI.BehaviorTree.Nodes;
 using Examples.Example_1.ECS.Events.FalseKnight;
-using Examples.Example_1.ECS.Systems.FalseKnight;
 using Examples.Example_1.FalseKnight.AI.Parameters;
 using Leopotam.Ecs;
-using UnityEngine;
 
 namespace Examples.Example_1.FalseKnight.AI.Actions
 {

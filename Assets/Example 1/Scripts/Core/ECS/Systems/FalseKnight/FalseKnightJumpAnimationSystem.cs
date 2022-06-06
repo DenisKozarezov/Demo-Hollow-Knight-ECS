@@ -1,41 +1,29 @@
-using System.Collections.Generic;
-using Examples.Example_1.ECS.Components.Player;
+using UnityEngine;
+using UnityEngine.InputSystem;
 using Examples.Example_1.ECS.Events;
 using Examples.Example_1.ECS.FalseKnight;
 using Leopotam.Ecs;
-using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Examples.Example_1.ECS.Systems.FalseKnight
 {
-    public class FalseKnightJumpAnimationSystem: IEcsInitSystem, IEcsRunSystem, IEcsSystem
+    internal class FalseKnightJumpAnimationSystem: IEcsRunSystem, IEcsSystem
     {
-        protected EcsWorld _world = null; // Переменная _world автоматически инициализируется
-        protected EcsFilter<FalseKnightAnimationComponent> _filter = null;
-        
-        private GameObject _gameObject;
-        private Animator _animator;
+        private readonly EcsWorld _world = null;
+        private readonly EcsFilter<FalseKnightAnimationComponent, RigidbodyComponent>.Exclude<DiedComponent> _filter = null;
 
-        private Transform _transform;
-        private Rigidbody2D _body;
-        
-        
-        public virtual void Init()
-        {
-            ref var ecsEntity = ref _filter.GetEntity (0);
-
-            _gameObject = ecsEntity.Get<FalseKnightAnimationComponent>().GameObject;
-            _animator = ecsEntity.Get<FalseKnightAnimationComponent>().Animator;
-            _body = _gameObject.GetComponent<Rigidbody2D>();
-            _transform = _gameObject.transform;
-        }
+        // ==== ANIMATIONS KEYS ===
+        private const string JUMP_KEY = "Jump";
+        private const string JUMPING_KEY = "IsJumping";
+        private const string LAND_KEY = "Land";
+        private const string ATTACK_KEY = "Attack";
+        // ========================
 
         private void OnAttack()
         {
             foreach (var i in _filter)
             {
                 ref var ecsEntity = ref _filter.GetEntity (i);
-                ecsEntity.Get<FalseKnightAnimationComponent>().Animator.SetTrigger("Attack"); //   GetComponent<Transform>();
+                ecsEntity.Get<FalseKnightAnimationComponent>().Animator.SetTrigger(ATTACK_KEY);
             }  
         }
         
@@ -43,39 +31,42 @@ namespace Examples.Example_1.ECS.Systems.FalseKnight
         {
            
         }
-        
+
         public void Run()
         {
-            if (Mathf.Abs(_body.velocity.y) > 0.1f)
+            foreach (var i in _filter)
             {
-                if (_animator.GetBool("IsJumping") == false) {
-                    _animator.SetTrigger("Jump");
-                    _animator.SetBool("IsJumping", true);
-                }
-            }
-            else if (_animator.GetBool("IsJumping") == true)
-            {
-                ContactFilter2D contactFilter2D = new ContactFilter2D();
-                contactFilter2D.layerMask = Constants.GroundLayer;
+                var entity = _filter.GetEntity(i);
+                ref var animatorComponent = ref _filter.Get1(i);
+                ref var rigidbodyComponent = ref _filter.Get2(i);
 
-                List<Collider2D> contacts = new List<Collider2D>();
-                if (Physics2D.GetContacts(_gameObject.GetComponent<BoxCollider2D>(), contactFilter2D, contacts) > 0)
+                bool onGround = entity.Has<OnGroundComponent>();
+                bool isFalling = rigidbodyComponent.Value.velocity.y < 0;
+
+                Animator animator = animatorComponent.Animator;
+
+                if (isFalling)
                 {
-                    _animator.SetBool("IsJumping", false);
-                    _animator.SetTrigger("Land");
-                    
-                    foreach (var i in _filter)
+                    if (animator.GetBool(JUMPING_KEY) == false)
                     {
-                        EcsEntity dustAnimationEntity = _world.NewEntity();
-                        EcsEntity cameraShakeAnimationEntity = _world.NewEntity();
-                        ref var ecsEntity = ref _filter.GetEntity (i);
+                        animator.SetTrigger(JUMP_KEY);
+                        animator.SetBool(JUMPING_KEY, true);
+                    }
+                }
+                else if (animator.GetBool(JUMPING_KEY) && onGround)
+                {              
+                    animator.SetBool(JUMPING_KEY, false);
+                    animator.SetTrigger(LAND_KEY);
 
-                        dustAnimationEntity.Get<AnimateDustEventComponent>().Parent 
-                            = ecsEntity.Get<FalseKnightAnimationComponent>().Bottom.transform;
-                        dustAnimationEntity.Get<AnimateDustEventComponent>().Scale = new Vector3(1f, 1f, 1f);
+                    // Dust effect
+                    ref Vector2 point = ref entity.Get<OnGroundComponent>().Point;
+                    EcsEntity dustAnimationEntity = _world.NewEntity();             
+                    dustAnimationEntity.Get<AnimateDustEventComponent>().Point = point;
+                    dustAnimationEntity.Get<AnimateDustEventComponent>().Scale = new Vector3(1f, 1f, 1f);
 
-                        cameraShakeAnimationEntity.Get<AnimateCameraShakeEventComponent>();
-                    }     
+                    // Shake camera when landed
+                    EcsEntity cameraShakeAnimationEntity = _world.NewEntity();
+                    cameraShakeAnimationEntity.Get<AnimateCameraShakeEventComponent>();
                 }
             }
         }

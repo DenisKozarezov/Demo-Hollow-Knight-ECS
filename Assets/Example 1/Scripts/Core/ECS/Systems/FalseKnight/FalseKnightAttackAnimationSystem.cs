@@ -5,10 +5,10 @@ using UnityEngine;
 
 namespace Examples.Example_1.ECS.Systems.FalseKnight
 {
-    public class FalseKnightAttackAnimationSystem : IEcsRunSystem
+    internal class FalseKnightAttackAnimationSystem : IEcsRunSystem
     {
-        protected EcsWorld _world = null; // Переменная _world автоматически инициализируется
-        protected EcsFilter<FalseKnightAttackEventComponent> _filter = null;
+        private readonly EcsWorld _world = null;
+        private readonly EcsFilter<FalseKnightAttackEventComponent>.Exclude<DiedComponent> _filter = null;
         
         private void Attack()
         {
