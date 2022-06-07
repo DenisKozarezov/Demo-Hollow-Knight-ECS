@@ -13,6 +13,9 @@ namespace AI.BehaviorTree.Nodes.CompositeNodes
         [HideInInspector] protected Node actualNode;
         [HideInInspector] protected float maxCost = 0;
         [HideInInspector] public List<ParameterNode> ParametersList = new List<ParameterNode>();
+        
+        public override void OnStart() { }
+        public override void OnStop() { }
         public override State OnUpdate()
         {
             _existZeroParameter = false;
@@ -54,8 +57,6 @@ namespace AI.BehaviorTree.Nodes.CompositeNodes
                 }
             }
             return State.Success;
-        }
-    }
-    
-    
+        }    
+    }   
 }

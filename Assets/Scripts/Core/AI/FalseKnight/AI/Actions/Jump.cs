@@ -8,14 +8,17 @@ namespace Examples.Example_1.FalseKnight.AI.Actions
     public class Jump : ActionNode
     {
         private Fatigue _fatigue;
-        public override void OnInit()
+
+        public override void OnStart()
         {
-            base.OnInit();
             _fatigue = BehaviorTreeRef.Nodes.Where(n=> n is Fatigue).FirstOrDefault() as Fatigue;
         }
-        public override State OnUpdate()
+        public override void OnStop()
         {
-           
+          
+        }
+        public override State OnUpdate()
+        {           
             if (this.BehaviorTreeRef == null)
                 return State.Failure;
    

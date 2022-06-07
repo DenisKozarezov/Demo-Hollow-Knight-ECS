@@ -18,10 +18,10 @@ namespace AI.ECS.Systems
             foreach (var i in _filter) {
                 ref var ecsEntity = ref _filter.GetEntity (i);
                 ecsEntity.Get<BehaviorTreeComponent>().Init(_world);
-                ValidateRefferences(ecsEntity);
+                ValidateReferences(ecsEntity);
             }
         }
-        private void ValidateRefferences(EcsEntity ecsEntity) {
+        private void ValidateReferences(EcsEntity ecsEntity) {
             ecsEntity.Get<BehaviorTreeComponent>().ValidateRefferences();
         }
         public void Run () {
@@ -30,7 +30,7 @@ namespace AI.ECS.Systems
 
                 if (!ecsEntity.Get<BehaviorTreeComponent>().isInitialised) {
                     ecsEntity.Get<BehaviorTreeComponent>().Init(_world);
-                    ValidateRefferences(ecsEntity);
+                    ValidateReferences(ecsEntity);
                     ecsEntity.Get<BehaviorTreeComponent>().isInitialised = true;
                 }
                 

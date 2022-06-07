@@ -21,9 +21,9 @@ namespace Editor.BehaviorTreeEditor.VisualElements.Nodes.ParameterNodes
 
         protected virtual void CreateOutputPorts()
         {
-            if(_behaviorTreeView.OrientationTree == OrientationTree.Horizontal)
+            if(_behaviorTreeView.OrientationTree == TreeOrientation.Horizontal)
                 OutputPort = InstantiatePort(Orientation.Horizontal, Direction.Output, Port.Capacity.Multi, typeof(ParameterNode));
-            if(_behaviorTreeView.OrientationTree == OrientationTree.Vertical)
+            if(_behaviorTreeView.OrientationTree == TreeOrientation.Vertical)
                 OutputPort = InstantiatePort(Orientation.Vertical, Direction.Output, Port.Capacity.Multi, typeof(ParameterNode));
             
             OutputPort.name = "";

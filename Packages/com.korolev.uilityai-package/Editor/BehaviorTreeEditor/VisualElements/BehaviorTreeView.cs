@@ -36,7 +36,7 @@ namespace Editor.BehaviorTreeEditor.VisualElements
         public Action OnNodeUnselected;
         public Action<NodeView> OnGroupSelected;
         public Action OnGroupUnselected;
-        public OrientationTree OrientationTree;
+        public TreeOrientation OrientationTree;
         
         public new class UXMLFactory : UxmlFactory<BehaviorTreeView, GraphView.UxmlTraits> { }      //нужно для использования UXML 
         
@@ -124,7 +124,7 @@ namespace Editor.BehaviorTreeEditor.VisualElements
         private GroupSO CreateGroupBeforeView(string title, Vector2 localMousePosition)
         {
             GroupSO groupSo = _behaviorTree.CreateGroup(title);
-            groupSo.SetPosition(localMousePosition);
+            groupSo.Position = localMousePosition;
             return groupSo;
         }
 
@@ -227,7 +227,7 @@ namespace Editor.BehaviorTreeEditor.VisualElements
         /// <summary>
         /// Отображает выбранное дерево на экране
         /// </summary>
-        public void DrawSelectionTreeView(BehaviorTree tree, OrientationTree orientationTree = OrientationTree.Horizontal)
+        public void DrawSelectionTreeView(BehaviorTree tree, TreeOrientation orientationTree = TreeOrientation.Horizontal)
         {
             OrientationTree = orientationTree;
             _behaviorTree = tree;           //сохраняет ссылку на текущее дерево
@@ -240,7 +240,7 @@ namespace Editor.BehaviorTreeEditor.VisualElements
                 //отрисовывает каждый элемент дерева
                 _behaviorTree.Nodes.ForEach(node =>
                 {
-                    var nodeView = CreateNodeViewBeforeDraw(node, node.GetPosition());
+                    var nodeView = CreateNodeViewBeforeDraw(node, node.Position);
                     DrawNodeView(nodeView);
                 }); 
                 

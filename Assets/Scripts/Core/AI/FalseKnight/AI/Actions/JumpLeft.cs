@@ -5,12 +5,14 @@ namespace Examples.Example_1.FalseKnight.AI.Actions
 {
     public class JumpLeft : ActionNode
     {
-        public override void OnInit() { }
+        public override void OnStart() 
+        { 
 
-        public override void OnStart() { }
+        }
+        public override void OnStop() 
+        { 
 
-        public override void OnStop() { }
-
+        }
         public override State OnUpdate()
         {
             if (this.BehaviorTreeRef.GameObjectRef == null)

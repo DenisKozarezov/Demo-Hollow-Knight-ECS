@@ -7,6 +7,8 @@ namespace AI.BehaviorTree.Nodes.DecoratorNodes
 {
     public class RootNode : DecoratorNode
     {
+        public override void OnStart() { }
+        public override void OnStop() { }
         public override State OnUpdate()
         {
             if (Child.State != State.Running)

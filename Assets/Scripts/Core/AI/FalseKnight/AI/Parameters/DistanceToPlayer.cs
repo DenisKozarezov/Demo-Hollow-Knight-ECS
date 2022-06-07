@@ -11,15 +11,13 @@ namespace Examples.Example_1.FalseKnight.AI.Parameters
         [NonSerialized] private GameObject PlayerRef;
         [NonSerialized] private GameObject GameObjectRef;
 
-        public override void OnInit()
-        {
+        public override void OnStart() 
+        { 
             PlayerRef = FindObjectsOfType<GameObject>().Where(i => i.layer == LayerMask.NameToLayer("Character")).FirstOrDefault();
             GameObjectRef = FindObjectsOfType<GameObject>().Where(i => i.layer == LayerMask.NameToLayer("FalseKnight")).FirstOrDefault();
         }
-
-        public override void OnStart() { }
-
-        public override State OnUpdate() {   
+        public override State OnUpdate() 
+        {   
             
             if (PlayerRef != null && GameObjectRef != null)
             {

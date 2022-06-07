@@ -15,7 +15,6 @@ MonoBehaviour:
   BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: 7525741962513757872}
   GroupSo: {fileID: -1002988855477588090}
-  Position: {x: 1249, y: 57}
   GUID: b36a6a499a85848a7ae31c8379e8df32
   Curve:
     serializedVersion: 2
@@ -38,7 +37,6 @@ MonoBehaviour:
   BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: 1058190741223281512}
   GroupSo: {fileID: 0}
-  Position: {x: 511, y: 76}
   GUID: 0478207da39ae44a0b280b2905c08b33
   Curve:
     serializedVersion: 2
@@ -72,7 +70,6 @@ MonoBehaviour:
   BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: 0}
   GroupSo: {fileID: 4079170083738136383}
-  Position: {x: 97, y: 418}
   GUID: c29930b4d12db40d08fa8792c9149a95
   ChildNode: {fileID: -5818478633785936904}
   Value: 0
@@ -91,7 +88,6 @@ MonoBehaviour:
   BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: -5818478633785936904}
   GroupSo: {fileID: 1027363895931364201}
-  Position: {x: 724, y: 282}
   GUID: 71b3a0fb44ca74ffab84e4b54737fe3c
   Curve:
     serializedVersion: 2
@@ -114,10 +110,9 @@ MonoBehaviour:
   BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: 0}
   GroupSo: {fileID: 4079170083738136383}
-  Position: {x: 97, y: 346}
   GUID: 7411b92165232485e98bec80fbc7139e
   ChildNode: {fileID: -5818478633785936904}
-  Distance: 0.72841454
+  Distance: 0.7284148
 --- !u!114 &-5268062689480218467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,7 +128,6 @@ MonoBehaviour:
   BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: -5818478633785936904}
   GroupSo: {fileID: -1002988855477588090}
-  Position: {x: 741, y: 8}
   GUID: 1ba9f6b69f60442d39bf2624238d63f3
   Curve:
     serializedVersion: 2
@@ -158,7 +152,6 @@ MonoBehaviour:
   BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: 7525741962513757872}
   GroupSo: {fileID: -1002988855477588090}
-  Position: {x: 1102, y: 117}
   GUID: 047a493d02a274c49a4bde567dd2da22
   Curve:
     serializedVersion: 2
@@ -182,7 +175,6 @@ MonoBehaviour:
   BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: 7525741962513757872}
   GroupSo: {fileID: -1002988855477588090}
-  Position: {x: 1093, y: -60}
   GUID: bc0c1151165be477186e8233448d1083
   Curve:
     serializedVersion: 2
@@ -205,7 +197,6 @@ MonoBehaviour:
   BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: 0}
   GroupSo: {fileID: 0}
-  Position: {x: 17, y: -8}
   GUID: a538c95f73b114d93b4f993a9eeab681
   Curve:
     serializedVersion: 2
@@ -229,7 +220,6 @@ MonoBehaviour:
   BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: -5268062689480218467}
   GroupSo: {fileID: -1002988855477588090}
-  Position: {x: 853, y: 30}
   GUID: ca0858ae79f0a480eac4c1a72f2a8cfa
   Curve:
     serializedVersion: 2
@@ -254,7 +244,6 @@ MonoBehaviour:
   BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: 0}
   GroupSo: {fileID: 4079170083738136383}
-  Position: {x: 88.5, y: 202}
   GUID: 94b46a4fbc8fe438ba418fcb35a04f79
   ChildNode: {fileID: 0}
   Value: 0
@@ -273,7 +262,6 @@ MonoBehaviour:
   BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: 7525741962513757872}
   GroupSo: {fileID: -1002988855477588090}
-  Position: {x: 1295, y: -20}
   GUID: 84a4787672c9c4895b2394f22076ad31
   Curve:
     serializedVersion: 2
@@ -297,7 +285,6 @@ MonoBehaviour:
   BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: 7525741962513757872}
   GroupSo: {fileID: -1002988855477588090}
-  Position: {x: 1170, y: 104}
   GUID: 3a56a005340d9469297e71eb4073a89d
   Curve:
     serializedVersion: 2
@@ -320,10 +307,9 @@ MonoBehaviour:
   BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: 0}
   GroupSo: {fileID: 4079170083738136383}
-  Position: {x: 97, y: 274}
   GUID: f3713b98c1bed48a6bb3920c4be8ed2c
   ChildNode: {fileID: 0}
-  Value: 0.5800271
+  Value: 0.44008064
 --- !u!114 &-1002988855477588090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -338,7 +324,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Nodes: []
   Title: "\u0410\u0433\u0440\u0435\u0441\u0441\u0438\u0432\u043D\u0430\u044F \u0430\u0442\u0430\u043A\u0430"
-  Position: {x: 692, y: -119}
   GUID: 569d7ca3da65843aa9de8beaab05c0db
 --- !u!114 &11400000
 MonoBehaviour:
@@ -398,7 +383,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Nodes: []
   Title: "\u041F\u0440\u044B\u0436\u043E\u043A"
-  Position: {x: 695, y: 392}
   GUID: 6d5df96f47edd4813bacebfd0fd0b92a
 --- !u!114 &1027363895931364201
 MonoBehaviour:
@@ -414,7 +398,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Nodes: []
   Title: "\u041F\u0440\u043E\u0441\u0442\u0430\u044F \u0430\u0442\u0430\u043A\u0430"
-  Position: {x: 699, y: 223}
   GUID: d9bea9248a656423a80233200054f767
 --- !u!114 &1058190741223281512
 MonoBehaviour:
@@ -431,7 +414,6 @@ MonoBehaviour:
   BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: 2722886564823990091}
   GroupSo: {fileID: 0}
-  Position: {x: 322, y: 18}
   GUID: eba64a07179174e1fab1417c53bc7227
   Curve:
     serializedVersion: 2
@@ -457,7 +439,6 @@ MonoBehaviour:
   BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: 0}
   GroupSo: {fileID: 0}
-  Position: {x: 519.00006, y: 418}
   GUID: 12981f5d5bda54edeb0fbc247aa498fa
   Curve:
     serializedVersion: 2
@@ -482,7 +463,6 @@ MonoBehaviour:
   BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: -4620815090318103733}
   GroupSo: {fileID: 0}
-  Position: {x: 155, y: 2}
   GUID: 72d0f559b70fd49f1b67c3a637a379cd
   Curve:
     serializedVersion: 2
@@ -507,7 +487,6 @@ MonoBehaviour:
   BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: -5818478633785936904}
   GroupSo: {fileID: 558800295767579824}
-  Position: {x: 720, y: 451}
   GUID: 25612f9ad0e32444ea373888504b2a20
   Curve:
     serializedVersion: 2
@@ -530,7 +509,6 @@ MonoBehaviour:
   BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: 0}
   GroupSo: {fileID: -1002988855477588090}
-  Position: {x: 723, y: 112}
   GUID: e7ff7bc5de71f429585d19c3c6e05f93
   ChildNode: {fileID: -4445214288975828384}
   Count: 5
@@ -549,7 +527,6 @@ MonoBehaviour:
   BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: 7525741962513757872}
   GroupSo: {fileID: -1002988855477588090}
-  Position: {x: 1216, y: -45}
   GUID: cce1a14da1d914cc1ad147f451317ac5
   Curve:
     serializedVersion: 2
@@ -571,7 +548,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Nodes: []
   Title: "\u041F\u0430\u0440\u0430\u043C\u0435\u0442\u0440\u044B \u0441\u0438\u0441\u0442\u0435\u043C\u044B"
-  Position: {x: 14, y: 138}
   GUID: 117f23fedf42d4209ad89fa404b75c54
 --- !u!114 &6518784542748760188
 MonoBehaviour:
@@ -588,7 +564,6 @@ MonoBehaviour:
   Nodes: []
   Title: "\u041F\u043E\u0441\u043C\u043E\u0442\u0440\u0435\u0442\u044C \u043D\u0430
     \u0438\u0433\u0440\u043E\u043A\u0430"
-  Position: {x: 710, y: -250}
   GUID: 7d91cdf897d49451b8765fb57ef377de
 --- !u!114 &7525741962513757872
 MonoBehaviour:
@@ -605,7 +580,6 @@ MonoBehaviour:
   BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: -4445214288975828384}
   GroupSo: {fileID: -1002988855477588090}
-  Position: {x: 983, y: 32}
   GUID: 891550a95d47c48e78d6930dd65f99a1
   Curve:
     serializedVersion: 2
@@ -635,7 +609,6 @@ MonoBehaviour:
   BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: 1058190741223281512}
   GroupSo: {fileID: 6518784542748760188}
-  Position: {x: 738.5, y: -238}
   GUID: 12f7bf0a54c0142ff815fbfb5b6e9446
   Curve:
     serializedVersion: 2

@@ -38,9 +38,9 @@ namespace Editor.BehaviorTreeEditor.VisualElements.Nodes.ChoiseNodes
         protected override void CreateInputPorts() {
             base.CreateInputPorts();
             
-            if(_behaviorTreeView.OrientationTree == OrientationTree.Horizontal)
+            if(_behaviorTreeView.OrientationTree == TreeOrientation.Horizontal)
                 InputParameterPort = InstantiatePort(Orientation.Horizontal, Direction.Input, Port.Capacity.Multi, typeof(ParameterNode));
-            if(_behaviorTreeView.OrientationTree == OrientationTree.Vertical)
+            if(_behaviorTreeView.OrientationTree == TreeOrientation.Vertical)
                 InputParameterPort = InstantiatePort(Orientation.Vertical, Direction.Input, Port.Capacity.Multi, typeof(ParameterNode));
             
             InputParameterPort.name = "";

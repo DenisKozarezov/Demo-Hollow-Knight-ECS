@@ -24,18 +24,7 @@ namespace Examples.Example_1.ECS.Systems
             GameObject go = _unitFactory.GetRandomUnit();
             go.transform.position = point;
             var reference = go.GetComponent<EntityReference>();
-            var animator = go.GetComponent<Animator>();
-            var collider = go.GetComponent<Collider2D>();
-            var rigidbody = go.GetComponent<Rigidbody2D>();
             reference.Entity = entity;
-
-            entity.Get<UnitComponent>().Value = reference;
-            entity.Get<HealthComponent>();
-            entity.Get<AnimatorComponent>().Value = animator;
-            entity.Get<ColliderComponent>().Value = collider;
-            entity.Get<RigidbodyComponent>().Value = rigidbody;
-            entity.Get<HittableComponent>();
-            entity.Get<MovableComponent>();
 
             return go;
         }

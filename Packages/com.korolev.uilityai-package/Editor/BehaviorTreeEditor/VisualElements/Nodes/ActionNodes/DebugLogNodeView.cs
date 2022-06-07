@@ -4,8 +4,6 @@
  *******************************************/
 
 using System;
-using AI.BehaviorTree.Nodes.ActionNodes;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Node = AI.BehaviorTree.Nodes.Node;

@@ -10,13 +10,15 @@ namespace Examples.Example_1.FalseKnight.AI.Actions
         [NonSerialized] private GameObject PlayerRef;
         [NonSerialized] private GameObject GameObjectRef;
 
-        public override void OnInit()
+        public override void OnStart()
         {
-            base.OnInit();
             PlayerRef = FindObjectsOfType<GameObject>().Where(i => i.layer == Constants.PlayerLayer).FirstOrDefault();
             GameObjectRef = FindObjectsOfType<GameObject>().Where(i => i.layer == Constants.EnemyLayer).FirstOrDefault();
         }
-
+        public override void OnStop()
+        {
+   
+        }
         public override State OnUpdate()
         {
             var directionWatch = (PlayerRef.transform.position - GameObjectRef.transform.position).x;

@@ -19,7 +19,7 @@ using UnityEditor;
 
 namespace AI.BehaviorTree
 {
-    public enum OrientationTree
+    public enum TreeOrientation
     {
         Vertical,
         Horizontal
@@ -33,7 +33,7 @@ namespace AI.BehaviorTree
         [SerializeField][HideInInspector] public List<Node> Nodes = new List<Node>();
         [SerializeField][HideInInspector] public List<GroupSO> Groups = new List<GroupSO>();
         [SerializeField][HideInInspector] public GameObject GameObjectRef;
-        [SerializeField][HideInInspector] public OrientationTree OrientationTree = OrientationTree.Horizontal;
+        [SerializeField][HideInInspector] public TreeOrientation OrientationTree = TreeOrientation.Horizontal;
 
         [NonSerialized] private Node _prevNode;
         [NonSerialized] private Node _currentNode;
@@ -46,8 +46,7 @@ namespace AI.BehaviorTree
             foreach (var node in Nodes)
             {
                 node.BehaviorTreeRef = this;
-                node.OnInit();
-                node.OnInit(ecsWorld);
+                node.Init(ecsWorld);
             }
         }
 
@@ -71,6 +70,8 @@ namespace AI.BehaviorTree
             if (RootNode.State == State.Success || RootNode.State == State.Failure)
                 return RootNode.State;
 
+            // TODO: replace by GetState(_prevNode)
+            //============================
             if (_currentNode == null && _prevNode.State == State.Success)
                 return State.Success;
             else if (_currentNode == null)
@@ -83,10 +84,23 @@ namespace AI.BehaviorTree
                 SetCurrentNode(_currentNode.Parent);
 
             return State.Running;
+            //============================
+        }
+
+        private State GetState(Node node)
+        {
+            switch (node.State)
+            {
+                case State.Success: return State.Success;
+                case State.Running: return _currentNode.Update();
+                default:
+                    SetCurrentNode(_currentNode.Parent);
+                    return State.Running;
+            }
         }
 
         #region Node Manipulations
-        public Node CreateNode(System.Type type)
+        public Node CreateNode(Type type)
         {
             Node node = ScriptableObject.CreateInstance(type) as Node;
             node.State = State.Running;
@@ -292,6 +306,5 @@ namespace AI.BehaviorTree
             SaveAsset(this);
         }
 #endif
-
     }
 }

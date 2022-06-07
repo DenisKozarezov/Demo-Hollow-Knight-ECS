@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Nodes: []
   Title: Group
-  Position: {x: -14, y: -26}
   GUID: 4a66309a322874b19aa0e43ca50198b5
 --- !u!114 &-4407682157320369612
 MonoBehaviour:
@@ -31,7 +30,6 @@ MonoBehaviour:
   BehaviorTreeRef: {fileID: 0}
   Parent: {fileID: -568919804256173499}
   GroupSo: {fileID: -6888128297050948833}
-  Position: {x: 143, y: 39}
   GUID: 3b9d4089401a04aa1a03dc86831747ba
   Curve:
     serializedVersion: 2
@@ -54,7 +52,6 @@ MonoBehaviour:
   BehaviorTreeRef: {fileID: 0}
   Parent: {fileID: 0}
   GroupSo: {fileID: -6888128297050948833}
-  Position: {x: 11, y: 33}
   GUID: e9af8c4cc949749c6ae174d565fd807b
   Curve:
     serializedVersion: 2
