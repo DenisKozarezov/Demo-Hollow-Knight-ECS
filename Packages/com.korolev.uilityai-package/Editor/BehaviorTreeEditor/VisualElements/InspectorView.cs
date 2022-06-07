@@ -24,5 +24,17 @@ namespace Editor.BehaviorTreeEditor.VisualElements
                 Add(imguiContainer);
             }
         }
+        
+        public void SetDarkTheme()
+        {
+            this.ClearClassList();
+            this.AddToClassList("dark-theme");
+        }
+
+        public void SetLightTheme()
+        {
+            this.ClearClassList();
+            this.AddToClassList("light-theme");
+        }
     }
 }

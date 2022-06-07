@@ -1,0 +1,59 @@
+.dark-theme #centralContainer {
+    background-color: rgba(224, 224, 224, 0.17);
+}
+
+.dark-theme #contentContainerPlaceholder {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.dark-theme #dropArea {
+    background-color: rgba(0, 0, 0, 0);
+    border-left-color: rgb(87, 87, 87);
+    border-right-color: rgb(87, 87, 87);
+    border-top-color: rgb(87, 87, 87);
+    border-bottom-color: rgb(87, 87, 87);
+    border-left-width: 1.5px;
+    border-right-width: 1.5px;
+    border-top-width: 1.5px;
+    border-bottom-width: 1.5px;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+}
+
+.dark-theme #headerContainer {
+    background-color: rgb(56, 56, 56);
+}
+
+.light-theme #centralContainer {
+    background-color: rgb(132, 132, 132);
+    color: rgba(75, 75, 75, 255);
+}
+
+.light-theme #contentContainerPlaceholder {
+    background-color: rgb(161, 161, 161);
+    color: rgba(65, 65, 65, 255);
+}
+
+.light-theme #dropArea {
+    background-color: rgb(125, 125, 125);
+    border-left-color: rgb(87, 87, 87);
+    border-right-color: rgb(87, 87, 87);
+    border-top-color: rgb(87, 87, 87);
+    border-bottom-color: rgb(87, 87, 87);
+    border-left-width: 1.5px;
+    border-right-width: 1.5px;
+    border-top-width: 1.5px;
+    border-bottom-width: 1.5px;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+    color: rgba(63, 63, 63, 255);
+}
+
+.light-theme #headerContainer {
+    background-color: rgb(209, 209, 209);
+    color: rgb(94, 94, 94);
+}

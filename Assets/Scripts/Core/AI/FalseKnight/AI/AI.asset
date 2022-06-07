@@ -15,7 +15,7 @@ MonoBehaviour:
   BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: 7525741962513757872}
   GroupSo: {fileID: -1002988855477588090}
-  _position: {x: 587, y: -83}
+  _position: {x: 739.67993, y: -189.82687}
   GUID: b36a6a499a85848a7ae31c8379e8df32
   Curve:
     serializedVersion: 2
@@ -72,7 +72,7 @@ MonoBehaviour:
   BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: 0}
   GroupSo: {fileID: 4079170083738136383}
-  _position: {x: -450, y: 64}
+  _position: {x: -499.935, y: 183.03001}
   GUID: c29930b4d12db40d08fa8792c9149a95
   ChildNode: {fileID: -5818478633785936904}
   Value: 0
@@ -91,7 +91,7 @@ MonoBehaviour:
   BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: -5818478633785936904}
   GroupSo: {fileID: 1027363895931364201}
-  _position: {x: -126, y: -138}
+  _position: {x: -36.49997, y: -64}
   GUID: 71b3a0fb44ca74ffab84e4b54737fe3c
   Curve:
     serializedVersion: 2
@@ -114,7 +114,7 @@ MonoBehaviour:
   BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: 0}
   GroupSo: {fileID: 4079170083738136383}
-  _position: {x: -445, y: -8}
+  _position: {x: -494.935, y: 111.030014}
   GUID: 7411b92165232485e98bec80fbc7139e
   ChildNode: {fileID: -5818478633785936904}
 --- !u!114 &-5268062689480218467
@@ -132,7 +132,7 @@ MonoBehaviour:
   BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: -5818478633785936904}
   GroupSo: {fileID: -1002988855477588090}
-  _position: {x: -110, y: -246}
+  _position: {x: 185.38998, y: -343.00006}
   GUID: 1ba9f6b69f60442d39bf2624238d63f3
   Curve:
     serializedVersion: 2
@@ -157,7 +157,7 @@ MonoBehaviour:
   BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: 7525741962513757872}
   GroupSo: {fileID: -1002988855477588090}
-  _position: {x: 585, y: -21}
+  _position: {x: 737.67993, y: -127.82687}
   GUID: 047a493d02a274c49a4bde567dd2da22
   Curve:
     serializedVersion: 2
@@ -181,7 +181,7 @@ MonoBehaviour:
   BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: 7525741962513757872}
   GroupSo: {fileID: -1002988855477588090}
-  _position: {x: 607, y: -314}
+  _position: {x: 759.67993, y: -420.82687}
   GUID: bc0c1151165be477186e8233448d1083
   Curve:
     serializedVersion: 2
@@ -228,7 +228,7 @@ MonoBehaviour:
   BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: -5268062689480218467}
   GroupSo: {fileID: -1002988855477588090}
-  _position: {x: 197, y: -242}
+  _position: {x: 349.67996, y: -348.82687}
   GUID: ca0858ae79f0a480eac4c1a72f2a8cfa
   Curve:
     serializedVersion: 2
@@ -253,7 +253,7 @@ MonoBehaviour:
   BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: 0}
   GroupSo: {fileID: 4079170083738136383}
-  _position: {x: -497, y: -155}
+  _position: {x: -546.935, y: -35.969986}
   GUID: 94b46a4fbc8fe438ba418fcb35a04f79
   ChildNode: {fileID: 0}
   Value: 0
@@ -272,7 +272,7 @@ MonoBehaviour:
   BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: 7525741962513757872}
   GroupSo: {fileID: -1002988855477588090}
-  _position: {x: 599, y: -230}
+  _position: {x: 751.67993, y: -336.82687}
   GUID: 84a4787672c9c4895b2394f22076ad31
   Curve:
     serializedVersion: 2
@@ -296,7 +296,7 @@ MonoBehaviour:
   BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: 7525741962513757872}
   GroupSo: {fileID: -1002988855477588090}
-  _position: {x: 593, y: 51}
+  _position: {x: 745.67993, y: -55.826874}
   GUID: 3a56a005340d9469297e71eb4073a89d
   Curve:
     serializedVersion: 2
@@ -319,10 +319,10 @@ MonoBehaviour:
   BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: 0}
   GroupSo: {fileID: 4079170083738136383}
-  _position: {x: -444, y: -80}
+  _position: {x: -493.935, y: 39.030014}
   GUID: f3713b98c1bed48a6bb3920c4be8ed2c
   ChildNode: {fileID: 0}
-  Value: 0.25014567
+  Value: 0.32012844
 --- !u!114 &-1002988855477588090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -335,9 +335,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e9ecb1e61bd41b79d65b9c21c90a3d2, type: 3}
   m_Name: Group
   m_EditorClassIdentifier: 
-  Nodes: []
+  Nodes:
+  - {fileID: -4622023020786220131}
+  - {fileID: -7686855569827510391}
+  - {fileID: 3878798768866490655}
+  - {fileID: -2139619316797429196}
+  - {fileID: -3681991439330042166}
+  - {fileID: -4841863254726358398}
+  - {fileID: -4445214288975828384}
+  - {fileID: 7525741962513757872}
+  - {fileID: 3472139531113122511}
+  - {fileID: -5268062689480218467}
   Title: "\u0410\u0433\u0440\u0435\u0441\u0441\u0438\u0432\u043D\u0430\u044F \u0430\u0442\u0430\u043A\u0430"
-  _position: {x: -717.07996, y: 61.760002}
+  _position: {x: 324.68, y: -479.8269}
   GUID: 569d7ca3da65843aa9de8beaab05c0db
 --- !u!114 &11400000
 MonoBehaviour:
@@ -374,7 +384,6 @@ MonoBehaviour:
   - {fileID: -4445214288975828384}
   - {fileID: 3472139531113122511}
   - {fileID: 7525741962513757872}
-  - {fileID: 1290079013541463029}
   Groups:
   - {fileID: -1002988855477588090}
   - {fileID: 4079170083738136383}
@@ -395,9 +404,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e9ecb1e61bd41b79d65b9c21c90a3d2, type: 3}
   m_Name: Group
   m_EditorClassIdentifier: 
-  Nodes: []
+  Nodes:
+  - {fileID: 3413210538346670998}
   Title: "\u041F\u0440\u044B\u0436\u043E\u043A"
-  _position: {x: -132.41797, y: 13.749023}
+  _position: {x: -60.719986, y: 36.159218}
   GUID: 6d5df96f47edd4813bacebfd0fd0b92a
 --- !u!114 &1027363895931364201
 MonoBehaviour:
@@ -411,9 +421,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e9ecb1e61bd41b79d65b9c21c90a3d2, type: 3}
   m_Name: Group
   m_EditorClassIdentifier: 
-  Nodes: []
+  Nodes:
+  - {fileID: -5464456801852873391}
   Title: "\u041F\u0440\u043E\u0441\u0442\u0430\u044F \u0430\u0442\u0430\u043A\u0430"
-  _position: {x: 692.2, y: 59}
+  _position: {x: -78.55497, y: -106.28751}
   GUID: d9bea9248a656423a80233200054f767
 --- !u!114 &1058190741223281512
 MonoBehaviour:
@@ -441,31 +452,6 @@ MonoBehaviour:
   ChildNodes:
   - {fileID: 9108708165869451457}
   - {fileID: -5818478633785936904}
---- !u!114 &1290079013541463029
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88b6ac6c789c446b94af87985e2f4f4a, type: 3}
-  m_Name: ChoiceNode
-  m_EditorClassIdentifier: 
-  BehaviorTreeRef: {fileID: 11400000}
-  Parent: {fileID: 0}
-  GroupSo: {fileID: 0}
-  _position: {x: -242, y: 165}
-  GUID: 12981f5d5bda54edeb0fbc247aa498fa
-  Curve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  ChildNodes: []
-  ParametersList: []
 --- !u!114 &2722886564823990091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -506,7 +492,7 @@ MonoBehaviour:
   BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: -5818478633785936904}
   GroupSo: {fileID: 558800295767579824}
-  _position: {x: -118, y: -72}
+  _position: {x: -35.720097, y: 95.159195}
   GUID: 25612f9ad0e32444ea373888504b2a20
   Curve:
     serializedVersion: 2
@@ -529,7 +515,7 @@ MonoBehaviour:
   BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: 0}
   GroupSo: {fileID: -1002988855477588090}
-  _position: {x: 0, y: -115}
+  _position: {x: 268.455, y: -150.99997}
   GUID: e7ff7bc5de71f429585d19c3c6e05f93
   ChildNode: {fileID: -4445214288975828384}
   Count: 5
@@ -548,7 +534,7 @@ MonoBehaviour:
   BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: 7525741962513757872}
   GroupSo: {fileID: -1002988855477588090}
-  _position: {x: 594, y: -155}
+  _position: {x: 746.67993, y: -261.82687}
   GUID: cce1a14da1d914cc1ad147f451317ac5
   Curve:
     serializedVersion: 2
@@ -568,9 +554,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e9ecb1e61bd41b79d65b9c21c90a3d2, type: 3}
   m_Name: Group
   m_EditorClassIdentifier: 
-  Nodes: []
+  Nodes:
+  - {fileID: -4245075091455033926}
+  - {fileID: -1621986230422085957}
+  - {fileID: -5437982386082551897}
+  - {fileID: -5624771192495610756}
   Title: "\u041F\u0430\u0440\u0430\u043C\u0435\u0442\u0440\u044B \u0441\u0438\u0441\u0442\u0435\u043C\u044B"
-  _position: {x: -622, y: -418.24}
+  _position: {x: -571.935, y: -94.97002}
   GUID: 117f23fedf42d4209ad89fa404b75c54
 --- !u!114 &6518784542748760188
 MonoBehaviour:
@@ -584,10 +574,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e9ecb1e61bd41b79d65b9c21c90a3d2, type: 3}
   m_Name: Group
   m_EditorClassIdentifier: 
-  Nodes: []
+  Nodes:
+  - {fileID: 9108708165869451457}
   Title: "\u041F\u043E\u0441\u043C\u043E\u0442\u0440\u0435\u0442\u044C \u043D\u0430
     \u0438\u0433\u0440\u043E\u043A\u0430"
-  _position: {x: -128.51385, y: -343.60138}
+  _position: {x: -224, y: -441}
   GUID: 7d91cdf897d49451b8765fb57ef377de
 --- !u!114 &7525741962513757872
 MonoBehaviour:
@@ -604,7 +595,7 @@ MonoBehaviour:
   BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: -4445214288975828384}
   GroupSo: {fileID: -1002988855477588090}
-  _position: {x: 386, y: -238}
+  _position: {x: 538.67993, y: -344.82687}
   GUID: 891550a95d47c48e78d6930dd65f99a1
   Curve:
     serializedVersion: 2
@@ -634,7 +625,7 @@ MonoBehaviour:
   BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: 1058190741223281512}
   GroupSo: {fileID: 6518784542748760188}
-  _position: {x: -280, y: -354}
+  _position: {x: -199, y: -382}
   GUID: 12f7bf0a54c0142ff815fbfb5b6e9446
   Curve:
     serializedVersion: 2
