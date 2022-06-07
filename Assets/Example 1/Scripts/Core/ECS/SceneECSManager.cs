@@ -55,8 +55,8 @@ namespace Examples.Example_1.ECS
                 
             _systems?.Init();
         }
-    
-        void FixedUpdate() 
+
+        private void FixedUpdate() 
         {
             _systems?.Run();
         }

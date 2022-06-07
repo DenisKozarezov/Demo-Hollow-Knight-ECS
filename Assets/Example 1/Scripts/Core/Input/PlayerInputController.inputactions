@@ -112,6 +112,34 @@
                     "isPartOfComposite": true
                 }
             ]
+        },
+        {
+            "name": "Gamepad",
+            "id": "2670bd55-4967-4b5b-a584-53b2e2b05718",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "fd6a6c79-b309-4f31-a949-caa3c3660fb5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "ec9d642d-2b54-4849-9b59-364801a0efb5",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

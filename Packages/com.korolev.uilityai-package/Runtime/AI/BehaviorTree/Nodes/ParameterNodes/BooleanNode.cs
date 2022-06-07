@@ -7,7 +7,7 @@ namespace AI.BehaviorTree.Nodes.ParameterNodes
     {
         [NonSerialized] public bool Value;
 
-        public override void OnInit() {Value = false; }
+        public override void OnInit() { Value = false; }
         public override void OnStart() { State = State.Running; }
         public override void OnStop() { }
         public override State OnUpdate() {

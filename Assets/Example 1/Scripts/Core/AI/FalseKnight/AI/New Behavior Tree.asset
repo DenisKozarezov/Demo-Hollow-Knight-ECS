@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e9ecb1e61bd41b79d65b9c21c90a3d2, type: 3}
   m_Name: Group
   m_EditorClassIdentifier: 
+  Nodes: []
+  Title: Group
   Position: {x: -14, y: -26}
   GUID: 4a66309a322874b19aa0e43ca50198b5
-  Title: Group
 --- !u!114 &-4407682157320369612
 MonoBehaviour:
   m_ObjectHideFlags: 0

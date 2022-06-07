@@ -134,6 +134,34 @@ public partial class @PlayerInputController : IInputActionCollection2, IDisposab
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""Gamepad"",
+            ""id"": ""2670bd55-4967-4b5b-a584-53b2e2b05718"",
+            ""actions"": [
+                {
+                    ""name"": ""New action"",
+                    ""type"": ""Button"",
+                    ""id"": ""fd6a6c79-b309-4f31-a949-caa3c3660fb5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""ec9d642d-2b54-4849-9b59-364801a0efb5"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""New action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -143,6 +171,9 @@ public partial class @PlayerInputController : IInputActionCollection2, IDisposab
         m_Keyboard_Move = m_Keyboard.FindAction("Move", throwIfNotFound: true);
         m_Keyboard_Jump = m_Keyboard.FindAction("Jump", throwIfNotFound: true);
         m_Keyboard_Attack = m_Keyboard.FindAction("Attack", throwIfNotFound: true);
+        // Gamepad
+        m_Gamepad = asset.FindActionMap("Gamepad", throwIfNotFound: true);
+        m_Gamepad_Newaction = m_Gamepad.FindAction("New action", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -247,10 +278,47 @@ public partial class @PlayerInputController : IInputActionCollection2, IDisposab
         }
     }
     public KeyboardActions @Keyboard => new KeyboardActions(this);
+
+    // Gamepad
+    private readonly InputActionMap m_Gamepad;
+    private IGamepadActions m_GamepadActionsCallbackInterface;
+    private readonly InputAction m_Gamepad_Newaction;
+    public struct GamepadActions
+    {
+        private @PlayerInputController m_Wrapper;
+        public GamepadActions(@PlayerInputController wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Newaction => m_Wrapper.m_Gamepad_Newaction;
+        public InputActionMap Get() { return m_Wrapper.m_Gamepad; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(GamepadActions set) { return set.Get(); }
+        public void SetCallbacks(IGamepadActions instance)
+        {
+            if (m_Wrapper.m_GamepadActionsCallbackInterface != null)
+            {
+                @Newaction.started -= m_Wrapper.m_GamepadActionsCallbackInterface.OnNewaction;
+                @Newaction.performed -= m_Wrapper.m_GamepadActionsCallbackInterface.OnNewaction;
+                @Newaction.canceled -= m_Wrapper.m_GamepadActionsCallbackInterface.OnNewaction;
+            }
+            m_Wrapper.m_GamepadActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Newaction.started += instance.OnNewaction;
+                @Newaction.performed += instance.OnNewaction;
+                @Newaction.canceled += instance.OnNewaction;
+            }
+        }
+    }
+    public GamepadActions @Gamepad => new GamepadActions(this);
     public interface IKeyboardActions
     {
         void OnMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
+    }
+    public interface IGamepadActions
+    {
+        void OnNewaction(InputAction.CallbackContext context);
     }
 }

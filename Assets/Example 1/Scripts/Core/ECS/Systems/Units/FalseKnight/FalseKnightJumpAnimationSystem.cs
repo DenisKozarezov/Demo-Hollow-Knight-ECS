@@ -54,13 +54,13 @@ namespace Examples.Example_1.ECS.Systems.FalseKnight
                     }
                 }
                 else if (animator.GetBool(JUMPING_KEY) && onGround)
-                {              
+                {
                     animator.SetBool(JUMPING_KEY, false);
                     animator.SetTrigger(LAND_KEY);
 
                     // Dust effect
                     ref Vector2 point = ref entity.Get<OnGroundComponent>().Point;
-                    EcsEntity dustAnimationEntity = _world.NewEntity();             
+                    EcsEntity dustAnimationEntity = _world.NewEntity();
                     dustAnimationEntity.Get<AnimateDustEventComponent>().Point = point;
                     dustAnimationEntity.Get<AnimateDustEventComponent>().Scale = new Vector3(1f, 1f, 1f);
 

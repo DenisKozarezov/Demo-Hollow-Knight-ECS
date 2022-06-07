@@ -75,6 +75,7 @@ MonoBehaviour:
   Position: {x: 97, y: 418}
   GUID: c29930b4d12db40d08fa8792c9149a95
   ChildNode: {fileID: -5818478633785936904}
+  Value: 0
 --- !u!114 &-5464456801852873391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,7 +117,7 @@ MonoBehaviour:
   Position: {x: 97, y: 346}
   GUID: 7411b92165232485e98bec80fbc7139e
   ChildNode: {fileID: -5818478633785936904}
-  Distance: 0.73741484
+  Distance: 0.72841454
 --- !u!114 &-5268062689480218467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,6 +257,7 @@ MonoBehaviour:
   Position: {x: 88.5, y: 202}
   GUID: 94b46a4fbc8fe438ba418fcb35a04f79
   ChildNode: {fileID: 0}
+  Value: 0
 --- !u!114 &-3681991439330042166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -321,6 +323,7 @@ MonoBehaviour:
   Position: {x: 97, y: 274}
   GUID: f3713b98c1bed48a6bb3920c4be8ed2c
   ChildNode: {fileID: 0}
+  Value: 0.5800271
 --- !u!114 &-1002988855477588090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -333,9 +336,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e9ecb1e61bd41b79d65b9c21c90a3d2, type: 3}
   m_Name: Group
   m_EditorClassIdentifier: 
+  Nodes: []
+  Title: "\u0410\u0433\u0440\u0435\u0441\u0441\u0438\u0432\u043D\u0430\u044F \u0430\u0442\u0430\u043A\u0430"
   Position: {x: 692, y: -119}
   GUID: 569d7ca3da65843aa9de8beaab05c0db
-  Title: "\u0410\u0433\u0440\u0435\u0441\u0441\u0438\u0432\u043D\u0430\u044F \u0430\u0442\u0430\u043A\u0430"
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -392,9 +396,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e9ecb1e61bd41b79d65b9c21c90a3d2, type: 3}
   m_Name: Group
   m_EditorClassIdentifier: 
+  Nodes: []
+  Title: "\u041F\u0440\u044B\u0436\u043E\u043A"
   Position: {x: 695, y: 392}
   GUID: 6d5df96f47edd4813bacebfd0fd0b92a
-  Title: "\u041F\u0440\u044B\u0436\u043E\u043A"
 --- !u!114 &1027363895931364201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -407,9 +412,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e9ecb1e61bd41b79d65b9c21c90a3d2, type: 3}
   m_Name: Group
   m_EditorClassIdentifier: 
+  Nodes: []
+  Title: "\u041F\u0440\u043E\u0441\u0442\u0430\u044F \u0430\u0442\u0430\u043A\u0430"
   Position: {x: 699, y: 223}
   GUID: d9bea9248a656423a80233200054f767
-  Title: "\u041F\u0440\u043E\u0441\u0442\u0430\u044F \u0430\u0442\u0430\u043A\u0430"
 --- !u!114 &1058190741223281512
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -563,9 +569,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e9ecb1e61bd41b79d65b9c21c90a3d2, type: 3}
   m_Name: Group
   m_EditorClassIdentifier: 
+  Nodes: []
+  Title: "\u041F\u0430\u0440\u0430\u043C\u0435\u0442\u0440\u044B \u0441\u0438\u0441\u0442\u0435\u043C\u044B"
   Position: {x: 14, y: 138}
   GUID: 117f23fedf42d4209ad89fa404b75c54
-  Title: "\u041F\u0430\u0440\u0430\u043C\u0435\u0442\u0440\u044B \u0441\u0438\u0441\u0442\u0435\u043C\u044B"
 --- !u!114 &6518784542748760188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -578,10 +585,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e9ecb1e61bd41b79d65b9c21c90a3d2, type: 3}
   m_Name: Group
   m_EditorClassIdentifier: 
-  Position: {x: 710, y: -250}
-  GUID: 7d91cdf897d49451b8765fb57ef377de
+  Nodes: []
   Title: "\u041F\u043E\u0441\u043C\u043E\u0442\u0440\u0435\u0442\u044C \u043D\u0430
     \u0438\u0433\u0440\u043E\u043A\u0430"
+  Position: {x: 710, y: -250}
+  GUID: 7d91cdf897d49451b8765fb57ef377de
 --- !u!114 &7525741962513757872
 MonoBehaviour:
   m_ObjectHideFlags: 0
