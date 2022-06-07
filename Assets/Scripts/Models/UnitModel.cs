@@ -18,15 +18,6 @@ namespace Core.Models
         [Space, SerializeField, ObjectPicker]
         private string _prefabPath;
 
-        [SerializeField, TrackballUI]
-        private Vector4 _trackball;
-
-        [SerializeField, MinMaxSlider(0f, 50f)]
-        private Vector2 _minMaxSlider;
-
-        [SerializeField, ProgressBar]
-        private float _progressBar;
-
         public uint ID => _id;
         public string DisplayName => _displayName;
         public string Description => _description;
