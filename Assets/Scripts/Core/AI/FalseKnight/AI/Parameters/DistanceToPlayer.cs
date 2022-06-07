@@ -13,8 +13,8 @@ namespace Examples.Example_1.FalseKnight.AI.Parameters
 
         public override void OnStart() 
         { 
-            PlayerRef = FindObjectsOfType<GameObject>().Where(i => i.layer == LayerMask.NameToLayer("Character")).FirstOrDefault();
-            GameObjectRef = FindObjectsOfType<GameObject>().Where(i => i.layer == LayerMask.NameToLayer("FalseKnight")).FirstOrDefault();
+            PlayerRef = FindObjectsOfType<GameObject>().Where(i => i.layer == Constants.PlayerLayer).FirstOrDefault();
+            GameObjectRef = FindObjectsOfType<GameObject>().Where(i => i.layer == Constants.EnemyLayer).FirstOrDefault();
         }
         public override State OnUpdate() 
         {   
