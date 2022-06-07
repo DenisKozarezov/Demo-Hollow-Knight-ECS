@@ -3,7 +3,6 @@
  * Last Modified 19.04.2022
  *******************************************/
 
-using UnityEditor;
 using UnityEngine;
 
 namespace AI.BehaviorTree.Nodes.DecoratorNodes
@@ -11,7 +10,9 @@ namespace AI.BehaviorTree.Nodes.DecoratorNodes
     public class RepeatNode : DecoratorNode
     {
         [HideInInspector] public ConditionNode ConditionNode;
-  
+
+        public override void OnStart() { }
+        public override void OnStop() { }
         public override State OnUpdate()
         {
             if (ConditionNode == null)

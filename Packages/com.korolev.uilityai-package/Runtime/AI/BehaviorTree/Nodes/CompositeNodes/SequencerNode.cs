@@ -14,9 +14,14 @@ namespace AI.BehaviorTree.Nodes.CompositeNodes
 
         public SequencerNode() { }
         public SequencerNode(List<Node> childNodes) { this.ChildNodes = childNodes; }
-        public override void OnStart() { base.OnStart(); _currentNodeIndex = 0;}
 
-        public override State OnUpdate() {
+        public override void OnStart() 
+        { 
+            _currentNodeIndex = 0;
+        }
+        public override void OnStop() { }
+        public override State OnUpdate() 
+        {
             if (ChildNodes.Count > 0)
             {
                 if (_currentNodeIndex >= ChildNodes.Count)

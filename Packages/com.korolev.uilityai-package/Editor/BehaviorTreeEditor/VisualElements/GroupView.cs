@@ -46,7 +46,7 @@ namespace Editor.BehaviorTreeEditor.VisualElements
 
         public override void SetPosition(Rect newPos) {
             base.SetPosition(newPos);
-            GroupSO.SetPosition(new Vector2(newPos.xMin, newPos.yMin));
+            GroupSO.Position = new Vector2(newPos.xMin, newPos.yMin);
         }
 
         protected override void OnGroupRenamed(string oldName, string newName)

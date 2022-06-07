@@ -10,7 +10,11 @@ namespace AI.BehaviorTree.Nodes.ActionNodes
     public class DebugLogNode : ActionNode
     {
         public string Message;
-        public override State OnUpdate() {
+
+        public override void OnStart() { }
+        public override void OnStop() { }
+        public override State OnUpdate() 
+        {
             Debug.Log($"DebugLogNode: '{Message}'");
             return State.Success;
         }

@@ -9,12 +9,14 @@ namespace Examples.Example_1.FalseKnight.AI.Actions
     {
         [NonSerialized] private GameObject GameObjectRef;
 
-        public override void OnInit()
+        public override void OnStart()
         {
-            base.OnInit();
-            GameObjectRef = FindObjectsOfType<GameObject>().Where(i => i.layer == LayerMask.NameToLayer("FalseKnight")).FirstOrDefault();
+            GameObjectRef = FindObjectsOfType<GameObject>().Where(i => i.layer == Constants.EnemyLayer).FirstOrDefault();
         }
-
+        public override void OnStop()
+        {
+         
+        }
         public override State OnUpdate()
         {
             GameObjectRef.transform.localScale = new Vector3(1, GameObjectRef.transform.localScale.y, GameObjectRef.transform.localScale.z);

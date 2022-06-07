@@ -8,18 +8,20 @@ namespace AI.BehaviorTree.Nodes
     {
         [HideInInspector] public List<Node> Nodes = new List<Node>();
         public string Title;
-        
+
         /************ ПОЛЯ ДЛЯ ХРАНЕНИЯ ДАННЫХ ОТОБРАЖЕНИЯ ***************************/
-    #if UNITY_EDITOR
-        [HideInInspector] public Vector2 Position;
-        [HideInInspector] public string  GUID;
-        
-        public void SetPosition(Vector2 newPosition)
+#if UNITY_EDITOR
+        private Vector2 _position;
+        [HideInInspector] public Vector2 Position
         {
-            Position = newPosition;
-            EditorUtility.SetDirty(this);
+            get => _position;
+            set
+            {
+                _position = value;
+                EditorUtility.SetDirty(this);
+            }
         }
-        public Vector2 GetPosition() { return Position; }
+        [HideInInspector] public string GUID;
     #endif
     }
 }

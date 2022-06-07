@@ -51,6 +51,7 @@ namespace Examples.Example_1.ECS
                 .Add(new HealthSystem())
                 .Add(new GroundSystem())
                 .Add(new UnitSpawnSystem(_unitFactory))
+                .Add(new EnemyDeathEffectSystem())
                 .Add(new CameraShakeAnimationSystem(Camera.main));        
                 
             _systems?.Init();

@@ -26,7 +26,8 @@ namespace Editor.BehaviorTreeEditor.VisualElements.Nodes
 
         public NodeView(string pathUxml) : base(pathUxml) { }
 
-        public virtual void Initialize(AI.BehaviorTree.Nodes.Node node, BehaviorTreeView behaviorTreeView, Vector2 position, Action<NodeView> onNodeSelected, Action onNodeUnselected) {
+        public virtual void Initialize(AI.BehaviorTree.Nodes.Node node, BehaviorTreeView behaviorTreeView, Vector2 position, Action<NodeView> onNodeSelected, Action onNodeUnselected)
+        {
             Node = node;
             _behaviorTreeView = behaviorTreeView;
             viewDataKey = Node.GUID;
@@ -36,48 +37,52 @@ namespace Editor.BehaviorTreeEditor.VisualElements.Nodes
             OnNodeUnselected = onNodeUnselected;
         }
 
-        public override void SetPosition(Rect newPos) {
+        public override void SetPosition(Rect newPos)
+        {
             base.SetPosition(newPos);
-            Node.SetPosition(new Vector2(newPos.xMin, newPos.yMin));
+            Node.Position = new Vector2(newPos.xMin, newPos.yMin);
         }
 
-        public virtual void Draw() {
-           /*TITLE CONTAINER*/
-           this.title = NodeName;
+        public virtual void Draw()
+        {
+            /*TITLE CONTAINER*/
+            this.title = NodeName;
 
-           CreateInputPorts();
-           CreateOutputPorts();
+            CreateInputPorts();
+            CreateOutputPorts();
         }
 
         protected virtual void CreateOutputPorts()
         {
-            if(_behaviorTreeView.OrientationTree == OrientationTree.Horizontal)
+            if (_behaviorTreeView.OrientationTree == TreeOrientation.Horizontal)
                 OutputPort = InstantiatePort(Orientation.Horizontal, Direction.Output, Port.Capacity.Multi, typeof(bool));
-            if(_behaviorTreeView.OrientationTree == OrientationTree.Vertical)
-              OutputPort = InstantiatePort(Orientation.Vertical, Direction.Output, Port.Capacity.Multi, typeof(bool));
-            
+            if (_behaviorTreeView.OrientationTree == TreeOrientation.Vertical)
+                OutputPort = InstantiatePort(Orientation.Vertical, Direction.Output, Port.Capacity.Multi, typeof(bool));
+
             OutputPort.name = "";
             OutputPort.portName = "";
             outputContainer.Add(OutputPort);
         }
-        protected virtual void CreateInputPorts() 
+        protected virtual void CreateInputPorts()
         {
-            if(_behaviorTreeView.OrientationTree == OrientationTree.Horizontal)
+            if (_behaviorTreeView.OrientationTree == TreeOrientation.Horizontal)
                 InputPort = InstantiatePort(Orientation.Horizontal, Direction.Input, Port.Capacity.Single, typeof(bool));
-            if(_behaviorTreeView.OrientationTree == OrientationTree.Vertical)
+            if (_behaviorTreeView.OrientationTree == TreeOrientation.Vertical)
                 InputPort = InstantiatePort(Orientation.Vertical, Direction.Input, Port.Capacity.Single, typeof(bool));
-          
+
             InputPort.name = "";
             InputPort.portName = "";
             inputContainer.Add(InputPort);
         }
 
-        public void DisconnectAllPorts() {
+        public void DisconnectAllPorts()
+        {
             DisconnectInputPorts();
             DisconnectOutputPorts();
         }
 
-        private void DisconnectInputPorts() {
+        private void DisconnectInputPorts()
+        {
             DisconnectPorts(inputContainer);
         }
 
@@ -86,7 +91,8 @@ namespace Editor.BehaviorTreeEditor.VisualElements.Nodes
             DisconnectPorts(outputContainer);
         }
 
-        private void DisconnectPorts(VisualElement container) {
+        private void DisconnectPorts(VisualElement container)
+        {
             foreach (Port port in container.Children())
             {
                 if (!port.connected)
@@ -97,8 +103,9 @@ namespace Editor.BehaviorTreeEditor.VisualElements.Nodes
             }
         }
 
-        public bool IsStartingNode() {
-            Port inputPort = (Port) inputContainer.Children().First();
+        public bool IsStartingNode()
+        {
+            Port inputPort = (Port)inputContainer.Children().First();
             return !inputPort.connected;
         }
 
@@ -123,14 +130,14 @@ namespace Editor.BehaviorTreeEditor.VisualElements.Nodes
             {
                 switch (Node.State)
                 {
-                    case State.Running: 
-                        if(Node.Started) 
+                    case State.Running:
+                        if (Node.Started)
                             AddToClassList("running");
                         break;
-                    case State.Failure: 
+                    case State.Failure:
                         AddToClassList("failure");
                         break;
-                    case State.Success: 
+                    case State.Success:
                         AddToClassList("success");
                         break;
                 }

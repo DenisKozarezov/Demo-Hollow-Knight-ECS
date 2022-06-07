@@ -16,7 +16,6 @@ namespace AI.BehaviorTree.Nodes
 {
     public abstract class Node : ScriptableObject
     {
-        // Переменная _world автоматически инициализируется
         protected EcsWorld _world = null;        
         public IManipulator UnGroupManipulator = null;
         
@@ -27,6 +26,7 @@ namespace AI.BehaviorTree.Nodes
         [HideInInspector] public Node Parent;
         [HideInInspector] public GroupSO GroupSo = null;
         
+        public void Init(EcsWorld ecsWorld) { _world = ecsWorld; }
         public State Update() 
         {
             if (!Started) 
@@ -41,27 +41,27 @@ namespace AI.BehaviorTree.Nodes
                 Started = false;
             }
             return State;
-        }
-        public virtual void OnInit(){}
-        public void OnInit(EcsWorld ecsWorld) { _world = ecsWorld; }
-        public virtual void OnStart() { State = State.Running; }
-        public virtual void OnStop() { }
+        }      
+        public abstract void OnStart();
+        public abstract void OnStop();
         public abstract State OnUpdate();
         
-        public virtual float Cost(ParameterNode parametr) { return 1; }
+        public virtual float Cost(ParameterNode parameter) { return 1; }
         public virtual float Cost() { return 1; }
-        
+
         /************ ПОЛЯ ДЛЯ ХРАНЕНИЯ ДАННЫХ ОТОБРАЖЕНИЯ ***************************/
 #if UNITY_EDITOR
-        [HideInInspector] public Vector2 Position;
-        [HideInInspector] public string  GUID;
-        
-        public void SetPosition(Vector2 newPosition)
+        private Vector2 _position;
+        public Vector2 Position
         {
-            Position = newPosition;
-            EditorUtility.SetDirty(this);
+            get => _position;
+            set
+            {
+                _position = value;
+                EditorUtility.SetDirty(this);
+            }
         }
-        public Vector2 GetPosition() { return Position; }
+        [HideInInspector] public string GUID;       
 #endif
     }
 }

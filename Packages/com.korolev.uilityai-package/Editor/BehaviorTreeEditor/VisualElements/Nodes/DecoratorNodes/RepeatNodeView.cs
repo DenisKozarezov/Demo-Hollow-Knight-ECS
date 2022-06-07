@@ -29,9 +29,9 @@ namespace Editor.BehaviorTreeEditor.VisualElements.Nodes.DecoratorNodes
         {
             base.CreateInputPorts();
             
-            if(_behaviorTreeView.OrientationTree == OrientationTree.Horizontal)
+            if(_behaviorTreeView.OrientationTree == TreeOrientation.Horizontal)
                 InputConpitionPort = InstantiatePort(Orientation.Horizontal, Direction.Input, Port.Capacity.Single, typeof(ConditionNodeView));
-            if(_behaviorTreeView.OrientationTree == OrientationTree.Vertical)
+            if(_behaviorTreeView.OrientationTree == TreeOrientation.Vertical)
                 InputConpitionPort = InstantiatePort(Orientation.Vertical, Direction.Input, Port.Capacity.Single, typeof(ConditionNodeView));
             
             InputConpitionPort.name = "";
@@ -41,9 +41,9 @@ namespace Editor.BehaviorTreeEditor.VisualElements.Nodes.DecoratorNodes
 
         protected override void CreateOutputPorts()
         {
-            if(_behaviorTreeView.OrientationTree == OrientationTree.Horizontal)
+            if(_behaviorTreeView.OrientationTree == TreeOrientation.Horizontal)
                 OutputPort = InstantiatePort(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(bool));
-            if(_behaviorTreeView.OrientationTree == OrientationTree.Vertical)
+            if(_behaviorTreeView.OrientationTree == TreeOrientation.Vertical)
                 OutputPort = InstantiatePort(Orientation.Vertical, Direction.Output, Port.Capacity.Single, typeof(bool));
             
             OutputPort.name = "";

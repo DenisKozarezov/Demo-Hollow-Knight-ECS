@@ -1,5 +1,3 @@
-using System;
-using Examples.Example_1.ECS;
 using UnityEngine;
 
 namespace Examples.Example_1.FalseKnight
@@ -14,16 +12,15 @@ namespace Examples.Example_1.FalseKnight
         [HideInInspector]
         public bool Grounded;
 
-
         private void OnCollisionEnter2D(Collision2D other)
         {
-            if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))
+            if (other.gameObject.layer == Constants.GroundLayer)
                 Grounded = true;
         }
 
         private void OnCollisionExit2D(Collision2D other)
         {
-            if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))
+            if (other.gameObject.layer == Constants.GroundLayer)
                 Grounded = false; 
         }
     }

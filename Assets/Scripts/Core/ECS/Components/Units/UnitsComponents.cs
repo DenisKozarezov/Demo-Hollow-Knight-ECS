@@ -15,6 +15,7 @@ namespace Examples.Example_1.ECS
     [Serializable] internal struct AnimatorComponent { public Animator Value; }
     [Serializable] internal struct SpriteRendererComponent { public SpriteRenderer Value; }
     [Serializable] internal struct UnitComponent { public EntityReference Value; }
+    internal struct EnemyComponent : IEcsIgnoreInFilter { }
     internal struct DiedComponent : IEcsIgnoreInFilter { }
     internal struct HittableComponent : IEcsIgnoreInFilter { }
     internal struct InvulnerableComponent : IEcsIgnoreInFilter { }
