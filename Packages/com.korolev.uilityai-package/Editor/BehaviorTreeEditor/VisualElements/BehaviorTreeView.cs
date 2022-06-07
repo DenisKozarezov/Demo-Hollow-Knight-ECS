@@ -50,6 +50,18 @@ namespace Editor.BehaviorTreeEditor.VisualElements
             AddSearchWindow();
         }
         
+        public void SetDarkTheme()
+        {
+            this.ClearClassList();
+            this.AddToClassList("dark-theme");
+        }
+
+        public void SetLightTheme()
+        {
+            this.ClearClassList();
+            this.AddToClassList("light-theme");
+        }
+        
         #region Manipulators
         
         /// <summary>

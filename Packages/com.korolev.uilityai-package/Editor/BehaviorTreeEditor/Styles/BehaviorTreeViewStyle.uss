@@ -1,7 +1,7 @@
-GridBackground {
+.dark-theme GridBackground {
     --grid-background-color: rgb(56, 56, 56);
-    --line-color: rgba(16, 16, 16, 0.4);
-    --thick-line-color: rgba(5, 5, 5, 0.2);
+    --line-color: rgba(126, 126, 126, 0.4);
+    --thick-line-color: rgb(133, 133, 133);
     --spacing: 15;
     --box-shadow: 0 0 40px rgb(0, 0, 0) inset;
 }
@@ -10,4 +10,12 @@ BehaviorTreeView {
     width: 100%;
     height: 100%;
     min-width: auto;
+}
+
+.light-theme GridBackground {
+    --grid-background-color: #9d9a98;
+    --line-color: rgba(16, 16, 16, 0.2);
+    --thick-line-color: rgba(32, 32, 32, 1);
+    --spacing: 15;
+    --box-shadow: 0 0 40px rgb(0, 0, 0) inset;
 }
