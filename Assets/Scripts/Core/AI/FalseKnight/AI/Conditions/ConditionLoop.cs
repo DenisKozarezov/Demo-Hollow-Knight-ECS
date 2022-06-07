@@ -1,12 +1,11 @@
-using System;
 using AI.BehaviorTree.Nodes;
 
 namespace Examples.Example_1.FalseKnight.AI.Conditions
 {
     public class ConditionLoop : ConditionNode
     {
-        public float Count; 
-        [NonSerialized] private float _currentCount = 0;
+        private float _currentCount = 0;
+        public float Count;  
 
         public override void OnStart() { }
         public override void OnStop() { }

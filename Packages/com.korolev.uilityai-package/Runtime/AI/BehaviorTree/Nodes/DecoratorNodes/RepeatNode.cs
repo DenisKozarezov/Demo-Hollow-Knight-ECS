@@ -15,14 +15,8 @@ namespace AI.BehaviorTree.Nodes.DecoratorNodes
         public override void OnStop() { }
         public override State OnUpdate()
         {
-            if (ConditionNode == null)
-            {
-                BehaviorTreeRef.SetCurrentNode(Child);
-                return State.Running; 
-            }
-            
             //если заданное условие выполняется
-            if (ConditionNode.Condition() == true)
+            if (ConditionNode == null || ConditionNode.Condition())
             {
                 BehaviorTreeRef.SetCurrentNode(Child);
                 return State.Running; 

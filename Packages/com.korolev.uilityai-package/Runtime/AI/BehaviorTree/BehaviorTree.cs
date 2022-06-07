@@ -29,11 +29,11 @@ namespace AI.BehaviorTree
     public class BehaviorTree : ScriptableObject
     {
         [NonSerialized] public State TreeState;
-        [SerializeField][HideInInspector] public Node RootNode;
-        [SerializeField][HideInInspector] public List<Node> Nodes = new List<Node>();
-        [SerializeField][HideInInspector] public List<GroupSO> Groups = new List<GroupSO>();
-        [SerializeField][HideInInspector] public GameObject GameObjectRef;
-        [SerializeField][HideInInspector] public TreeOrientation OrientationTree = TreeOrientation.Horizontal;
+        [SerializeField, HideInInspector] public Node RootNode;
+        [SerializeField, HideInInspector] public List<Node> Nodes = new List<Node>();
+        [SerializeField, HideInInspector] public List<GroupSO> Groups = new List<GroupSO>();
+        [SerializeField, HideInInspector] public GameObject GameObjectRef;
+        [SerializeField, HideInInspector] public TreeOrientation OrientationTree = TreeOrientation.Horizontal;
 
         [NonSerialized] private Node _prevNode;
         [NonSerialized] private Node _currentNode;
@@ -53,17 +53,17 @@ namespace AI.BehaviorTree
         public State Update()
         {
             //проход по всем узлам - параметрам
-            List<Node> parameterNodes = Nodes.Where(n => n is ParameterNode).ToList();
+            IEnumerable<ParameterNode> parameterNodes = Nodes.OfType<ParameterNode>();
             foreach (var node in parameterNodes)
             {
-                ((ParameterNode)node).Update();
+                node.Update();
             }
 
             //проход по всем узлам - условиям
-            List<Node> conditionNodes = Nodes.Where(n => n is ConditionNode).ToList();
+            IEnumerable<ConditionNode> conditionNodes = Nodes.OfType<ConditionNode>();
             foreach (var node in conditionNodes)
             {
-                ((ConditionNode)node).Update();
+                node.Update();
             }
 
             //проверки текущего состояния
