@@ -9,19 +9,18 @@ namespace Examples.Example_1.FalseKnight.AI.Parameters
     public class DistanceToPlayer : FloatNode
     {
         [NonSerialized] private GameObject PlayerRef;
-        [NonSerialized] private GameObject GameObjectRef;
+        private Transform _transform;
 
-        public override void OnStart() 
-        { 
-            PlayerRef = FindObjectsOfType<GameObject>().Where(i => i.layer == LayerMask.NameToLayer("Character")).FirstOrDefault();
-            GameObjectRef = FindObjectsOfType<GameObject>().Where(i => i.layer == LayerMask.NameToLayer("FalseKnight")).FirstOrDefault();
+        public override void OnStart()
+        {
+            _transform = BehaviorTreeRef.GameObjectRef.transform;
+            PlayerRef = FindObjectsOfType<GameObject>().Where(i => i.layer == Constants.PlayerLayer).FirstOrDefault();
         }
         public override State OnUpdate() 
-        {   
-            
-            if (PlayerRef != null && GameObjectRef != null)
+        {               
+            if (PlayerRef != null && _transform != null)
             {
-                var distance = Mathf.Abs((GameObjectRef.transform.position - PlayerRef.transform.position).magnitude);
+                float distance = (_transform.position - PlayerRef.transform.position).magnitude;
                 this.Value = distance;
             }
             return State.Success; 
