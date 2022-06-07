@@ -7,7 +7,8 @@ namespace Examples.Example_1.FalseKnight.AI.Parameters
     {
         public override void OnStart() { }
         public override void OnStop() { }
-        public override State OnUpdate() {
+        public override State OnUpdate() 
+        {
             if (Value == 0 || Value < 0.001f)
             {
                 Value = 0;

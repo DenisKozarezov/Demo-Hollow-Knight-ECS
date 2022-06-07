@@ -4,13 +4,7 @@ namespace Examples.Example_1.FalseKnight
 {
     public class FalseKnight : MonoBehaviour
     {
-        public GameObject GameObject;
-        public Animator Animator;
-        public Rigidbody2D Rigidbody2D;
-        public BoxCollider2D BoxCollider2D;
-
-        [HideInInspector]
-        public bool Grounded;
+        public bool Grounded { get; private set; }
 
         private void OnCollisionEnter2D(Collision2D other)
         {
