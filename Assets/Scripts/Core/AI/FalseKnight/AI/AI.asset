@@ -253,10 +253,10 @@ MonoBehaviour:
   BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: 0}
   GroupSo: {fileID: 4079170083738136383}
-  _position: {x: -546.935, y: -35.969986}
+  _position: {x: -526, y: -39}
   GUID: 94b46a4fbc8fe438ba418fcb35a04f79
   ChildNode: {fileID: 0}
-  Value: 0
+  Value: 3.829356
 --- !u!114 &-3681991439330042166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -322,7 +322,7 @@ MonoBehaviour:
   _position: {x: -493.935, y: 39.030014}
   GUID: f3713b98c1bed48a6bb3920c4be8ed2c
   ChildNode: {fileID: 0}
-  Value: 0.32012844
+  Value: 1.3298138
 --- !u!114 &-1002988855477588090
 MonoBehaviour:
   m_ObjectHideFlags: 0
