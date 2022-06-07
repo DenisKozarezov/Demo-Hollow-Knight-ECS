@@ -5,31 +5,31 @@ namespace Examples.Example_1.FalseKnight.AI.Actions
 {
     public class JumpLeft : ActionNode
     {
-        public override void OnStart() 
-        { 
+        private FalseKnight _falseKnight;
+        private SpriteRenderer _spriteRenderer;
+        private Rigidbody2D _rigidbody;
+        private Animator _animator;
 
+        public override void OnStart()
+        {
+            _falseKnight = BehaviorTreeRef.GameObjectRef.GetComponent<FalseKnight>();
+            _spriteRenderer = _falseKnight.GetComponent<SpriteRenderer>();
+            _rigidbody = _falseKnight.GetComponent<Rigidbody2D>();
+            _animator = _falseKnight.GetComponent<Animator>();
         }
-        public override void OnStop() 
-        { 
-
-        }
+        public override void OnStop() { }
         public override State OnUpdate()
         {
-            if (this.BehaviorTreeRef.GameObjectRef == null)
-                return State.Failure;
-            if (this.BehaviorTreeRef.GameObjectRef.GetComponent<FalseKnight>() == null)
-                return State.Failure;
+            if (!BehaviorTreeRef.GameObjectRef || !_falseKnight) return State.Failure;
 
-            if (this.BehaviorTreeRef.GameObjectRef.GetComponent<FalseKnight>().Grounded)
+            bool lookLeft = _spriteRenderer.flipX;
+
+            if (_falseKnight.Grounded)
             {
-                if (this.BehaviorTreeRef.GameObjectRef.transform.localScale.x > 0)
-                    this.BehaviorTreeRef.GameObjectRef.transform.localScale
-                        = new Vector3(this.BehaviorTreeRef.GameObjectRef.transform.localScale.x * -1,
-                            this.BehaviorTreeRef.GameObjectRef.transform.localScale.y, this.BehaviorTreeRef.GameObjectRef.transform.localScale.z);
+                if (!lookLeft) _spriteRenderer.flipX = true;
 
-                this.BehaviorTreeRef.GameObjectRef.GetComponent<Rigidbody2D>().velocity = new Vector2(-3, 10);
-                this.BehaviorTreeRef.GameObjectRef.GetComponent<Animator>().SetTrigger("Jump");
-                this.BehaviorTreeRef.GameObjectRef.GetComponent<FalseKnight>().Grounded = false;
+                _rigidbody.velocity = new Vector2(-3, 10);
+                _animator.SetTrigger("Jump");
                 
                 return State.Success;
             }

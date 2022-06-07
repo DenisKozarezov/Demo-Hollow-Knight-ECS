@@ -1,5 +1,3 @@
-using System;
-using System.Linq;
 using AI.BehaviorTree.Nodes;
 using UnityEngine;
 
@@ -7,19 +5,15 @@ namespace Examples.Example_1.FalseKnight.AI.Actions
 {
     public class WatchLeft: ActionNode
     {
-        [NonSerialized] private GameObject GameObjectRef;
-
+        private SpriteRenderer _spriteRenderer;
         public override void OnStart()
         {
-            GameObjectRef = FindObjectsOfType<GameObject>().Where(i => i.layer == Constants.EnemyLayer).FirstOrDefault();
+            _spriteRenderer = BehaviorTreeRef.GameObjectRef.GetComponent<SpriteRenderer>();
         }
-        public override void OnStop()
-        {
-  
-        }
+        public override void OnStop() { }
         public override State OnUpdate()
         {
-            GameObjectRef.transform.localScale = new Vector3(-1, GameObjectRef.transform.localScale.y, GameObjectRef.transform.localScale.z);
+            _spriteRenderer.flipX = true;
             return State.Success;
         }
     }

@@ -12,9 +12,7 @@ namespace Examples.Example_1.FalseKnight.AI.Sequencers
 
             if (aggression)
             {
-                if (aggression.Value > 0.5)
-                    return 5;
-                return 0;
+                return aggression.Value > 0.5f ? 5f : 0f;
             }
 
             return 1;

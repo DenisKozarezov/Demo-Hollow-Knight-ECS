@@ -8,53 +8,44 @@ namespace Examples.Example_1.FalseKnight.AI.Actions
     public class Jump : ActionNode
     {
         private Fatigue _fatigue;
+        private Rigidbody2D _rigidbody;
 
         public override void OnStart()
         {
             _fatigue = BehaviorTreeRef.Nodes.Where(n=> n is Fatigue).FirstOrDefault() as Fatigue;
+            _rigidbody = BehaviorTreeRef.GameObjectRef.GetComponent<Rigidbody2D>();
         }
-        public override void OnStop()
-        {
-          
-        }
+        public override void OnStop() { }
         public override State OnUpdate()
         {           
-            if (this.BehaviorTreeRef == null)
-                return State.Failure;
-   
-            this.BehaviorTreeRef.GameObjectRef.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 10);
-            if (_fatigue)
-                _fatigue.Value += 1.4f;
+            if (BehaviorTreeRef == null) return State.Failure;
+
+            _rigidbody.velocity = new Vector2(0, 10);
+            if (_fatigue) _fatigue.Value += 1.4f;
             return State.Success;
         }
         
-        public override float Cost(ParameterNode parametr)
+        public override float Cost(ParameterNode parameter)
         {
-            DistanceToPlayer distanceToPlayer = parametr as DistanceToPlayer;
+            DistanceToPlayer distanceToPlayer = parameter as DistanceToPlayer;
             if (distanceToPlayer)
             {
-                if (distanceToPlayer.Value > 5)
-                    return 1;
-                return 0;
+                return distanceToPlayer.Value > 5f ? 1f : 0f;
             }
     
-            Fatigue fatigue = parametr as Fatigue;
+            Fatigue fatigue = parameter as Fatigue;
             if (fatigue)
             {
-                if (fatigue.Value == 0 || fatigue.Value < 0.01f)
-                    return 1;
-                return 0;
+                return fatigue.Value == 0f || fatigue.Value < 0.01f ? 1f : 0f;
             }
             
-            Grounded grounded = parametr as Grounded;
+            Grounded grounded = parameter as Grounded;
             if (grounded)
             {
-                if (grounded.Value == true)
-                    return 1;
-                return 0;
+                return grounded.Value ? 1f : 0f;
             }
             
-            return 1;
+            return 1f;
         }
     }
 }

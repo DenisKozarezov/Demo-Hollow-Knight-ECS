@@ -51,6 +51,7 @@ namespace AI.BehaviorTree.Nodes
 
         /************ ПОЛЯ ДЛЯ ХРАНЕНИЯ ДАННЫХ ОТОБРАЖЕНИЯ ***************************/
 #if UNITY_EDITOR
+        [SerializeField] [HideInInspector]
         private Vector2 _position;
         public Vector2 Position
         {

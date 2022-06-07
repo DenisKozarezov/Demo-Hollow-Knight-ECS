@@ -14,10 +14,7 @@ namespace Examples.Example_1.FalseKnight.AI.Actions
         {
             _fatigue = BehaviorTreeRef.Nodes.Where(n=> n is Fatigue).FirstOrDefault() as Fatigue;
         }
-        public override void OnStop()
-        {
-
-        }
+        public override void OnStop() { }
         public override State OnUpdate()
         {
             EcsEntity attackAnimationEntity = _world.NewEntity();
@@ -32,21 +29,16 @@ namespace Examples.Example_1.FalseKnight.AI.Actions
             DistanceToPlayer distanceToPlayer = parametr as DistanceToPlayer;
             if (distanceToPlayer)
             {
-                if (distanceToPlayer.Value < 5)
-                    return 1;
-                return 0;
+                return distanceToPlayer.Value < 5f ? 1f : 0f;
             }
     
             Fatigue fatigue = parametr as Fatigue;
             if (fatigue)
             {
-                if (fatigue.Value < 0.2f)
-                    return 1;
-                return 0;
+                return fatigue.Value < 0.2f ? 1f : 0f;
             }
             
-            return 1;
+            return 1f;
         }
-
     }
 }
