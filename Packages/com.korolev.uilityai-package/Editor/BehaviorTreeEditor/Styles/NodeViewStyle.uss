@@ -1,4 +1,4 @@
-#node-border {
+.light-theme #node-border {
     background-color: rgb(70, 70, 70);
     border-left-color: rgb(60, 60, 60);
     border-right-color: rgb(60, 60, 60);
@@ -15,7 +15,90 @@
     background-image: none;
 }
 
-#input {
+.light-theme #input {
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    top: auto;
+    margin-bottom: 0;
+    margin-top: 0;
+    bottom: auto;
+    position: relative;
+    padding-bottom: 20%;
+    background-color: rgb(197, 197, 197);
+}
+
+.light-theme #output {
+    align-items: flex-end;
+    bottom: auto;
+    margin-bottom: 0;
+    margin-top: 0;
+    padding-top: 0;
+    background-image: none;
+    min-width: auto;
+    min-height: auto;
+    background-color: rgb(197, 197, 197);
+}
+
+.light-theme #title-label {
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    -unity-font: url('flex-start');
+    -unity-font-style: bold-and-italic;
+    background-color: rgb(221, 221, 221);
+    margin-bottom: 0;
+}
+
+.light-theme #node-icon {
+    min-width: 20%;
+    min-height: 50%;
+    background-color: rgb(243, 243, 243);
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    background-image: url('project://database/Packages/com.korolev.uilityai-package/Editor/BehaviorTreeEditor/Sprites/ActionIcon.png?fileID=2800000&guid=6fe7102c6155e4c859579d289add886e&type=3#ActionIcon');
+}
+
+.light-theme #top {
+    background-color: rgb(197, 197, 197);
+    align-items: flex-start;
+    flex-direction: row;
+    justify-content: space-between;
+    background-image: none;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-right: 0;
+    padding-left: 0;
+    width: auto;
+    height: auto;
+}
+
+.dark-theme #node-border {
+    background-color: rgb(70, 70, 70);
+    border-left-color: rgb(60, 60, 60);
+    border-right-color: rgb(60, 60, 60);
+    border-top-color: rgb(60, 60, 60);
+    border-bottom-color: rgb(60, 60, 60);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background-image: none;
+}
+
+.dark-theme #input {
     align-items: flex-start;
     justify-content: flex-start;
     flex-direction: column;
@@ -27,7 +110,7 @@
     padding-bottom: 20%;
 }
 
-#output {
+.dark-theme #output {
     align-items: flex-end;
     bottom: auto;
     margin-bottom: 0;
@@ -38,7 +121,7 @@
     min-height: auto;
 }
 
-#title-label {
+.dark-theme #title-label {
     align-items: center;
     padding-left: 10px;
     padding-right: 10px;
@@ -50,7 +133,7 @@
     margin-bottom: 0;
 }
 
-#node-icon {
+.dark-theme #node-icon {
     min-width: 20%;
     min-height: 50%;
     background-color: rgb(253, 216, 216);
@@ -58,10 +141,10 @@
     margin-right: 0;
     margin-top: 5%;
     margin-bottom: 5%;
-    background-image: url('project://database/Assets/Editor/BehaviorTreeEditor/Sprites/ActionIcon.png?fileID=2800000&guid=6fe7102c6155e4c859579d289add886e&type=3#ActionIcon');
+    background-image: url('project://database/Packages/com.korolev.uilityai-package/Editor/BehaviorTreeEditor/Sprites/ActionIcon.png?fileID=2800000&guid=6fe7102c6155e4c859579d289add886e&type=3#ActionIcon');
 }
 
-#top {
+.dark-theme #top {
     background-color: rgb(67, 67, 67);
     align-items: flex-start;
     flex-direction: row;
@@ -132,5 +215,5 @@
 }
 
 .failure #node-state {
-    background-color: rgba(255, 16, 16, 255);
+    background-color: rgb(255, 16, 16);
 }

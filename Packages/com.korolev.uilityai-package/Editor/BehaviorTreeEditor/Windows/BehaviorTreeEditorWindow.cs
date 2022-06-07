@@ -16,6 +16,7 @@ using UnityEditor.Callbacks;
 public class BehaviorTreeEditorWindow : EditorWindow
 {
     private static BehaviorTreeView _behaviorTreeView;  //ссылка на элемент, в котором рисуется дерево
+    private static ToolbarMenuThemeStyle _themeStyle;
     private InspectorView _inspectorView;
     
     [MenuItem("UtilityAI/BehaviorTreeEditorWindow...")]
@@ -58,6 +59,18 @@ public class BehaviorTreeEditorWindow : EditorWindow
         _behaviorTreeView = root.Q<BehaviorTreeView>();
         _inspectorView = root.Q<InspectorView>();
         _behaviorTreeView.BehaviorTreeEditorWindow = this;
+        _themeStyle = root.Q<ToolbarMenuThemeStyle>();
+        
+        _themeStyle.menu.AppendAction("Light Theme", (i) =>
+        {
+            Debug.Log("Сделана светлая тема");
+            SetLightTheme();
+        });
+        _themeStyle.menu.AppendAction("Dark Theme", (i) =>
+        {
+            Debug.Log("Сделана темная тема");
+            SetDarkTheme();
+        });
         _behaviorTreeView.OnNodeSelected = OnNodeSelectionChanged;
         _behaviorTreeView.OnNodeUnselected = OnNodeUnselectionChanged;
         _behaviorTreeView.StretchToParentSize();
@@ -89,5 +102,23 @@ public class BehaviorTreeEditorWindow : EditorWindow
     private void OnInspectorUpdate()
     {
         _behaviorTreeView?.UpdateNodesStates();
+    }
+    
+    public void SetDarkTheme()
+    {
+        rootVisualElement.ClearClassList();
+        rootVisualElement.AddToClassList("dark-theme");
+
+        _inspectorView.SetDarkTheme();
+        _behaviorTreeView.SetDarkTheme();
+    }
+    
+    public void SetLightTheme()
+    {
+        rootVisualElement.ClearClassList();
+        rootVisualElement.AddToClassList("light-theme");
+        
+        _inspectorView.SetLightTheme();
+        _behaviorTreeView.SetLightTheme();
     }
 }
