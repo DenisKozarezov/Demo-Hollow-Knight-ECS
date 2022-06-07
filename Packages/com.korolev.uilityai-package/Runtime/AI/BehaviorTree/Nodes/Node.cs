@@ -27,14 +27,16 @@ namespace AI.BehaviorTree.Nodes
         [HideInInspector] public Node Parent;
         [HideInInspector] public GroupSO GroupSo = null;
         
-
-        public State Update() {
-            if (!Started) {
+        public State Update() 
+        {
+            if (!Started) 
+            {
                 OnStart();
                 Started = true;
             }
             State = OnUpdate();
-            if (State == State.Failure || State == State.Success) {
+            if (State == State.Failure || State == State.Success) 
+            {
                 OnStop();
                 Started = false;
             }
