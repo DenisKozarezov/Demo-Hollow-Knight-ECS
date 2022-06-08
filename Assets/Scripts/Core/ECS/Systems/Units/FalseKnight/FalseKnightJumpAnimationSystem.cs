@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 using Examples.Example_1.ECS.Events;
 using Examples.Example_1.ECS.FalseKnight;
 using Leopotam.Ecs;
@@ -15,22 +14,7 @@ namespace Examples.Example_1.ECS.Systems.FalseKnight
         private const string JUMP_KEY = "Jump";
         private const string JUMPING_KEY = "IsJumping";
         private const string LAND_KEY = "Land";
-        private const string ATTACK_KEY = "Attack";
         // ========================
-
-        private void OnAttack()
-        {
-            foreach (var i in _filter)
-            {
-                ref var ecsEntity = ref _filter.GetEntity (i);
-                ecsEntity.Get<FalseKnightAnimationComponent>().Animator.SetTrigger(ATTACK_KEY);
-            }  
-        }
-        
-        private void OnMove(InputAction.CallbackContext context)
-        {
-           
-        }
 
         public void Run()
         {

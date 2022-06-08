@@ -14,10 +14,13 @@ namespace AI.ECS.Components
     {
         [SerializeField] public GameObject GameObjectRef;
         [SerializeField] public BehaviorTree.BehaviorTree BehaviorTree;
-        [SerializeField] public bool isInitialised ;
+        public bool IsInitialized;
         
-        public void Init(EcsWorld ecsWorld) { BehaviorTree.Init(ecsWorld);}
-
-        public void ValidateRefferences() { BehaviorTree.GameObjectRef = GameObjectRef; }
+        public void Init(EcsWorld ecsWorld) 
+        {
+            BehaviorTree.Init(ecsWorld);
+            BehaviorTree.GameObjectRef = GameObjectRef;
+            IsInitialized = true;
+        }
     }
 }

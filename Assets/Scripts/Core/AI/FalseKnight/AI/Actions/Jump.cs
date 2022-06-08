@@ -10,13 +10,13 @@ namespace Examples.Example_1.FalseKnight.AI.Actions
         private Fatigue _fatigue;
         private Rigidbody2D _rigidbody;
 
-        public override void OnStart()
+        protected override void OnStart()
         {
             _fatigue = BehaviorTreeRef.Nodes.Where(n=> n is Fatigue).FirstOrDefault() as Fatigue;
             _rigidbody = BehaviorTreeRef.GameObjectRef.GetComponent<Rigidbody2D>();
         }
-        public override void OnStop() { }
-        public override State OnUpdate()
+        protected override void OnStop() { }
+        protected override State OnUpdate()
         {           
             if (BehaviorTreeRef == null) return State.Failure;
 

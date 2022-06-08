@@ -10,15 +10,15 @@ namespace Examples.Example_1.FalseKnight.AI.Actions
         private Rigidbody2D _rigidbody;
         private Animator _animator;
 
-        public override void OnStart()
+        protected override void OnStart()
         {
             _falseKnight = BehaviorTreeRef.GameObjectRef.GetComponent<FalseKnight>();
             _spriteRenderer = _falseKnight.GetComponent<SpriteRenderer>();
             _rigidbody = _falseKnight.GetComponent<Rigidbody2D>();
             _animator = _falseKnight.GetComponent<Animator>();
         }
-        public override void OnStop() { }
-        public override State OnUpdate()
+        protected override void OnStop() { }
+        protected override State OnUpdate()
         {
             if (!BehaviorTreeRef.GameObjectRef || !_falseKnight) return State.Failure;
 

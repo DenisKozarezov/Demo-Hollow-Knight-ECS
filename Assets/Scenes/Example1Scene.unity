@@ -290,16 +290,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7559006615654855929, guid: afc326e2bcb93ee4cbb7cf8d2ae9b097, type: 3}
   m_PrefabInstance: {fileID: 1619293696}
   m_PrefabAsset: {fileID: 0}
---- !u!61 &878688752 stripped
-BoxCollider2D:
-  m_CorrespondingSourceObject: {fileID: 3578999376991806574, guid: afc326e2bcb93ee4cbb7cf8d2ae9b097, type: 3}
-  m_PrefabInstance: {fileID: 1619293696}
-  m_PrefabAsset: {fileID: 0}
---- !u!50 &878688753 stripped
-Rigidbody2D:
-  m_CorrespondingSourceObject: {fileID: 6990455316024280043, guid: afc326e2bcb93ee4cbb7cf8d2ae9b097, type: 3}
-  m_PrefabInstance: {fileID: 1619293696}
-  m_PrefabAsset: {fileID: 0}
 --- !u!95 &878688754 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 7559006615654855931, guid: afc326e2bcb93ee4cbb7cf8d2ae9b097, type: 3}
@@ -317,11 +307,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7110ecb8a6a946baaacbdbc28af97517, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameObject: {fileID: 607874978}
-  Animator: {fileID: 878688754}
-  Rigidbody2D: {fileID: 878688753}
-  BoxCollider2D: {fileID: 878688752}
-  Grounded: 0
 --- !u!114 &878688758
 MonoBehaviour:
   m_ObjectHideFlags: 0

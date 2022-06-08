@@ -5,9 +5,7 @@ namespace Examples.Example_1.FalseKnight.AI.Parameters
 {
     public class Aggression : FloatNode
     {
-        public override void OnStart() { }
-        public override void OnStop() { }
-        public override State OnUpdate() 
+        protected override State OnUpdate() 
         {
             if (Value == 0 || Value < 0.001f)
             {

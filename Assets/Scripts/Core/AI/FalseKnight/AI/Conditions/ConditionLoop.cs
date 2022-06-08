@@ -5,11 +5,11 @@ namespace Examples.Example_1.FalseKnight.AI.Conditions
     public class ConditionLoop : ConditionNode
     {
         private float _currentCount = 0;
-        public float Count;  
+        public float Count;
 
-        public override void OnStart() { }
-        public override void OnStop() { }
-        public override State OnUpdate() 
+        protected override void OnStart() { }
+        protected override void OnStop() { }
+        protected override State OnUpdate() 
         {
             return State.Success;
         }

@@ -21,12 +21,16 @@ namespace AI.BehaviorTree.Nodes
         
         [NonSerialized] public State  State = State.Running;
         [NonSerialized] public bool   Started = false;
-        
-        [HideInInspector] public BehaviorTree BehaviorTreeRef;
+
+        protected BehaviorTree BehaviorTreeRef;
         [HideInInspector] public Node Parent;
         [HideInInspector] public GroupSO GroupSo = null;
         
-        public void Init(EcsWorld ecsWorld) { _world = ecsWorld; }
+        public void Init(BehaviorTree tree, EcsWorld ecsWorld)
+        {
+            BehaviorTreeRef = tree;
+            _world = ecsWorld;
+        }
         public State Update() 
         {
             if (!Started) 
@@ -42,9 +46,9 @@ namespace AI.BehaviorTree.Nodes
             }
             return State;
         }      
-        public abstract void OnStart();
-        public abstract void OnStop();
-        public abstract State OnUpdate();
+        protected abstract void OnStart();
+        protected abstract void OnStop();
+        protected abstract State OnUpdate();
         
         public virtual float Cost(ParameterNode parameter) { return 1; }
         public virtual float Cost() { return 1; }
