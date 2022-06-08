@@ -5,6 +5,7 @@
 
 using System;
 using AI.BehaviorTree;
+using Editor.BehaviorTreeEditor.Config;
 using Editor.BehaviorTreeEditor.VisualElements;
 using Editor.BehaviorTreeEditor.VisualElements.Nodes;
 using UnityEditor;
@@ -18,6 +19,7 @@ public class BehaviorTreeEditorWindow : EditorWindow
     private static BehaviorTreeView _behaviorTreeView;  //ссылка на элемент, в котором рисуется дерево
     private static ToolbarMenuThemeStyle _themeStyle;
     private InspectorView _inspectorView;
+    private static StyleThemeConfig _styleThemeConfig;
     
     [MenuItem("UtilityAI/BehaviorTreeEditorWindow...")]
     public static void CreateWindow() {
@@ -48,6 +50,8 @@ public class BehaviorTreeEditorWindow : EditorWindow
     }
     
     public void CreateGUI() {
+        _styleThemeConfig = AssetDatabase.LoadAssetAtPath<StyleThemeConfig>("Packages/com.korolev.uilityai-package/Editor/BehaviorTreeEditor/Config/StyleThemeConfig.asset");
+        
         VisualElement root = rootVisualElement;
         
         var visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Packages/com.korolev.uilityai-package/Editor/BehaviorTreeEditor/UXML/BehaviorTreeEditorWindow.uxml");
@@ -65,15 +69,24 @@ public class BehaviorTreeEditorWindow : EditorWindow
         {
             Debug.Log("Сделана светлая тема");
             SetLightTheme();
+            SaveAsset(_styleThemeConfig, ThemeStyle.LightTheme);
         });
         _themeStyle.menu.AppendAction("Dark Theme", (i) =>
         {
             Debug.Log("Сделана темная тема");
             SetDarkTheme();
+            SaveAsset(_styleThemeConfig, ThemeStyle.DarkTheme);
         });
         _behaviorTreeView.OnNodeSelected = OnNodeSelectionChanged;
         _behaviorTreeView.OnNodeUnselected = OnNodeUnselectionChanged;
         _behaviorTreeView.StretchToParentSize();
+
+        if (_styleThemeConfig.Theme == ThemeStyle.LightTheme) 
+            SetLightTheme();
+        else
+            SetDarkTheme();
+        
+        
     }
 
     private void OnSelectionChange() {
@@ -120,5 +133,13 @@ public class BehaviorTreeEditorWindow : EditorWindow
         
         _inspectorView.SetLightTheme();
         _behaviorTreeView.SetLightTheme();
+    }
+    
+    private void SaveAsset(UnityEngine.Object asset, ThemeStyle theme)
+    {
+        ((StyleThemeConfig) asset).Theme = theme;
+        
+        AssetDatabase.SaveAssetIfDirty(asset);
+        EditorUtility.SetDirty(asset);
     }
 }
