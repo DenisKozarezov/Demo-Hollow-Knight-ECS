@@ -11,9 +11,9 @@ namespace AI.BehaviorTree.Nodes.DecoratorNodes
     {
         [HideInInspector] public ConditionNode ConditionNode;
 
-        public override void OnStart() { }
-        public override void OnStop() { }
-        public override State OnUpdate()
+        protected override void OnStart() { }
+        protected override void OnStop() { }
+        protected override State OnUpdate()
         {
             //если заданное условие выполняется
             if (ConditionNode == null || ConditionNode.Condition())

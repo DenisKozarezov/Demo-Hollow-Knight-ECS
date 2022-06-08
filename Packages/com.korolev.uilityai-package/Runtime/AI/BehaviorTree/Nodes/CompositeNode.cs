@@ -12,6 +12,5 @@ namespace AI.BehaviorTree.Nodes
     {
         public AnimationCurve Curve; 
         [HideInInspector] public List<Node> ChildNodes = new List<Node>();
-    }
-  
+    }  
 }

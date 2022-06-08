@@ -10,12 +10,12 @@ namespace Examples.Example_1.FalseKnight.AI.Actions
     {
         private Fatigue _fatigue;
 
-        public override void OnStart()
+        protected override void OnStart()
         {
             _fatigue = BehaviorTreeRef.Nodes.Where(n=> n is Fatigue).FirstOrDefault() as Fatigue;
         }
-        public override void OnStop() { }
-        public override State OnUpdate()
+        protected override void OnStop() { }
+        protected override State OnUpdate()
         {
             EcsEntity attackAnimationEntity = _world.NewEntity();
             attackAnimationEntity.Get<FalseKnightAttackEventComponent>().GameObjectRef = BehaviorTreeRef.GameObjectRef;

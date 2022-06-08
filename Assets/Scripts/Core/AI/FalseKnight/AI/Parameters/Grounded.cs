@@ -6,12 +6,11 @@ namespace Examples.Example_1.FalseKnight.AI.Parameters
     public class Grounded : BooleanNode
     {
         private FalseKnight _falseKnight;
-        public override void OnStart()
+        protected override void OnStart()
         {
             _falseKnight = BehaviorTreeRef.GameObjectRef.GetComponent<FalseKnight>();         
         }
-        public override void OnStop() { }
-        public override State OnUpdate()
+        protected override State OnUpdate()
         {
             Value = _falseKnight.Grounded;
             return State.Success;

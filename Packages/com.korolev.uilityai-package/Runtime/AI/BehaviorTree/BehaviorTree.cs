@@ -45,11 +45,9 @@ namespace AI.BehaviorTree
 
             foreach (var node in Nodes)
             {
-                node.BehaviorTreeRef = this;
-                node.Init(ecsWorld);
+                node.Init(this, ecsWorld);
             }
         }
-
         public State Update()
         {
             //проход по всем узлам - параметрам

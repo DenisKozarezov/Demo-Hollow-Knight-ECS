@@ -11,17 +11,17 @@ namespace Examples.Example_1.FalseKnight.AI.Parameters
         [NonSerialized] private GameObject PlayerRef;
         private Transform _transform;
 
-        public override void OnStart()
+        protected override void OnStart()
         {
             _transform = BehaviorTreeRef.GameObjectRef.transform;
             PlayerRef = FindObjectsOfType<GameObject>().Where(i => i.layer == Constants.PlayerLayer).FirstOrDefault();
         }
-        public override State OnUpdate() 
+        protected override State OnUpdate() 
         {               
             if (PlayerRef != null && _transform != null)
             {
-                float distance = (_transform.position - PlayerRef.transform.position).magnitude;
-                this.Value = distance;
+                var distance = (_transform.position - PlayerRef.transform.position).magnitude;
+                Value = distance;
             }
             return State.Success; 
         }

@@ -6,12 +6,12 @@ namespace Examples.Example_1.FalseKnight.AI.Actions
     public class WatchRight: ActionNode
     {
         private SpriteRenderer _spriteRenderer;
-        public override void OnStart()
+        protected override void OnStart()
         {
             _spriteRenderer = BehaviorTreeRef.GameObjectRef.GetComponent<SpriteRenderer>();
         }
-        public override void OnStop() { }
-        public override State OnUpdate()
+        protected override void OnStop() { }
+        protected override State OnUpdate()
         {
             _spriteRenderer.flipX = false;
             return State.Success;
