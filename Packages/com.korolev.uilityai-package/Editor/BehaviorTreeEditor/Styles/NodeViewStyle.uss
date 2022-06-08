@@ -127,7 +127,7 @@
     padding-right: 10px;
     padding-top: 5px;
     padding-bottom: 10px;
-    -unity-font: url('project://database/Assets/TextMesh%20Pro/Fonts/LiberationSans.ttf?fileID=12800000&guid=e3265ab4bf004d28a9537516768c1c75&type=3#LiberationSans');
+    -unity-font: url('project://database/Assets/Plugins/TextMesh%20Pro/Fonts/LiberationSans.ttf?fileID=12800000&guid=e3265ab4bf004d28a9537516768c1c75&type=3#LiberationSans');
     -unity-font-style: bold-and-italic;
     background-color: rgb(53, 53, 53);
     margin-bottom: 0;
@@ -216,4 +216,22 @@
 
 .failure #node-state {
     background-color: rgb(255, 16, 16);
+}
+
+.light-theme .input #type {
+    color: rgba(14, 14, 14, 255);
+    background-color: rgb(197, 197, 197);
+}
+
+.light-theme .output #type {
+    color: rgba(46, 46, 46, 255);
+    background-color: rgb(197, 197, 197);
+}
+
+.dark-theme .input #type {
+    background-color: rgb(67, 67, 67);
+}
+
+.dark-theme .output #type {
+    background-color: rgb(67, 67, 67);
 }
