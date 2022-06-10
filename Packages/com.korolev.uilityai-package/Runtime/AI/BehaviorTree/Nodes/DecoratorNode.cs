@@ -11,6 +11,12 @@ namespace AI.BehaviorTree.Nodes
     {
         public AnimationCurve Curve; 
         [HideInInspector] public Node Child;
-    }
-   
+
+        public override Node Clone()
+        {
+            DecoratorNode clone = Instantiate(this);
+            clone.Child = Child.Clone();
+            return clone;
+        }
+    }   
 }

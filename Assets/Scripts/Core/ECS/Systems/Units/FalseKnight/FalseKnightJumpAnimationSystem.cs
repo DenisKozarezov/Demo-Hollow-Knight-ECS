@@ -1,20 +1,28 @@
 using UnityEngine;
 using Examples.Example_1.ECS.Events;
-using Examples.Example_1.ECS.FalseKnight;
 using Leopotam.Ecs;
 
 namespace Examples.Example_1.ECS.Systems.FalseKnight
 {
-    internal class FalseKnightJumpAnimationSystem: IEcsRunSystem, IEcsSystem
+    internal class FalseKnightJumpAnimationSystem: IEcsRunSystem
     {
         private readonly EcsWorld _world = null;
-        private readonly EcsFilter<FalseKnightAnimationComponent, RigidbodyComponent>.Exclude<DiedComponent> _filter = null;
+        private readonly EcsFilter<AnimatorComponent, RigidbodyComponent>
+            .Exclude<DiedComponent> _filter = null;
 
         // ==== ANIMATIONS KEYS ===
         private const string JUMP_KEY = "Jump";
         private const string JUMPING_KEY = "IsJumping";
         private const string LAND_KEY = "Land";
         // ========================
+
+        private void CreateDust(ref Vector2 point)
+        {
+            EcsEntity dustAnimationEntity = _world.NewEntity();
+            ref var dust = ref dustAnimationEntity.Get<AnimateDustEventComponent>();
+            dust.Point = point;
+            dust.Scale = Vector3.one;
+        }
 
         public void Run()
         {
@@ -27,7 +35,7 @@ namespace Examples.Example_1.ECS.Systems.FalseKnight
                 bool onGround = entity.Has<OnGroundComponent>();
                 bool isFalling = rigidbodyComponent.Value.velocity.y < 0;
 
-                Animator animator = animatorComponent.Animator;
+                Animator animator = animatorComponent.Value;
 
                 if (isFalling)
                 {
@@ -42,11 +50,8 @@ namespace Examples.Example_1.ECS.Systems.FalseKnight
                     animator.SetBool(JUMPING_KEY, false);
                     animator.SetTrigger(LAND_KEY);
 
-                    // Dust effect
-                    ref Vector2 point = ref entity.Get<OnGroundComponent>().Point;
-                    EcsEntity dustAnimationEntity = _world.NewEntity();
-                    dustAnimationEntity.Get<AnimateDustEventComponent>().Point = point;
-                    dustAnimationEntity.Get<AnimateDustEventComponent>().Scale = new Vector3(1f, 1f, 1f);
+                    // Create dust effect 
+                    CreateDust(ref entity.Get<OnGroundComponent>().Point);
 
                     // Shake camera when landed
                     EcsEntity cameraShakeAnimationEntity = _world.NewEntity();

@@ -40,5 +40,12 @@ namespace Examples.Example_1.FalseKnight.AI.Actions
             
             return 1f;
         }
+
+        public override Node Clone()
+        {
+            Attack clone = Instantiate(this);
+            clone._fatigue = _fatigue.Clone() as Fatigue;
+            return clone;
+        }
     }
 }

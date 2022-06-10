@@ -3,38 +3,27 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Examples.Example_1.ECS.Events;
 using Leopotam.Ecs;
+using Examples.Example_1.ECS.Components.Player;
+using Core.Units;
 
 namespace Examples.Example_1.ECS.Systems.Player
 {
     internal class PlayerAttackSystem : IEcsInitSystem, IEcsDestroySystem
     {
         private readonly EcsFilter<ColliderComponent, HealthComponent, HittableComponent>
-            .Exclude<DiedComponent> _filter = null;
+            .Exclude<PlayerTagComponent, DiedComponent> _filter = null;
 
         private readonly PlayerInputController _playerInput;
         private float _damage = 5;
         private float _sqrDistance = 9f;
         
-        private GameObject _gameObject;
+        private readonly UnitScript _player = null;
 
         internal PlayerAttackSystem(PlayerInputController playerInputController) { _playerInput = playerInputController; }
 
         public virtual void Init()
         {
-            // Input
             _playerInput.Keyboard.Attack.performed += OnAttack;
-
-            // Player
-            foreach (var i in _filter)
-            {
-                ref var collider = ref _filter.Get1(i);
-
-                if (collider.Value.gameObject.layer == Constants.PlayerLayer)
-                {
-                    _gameObject = collider.Value.gameObject;
-                    break;
-                }
-            }
         }
         public void Destroy()
         {
@@ -44,7 +33,7 @@ namespace Examples.Example_1.ECS.Systems.Player
         private bool ReachedTarget(GameObject target)
         {
             if (target == null) return false;
-            return (_gameObject.transform.position - target.transform.position).sqrMagnitude <= _sqrDistance;
+            return (_player.transform.position - target.transform.position).sqrMagnitude <= _sqrDistance;
         }
         private IEnumerable<EcsEntity> GetNearestEnemies()
         {
@@ -52,8 +41,6 @@ namespace Examples.Example_1.ECS.Systems.Player
             {
                 var entity = _filter.GetEntity(i);
                 var collider = _filter.Get1(i).Value;
-
-                if (collider.gameObject == _gameObject) continue;
 
                 // If player hits the enemy, return the target
                 if (ReachedTarget(collider.gameObject))
@@ -73,7 +60,7 @@ namespace Examples.Example_1.ECS.Systems.Player
                 ref var damageComponent = ref entity.Get<DamageEventComponent>();
                 damageComponent.Damage = _damage;
                 damageComponent.Target = collider.Value.gameObject;
-                damageComponent.Source = _gameObject;
+                damageComponent.Source = _player.gameObject;
             }
         }
     }

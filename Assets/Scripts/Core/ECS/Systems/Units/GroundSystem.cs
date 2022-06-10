@@ -30,6 +30,13 @@ namespace Examples.Example_1.ECS.Systems
             point = contacts[0].point + Vector2.right * dx;
             return true;
         }
+        private void CreateDust(Vector2 point)
+        {
+            EcsEntity dustAnimationEntity = _world.NewEntity();
+            ref var dust = ref dustAnimationEntity.Get<AnimateDustEventComponent>();
+            dust.Point = point;
+            dust.Scale = Vector3.one * 0.5f;
+        }
 
         public void Run()
         {
@@ -38,16 +45,13 @@ namespace Examples.Example_1.ECS.Systems
                 ref var entity = ref _filter.GetEntity(i);
                 ref var collider = ref _filter.Get1(i);
                 
-                // If on ground then add component
                 if (OnGround(collider.Value, out Vector2 point))
                 {
+                    // Add the component
                     entity.Get<OnGroundComponent>().Point = point;
 
-                    // Create dust event
-                    EcsEntity dustEntity = _world.NewEntity();
-                    ref var dustComponent = ref dustEntity.Get<AnimateDustEventComponent>();
-                    dustComponent.Point = point;
-                    dustComponent.Scale = Vector3.one * 0.5f;
+                    // Create dust effect
+                    CreateDust(point);
                 }
             }
         }

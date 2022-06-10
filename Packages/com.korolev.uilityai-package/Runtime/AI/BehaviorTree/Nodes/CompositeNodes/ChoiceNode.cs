@@ -57,6 +57,13 @@ namespace AI.BehaviorTree.Nodes.CompositeNodes
                 }
             }
             return State.Success;
-        }    
+        }
+        public override Node Clone()
+        {
+            ChoiceNode clone = Instantiate(this);
+            clone.actualNode = clone.actualNode?.Clone();
+            clone.ParametersList = ParametersList.ConvertAll(child => child.Clone() as ParameterNode);
+            return clone;
+        }
     }   
 }

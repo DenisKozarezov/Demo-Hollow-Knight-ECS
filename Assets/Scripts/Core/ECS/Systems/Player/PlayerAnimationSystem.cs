@@ -7,7 +7,7 @@ namespace Examples.Example_1.ECS.Systems.Player
 {
     internal class PlayerAnimationSystem : IEcsInitSystem, IEcsRunSystem, IEcsDestroySystem, IEcsSystem
     {
-        private readonly EcsFilter<AnimatorComponent, RigidbodyComponent, PlayerMoveComponent> _filter = null;
+        private readonly EcsFilter<AnimatorComponent, RigidbodyComponent, PlayerTagComponent> _filter = null;
        
         private readonly PlayerInputController _playerInput;
         private Animator _animator;
