@@ -1,4 +1,5 @@
 using System.Linq;
+using UnityEngine;
 using AI.BehaviorTree.Nodes;
 using Examples.Example_1.ECS.Events.FalseKnight;
 using Examples.Example_1.FalseKnight.AI.Parameters;
@@ -9,30 +10,31 @@ namespace Examples.Example_1.FalseKnight.AI.Actions
     public class Attack : ActionNode
     {
         private Fatigue _fatigue;
+        private Animator _animator;
 
         protected override void OnStart()
         {
             _fatigue = BehaviorTreeRef.Nodes.Where(n=> n is Fatigue).FirstOrDefault() as Fatigue;
+            _animator = BehaviorTreeRef.GameObjectRef.GetComponent<Animator>();
         }
         protected override void OnStop() { }
         protected override State OnUpdate()
         {
             EcsEntity attackAnimationEntity = _world.NewEntity();
-            attackAnimationEntity.Get<FalseKnightAttackEventComponent>().GameObjectRef = BehaviorTreeRef.GameObjectRef;
-            if (_fatigue)
-                _fatigue.Value += 1;
+            attackAnimationEntity.Get<FalseKnightAttackEventComponent>().Animator = _animator;
+            if (_fatigue) _fatigue.Value += 1;
             return State.Success;
         }
 
-        public override float Cost(ParameterNode parametr)
+        public override float Cost(ParameterNode parameter)
         {
-            DistanceToPlayer distanceToPlayer = parametr as DistanceToPlayer;
+            DistanceToPlayer distanceToPlayer = parameter as DistanceToPlayer;
             if (distanceToPlayer)
             {
                 return distanceToPlayer.Value < 5f ? 1f : 0f;
             }
     
-            Fatigue fatigue = parametr as Fatigue;
+            Fatigue fatigue = parameter as Fatigue;
             if (fatigue)
             {
                 return fatigue.Value < 0.2f ? 1f : 0f;

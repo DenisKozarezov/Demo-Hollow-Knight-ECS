@@ -1,10 +1,8 @@
-using System;
-using UnityEngine;
 using Leopotam.Ecs;
 
 namespace Examples.Example_1.ECS.Components.Player
-{    
-    public struct PlayerTagComponent : IEcsIgnoreInFilter { }
-    public struct PlayerJumpComponent : IEcsIgnoreInFilter {}
-    public struct PlayerAttackComponent : IEcsIgnoreInFilter { }
+{
+    internal struct PlayerTagComponent : IEcsIgnoreInFilter { }
+    internal struct PlayerJumpComponent : IEcsIgnoreInFilter {}
+    internal struct CanAttackComponent : IEcsIgnoreInFilter { }
 }

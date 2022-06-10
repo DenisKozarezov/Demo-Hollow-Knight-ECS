@@ -5,6 +5,7 @@ using Examples.Example_1.ECS.Events;
 using Leopotam.Ecs;
 using Examples.Example_1.ECS.Components.Player;
 using Core.Units;
+using Examples.Example_1.ECS.ComponentProviders;
 
 namespace Examples.Example_1.ECS.Systems.Player
 {
@@ -16,18 +17,25 @@ namespace Examples.Example_1.ECS.Systems.Player
         private readonly PlayerInputController _playerInput;
         private float _damage = 5;
         private float _sqrDistance = 9f;
-        
+
         private readonly UnitScript _player = null;
+        private EntityReference _entity;
+        private Animator Animator;
+        private const string ATTACK_KEY = "Attack";
+
+        private bool CanAttack => _entity.Entity.Has<CanAttackComponent>();
 
         internal PlayerAttackSystem(PlayerInputController playerInputController) { _playerInput = playerInputController; }
 
-        public virtual void Init()
+        public void Init()
         {
-            _playerInput.Keyboard.Attack.performed += OnAttack;
+            _playerInput.Keyboard.Attack.started += OnAttack;
+            _entity = _player.GetComponent<EntityReference>();
+            Animator = _player.GetComponent<Animator>();
         }
         public void Destroy()
         {
-            _playerInput.Keyboard.Attack.performed -= OnAttack;
+            _playerInput.Keyboard.Attack.started -= OnAttack;
         }
 
         private bool ReachedTarget(GameObject target)
@@ -52,9 +60,13 @@ namespace Examples.Example_1.ECS.Systems.Player
 
         private void OnAttack(InputAction.CallbackContext context)
         {
+            if (!CanAttack) return;
+
+            Animator.SetTrigger(ATTACK_KEY);
+
             foreach (var entity in GetNearestEnemies())
             {
-                ref var collider = ref entity.Get<ColliderComponent>();           
+                ref var collider = ref entity.Get<ColliderComponent>();
 
                 // Hit the enemy
                 ref var damageComponent = ref entity.Get<DamageEventComponent>();

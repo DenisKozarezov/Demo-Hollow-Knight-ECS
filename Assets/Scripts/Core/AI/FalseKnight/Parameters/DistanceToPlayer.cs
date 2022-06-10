@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using AI.BehaviorTree.Nodes;
 using AI.BehaviorTree.Nodes.ParameterNodes;
@@ -8,7 +7,7 @@ namespace Examples.Example_1.FalseKnight.AI.Parameters
 {
     public class DistanceToPlayer : FloatNode
     {
-        [NonSerialized] private GameObject PlayerRef;
+        private GameObject PlayerRef;
         private Transform _transform;
 
         protected override void OnStart()

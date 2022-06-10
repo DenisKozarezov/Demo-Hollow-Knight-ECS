@@ -1,30 +1,35 @@
 using AI.BehaviorTree.Nodes;
+using Examples.Example_1.ECS;
+using Examples.Example_1.ECS.ComponentProviders;
+using Leopotam.Ecs;
 using UnityEngine;
 
 namespace Examples.Example_1.FalseKnight.AI.Actions
 {
     public class JumpRight : ActionNode
     {
-        private FalseKnight _falseKnight;
+        private EntityReference _entityReference;
         private SpriteRenderer _spriteRenderer;
         private Rigidbody2D _rigidbody;
         private Animator _animator;
 
+        private bool OnGround => _entityReference.Entity.Has<OnGroundComponent>();
+
         protected override void OnStart()
         {
-            _falseKnight = BehaviorTreeRef.GameObjectRef.GetComponent<FalseKnight>();
-            _spriteRenderer = _falseKnight.GetComponent<SpriteRenderer>();
-            _rigidbody = _falseKnight.GetComponent<Rigidbody2D>();
-            _animator = _falseKnight.GetComponent<Animator>();
+            _entityReference = BehaviorTreeRef.GameObjectRef.GetComponent<EntityReference>();
+            _spriteRenderer = _entityReference.GetComponent<SpriteRenderer>();
+            _rigidbody = _entityReference.GetComponent<Rigidbody2D>();
+            _animator = _entityReference.GetComponent<Animator>();
         }
         protected override void OnStop() { }
         protected override State OnUpdate()
         {
-            if (!BehaviorTreeRef.GameObjectRef || !_falseKnight) return State.Failure;
+            if (!BehaviorTreeRef.GameObjectRef || !_entityReference) return State.Failure;
 
             bool lookRight = !_spriteRenderer.flipX;
 
-            if (_falseKnight.Grounded)
+            if (OnGround)
             {
                 if (!lookRight) _spriteRenderer.flipX = false;
 

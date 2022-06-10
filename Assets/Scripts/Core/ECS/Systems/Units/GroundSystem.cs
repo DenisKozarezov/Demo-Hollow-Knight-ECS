@@ -1,14 +1,12 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using Leopotam.Ecs;
-using Examples.Example_1.ECS.Events;
 
 namespace Examples.Example_1.ECS.Systems
 {
     internal class GroundSystem : IEcsRunSystem
     {
-        private readonly EcsWorld _world = null;
-        private readonly EcsFilter<ColliderComponent>.Exclude<OnGroundComponent> _filter = null;
+        private readonly EcsFilter<ColliderComponent> _filter = null;
 
         private bool OnGround(Collider2D collider, out Vector2 point)
         {
@@ -30,13 +28,6 @@ namespace Examples.Example_1.ECS.Systems
             point = contacts[0].point + Vector2.right * dx;
             return true;
         }
-        private void CreateDust(Vector2 point)
-        {
-            EcsEntity dustAnimationEntity = _world.NewEntity();
-            ref var dust = ref dustAnimationEntity.Get<AnimateDustEventComponent>();
-            dust.Point = point;
-            dust.Scale = Vector3.one * 0.5f;
-        }
 
         public void Run()
         {
@@ -47,12 +38,9 @@ namespace Examples.Example_1.ECS.Systems
                 
                 if (OnGround(collider.Value, out Vector2 point))
                 {
-                    // Add the component
                     entity.Get<OnGroundComponent>().Point = point;
-
-                    // Create dust effect
-                    CreateDust(point);
                 }
+                else entity.Del<OnGroundComponent>();
             }
         }
     }

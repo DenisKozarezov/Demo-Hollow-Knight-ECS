@@ -17,7 +17,6 @@ namespace Examples.Example_1.ECS.Systems.Player
         private const string FALL_KEY = "IsJumping";
         private const string JUMP_KEY = "StartJump";
         private const string MOVE_KEY = "Move";
-        private const string ATTACK_KEY = "Attack";
         // ========================
         
         private bool IsMoving => _playerInput.Keyboard.Move.ReadValue<Vector2>().sqrMagnitude > 0f;
@@ -27,8 +26,7 @@ namespace Examples.Example_1.ECS.Systems.Player
         
         public virtual void Init()
         {
-            // Input
-            _playerInput.Keyboard.Attack.performed += OnAttack;         
+            // Input      
             _playerInput.Keyboard.Move.performed += OnMove;
 
             // Initialize references
@@ -37,14 +35,9 @@ namespace Examples.Example_1.ECS.Systems.Player
         }
         public void Destroy()
         {
-            _playerInput.Keyboard.Attack.performed -= OnAttack;
             _playerInput.Keyboard.Move.performed -= OnMove;
         }
-
-        private void OnAttack(InputAction.CallbackContext context)
-        {
-            _animator.SetTrigger(ATTACK_KEY);
-        }        
+     
         private void OnMove(InputAction.CallbackContext context)
         {
             _animator.SetBool(MOVE_KEY, IsMoving && !IsFalling);
