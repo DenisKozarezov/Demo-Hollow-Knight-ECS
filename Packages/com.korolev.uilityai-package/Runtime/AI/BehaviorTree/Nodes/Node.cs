@@ -53,6 +53,8 @@ namespace AI.BehaviorTree.Nodes
         public virtual float Cost(ParameterNode parameter) { return 1; }
         public virtual float Cost() { return 1; }
 
+        public abstract Node Clone();
+
         /************ ПОЛЯ ДЛЯ ХРАНЕНИЯ ДАННЫХ ОТОБРАЖЕНИЯ ***************************/
 #if UNITY_EDITOR
         [SerializeField] [HideInInspector]

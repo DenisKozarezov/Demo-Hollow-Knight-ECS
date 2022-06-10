@@ -10,5 +10,10 @@ namespace AI.BehaviorTree.Nodes
     public abstract class ActionNode : Node
     {
         public AnimationCurve Curve;
+
+        public override Node Clone()
+        {
+            return Instantiate(this);
+        }
     }
 }

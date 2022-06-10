@@ -97,6 +97,17 @@ namespace AI.BehaviorTree
             }
         }
 
+        public BehaviorTree Clone()
+        {
+            BehaviorTree clone = Instantiate(this);
+            clone.RootNode = clone.RootNode.Clone();
+            clone.Nodes = Nodes.ConvertAll(child => child.Clone());
+            clone.Groups = Groups.ConvertAll(child => child.Clone());
+            clone._prevNode = _prevNode.Clone();
+            clone._currentNode = _currentNode.Clone();
+            return clone;
+        }
+
         #region Node Manipulations
         public Node CreateNode(Type type)
         {

@@ -9,7 +9,7 @@ namespace AI.BehaviorTree.Nodes.ActionNodes
 {
     public class DebugLogNode : ActionNode
     {
-        public string Message;
+        public string Message;            
 
         protected override void OnStart() { }
         protected override void OnStop() { }
@@ -17,6 +17,12 @@ namespace AI.BehaviorTree.Nodes.ActionNodes
         {
             Debug.Log($"DebugLogNode: '{Message}'");
             return State.Success;
+        }
+        public override Node Clone()
+        {
+            DebugLogNode clone = Instantiate(this);
+            clone.Message = clone.Message.Clone().ToString();
+            return clone;
         }
     }
 }

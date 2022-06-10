@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Nodes: []
   Title: Group
+  _position: {x: 0, y: 0}
   GUID: 4a66309a322874b19aa0e43ca50198b5
 --- !u!114 &-4407682157320369612
 MonoBehaviour:
@@ -27,9 +28,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 283c64a2e07e4fffa7b31a78c4e60f98, type: 3}
   m_Name: Attack
   m_EditorClassIdentifier: 
-  BehaviorTreeRef: {fileID: 0}
   Parent: {fileID: -568919804256173499}
   GroupSo: {fileID: -6888128297050948833}
+  _position: {x: 0, y: 0}
   GUID: 3b9d4089401a04aa1a03dc86831747ba
   Curve:
     serializedVersion: 2
@@ -49,9 +50,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a9398fe5e7b4bcfa6249b7446caf861, type: 3}
   m_Name: RootNode
   m_EditorClassIdentifier: 
-  BehaviorTreeRef: {fileID: 0}
   Parent: {fileID: 0}
   GroupSo: {fileID: -6888128297050948833}
+  _position: {x: 0, y: 0}
   GUID: e9af8c4cc949749c6ae174d565fd807b
   Curve:
     serializedVersion: 2

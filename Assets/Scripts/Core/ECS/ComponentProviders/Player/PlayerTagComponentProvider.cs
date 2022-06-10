@@ -3,5 +3,5 @@ using Voody.UniLeo;
 
 namespace Examples.Example_1.ECS.ComponentProviders.Player
 {
-    internal sealed class PlayerMoveComponentProvider : MonoProvider<PlayerMoveComponent> { }
+    internal sealed class PlayerTagComponentProvider : MonoProvider<PlayerTagComponent> { }    
 }

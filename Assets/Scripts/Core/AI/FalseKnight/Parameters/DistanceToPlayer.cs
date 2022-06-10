@@ -20,7 +20,7 @@ namespace Examples.Example_1.FalseKnight.AI.Parameters
         {               
             if (PlayerRef != null && _transform != null)
             {
-                var distance = (_transform.position - PlayerRef.transform.position).magnitude;
+                float distance = (_transform.position - PlayerRef.transform.position).magnitude;
                 Value = distance;
             }
             return State.Success; 

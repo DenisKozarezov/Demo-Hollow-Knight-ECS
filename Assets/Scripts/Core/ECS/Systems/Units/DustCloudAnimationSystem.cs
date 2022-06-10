@@ -12,9 +12,9 @@ namespace Examples.Example_1.ECS.Systems
 
         private GameObject _prefabDustAnimation;
 
-        public DustCloudAnimationSystem(GameObject prefubDustAnimation)
+        public DustCloudAnimationSystem(GameObject prefabDustAnimation)
         {
-            _prefabDustAnimation = prefubDustAnimation;
+            _prefabDustAnimation = prefabDustAnimation;
         }      
 
         private GameObject InstantiatePrefab(ref AnimateDustEventComponent dustComponent)

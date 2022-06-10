@@ -5,13 +5,14 @@
 
 using AI.ECS.Systems;
 using Core.Models;
-using Examples.Example_1.ECS.Events;
+using Core.Units;
 using Examples.Example_1.ECS.Systems;
 using Examples.Example_1.ECS.Systems.FalseKnight;
 using Examples.Example_1.ECS.Systems.Player;
 using Leopotam.Ecs;
 using UnityEngine;
 using Voody.UniLeo;
+using Zenject;
 
 namespace Examples.Example_1.ECS
 {
@@ -20,6 +21,9 @@ namespace Examples.Example_1.ECS
         private EcsWorld _world;
         private EcsSystems _systems;
         private PlayerInputController _playerInputController;
+
+        [Inject]
+        private UnitScript _player;
 
         [SerializeField] 
         private GameObject _prefabDustAnimation;
@@ -52,8 +56,10 @@ namespace Examples.Example_1.ECS
                 .Add(new GroundSystem())
                 .Add(new UnitSpawnSystem(_unitFactory))
                 .Add(new EnemyDeathEffectSystem())
-                .Add(new CameraShakeAnimationSystem(Camera.main));        
-                
+                .Add(new CameraShakeAnimationSystem(Camera.main));
+
+            AddInjections();
+
             _systems?.Init();
         }
 
@@ -64,8 +70,13 @@ namespace Examples.Example_1.ECS
 
         private void OnDestroy() 
         {
-            _systems?.Destroy();
-            _world?.Destroy();
+            _systems.Destroy();
+            _world.Destroy();
+        }
+
+        private void AddInjections()
+        {
+            _systems.Inject(_player);
         }
     }
 }

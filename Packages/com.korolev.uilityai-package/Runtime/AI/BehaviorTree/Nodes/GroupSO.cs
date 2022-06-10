@@ -9,6 +9,14 @@ namespace AI.BehaviorTree.Nodes
         [HideInInspector] public List<Node> Nodes = new List<Node>();
         public string Title;
 
+        public GroupSO Clone()
+        {
+            GroupSO clone = Instantiate(this);
+            clone.Nodes = Nodes.ConvertAll(child => child.Clone());
+            clone.Title = clone.Title.Clone().ToString();
+            return clone;
+        }
+
         /************ ПОЛЯ ДЛЯ ХРАНЕНИЯ ДАННЫХ ОТОБРАЖЕНИЯ ***************************/
 #if UNITY_EDITOR
         [SerializeField, HideInInspector]

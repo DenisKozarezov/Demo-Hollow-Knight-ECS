@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8ac0cf84e50423888d99d689a02a5b3, type: 3}
   m_Name: WatchRight
   m_EditorClassIdentifier: 
-  BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: 7525741962513757872}
   GroupSo: {fileID: -1002988855477588090}
   _position: {x: 618, y: -358}
@@ -35,7 +34,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88b6ac6c789c446b94af87985e2f4f4a, type: 3}
   m_Name: ChoiceNode
   m_EditorClassIdentifier: 
-  BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: 1058190741223281512}
   GroupSo: {fileID: 0}
   _position: {x: -281, y: -250}
@@ -69,7 +67,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33be2808cb894d1dbb8e1c42a2e2d9cc, type: 3}
   m_Name: Aggression
   m_EditorClassIdentifier: 
-  BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: 0}
   GroupSo: {fileID: 4079170083738136383}
   _position: {x: -602, y: 147}
@@ -88,7 +85,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 283c64a2e07e4fffa7b31a78c4e60f98, type: 3}
   m_Name: Attack
   m_EditorClassIdentifier: 
-  BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: -5818478633785936904}
   GroupSo: {fileID: 1027363895931364201}
   _position: {x: -36.49997, y: -64}
@@ -111,7 +107,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 488ba0897dbd45f7b22dfb5ed114a0bf, type: 3}
   m_Name: Grounded
   m_EditorClassIdentifier: 
-  BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: 0}
   GroupSo: {fileID: 4079170083738136383}
   _position: {x: -597, y: 75}
@@ -129,7 +124,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 026f4ade04ed41928aadc225a70c5aab, type: 3}
   m_Name: AgressiveAttackSequence
   m_EditorClassIdentifier: 
-  BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: -5818478633785936904}
   GroupSo: {fileID: -1002988855477588090}
   _position: {x: 123, y: -359}
@@ -154,7 +148,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc8b69d7e31c4d65b5049032eb2c2c93, type: 3}
   m_Name: WaitNode
   m_EditorClassIdentifier: 
-  BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: 7525741962513757872}
   GroupSo: {fileID: -1002988855477588090}
   _position: {x: 586, y: -286}
@@ -178,7 +171,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09c372f37a5b48fcb3093732ae679698, type: 3}
   m_Name: WatchLeft
   m_EditorClassIdentifier: 
-  BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: 7525741962513757872}
   GroupSo: {fileID: -1002988855477588090}
   _position: {x: 479, y: -467}
@@ -201,7 +193,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a9398fe5e7b4bcfa6249b7446caf861, type: 3}
   m_Name: RootNode
   m_EditorClassIdentifier: 
-  BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: 0}
   GroupSo: {fileID: 0}
   _position: {x: -648, y: -251}
@@ -225,7 +216,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef4a6abe49f54d4487bbf3078273d0ee, type: 3}
   m_Name: RepeatNode
   m_EditorClassIdentifier: 
-  BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: -5268062689480218467}
   GroupSo: {fileID: -1002988855477588090}
   _position: {x: 236, y: -357}
@@ -250,13 +240,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf2f52680cfe4f488f8c8ab6838c0b96, type: 3}
   m_Name: DistanceToPlayer
   m_EditorClassIdentifier: 
-  BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: 0}
   GroupSo: {fileID: 4079170083738136383}
   _position: {x: -628, y: -75}
   GUID: 94b46a4fbc8fe438ba418fcb35a04f79
   ChildNode: {fileID: 0}
-  Value: 6.9140496
+  Value: 7.3186274
 --- !u!114 &-3681991439330042166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,7 +258,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc8b69d7e31c4d65b5049032eb2c2c93, type: 3}
   m_Name: WaitNode
   m_EditorClassIdentifier: 
-  BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: 7525741962513757872}
   GroupSo: {fileID: -1002988855477588090}
   _position: {x: 585, y: -448}
@@ -293,7 +281,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 283c64a2e07e4fffa7b31a78c4e60f98, type: 3}
   m_Name: Attack
   m_EditorClassIdentifier: 
-  BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: 7525741962513757872}
   GroupSo: {fileID: -1002988855477588090}
   _position: {x: 487, y: -256}
@@ -316,13 +303,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee3bf46d4ee44fcfa07df2a427130e85, type: 3}
   m_Name: Fatigue
   m_EditorClassIdentifier: 
-  BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: 0}
   GroupSo: {fileID: 4079170083738136383}
   _position: {x: -596, y: 3}
   GUID: f3713b98c1bed48a6bb3920c4be8ed2c
   ChildNode: {fileID: 0}
-  Value: 0.38500094
+  Value: 0.8750005
 --- !u!114 &-1002988855477588090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -438,7 +424,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6a8667b21444b49ba30de5bf8ba3cbe, type: 3}
   m_Name: SequencerNode
   m_EditorClassIdentifier: 
-  BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: 2722886564823990091}
   GroupSo: {fileID: 0}
   _position: {x: -442, y: -250}
@@ -464,7 +449,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef4a6abe49f54d4487bbf3078273d0ee, type: 3}
   m_Name: RepeatNode
   m_EditorClassIdentifier: 
-  BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: -4620815090318103733}
   GroupSo: {fileID: 0}
   _position: {x: -568, y: -244}
@@ -489,7 +473,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3b09c4fa548486c8804ea1530216498, type: 3}
   m_Name: Jump
   m_EditorClassIdentifier: 
-  BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: -5818478633785936904}
   GroupSo: {fileID: 558800295767579824}
   _position: {x: -35.720097, y: 95.159195}
@@ -512,7 +495,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8af3ebec2a5469c9347cec8e7881416, type: 3}
   m_Name: ConditionLoop
   m_EditorClassIdentifier: 
-  BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: 0}
   GroupSo: {fileID: -1002988855477588090}
   _position: {x: 105, y: -261}
@@ -531,7 +513,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 283c64a2e07e4fffa7b31a78c4e60f98, type: 3}
   m_Name: Attack
   m_EditorClassIdentifier: 
-  BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: 7525741962513757872}
   GroupSo: {fileID: -1002988855477588090}
   _position: {x: 645, y: -427}
@@ -592,7 +573,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6a8667b21444b49ba30de5bf8ba3cbe, type: 3}
   m_Name: SequencerNode
   m_EditorClassIdentifier: 
-  BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: -4445214288975828384}
   GroupSo: {fileID: -1002988855477588090}
   _position: {x: 359, y: -357}
@@ -622,7 +602,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7a17ab96a4b429394753927f63c1474, type: 3}
   m_Name: WatchToPlayer
   m_EditorClassIdentifier: 
-  BehaviorTreeRef: {fileID: 11400000}
   Parent: {fileID: 1058190741223281512}
   GroupSo: {fileID: 6518784542748760188}
   _position: {x: -286, y: -379}
