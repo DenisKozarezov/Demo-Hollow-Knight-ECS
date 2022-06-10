@@ -1,4 +1,3 @@
-using UnityEngine;
 using Leopotam.Ecs;
 using Examples.Example_1.ECS.Events;
 using Examples.Example_1.ECS.Events.FalseKnight;
@@ -15,7 +14,7 @@ namespace Examples.Example_1.ECS.Systems.FalseKnight
             foreach (var i in _filter)
             {         
                 ref var ecsEntity = ref _filter.GetEntity(i);
-                ecsEntity.Get<FalseKnightAttackEventComponent>().GameObjectRef.GetComponent<Animator>().SetTrigger("Attack");
+                ecsEntity.Get<FalseKnightAttackEventComponent>().Animator.SetTrigger("Attack");
                 ecsEntity.Del<FalseKnightAttackEventComponent>();
                
                 // Camera Shake

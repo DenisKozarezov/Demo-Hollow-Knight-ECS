@@ -11,6 +11,11 @@ namespace Core.Infrastructure
         [SerializeField]
         private GameObject Prefab;
 
+        public override void Start()
+        {
+            Container.Resolve<UnitScript>();
+        }
+
         public override void InstallBindings()
         {
             Container.Bind<UnitScript>()

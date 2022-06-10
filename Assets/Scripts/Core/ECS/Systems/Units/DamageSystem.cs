@@ -37,10 +37,7 @@ namespace Examples.Example_1.ECS.Systems
                     // Make the enemy red
                     entity.Get<AnimateDamageEventComponent>().GameObjectRef = damageComponent.Target;
                 }
-                else healthComponent.Health = 0f;
-
-                // Delete component as normal
-                entity.Del<DamageEventComponent>();     
+                else healthComponent.Health = 0f; 
             }
         }
     }

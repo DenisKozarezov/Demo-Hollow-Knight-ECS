@@ -6,6 +6,7 @@
 using AI.ECS.Systems;
 using Core.Models;
 using Core.Units;
+using Examples.Example_1.ECS.Events;
 using Examples.Example_1.ECS.Systems;
 using Examples.Example_1.ECS.Systems.FalseKnight;
 using Examples.Example_1.ECS.Systems.Player;
@@ -42,22 +43,33 @@ namespace Examples.Example_1.ECS
             _world = new EcsWorld();
             _systems = new EcsSystems(_world)
                 .ConvertScene() // Этот метод сконвертирует GO в Entity;
-                .Add(new BehaviorTreeSystem())
-                .Add(new PlayerMoveSystem(_playerInputController))
-                .Add(new PlayerAnimationSystem(_playerInputController))
-                .Add(new FalseKnightJumpAnimationSystem())
-                .Add(new FalseKnightAttackAnimationSystem())
-                .Add(new PlayerJumpSystem(_playerInputController))
-                .Add(new DustCloudAnimationSystem(_prefabDustAnimation))
-                .Add(new PlayerAttackSystem(_playerInputController))
-                .Add(new DamageAnimationSystem())
+            
+                // General systems
                 .Add(new DamageSystem())
                 .Add(new HealthSystem())
                 .Add(new GroundSystem())
+                
+                // Units systems
+                .Add(new UnitInitSystem())
                 .Add(new UnitSpawnSystem(_unitFactory))
+                .Add(new BehaviorTreeSystem())
+                
+                // Player systems
+                .Add(new PlayerMoveSystem(_playerInputController))    
+                .Add(new PlayerJumpSystem(_playerInputController))
+                .Add(new PlayerAttackSystem(_playerInputController))
+                .Add(new PlayerAttackCooldownSystem(_playerInputController))            
+                .Add(new PlayerAnimationSystem(_playerInputController))
+
+                // Other systems
+                .Add(new FalseKnightJumpAnimationSystem())
+                .Add(new FalseKnightAttackAnimationSystem())                
+                .Add(new DustCloudAnimationSystem(_prefabDustAnimation))           
+                .Add(new DamageAnimationSystem())        
                 .Add(new EnemyDeathEffectSystem())
                 .Add(new CameraShakeAnimationSystem(Camera.main));
 
+            AddOneFrames();
             AddInjections();
 
             _systems?.Init();
@@ -77,6 +89,13 @@ namespace Examples.Example_1.ECS
         private void AddInjections()
         {
             _systems.Inject(_player);
+        }
+        private void AddOneFrames()
+        {
+            _systems
+                .OneFrame<UnitInitComponent>()
+                .OneFrame<DamageEventComponent>()
+                .OneFrame<UnitCreateEventComponent>();
         }
     }
 }

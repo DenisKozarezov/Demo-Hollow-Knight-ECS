@@ -42,9 +42,6 @@ namespace Examples.Example_1.ECS.Systems
 
                 // Spawn unit
                 GameObject unit = SpawnUnit(id, point);
-
-                // Delete component
-                entity.Del<UnitCreateEventComponent>();
             }
         }
     }
