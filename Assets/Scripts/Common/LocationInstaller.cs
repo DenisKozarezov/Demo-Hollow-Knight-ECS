@@ -1,5 +1,6 @@
-using Core.Units;
 using UnityEngine;
+using Core.Models;
+using Core.Units;
 using Zenject;
 
 namespace Core.Infrastructure
@@ -8,8 +9,8 @@ namespace Core.Infrastructure
     {
         [SerializeField]
         private Transform LocationPoint;
-        [SerializeField]
-        private GameObject Prefab;
+        [Inject]
+        private PlayerModel _playerModel;
 
         public override void Start()
         {
@@ -19,7 +20,7 @@ namespace Core.Infrastructure
         public override void InstallBindings()
         {
             Container.Bind<UnitScript>()
-                .FromComponentInNewPrefab(Prefab)
+                .FromComponentInNewPrefabResource(_playerModel.PrefabPath)
                 .AsSingle()
                 .OnInstantiated<UnitScript>(OnPlayerInstantiated);
         }
