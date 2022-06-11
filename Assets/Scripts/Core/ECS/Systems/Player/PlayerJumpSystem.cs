@@ -16,7 +16,7 @@ namespace Examples.Example_1.ECS.Systems.Player
         private EcsEntity _entity;
         private Rigidbody2D _rigidbody;    
               
-        private bool IsFalling => !_entity.Has<OnGroundComponent>();
+        private bool OnGround => _entity.Has<OnGroundComponent>();
 
         internal PlayerJumpSystem(PlayerInputController playerInputController, PlayerModel playerModel) 
         {
@@ -40,7 +40,7 @@ namespace Examples.Example_1.ECS.Systems.Player
 
         private void OnJump(InputAction.CallbackContext context) 
         {
-            if (!IsFalling)
+            if (OnGround)
             {
                 _rigidbody.AddForce(new Vector2(0, _playerModel.JumpForce), ForceMode2D.Impulse);
             }
