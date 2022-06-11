@@ -4,6 +4,7 @@ using AI.BehaviorTree.Nodes;
 using Examples.Example_1.ECS.Events.FalseKnight;
 using Examples.Example_1.FalseKnight.AI.Parameters;
 using Leopotam.Ecs;
+using Examples.Example_1.ECS;
 
 namespace Examples.Example_1.FalseKnight.AI.Actions
 {
@@ -15,7 +16,7 @@ namespace Examples.Example_1.FalseKnight.AI.Actions
         protected override void OnStart()
         {
             _fatigue = BehaviorTreeRef.Nodes.Where(n=> n is Fatigue).FirstOrDefault() as Fatigue;
-            _animator = BehaviorTreeRef.GameObjectRef.GetComponent<Animator>();
+            _animator = BehaviorTreeRef.EntityReference.Entity.Get<AnimatorComponent>().Value;
         }
         protected override void OnStop() { }
         protected override State OnUpdate()

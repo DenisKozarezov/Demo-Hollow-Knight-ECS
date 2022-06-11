@@ -12,14 +12,14 @@ namespace AI.ECS.Components
     [Serializable]
     public struct BehaviorTreeComponent
     {
-        [SerializeField] public GameObject GameObjectRef;
-        [SerializeField] public BehaviorTree.BehaviorTree BehaviorTree;
+        public EntityReference EntityReference;
+        public BehaviorTree.BehaviorTree BehaviorTree;
         public bool IsInitialized;
         
         public void Init(EcsWorld ecsWorld) 
         {
             BehaviorTree.Init(ecsWorld);
-            BehaviorTree.GameObjectRef = GameObjectRef;
+            BehaviorTree.EntityReference = EntityReference;
             IsInitialized = true;
         }
     }

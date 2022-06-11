@@ -12,8 +12,10 @@ namespace Examples.Example_1.ECS.Systems.Player
         private readonly PlayerInputController _playerInput;
         private Rigidbody2D _rigidbody;
 
+        private EcsEntity _entity;
+
         private const float JumpImpulse = 8;
-        private bool IsFalling => _rigidbody.velocity.y < 0;
+        private bool IsFalling => !_entity.Has<OnGroundComponent>();
 
         internal PlayerJumpSystem(PlayerInputController playerInputController) { _playerInput = playerInputController; }
         
@@ -21,10 +23,10 @@ namespace Examples.Example_1.ECS.Systems.Player
         {
             // Input
             _playerInput.Keyboard.Jump.performed += OnJump;
-            
+
             // Initialize references
-            ref var ecsEntity = ref _filter.GetEntity(0);
-            _rigidbody = ecsEntity.Get<RigidbodyComponent>().Value;         
+            _entity = _filter.GetEntity(0);
+            _rigidbody = _entity.Get<RigidbodyComponent>().Value;         
         }
         public void Destroy()
         {

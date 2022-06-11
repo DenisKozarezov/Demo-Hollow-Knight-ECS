@@ -12,15 +12,14 @@ namespace Examples.Example_1.FalseKnight.AI.Parameters
 
         protected override void OnStart()
         {
-            _transform = BehaviorTreeRef.GameObjectRef.transform;
+            _transform = BehaviorTreeRef.EntityReference.transform;
             PlayerRef = FindObjectsOfType<GameObject>().Where(i => i.layer == Constants.PlayerLayer).FirstOrDefault();
         }
         protected override State OnUpdate() 
         {               
             if (PlayerRef != null && _transform != null)
             {
-                float distance = (_transform.position - PlayerRef.transform.position).magnitude;
-                Value = distance;
+                Value = (_transform.position - PlayerRef.transform.position).magnitude;
             }
             return State.Success; 
         }

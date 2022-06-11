@@ -1,8 +1,8 @@
 using UnityEngine;
 using Core.Models;
 using Leopotam.Ecs;
-using Examples.Example_1.ECS.ComponentProviders;
 using Examples.Example_1.ECS.Events;
+using AI.ECS;
 
 namespace Examples.Example_1.ECS.Systems
 {
