@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 using Leopotam.Ecs;
-using Examples.Example_1.ECS.ComponentProviders;
+using AI.ECS;
 
 namespace Examples.Example_1.ECS
 {    

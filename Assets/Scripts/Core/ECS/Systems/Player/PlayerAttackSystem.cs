@@ -6,6 +6,7 @@ using Leopotam.Ecs;
 using Examples.Example_1.ECS.Components.Player;
 using Core.Units;
 using Examples.Example_1.ECS.ComponentProviders;
+using AI.ECS;
 
 namespace Examples.Example_1.ECS.Systems.Player
 {

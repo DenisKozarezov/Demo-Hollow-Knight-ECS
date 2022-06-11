@@ -1,7 +1,9 @@
 using System.Linq;
+using UnityEngine;
 using AI.BehaviorTree.Nodes;
 using Examples.Example_1.FalseKnight.AI.Parameters;
-using UnityEngine;
+using Examples.Example_1.ECS;
+using Leopotam.Ecs;
 
 namespace Examples.Example_1.FalseKnight.AI.Actions
 {
@@ -13,7 +15,7 @@ namespace Examples.Example_1.FalseKnight.AI.Actions
         protected override void OnStart()
         {
             _fatigue = BehaviorTreeRef.Nodes.Where(n=> n is Fatigue).FirstOrDefault() as Fatigue;
-            _rigidbody = BehaviorTreeRef.GameObjectRef.GetComponent<Rigidbody2D>();
+            _rigidbody = BehaviorTreeRef.EntityReference.Entity.Get<RigidbodyComponent>().Value;
         }
         protected override void OnStop() { }
         protected override State OnUpdate()

@@ -6,11 +6,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
+using Leopotam.Ecs;
+using AI.ECS;
 using AI.BehaviorTree.Nodes;
 using AI.BehaviorTree.Nodes.CompositeNodes;
 using AI.BehaviorTree.Nodes.DecoratorNodes;
-using Leopotam.Ecs;
-using UnityEngine;
 using Node = AI.BehaviorTree.Nodes.Node;
 
 #if UNITY_EDITOR
@@ -32,7 +33,7 @@ namespace AI.BehaviorTree
         [SerializeField, HideInInspector] public Node RootNode;
         [SerializeField, HideInInspector] public List<Node> Nodes = new List<Node>();
         [SerializeField, HideInInspector] public List<GroupSO> Groups = new List<GroupSO>();
-        [SerializeField, HideInInspector] public GameObject GameObjectRef;
+        [SerializeField, HideInInspector] public EntityReference EntityReference;
         [SerializeField, HideInInspector] public TreeOrientation OrientationTree = TreeOrientation.Horizontal;
 
         [NonSerialized] private Node _prevNode;

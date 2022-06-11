@@ -1,5 +1,5 @@
 using UnityEngine;
-using Examples.Example_1.ECS.ComponentProviders;
+using AI.ECS;
 
 namespace Core.Units
 {

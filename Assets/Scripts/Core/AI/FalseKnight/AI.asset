@@ -245,7 +245,7 @@ MonoBehaviour:
   _position: {x: -628, y: -75}
   GUID: 94b46a4fbc8fe438ba418fcb35a04f79
   ChildNode: {fileID: 0}
-  Value: 6.8507724
+  Value: 3.9877465
 --- !u!114 &-3681991439330042166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -308,7 +308,7 @@ MonoBehaviour:
   _position: {x: -596, y: 3}
   GUID: f3713b98c1bed48a6bb3920c4be8ed2c
   ChildNode: {fileID: 0}
-  Value: 0.9500004
+  Value: 0.64000547
 --- !u!114 &-1002988855477588090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -376,7 +376,7 @@ MonoBehaviour:
   - {fileID: 1027363895931364201}
   - {fileID: 558800295767579824}
   - {fileID: 6518784542748760188}
-  GameObjectRef: {fileID: 0}
+  EntityReference: {fileID: 0}
   OrientationTree: 1
 --- !u!114 &558800295767579824
 MonoBehaviour:
