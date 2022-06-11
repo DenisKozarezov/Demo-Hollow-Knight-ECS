@@ -7,6 +7,7 @@ using Examples.Example_1.ECS.Components.Player;
 using Core.Units;
 using Examples.Example_1.ECS.ComponentProviders;
 using AI.ECS;
+using Core.Models;
 
 namespace Examples.Example_1.ECS.Systems.Player
 {
@@ -16,17 +17,21 @@ namespace Examples.Example_1.ECS.Systems.Player
             .Exclude<PlayerTagComponent, DiedComponent> _filter = null;
 
         private readonly PlayerInputController _playerInput;
-        private float _damage = 5;
-        private float _sqrDistance = 9f;
-
         private readonly UnitScript _player = null;
+        private readonly PlayerModel _playerModel;
+        private const string ATTACK_KEY = "Attack";      
+                     
         private EntityReference _entity;
-        private Animator Animator;
-        private const string ATTACK_KEY = "Attack";
+        private Animator Animator;    
 
+        private float SqrAttackRange => _playerModel.AttackRange * _playerModel.AttackRange;
         private bool CanAttack => _entity.Entity.Has<CanAttackComponent>();
 
-        internal PlayerAttackSystem(PlayerInputController playerInputController) { _playerInput = playerInputController; }
+        internal PlayerAttackSystem(PlayerInputController playerInputController, PlayerModel playerModel)
+        {
+            _playerInput = playerInputController;
+            _playerModel = playerModel;
+        }
 
         public void Init()
         {
@@ -42,7 +47,7 @@ namespace Examples.Example_1.ECS.Systems.Player
         private bool ReachedTarget(GameObject target)
         {
             if (target == null) return false;
-            return (_player.transform.position - target.transform.position).sqrMagnitude <= _sqrDistance;
+            return (_player.transform.position - target.transform.position).sqrMagnitude <= SqrAttackRange;
         }
         private IEnumerable<EcsEntity> GetNearestEnemies()
         {
@@ -71,7 +76,7 @@ namespace Examples.Example_1.ECS.Systems.Player
 
                 // Hit the enemy
                 ref var damageComponent = ref entity.Get<DamageEventComponent>();
-                damageComponent.Damage = _damage;
+                damageComponent.Damage = _playerModel.BaseDamage;
                 damageComponent.Target = collider.Value.gameObject;
                 damageComponent.Source = _player.gameObject;
             }

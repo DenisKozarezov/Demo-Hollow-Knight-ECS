@@ -18,10 +18,24 @@ namespace Core.Models
         [Space, SerializeField, ObjectPicker]
         private string _prefabPath;
 
+        [Header("Unit Characteristics")]
+        [SerializeField, Min(0f)]
+        private float _movementSpeed;
+        [SerializeField, Min(0f)]
+        private float _baseDamage;
+        [SerializeField, Min(0f)]
+        private float _attackRadius;
+        [SerializeField, Min(0f)]
+        private float _maxHealth;
+
         public uint ID => _id;
         public string DisplayName => _displayName;
         public string Description => _description;
         public string PrefabPath => _prefabPath;  
+        public float MovementSpeed => _movementSpeed;
+        public float BaseDamage => _baseDamage;
+        public float AttackRange => _attackRadius;
+        public float MaxHealth => _maxHealth;
 
         protected virtual void OnValidate()
         {

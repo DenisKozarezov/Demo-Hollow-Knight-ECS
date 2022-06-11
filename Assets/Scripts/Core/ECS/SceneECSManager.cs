@@ -25,6 +25,8 @@ namespace Examples.Example_1.ECS
 
         [Inject]
         private UnitScript _player;
+        [Inject]
+        private PlayerModel _playerModel;
 
         [SerializeField] 
         private GameObject _prefabDustAnimation;
@@ -55,10 +57,10 @@ namespace Examples.Example_1.ECS
                 .Add(new BehaviorTreeSystem())
                 
                 // Player systems
-                .Add(new PlayerMoveSystem(_playerInputController))    
-                .Add(new PlayerJumpSystem(_playerInputController))
-                .Add(new PlayerAttackSystem(_playerInputController))
-                .Add(new PlayerAttackCooldownSystem(_playerInputController))            
+                .Add(new PlayerMoveSystem(_playerInputController, _playerModel))    
+                .Add(new PlayerJumpSystem(_playerInputController, _playerModel))
+                .Add(new PlayerAttackSystem(_playerInputController, _playerModel))
+                .Add(new PlayerAttackCooldownSystem(_playerInputController, _playerModel))            
                 .Add(new PlayerAnimationSystem(_playerInputController))
 
                 // Other systems

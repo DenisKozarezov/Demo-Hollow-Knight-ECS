@@ -1,3 +1,4 @@
+using Core.Models;
 using Examples.Example_1.ECS.Components.Player;
 using Leopotam.Ecs;
 using UnityEngine;
@@ -10,14 +11,18 @@ namespace Examples.Example_1.ECS.Systems.Player
         private readonly EcsFilter<RigidbodyComponent, PlayerJumpComponent> _filter = null;
 
         private readonly PlayerInputController _playerInput;
-        private Rigidbody2D _rigidbody;
+        private readonly PlayerModel _playerModel;
 
         private EcsEntity _entity;
-
-        private const float JumpImpulse = 8;
+        private Rigidbody2D _rigidbody;    
+              
         private bool IsFalling => !_entity.Has<OnGroundComponent>();
 
-        internal PlayerJumpSystem(PlayerInputController playerInputController) { _playerInput = playerInputController; }
+        internal PlayerJumpSystem(PlayerInputController playerInputController, PlayerModel playerModel) 
+        {
+            _playerInput = playerInputController;
+            _playerModel = playerModel;
+        }
         
         public virtual void Init() 
         {
@@ -37,7 +42,7 @@ namespace Examples.Example_1.ECS.Systems.Player
         {
             if (!IsFalling)
             {
-                _rigidbody.AddForce(new Vector2(0, JumpImpulse), ForceMode2D.Impulse);
+                _rigidbody.AddForce(new Vector2(0, _playerModel.JumpForce), ForceMode2D.Impulse);
             }
         }   
     }

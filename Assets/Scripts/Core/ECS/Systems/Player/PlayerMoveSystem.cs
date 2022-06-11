@@ -1,3 +1,4 @@
+using Core.Models;
 using Examples.Example_1.ECS.Components.Player;
 using Leopotam.Ecs;
 using UnityEngine;
@@ -13,13 +14,16 @@ namespace Examples.Example_1.ECS.Systems.Player
             PlayerTagComponent, 
             MovableComponent>.Exclude<DiedComponent> _filter = null;
 
-        private const float MoveSpeed = 200f;
-
-        private readonly PlayerInputController _playerInput;       
+        private readonly PlayerInputController _playerInput;  
+        private readonly PlayerModel _playerModel;
        
         private Vector2 _moveDirection;
 
-        internal PlayerMoveSystem(PlayerInputController playerInputController) { _playerInput = playerInputController; }
+        internal PlayerMoveSystem(PlayerInputController playerInputController, PlayerModel playerModel)
+        {
+            _playerInput = playerInputController;
+            _playerModel = playerModel;
+        }
         
         public virtual void Init()
         {
@@ -37,7 +41,7 @@ namespace Examples.Example_1.ECS.Systems.Player
                 var spriteRenderer = _filter.Get2(i).Value;
 
                 // Set velocity
-                Vector2 velocity = new Vector2(_moveDirection.x, 0) * MoveSpeed * Time.deltaTime;
+                Vector2 velocity = new Vector2(_moveDirection.x, 0) * _playerModel.MovementSpeed * Time.deltaTime;
 
                 // Move character
                 rigidbody.velocity = new Vector2(velocity.x, rigidbody.velocity.y);

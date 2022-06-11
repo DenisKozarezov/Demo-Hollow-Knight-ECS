@@ -245,7 +245,7 @@ MonoBehaviour:
   _position: {x: -628, y: -75}
   GUID: 94b46a4fbc8fe438ba418fcb35a04f79
   ChildNode: {fileID: 0}
-  Value: 3.9877465
+  Value: 1.9063313
 --- !u!114 &-3681991439330042166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -308,7 +308,7 @@ MonoBehaviour:
   _position: {x: -596, y: 3}
   GUID: f3713b98c1bed48a6bb3920c4be8ed2c
   ChildNode: {fileID: 0}
-  Value: 0.64000547
+  Value: 0.97500515
 --- !u!114 &-1002988855477588090
 MonoBehaviour:
   m_ObjectHideFlags: 0
