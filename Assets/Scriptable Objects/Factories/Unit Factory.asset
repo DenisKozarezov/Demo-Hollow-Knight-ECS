@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 281c098b310609643a294142508769cd, type: 3}
-  m_Name: False Knight
+  m_Script: {fileID: 11500000, guid: 7a15ad920a2b0254eb96049fee911a6d, type: 3}
+  m_Name: Unit Factory
   m_EditorClassIdentifier: 
-  _id: 1
-  _displayName: False Knight
-  _description: 
-  _prefabPath: Resources/Prefabs/False Knight
+  _units:
+  - {fileID: 11400000, guid: 6e0309b48a7b8744781be1332167abb1, type: 2}
+  - {fileID: 11400000, guid: e8bdab219cd8e6b47a022ded41a980ea, type: 2}

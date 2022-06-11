@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Leopotam.Ecs;
 using Examples.Example_1.ECS.Components.Player;
+using Core.Models;
 
 namespace Examples.Example_1.ECS.Systems.Player
 {
@@ -11,12 +12,15 @@ namespace Examples.Example_1.ECS.Systems.Player
             .Exclude<DiedComponent> _filter = null;
 
         private readonly PlayerInputController _playerInput;
-        private float _timer = 0.7f;
+        private readonly PlayerModel _playerModel;
+        private float _timer;
         private bool _canAttack = true;
 
-        public PlayerAttackCooldownSystem(PlayerInputController playerInputController)
+        public PlayerAttackCooldownSystem(PlayerInputController playerInputController, PlayerModel playerModel)
         {
             _playerInput = playerInputController;
+            _playerModel = playerModel;
+            _timer = _playerModel.AttackCooldown;
         }
 
         private void OnAttack(InputAction.CallbackContext context)
@@ -47,7 +51,7 @@ namespace Examples.Example_1.ECS.Systems.Player
             else 
             {
                 SetAttack(true);
-                _timer = 0.7f;
+                _timer = _playerModel.AttackCooldown;
             }
         }
     }
