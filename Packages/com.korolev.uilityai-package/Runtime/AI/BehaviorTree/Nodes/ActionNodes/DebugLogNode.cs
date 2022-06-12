@@ -21,7 +21,9 @@ namespace AI.BehaviorTree.Nodes.ActionNodes
         public override Node Clone()
         {
             DebugLogNode clone = Instantiate(this);
+            clone.Parent = null;
             clone.Message = clone.Message.Clone().ToString();
+            clone.GUID = GUID;
             return clone;
         }
     }

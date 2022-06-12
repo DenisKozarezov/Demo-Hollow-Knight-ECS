@@ -12,9 +12,9 @@ namespace AI.BehaviorTree.Nodes
         [HideInInspector] public Node ChildNode;
         public override Node Clone()
         {
-            ParameterNode other = Instantiate(this);
-            other.ChildNode = other.ChildNode?.Clone();
-            return other;
+            ParameterNode clone = Instantiate(this);
+            clone.ChildNode = null;
+            return clone;
         }
     }   
 }

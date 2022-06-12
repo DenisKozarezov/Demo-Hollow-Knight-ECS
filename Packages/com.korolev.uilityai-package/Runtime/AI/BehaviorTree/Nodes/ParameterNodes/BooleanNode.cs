@@ -12,5 +12,14 @@ namespace AI.BehaviorTree.Nodes.ParameterNodes
         {
             return State.Success;
         }
+        
+        public override Node Clone()
+        {
+            BooleanNode clone = Instantiate(this);
+            clone.ChildNode = null;
+            clone.Value = Value;
+            clone.GUID = GUID;
+            return clone;
+        }
     }
 }

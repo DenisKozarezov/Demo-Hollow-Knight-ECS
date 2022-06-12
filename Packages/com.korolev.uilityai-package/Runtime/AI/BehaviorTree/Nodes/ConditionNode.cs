@@ -9,9 +9,11 @@ namespace AI.BehaviorTree.Nodes
         public abstract bool Condition();
         public override Node Clone()
         {
-            ConditionNode other = Instantiate(this);
-            other.ChildNode = other.ChildNode.Clone();
-            return other;
+            ConditionNode clone = Instantiate(this);
+            clone.GUID = GUID;
+            clone.Parent = null;
+            clone.ChildNode = null;
+            return clone;
         }
     }
 }

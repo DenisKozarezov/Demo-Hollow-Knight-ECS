@@ -18,8 +18,10 @@ namespace AI.ECS.Components
         
         public void Init(EcsWorld ecsWorld) 
         {
+            BehaviorTree = BehaviorTree.Clone();
             BehaviorTree.Init(ecsWorld);
             BehaviorTree.EntityReference = EntityReference;
+            
             IsInitialized = true;
         }
     }

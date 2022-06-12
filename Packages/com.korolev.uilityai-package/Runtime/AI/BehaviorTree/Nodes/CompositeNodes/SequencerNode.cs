@@ -36,5 +36,14 @@ namespace AI.BehaviorTree.Nodes.CompositeNodes
             }
             return State.Success;
         }
+        
+        public override Node Clone()
+        {
+            SequencerNode clone = Instantiate(this);
+            clone.Parent = null;
+            clone.ChildNodes = new List<Node>();
+            clone.GUID = GUID;
+            return clone;
+        }
     }
 }
