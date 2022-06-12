@@ -13,7 +13,10 @@ namespace AI.BehaviorTree.Nodes
 
         public override Node Clone()
         {
-            return Instantiate(this);
+            ActionNode clone = Instantiate(this);
+            clone.Parent = null;
+            clone.GUID = GUID;
+            return clone;
         }
     }
 }

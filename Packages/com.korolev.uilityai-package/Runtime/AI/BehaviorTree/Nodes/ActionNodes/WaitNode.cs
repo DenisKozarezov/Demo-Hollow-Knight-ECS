@@ -24,5 +24,14 @@ namespace AI.BehaviorTree.Nodes.ActionNodes
             _currentTimeWait += Time.deltaTime;
             return State.Running;
         }
+        
+        public override Node Clone()
+        {
+            WaitNode clone = Instantiate(this);
+            clone.Parent = null;
+            clone.TimeWait = TimeWait;
+            clone.GUID = GUID;
+            return clone;
+        }
     }
 }

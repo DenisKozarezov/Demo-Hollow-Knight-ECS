@@ -6,6 +6,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Forms.DataVisualization.Charting;
 using UnityEngine;
 using Leopotam.Ecs;
 using AI.ECS;
@@ -100,15 +101,204 @@ namespace AI.BehaviorTree
 
         public BehaviorTree Clone()
         {
+            BehaviorTree clone = CloneNodes();
+            CloneEdges(this, clone);
+            return clone;
+        }
+        
+        public BehaviorTree CloneNodes()
+        {
             BehaviorTree clone = Instantiate(this);
-            clone.RootNode = clone.RootNode.Clone();
             clone.Nodes = Nodes.ConvertAll(child => child.Clone());
-            clone.Groups = Groups.ConvertAll(child => child.Clone());
-            clone._prevNode = _prevNode.Clone();
-            clone._currentNode = _currentNode.Clone();
+            clone.RootNode = clone.Nodes.First(i => i is RootNode);
             return clone;
         }
 
+        public void CloneEdges(BehaviorTree originalTree, BehaviorTree clone)
+        {
+            foreach (var node in clone.Nodes)
+            {
+                var originalNode = originalTree.Nodes.Find(i => i.GUID == node.GUID);
+                switch (originalNode)
+                {
+                    case ActionNode:
+                        var cloneActionNode = clone.Nodes.FirstOrDefault(i => i.GUID == ((ActionNode) originalNode).GUID) as ActionNode;
+                        if (((ActionNode) originalNode).Parent != null)
+                        {
+                            var cloneParentActionNode = clone.Nodes.FirstOrDefault(i => i.GUID == ((ActionNode) originalNode).Parent.GUID);
+                            cloneActionNode.Parent = cloneParentActionNode;
+                        }
+                        else 
+                            cloneActionNode.Parent = null;
+                        break;
+                    case CompositeNode:
+                        ChoiceNode choiceNode = originalNode as ChoiceNode;
+                        if (choiceNode)
+                        {
+                            var cloneChoiceNode = clone.Nodes.FirstOrDefault(i => i.GUID == choiceNode.GUID) as ChoiceNode;
+                            foreach (var parameterNode in choiceNode.ParametersList)
+                            {
+                                var cloneParameter = clone.Nodes.FirstOrDefault(i => i.GUID == parameterNode.GUID) as ParameterNode;
+                                cloneParameter.ChildNode = cloneChoiceNode;
+                                cloneChoiceNode.ParametersList.Add(cloneParameter);
+                            }
+
+                            foreach (var child in choiceNode.ChildNodes)
+                            {
+                                var cloneChild = clone.Nodes.FirstOrDefault(i => i.GUID == child.GUID);
+                                cloneChoiceNode.ChildNodes.Add(cloneChild);
+                            }
+
+                            if (choiceNode.Parent != null)
+                            {
+                                var cloneParent = clone.Nodes.FirstOrDefault(i => i.GUID == choiceNode.Parent.GUID);
+                                cloneChoiceNode.Parent = cloneParent;
+                            }
+                            else 
+                                cloneChoiceNode.Parent = null;
+                            
+                            break;
+                        }
+                        SequencerNode sequencerNode = originalNode as SequencerNode;
+                        if (sequencerNode)
+                        {
+                            var cloneSequencerNode = clone.Nodes.FirstOrDefault(i => i.GUID == sequencerNode.GUID) as SequencerNode;
+                            foreach (var child in sequencerNode.ChildNodes)
+                            {
+                                var cloneChild = clone.Nodes.FirstOrDefault(i => i.GUID == child.GUID);
+                                cloneSequencerNode.ChildNodes.Add(cloneChild);
+                            }
+
+                            if (sequencerNode.Parent != null)
+                            {
+                                var cloneParent = clone.Nodes.FirstOrDefault(i => i.GUID == sequencerNode.Parent.GUID);
+                                cloneSequencerNode.Parent = cloneParent;
+                            }
+                            else
+                                cloneSequencerNode.Parent = null;
+                            
+                            break;
+                        }
+                        
+                        var cloneCompositeNode = clone.Nodes.FirstOrDefault(i => i.GUID == ((CompositeNode)originalNode).GUID) as CompositeNode;
+                        foreach (var child in ((CompositeNode)originalNode).ChildNodes)
+                        {
+                            var cloneChild = clone.Nodes.FirstOrDefault(i => i.GUID == child.GUID);
+                            cloneCompositeNode.ChildNodes.Add(cloneChild);
+                        }
+
+                        if (((CompositeNode) originalNode).Parent)
+                        {
+                            var cloneParentCompositeNode = clone.Nodes.FirstOrDefault(i => i.GUID == ((CompositeNode) originalNode).Parent.GUID);
+                            cloneCompositeNode.Parent = cloneParentCompositeNode;
+                        }
+                        else 
+                            cloneCompositeNode.Parent = null;
+                     
+                        
+                        break;
+                    case DecoratorNode:
+                        RepeatNode repeatNode = originalNode as RepeatNode;
+                        if (repeatNode)
+                        {
+                            var cloneRepeatNode = clone.Nodes.FirstOrDefault(i => i.GUID == repeatNode.GUID) as RepeatNode;
+
+                            if (repeatNode.Parent != null)
+                            {
+                                var cloneParent = clone.Nodes.FirstOrDefault(i => i.GUID == repeatNode.Parent.GUID);
+                                cloneRepeatNode.Parent = cloneParent;  
+                            }
+                            else
+                                cloneRepeatNode.Parent = null;
+                            
+                            if (repeatNode.Child != null)
+                            {
+                                var cloneChild = clone.Nodes.FirstOrDefault(i => i.GUID == repeatNode.Child.GUID);
+                                cloneRepeatNode.Child = cloneChild;
+                            }
+                            else
+                                cloneRepeatNode.Child = null;
+
+                            if (repeatNode.ConditionNode != null)
+                            {
+                                var cloneConditionNode = clone.Nodes.FirstOrDefault(i => i.GUID == repeatNode.ConditionNode.GUID) as ConditionNode;
+                                cloneRepeatNode.ConditionNode = cloneConditionNode;
+                            }
+                            else
+                                cloneRepeatNode.ConditionNode = null;
+                            
+                            break;
+                        }
+                        RootNode rootNode = originalNode as RootNode;
+                        if (rootNode)
+                        {
+                            var cloneRootNode = clone.Nodes.FirstOrDefault(i => i.GUID == rootNode.GUID) as RootNode;
+                            if (rootNode.Child != null)
+                            {
+                                var cloneChild = clone.Nodes.FirstOrDefault(i => i.GUID == rootNode.Child.GUID);
+                                cloneRootNode.Child = cloneChild;
+                            }
+                            else 
+                                cloneRootNode.Child = null;
+
+                            break;
+                        }
+                        
+                        var cloneDecoratorNode = clone.Nodes.FirstOrDefault(i => i.GUID == originalNode.GUID) as DecoratorNode;
+
+                        if (((DecoratorNode) originalNode).Child != null)
+                        {
+                            var cloneChidDecoratorNode = clone.Nodes.FirstOrDefault(i =>
+                                i.GUID == ((DecoratorNode) originalNode).Child.GUID);
+                            cloneDecoratorNode.Child = cloneChidDecoratorNode;
+                        }
+                        else
+                            cloneDecoratorNode.Child = null;
+
+                        if (((DecoratorNode) originalNode).Parent != null)
+                        {
+                            var cloneParentDecoratorNode = clone.Nodes.FirstOrDefault(i => i.GUID == ((DecoratorNode)originalNode).Parent.GUID);
+                            cloneDecoratorNode.Parent = cloneParentDecoratorNode;
+                        }
+                        else
+                            cloneDecoratorNode.Parent = null;
+
+                        break;
+                    case ParameterNode:
+                        var cloneParameterNode = clone.Nodes.FirstOrDefault(i => i.GUID == ((ParameterNode) originalNode).GUID) as ParameterNode;
+                        if (((ParameterNode) originalNode).ChildNode != null)
+                        {
+                            var cloneChildParameterNode = clone.Nodes.FirstOrDefault(i => i.GUID == ((ParameterNode) originalNode).ChildNode.GUID);
+                            cloneParameterNode.ChildNode = cloneChildParameterNode;
+                        }
+                        else cloneParameterNode.ChildNode = null;
+                        break;
+                    case ConditionNode:
+                        var cloneCondition = clone.Nodes.FirstOrDefault(i => i.GUID == ((ConditionNode) originalNode).GUID) as ConditionNode;
+                        if (((ConditionNode) originalNode).ChildNode == null)
+                        {
+                            var cloneChildConditionNode = clone.Nodes.FirstOrDefault(i => i.GUID == ((ConditionNode) originalNode).ChildNode.GUID);
+                            cloneCondition.ChildNode = cloneChildConditionNode;
+                        }
+                        else
+                            cloneCondition.ChildNode = null;
+                        
+                        break;
+                    case Node:
+                        var cloneNode = clone.Nodes.FirstOrDefault(i => i.GUID == originalNode.GUID);
+                        if (originalNode.Parent != null)
+                        {
+                            var cloneParentNode = clone.Nodes.FirstOrDefault(i => i.GUID == originalNode.Parent.GUID);
+                            cloneNode.Parent = cloneParentNode;
+                        }
+                        else
+                            cloneNode.Parent = null;
+                        
+                        break;
+                }
+            }
+        }
+        
         #region Node Manipulations
         public Node CreateNode(Type type)
         {

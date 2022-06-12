@@ -290,10 +290,7 @@ namespace Editor.BehaviorTreeEditor.VisualElements
                 //отрисовывает корневой узел
                 if (_behaviorTree.RootNode == null)
                 {
-                    Type type = typeof(RootNode);   //Type.GetType("AI.BehaviorTree.Nodes.DecoratorNodes.RootNode");
-                    
-                    var types = TypeCache.GetTypesDerivedFrom<DecoratorNode>();
-                    //var type = types.Where((type)=> type is AI.BehaviorTree.Nodes.DecoratorNodes.RootNode).FirstOrDefault();
+                    Type type = typeof(RootNode);
                     _behaviorTree.RootNode = CreateNodeForView(type, Vector2.zero);
                 }
                 

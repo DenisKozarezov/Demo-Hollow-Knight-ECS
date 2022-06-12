@@ -30,7 +30,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Parent: {fileID: -568919804256173499}
   GroupSo: {fileID: -6888128297050948833}
-  _position: {x: 0, y: 0}
+  _position: {x: 229, y: 166}
   GUID: 3b9d4089401a04aa1a03dc86831747ba
   Curve:
     serializedVersion: 2
@@ -52,7 +52,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Parent: {fileID: 0}
   GroupSo: {fileID: -6888128297050948833}
-  _position: {x: 0, y: 0}
+  _position: {x: -71, y: 117}
   GUID: e9af8c4cc949749c6ae174d565fd807b
   Curve:
     serializedVersion: 2
@@ -79,5 +79,5 @@ MonoBehaviour:
   - {fileID: -4407682157320369612}
   Groups:
   - {fileID: -6888128297050948833}
-  GameObjectRef: {fileID: 0}
+  EntityReference: {fileID: 0}
   OrientationTree: 1

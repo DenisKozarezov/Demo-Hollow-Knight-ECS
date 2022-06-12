@@ -15,7 +15,9 @@ namespace AI.BehaviorTree.Nodes
         public override Node Clone()
         {
             DecoratorNode clone = Instantiate(this);
-            clone.Child = Child.Clone();
+            clone.GUID = GUID;
+            clone.Parent = null;
+            clone.Child = null;
             return clone;
         }
     }   

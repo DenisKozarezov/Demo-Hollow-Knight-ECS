@@ -16,7 +16,9 @@ namespace AI.BehaviorTree.Nodes
         public override Node Clone()
         {
             CompositeNode clone = Instantiate(this);
-            clone.ChildNodes = ChildNodes.ConvertAll(child => child.Clone());
+            clone.ChildNodes = new List<Node>();
+            clone.Parent = null;
+            clone.GUID = GUID;
             return clone;
         }
     }  
