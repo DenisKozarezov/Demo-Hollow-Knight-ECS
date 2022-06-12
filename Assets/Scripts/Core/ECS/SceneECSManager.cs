@@ -47,17 +47,17 @@ namespace Examples.Example_1.ECS
                 .ConvertScene() // Этот метод сконвертирует GO в Entity;
             
                 // General systems
+                .Add(new UnitInitSystem())
                 .Add(new DamageSystem())
                 .Add(new HealthSystem())
                 .Add(new GroundSystem())
                 
-                // Units systems
-                .Add(new UnitInitSystem())
+                // Units systems               
                 .Add(new UnitSpawnSystem(_unitFactory))
                 .Add(new BehaviorTreeSystem())
                 
                 // Player systems
-                .Add(new PlayerMoveSystem(_playerInputController, _playerModel))    
+                .Add(new PlayerMoveSystem(_playerInputController))    
                 .Add(new PlayerJumpSystem(_playerInputController, _playerModel))
                 .Add(new PlayerAttackSystem(_playerInputController, _playerModel))
                 .Add(new PlayerAttackCooldownSystem(_playerInputController, _playerModel))            

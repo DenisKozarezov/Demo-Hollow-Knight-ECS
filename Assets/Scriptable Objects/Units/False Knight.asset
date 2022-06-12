@@ -16,7 +16,7 @@ MonoBehaviour:
   _displayName: False Knight
   _description: 
   _prefabPath: Resources/Prefabs/False Knight
-  _movementSpeed: 50
+  _movementSpeed: 80
   _baseDamage: 10
   _attackRadius: 3
   _maxHealth: 100

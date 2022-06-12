@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 339477802832129859}
   - component: {fileID: 339477802832129856}
   - component: {fileID: 153767733}
+  - component: {fileID: 6237696810026829610}
   - component: {fileID: 4543246622052920862}
   - component: {fileID: 4652797575984559654}
   - component: {fileID: 5713900880543262916}
@@ -28,7 +29,6 @@ GameObject:
   - component: {fileID: -2814685225000914185}
   - component: {fileID: 2465082576744761386}
   - component: {fileID: 1670326355653064732}
-  - component: {fileID: 6237696810026829610}
   m_Layer: 9
   m_Name: Character
   m_TagString: Player
@@ -267,6 +267,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6237696810026829610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 339477802832129857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e4ef28d346a7fc43891e7a78d20ac8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value:
+    UnitModel: {fileID: 11400000, guid: 6e0309b48a7b8744781be1332167abb1, type: 2}
+    EntityReference: {fileID: 4543246622052920862}
 --- !u!114 &4543246622052920862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -304,9 +319,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 505d0181b66bc8147bd22c3a53ccf905, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value:
-    Health: 100
-    MaxHealth: 100
 --- !u!114 &7026177336291130317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -447,20 +459,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acb9a0a2217dae54c8fdef21e6a38488, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6237696810026829610
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 339477802832129857}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e4ef28d346a7fc43891e7a78d20ac8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  value:
-    Value: {fileID: 4543246622052920862}
 --- !u!1 &4614437648843183468
 GameObject:
   m_ObjectHideFlags: 0

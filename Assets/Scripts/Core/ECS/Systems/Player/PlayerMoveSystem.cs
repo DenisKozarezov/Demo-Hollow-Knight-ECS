@@ -10,19 +10,17 @@ namespace Examples.Example_1.ECS.Systems.Player
     {
         private readonly EcsFilter<
             RigidbodyComponent, 
-            SpriteRendererComponent,            
-            PlayerTagComponent, 
-            MovableComponent>.Exclude<DiedComponent> _filter = null;
+            SpriteRendererComponent,
+            MovableComponent,
+            PlayerTagComponent>.Exclude<DiedComponent> _filter = null;
 
         private readonly PlayerInputController _playerInput;  
-        private readonly PlayerModel _playerModel;
        
         private Vector2 _moveDirection;
 
-        internal PlayerMoveSystem(PlayerInputController playerInputController, PlayerModel playerModel)
+        internal PlayerMoveSystem(PlayerInputController playerInputController)
         {
             _playerInput = playerInputController;
-            _playerModel = playerModel;
         }
         
         public virtual void Init()
@@ -37,11 +35,12 @@ namespace Examples.Example_1.ECS.Systems.Player
         {
             foreach (var i in _filter)
             {
-                var rigidbody = _filter.Get1(i).Value;
-                var spriteRenderer = _filter.Get2(i).Value;
+                Rigidbody2D rigidbody = _filter.Get1(i).Value;
+                SpriteRenderer spriteRenderer = _filter.Get2(i).Value;
+                float speed = _filter.Get3(i).Value;
 
                 // Set velocity
-                Vector2 velocity = new Vector2(_moveDirection.x, 0) * _playerModel.MovementSpeed * Time.deltaTime;
+                Vector2 velocity = new Vector2(_moveDirection.x, 0) * speed * Time.deltaTime;
 
                 // Move character
                 rigidbody.velocity = new Vector2(velocity.x, rigidbody.velocity.y);
