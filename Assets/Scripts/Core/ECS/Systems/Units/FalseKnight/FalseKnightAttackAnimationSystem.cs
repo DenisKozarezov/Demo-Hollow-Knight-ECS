@@ -18,8 +18,7 @@ namespace Examples.Example_1.ECS.Systems.FalseKnight
                 ecsEntity.Del<FalseKnightAttackEventComponent>();
                
                 // Camera Shake
-                EcsEntity cameraShakeAnimationEntity = _world.NewEntity();
-                cameraShakeAnimationEntity.Get<AnimateCameraShakeEventComponent>();
+                _world.NewEntity().Get<AnimateCameraShakeEventComponent>();
             }
         }
     }

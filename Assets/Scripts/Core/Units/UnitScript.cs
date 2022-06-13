@@ -6,6 +6,7 @@ namespace Core.Units
     public class UnitScript : MonoBehaviour
     {
         private EntityReference _entityReference;
+        public EntityReference EntityReference => _entityReference;
 
         private void Start()
         {

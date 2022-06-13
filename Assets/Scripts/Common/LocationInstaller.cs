@@ -2,6 +2,7 @@ using UnityEngine;
 using Core.Models;
 using Core.Units;
 using Zenject;
+using Core.Input;
 
 namespace Core.Infrastructure
 {
@@ -10,7 +11,7 @@ namespace Core.Infrastructure
         [SerializeField]
         private Transform LocationPoint;
         [Inject]
-        private PlayerModel _playerModel;
+        private UnitsDefinitions unitsDefinitions;
 
         public override void Start()
         {
@@ -19,10 +20,14 @@ namespace Core.Infrastructure
 
         public override void InstallBindings()
         {
+            Container
+                .Bind<IInputSystem>()
+                .FromResolveGetter<UnitScript>(x => x.GetComponent<IInputSystem>())
+                .AsSingle(); 
             Container.Bind<UnitScript>()
-                .FromComponentInNewPrefabResource(_playerModel.PrefabPath)
+                .FromComponentInNewPrefabResource(unitsDefinitions.PlayerModel.PrefabPath)
                 .AsSingle()
-                .OnInstantiated<UnitScript>(OnPlayerInstantiated);
+                .OnInstantiated<UnitScript>(OnPlayerInstantiated);              
         }
 
         private void OnPlayerInstantiated(InjectContext context, UnitScript player)

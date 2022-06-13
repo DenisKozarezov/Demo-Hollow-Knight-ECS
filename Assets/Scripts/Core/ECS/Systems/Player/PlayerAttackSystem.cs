@@ -1,13 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using Examples.Example_1.ECS.Events;
 using Leopotam.Ecs;
-using Examples.Example_1.ECS.Components.Player;
 using Core.Units;
-using Examples.Example_1.ECS.ComponentProviders;
-using AI.ECS;
 using Core.Models;
+using Core.Input;
+using Examples.Example_1.ECS.Events;
+using Examples.Example_1.ECS.Components.Player;
 
 namespace Examples.Example_1.ECS.Systems.Player
 {
@@ -16,32 +14,30 @@ namespace Examples.Example_1.ECS.Systems.Player
         private readonly EcsFilter<ColliderComponent, HealthComponent, HittableComponent>
             .Exclude<PlayerTagComponent, DiedComponent> _filter = null;
 
-        private readonly PlayerInputController _playerInput;
+        private readonly IInputSystem _playerInput;
         private readonly UnitScript _player = null;
         private readonly PlayerModel _playerModel;
         private const string ATTACK_KEY = "Attack";      
                      
-        private EntityReference _entity;
         private Animator Animator;    
 
         private float SqrAttackRange => _playerModel.AttackRange * _playerModel.AttackRange;
-        private bool CanAttack => _entity.Entity.Has<CanAttackComponent>();
+        private bool CanAttack => _player.EntityReference.Entity.Has<CanAttackComponent>();
 
-        internal PlayerAttackSystem(PlayerInputController playerInputController, PlayerModel playerModel)
+        internal PlayerAttackSystem(IInputSystem playerInput, PlayerModel playerModel)
         {
-            _playerInput = playerInputController;
+            _playerInput = playerInput;
             _playerModel = playerModel;
         }
 
         public void Init()
         {
-            _playerInput.Keyboard.Attack.started += OnAttack;
-            _entity = _player.GetComponent<EntityReference>();
+            _playerInput.Attack += OnAttack;
             Animator = _player.GetComponent<Animator>();
         }
         public void Destroy()
         {
-            _playerInput.Keyboard.Attack.started -= OnAttack;
+            _playerInput.Attack -= OnAttack;
         }
 
         private bool ReachedTarget(GameObject target)
@@ -64,7 +60,7 @@ namespace Examples.Example_1.ECS.Systems.Player
             }
         }
 
-        private void OnAttack(InputAction.CallbackContext context)
+        private void OnAttack()
         {
             if (!CanAttack) return;
 

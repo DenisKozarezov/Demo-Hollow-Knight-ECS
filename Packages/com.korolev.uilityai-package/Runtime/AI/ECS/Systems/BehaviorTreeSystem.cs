@@ -17,7 +17,7 @@ namespace AI.ECS.Systems
         {
             foreach (var i in _filter) 
             {
-                ref var ecsEntity = ref _filter.GetEntity (i);
+                ref var ecsEntity = ref _filter.GetEntity(i);
                 ecsEntity.Get<BehaviorTreeComponent>().Init(_world);
             }
         }

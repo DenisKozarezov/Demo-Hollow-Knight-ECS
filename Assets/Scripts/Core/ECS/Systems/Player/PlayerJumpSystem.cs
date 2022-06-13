@@ -1,48 +1,44 @@
-using Core.Models;
-using Examples.Example_1.ECS.Components.Player;
-using Leopotam.Ecs;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using Leopotam.Ecs;
+using Core.Input;
+using Examples.Example_1.ECS.Components.Player;
 
 namespace Examples.Example_1.ECS.Systems.Player
 {
     internal class PlayerJumpSystem : IEcsInitSystem, IEcsDestroySystem
     {
-        private readonly EcsFilter<RigidbodyComponent, PlayerJumpComponent> _filter = null;
+        private readonly EcsFilter<RigidbodyComponent, JumpComponent, PlayerTagComponent> _filter = null;
 
-        private readonly PlayerInputController _playerInput;
-        private readonly PlayerModel _playerModel;
-
-        private EcsEntity _entity;
-        private Rigidbody2D _rigidbody;    
+        private readonly IInputSystem _playerInput;
               
-        private bool OnGround => _entity.Has<OnGroundComponent>();
-
-        internal PlayerJumpSystem(PlayerInputController playerInputController, PlayerModel playerModel) 
+        internal PlayerJumpSystem(IInputSystem playerInput) 
         {
-            _playerInput = playerInputController;
-            _playerModel = playerModel;
+            _playerInput = playerInput;
         }
         
         public virtual void Init() 
         {
-            // Input
-            _playerInput.Keyboard.Jump.performed += OnJump;
-
-            // Initialize references
-            _entity = _filter.GetEntity(0);
-            _rigidbody = _entity.Get<RigidbodyComponent>().Value;         
+            _playerInput.Jump += OnJump;        
         }
         public void Destroy()
         {
-            _playerInput.Keyboard.Jump.performed -= OnJump;
+            _playerInput.Jump -= OnJump;
         }
 
-        private void OnJump(InputAction.CallbackContext context) 
+        private void OnJump() 
         {
-            if (OnGround)
+            foreach (var i in _filter)
             {
-                _rigidbody.AddForce(new Vector2(0, _playerModel.JumpForce), ForceMode2D.Impulse);
+                var entity = _filter.GetEntity(i);
+                Rigidbody2D rigidbody = entity.Get<RigidbodyComponent>().Value;
+                float jumpForce = entity.Get<JumpComponent>().Value;
+
+                bool onGround = entity.Has<OnGroundComponent>();
+
+                if (onGround)
+                {
+                    rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+                }
             }
         }   
     }

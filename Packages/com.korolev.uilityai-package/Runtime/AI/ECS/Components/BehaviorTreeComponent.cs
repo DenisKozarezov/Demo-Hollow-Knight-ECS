@@ -14,15 +14,12 @@ namespace AI.ECS.Components
     {
         public EntityReference EntityReference;
         public BehaviorTree.BehaviorTree BehaviorTree;
-        public bool IsInitialized;
-        
+    
         public void Init(EcsWorld ecsWorld) 
         {
             BehaviorTree = BehaviorTree.Clone();
             BehaviorTree.Init(ecsWorld);
-            BehaviorTree.EntityReference = EntityReference;
-            
-            IsInitialized = true;
+            BehaviorTree.EntityReference = EntityReference;         
         }
     }
 }

@@ -1,5 +1,4 @@
 using Leopotam.Ecs;
-using UnityEngine;
 
 namespace Examples.Example_1.ECS.Systems
 {
@@ -13,13 +12,7 @@ namespace Examples.Example_1.ECS.Systems
             {
                 ref var entity = ref _filter.GetEntity(i);
                 ref var initComponent = ref entity.Get<UnitInitComponent>();
-                ref var movable = ref entity.Get<MovableComponent>();
-                ref var health = ref entity.Get<HealthComponent>();
-
-                // Set entity reference
                 initComponent.EntityReference.Entity = entity;
-                movable.Value = initComponent.UnitModel.MovementSpeed;
-                health.MaxHealth = health.Health = initComponent.UnitModel.MaxHealth;
             }
         }
     }

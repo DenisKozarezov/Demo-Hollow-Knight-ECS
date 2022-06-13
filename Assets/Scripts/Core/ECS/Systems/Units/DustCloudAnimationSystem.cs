@@ -1,6 +1,6 @@
 using UnityEngine;
-using Examples.Example_1.ECS.Events;
 using Leopotam.Ecs;
+using Examples.Example_1.ECS.Events;
 
 namespace Examples.Example_1.ECS.Systems
 {
