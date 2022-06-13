@@ -8,16 +8,16 @@ namespace Core.Models
     {
         [Header("Settings")]
         [SerializeField]
-        private PlayerModel _playerModel;
-        [SerializeField]
         private AudioSettings _audioSettings;
         [SerializeField]
         private GraphicsSettings _graphicsSettings;
+        [SerializeField]
+        private UnitsDefinitions _unitsDefinitions;
         // other settings...
 
         public override void InstallBindings()
         {
-            Container.BindInstances(_playerModel, _audioSettings, _graphicsSettings);
+            Container.BindInstances(_audioSettings, _graphicsSettings, _unitsDefinitions);
         }
     }
 }

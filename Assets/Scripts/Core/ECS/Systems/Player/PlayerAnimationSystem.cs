@@ -1,58 +1,53 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 using Leopotam.Ecs;
+using Core.Input;
 using Examples.Example_1.ECS.Components.Player;
 
 namespace Examples.Example_1.ECS.Systems.Player
 {
-    internal class PlayerAnimationSystem : IEcsInitSystem, IEcsRunSystem, IEcsDestroySystem, IEcsSystem
+    internal class PlayerAnimationSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<AnimatorComponent, RigidbodyComponent, PlayerTagComponent> _filter = null;
+        private readonly EcsFilter<AnimatorComponent, PlayerTagComponent> _filter = null;
        
-        private readonly PlayerInputController _playerInput;
-        private Animator _animator;
-        private Rigidbody2D _rigidbody;
+        private readonly IInputSystem _playerInput;
 
         // ==== ANIMATIONS KEYS ===
         private const string FALL_KEY = "IsJumping";
-        private const string JUMP_KEY = "StartJump";
+        private const string JUMP_KEY = "Jump";
         private const string MOVE_KEY = "Move";
+        private const string GROUND_KEY = "OnGround";
         // ========================
-        
-        private bool IsMoving => _playerInput.Keyboard.Move.ReadValue<Vector2>().sqrMagnitude > 0f;
-        private bool IsFalling => _rigidbody.velocity.y < 0f;
 
-        internal PlayerAnimationSystem(PlayerInputController playerInputController) { _playerInput = playerInputController; }
+        internal PlayerAnimationSystem(IInputSystem playerInput) 
+        { 
+            _playerInput = playerInput; 
+        }
         
-        public virtual void Init()
-        {
-            // Input      
-            _playerInput.Keyboard.Move.performed += OnMove;
-
-            // Initialize references
-            _animator = _filter.Get1(0).Value;
-            _rigidbody = _filter.Get2(0).Value;
-        }
-        public void Destroy()
-        {
-            _playerInput.Keyboard.Move.performed -= OnMove;
-        }
-     
-        private void OnMove(InputAction.CallbackContext context)
-        {
-            _animator.SetBool(MOVE_KEY, IsMoving && !IsFalling);
-        }
         public void Run()
         {
-            if (IsFalling)
+            foreach (var i in _filter)
             {
-                if (!_animator.GetBool(FALL_KEY))
+                var entity = _filter.GetEntity(i);
+                Animator animator = _filter.Get1(i).Value;
+                bool onGround = entity.Has<OnGroundComponent>();
+
+                // Falling and Jumping
+                if (!onGround)
                 {
-                    _animator.SetTrigger(JUMP_KEY);
-                    _animator.SetBool(FALL_KEY, true);
+                    if (!animator.GetBool(FALL_KEY))
+                    {
+                        animator.SetBool(FALL_KEY, true);
+                        animator.SetTrigger(JUMP_KEY);
+                    }
                 }
+                else animator.SetBool(FALL_KEY, false);
+
+                // On Ground
+                animator.SetBool(GROUND_KEY, onGround);
+
+                // Movement
+                animator.SetBool(MOVE_KEY, _playerInput.IsMoving && onGround);
             }
-            else _animator.SetBool(FALL_KEY, false);
         }
     }
 }

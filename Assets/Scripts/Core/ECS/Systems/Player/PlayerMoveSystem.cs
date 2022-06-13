@@ -1,12 +1,11 @@
-using Core.Models;
-using Examples.Example_1.ECS.Components.Player;
-using Leopotam.Ecs;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using Leopotam.Ecs;
+using Core.Input;
+using Examples.Example_1.ECS.Components.Player;
 
 namespace Examples.Example_1.ECS.Systems.Player
 {
-    internal class PlayerMoveSystem : IEcsInitSystem, IEcsRunSystem, IEcsDestroySystem
+    internal class PlayerMoveSystem : IEcsRunSystem
     {
         private readonly EcsFilter<
             RigidbodyComponent, 
@@ -14,23 +13,19 @@ namespace Examples.Example_1.ECS.Systems.Player
             MovableComponent,
             PlayerTagComponent>.Exclude<DiedComponent> _filter = null;
 
-        private readonly PlayerInputController _playerInput;  
+        private readonly IInputSystem _playerInput;
+        private Vector2 _lastDirection;
        
-        private Vector2 _moveDirection;
+        internal PlayerMoveSystem(IInputSystem playerInput)
+        {
+            _playerInput = playerInput;
+        }
 
-        internal PlayerMoveSystem(PlayerInputController playerInputController)
+        private bool FlipSrite(Vector2 direction)
         {
-            _playerInput = playerInputController;
+            return direction.sqrMagnitude == 0f ? _lastDirection.x < 0f : direction.x < 0f;
         }
-        
-        public virtual void Init()
-        {
-            _playerInput.Keyboard.Move.performed += OnMove;                       
-        }
-        public void Destroy()
-        {
-            _playerInput.Keyboard.Move.performed -= OnMove;
-        }
+
         public void Run()
         {
             foreach (var i in _filter)
@@ -40,19 +35,15 @@ namespace Examples.Example_1.ECS.Systems.Player
                 float speed = _filter.Get3(i).Value;
 
                 // Set velocity
-                Vector2 velocity = new Vector2(_moveDirection.x, 0) * speed * Time.deltaTime;
+                Vector2 velocity = Vector2.right * _playerInput.Direction.x * speed * Time.deltaTime;
 
                 // Move character
                 rigidbody.velocity = new Vector2(velocity.x, rigidbody.velocity.y);
 
                 // Rotate character depending on his direction
-                spriteRenderer.flipX = _moveDirection.x < 0;
+                if (_playerInput.Direction.sqrMagnitude != 0f) _lastDirection = _playerInput.Direction;
+                spriteRenderer.flipX = FlipSrite(_playerInput.Direction);
             }
-        }    
-        
-        private void OnMove(InputAction.CallbackContext context)
-        {
-            _moveDirection = context.ReadValue<Vector2>();
-        }               
+        }                 
     }
 }

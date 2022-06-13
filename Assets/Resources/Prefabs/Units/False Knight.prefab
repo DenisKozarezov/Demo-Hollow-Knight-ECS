@@ -50,6 +50,8 @@ GameObject:
   - component: {fileID: 41440181306326799}
   - component: {fileID: 2704286264739879150}
   - component: {fileID: 3419945904101511211}
+  - component: {fileID: -7465874733555467825}
+  - component: {fileID: 911937625849726012}
   - component: {fileID: -5628701099732555495}
   - component: {fileID: 1908236312952906260}
   - component: {fileID: -9197595874190442127}
@@ -168,7 +170,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 1.5
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -252,9 +254,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 505d0181b66bc8147bd22c3a53ccf905, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value:
-    Health: 100
-    MaxHealth: 100
 --- !u!114 &2704286264739879150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,6 +282,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value:
     Value: {fileID: 6990455316024280043}
+--- !u!114 &-7465874733555467825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7559006615654855930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42610677ca80409688fe2194c60b48d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value:
+    Value: 10
+--- !u!114 &911937625849726012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7559006615654855930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 389723dfc48ba7c4e8a1b8799dda4780, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &-5628701099732555495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -338,7 +363,6 @@ MonoBehaviour:
   value:
     EntityReference: {fileID: 8787886631456955396}
     BehaviorTree: {fileID: 11400000, guid: 6f18207472b7349ae9cb02870954e442, type: 2}
-    IsInitialized: 0
 --- !u!114 &4080128436791937422
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -5,10 +5,13 @@ namespace Core.Input
 {
     internal interface IInputSystem
     {
-        Vector2 Direction { get; }
-        event Action<Vector2> Move;
+        ref Vector2 Direction { get; }
+        event Action Move;
         event Action Jump;
         event Action Attack;
+        event Action Pause;
+        bool Enabled { get; }
+        bool IsMoving { get; }
 
         void Enable();
         void Disable();

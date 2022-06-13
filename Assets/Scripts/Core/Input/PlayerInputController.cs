@@ -53,6 +53,15 @@ public partial class @PlayerInputController : IInputActionCollection2, IDisposab
                     ""processors"": """",
                     ""interactions"": ""Press"",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""2352ea2c-20a1-46c0-9335-1292b140d3c3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -132,6 +141,17 @@ public partial class @PlayerInputController : IInputActionCollection2, IDisposab
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3494dab6-adac-4342-9a57-a102192453a4"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -171,6 +191,7 @@ public partial class @PlayerInputController : IInputActionCollection2, IDisposab
         m_Keyboard_Move = m_Keyboard.FindAction("Move", throwIfNotFound: true);
         m_Keyboard_Jump = m_Keyboard.FindAction("Jump", throwIfNotFound: true);
         m_Keyboard_Attack = m_Keyboard.FindAction("Attack", throwIfNotFound: true);
+        m_Keyboard_Pause = m_Keyboard.FindAction("Pause", throwIfNotFound: true);
         // Gamepad
         m_Gamepad = asset.FindActionMap("Gamepad", throwIfNotFound: true);
         m_Gamepad_Newaction = m_Gamepad.FindAction("New action", throwIfNotFound: true);
@@ -236,6 +257,7 @@ public partial class @PlayerInputController : IInputActionCollection2, IDisposab
     private readonly InputAction m_Keyboard_Move;
     private readonly InputAction m_Keyboard_Jump;
     private readonly InputAction m_Keyboard_Attack;
+    private readonly InputAction m_Keyboard_Pause;
     public struct KeyboardActions
     {
         private @PlayerInputController m_Wrapper;
@@ -243,6 +265,7 @@ public partial class @PlayerInputController : IInputActionCollection2, IDisposab
         public InputAction @Move => m_Wrapper.m_Keyboard_Move;
         public InputAction @Jump => m_Wrapper.m_Keyboard_Jump;
         public InputAction @Attack => m_Wrapper.m_Keyboard_Attack;
+        public InputAction @Pause => m_Wrapper.m_Keyboard_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Keyboard; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -261,6 +284,9 @@ public partial class @PlayerInputController : IInputActionCollection2, IDisposab
                 @Attack.started -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnAttack;
                 @Attack.performed -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnAttack;
                 @Attack.canceled -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnAttack;
+                @Pause.started -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_KeyboardActionsCallbackInterface = instance;
             if (instance != null)
@@ -274,6 +300,9 @@ public partial class @PlayerInputController : IInputActionCollection2, IDisposab
                 @Attack.started += instance.OnAttack;
                 @Attack.performed += instance.OnAttack;
                 @Attack.canceled += instance.OnAttack;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
         }
     }
@@ -316,6 +345,7 @@ public partial class @PlayerInputController : IInputActionCollection2, IDisposab
         void OnMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
     public interface IGamepadActions
     {

@@ -7,7 +7,7 @@ namespace Examples.Example_1.ECS.Systems.FalseKnight
     internal class FalseKnightJumpAnimationSystem: IEcsRunSystem
     {
         private readonly EcsWorld _world = null;
-        private readonly EcsFilter<AnimatorComponent, RigidbodyComponent>
+        private readonly EcsFilter<AnimatorComponent, RigidbodyComponent, FalseKnightTagComponent>
             .Exclude<DiedComponent> _filter = null;
 
         // ==== ANIMATIONS KEYS ===
@@ -28,16 +28,15 @@ namespace Examples.Example_1.ECS.Systems.FalseKnight
         {
             foreach (var i in _filter)
             {
-                var entity = _filter.GetEntity(i);
+                ref var entity = ref _filter.GetEntity(i);
                 ref var animatorComponent = ref _filter.Get1(i);
                 ref var rigidbodyComponent = ref _filter.Get2(i);
 
                 bool onGround = entity.Has<OnGroundComponent>();
-                bool isFalling = rigidbodyComponent.Value.velocity.y < 0;
 
                 Animator animator = animatorComponent.Value;
 
-                if (isFalling)
+                if (!onGround)
                 {
                     if (animator.GetBool(JUMPING_KEY) == false)
                     {
@@ -54,8 +53,7 @@ namespace Examples.Example_1.ECS.Systems.FalseKnight
                     CreateDust(ref entity.Get<OnGroundComponent>().Point);
 
                     // Shake camera when landed
-                    EcsEntity cameraShakeAnimationEntity = _world.NewEntity();
-                    cameraShakeAnimationEntity.Get<AnimateCameraShakeEventComponent>();
+                    _world.NewEntity().Get<AnimateCameraShakeEventComponent>();
                 }
             }
         }

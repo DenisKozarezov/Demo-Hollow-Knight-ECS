@@ -3,17 +3,18 @@
  * Last Modified 19.04.2022
  *******************************************/
 
-using AI.ECS.Systems;
+using UnityEngine;
+using Leopotam.Ecs;
+using Voody.UniLeo;
+using Zenject;
+using Core.Input;
 using Core.Models;
 using Core.Units;
+using AI.ECS.Systems;
 using Examples.Example_1.ECS.Events;
 using Examples.Example_1.ECS.Systems;
 using Examples.Example_1.ECS.Systems.FalseKnight;
 using Examples.Example_1.ECS.Systems.Player;
-using Leopotam.Ecs;
-using UnityEngine;
-using Voody.UniLeo;
-using Zenject;
 
 namespace Examples.Example_1.ECS
 {
@@ -21,47 +22,43 @@ namespace Examples.Example_1.ECS
     {
         private EcsWorld _world;
         private EcsSystems _systems;
-        private PlayerInputController _playerInputController;
-
+          
         [Inject]
-        private UnitScript _player;
+        private readonly UnitScript _player = null;
         [Inject]
-        private PlayerModel _playerModel;
+        private readonly IInputSystem _inputSystem = null;
+        [Inject]
+        private readonly UnitsDefinitions _unitsDefinitions = null;
 
         [SerializeField] 
         private GameObject _prefabDustAnimation;
-        [SerializeField]
-        private UnitFactory _unitFactory;
 
-        private void Awake()
-        {
-            _playerInputController = new PlayerInputController();
-            _playerInputController.Enable();
-        }
         private void Start ()
-        {
-            Time.timeScale = 1.4f;
-            
+        {            
             _world = new EcsWorld();
             _systems = new EcsSystems(_world)
                 .ConvertScene() // Этот метод сконвертирует GO в Entity;
             
-                // General systems
+                // Init systems
+                .Add(new FalseKnightInitSystem(_unitsDefinitions.FalseKnight))
+                .Add(new PlayerInitSystem(_unitsDefinitions.PlayerModel))
                 .Add(new UnitInitSystem())
+                
+                // General systems
                 .Add(new DamageSystem())
                 .Add(new HealthSystem())
                 .Add(new GroundSystem())
                 
                 // Units systems               
-                .Add(new UnitSpawnSystem(_unitFactory))
                 .Add(new BehaviorTreeSystem())
-                
-                // Player systems
-                .Add(new PlayerMoveSystem(_playerInputController))    
-                .Add(new PlayerJumpSystem(_playerInputController, _playerModel))
-                .Add(new PlayerAttackSystem(_playerInputController, _playerModel))
-                .Add(new PlayerAttackCooldownSystem(_playerInputController, _playerModel))            
-                .Add(new PlayerAnimationSystem(_playerInputController))
+                .Add(new DestroyEntitiesSystem())
+
+                // Player systems       
+                .Add(new PlayerMoveSystem(_inputSystem))    
+                .Add(new PlayerJumpSystem(_inputSystem))
+                .Add(new PlayerAttackSystem(_inputSystem, _unitsDefinitions.PlayerModel))
+                .Add(new PlayerAttackCooldownSystem(_inputSystem, _unitsDefinitions.PlayerModel))            
+                .Add(new PlayerAnimationSystem(_inputSystem))
 
                 // Other systems
                 .Add(new FalseKnightJumpAnimationSystem())
@@ -97,7 +94,8 @@ namespace Examples.Example_1.ECS
             _systems
                 .OneFrame<UnitInitComponent>()
                 .OneFrame<DamageEventComponent>()
-                .OneFrame<UnitCreateEventComponent>();
+                .OneFrame<UnitCreateEventComponent>()
+                .OneFrame<DiedComponent>();
         }
     }
 }
