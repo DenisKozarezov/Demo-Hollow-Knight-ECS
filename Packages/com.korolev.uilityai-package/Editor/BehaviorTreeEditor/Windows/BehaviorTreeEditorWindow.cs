@@ -5,9 +5,12 @@
 
 using System;
 using AI.BehaviorTree;
+using AI.ECS;
+using AI.ECS.Components;
 using Editor.BehaviorTreeEditor.Config;
 using Editor.BehaviorTreeEditor.VisualElements;
 using Editor.BehaviorTreeEditor.VisualElements.Nodes;
+using Leopotam.Ecs;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -44,11 +47,12 @@ public class BehaviorTreeEditorWindow : EditorWindow
                     _behaviorTreeView.DrawSelectionTreeView(null);
             }
             else _behaviorTreeView.DrawSelectionTreeView(null);
+            
             return true;
         }
         return false;
     }
-    
+
     public void CreateGUI() {
         _styleThemeConfig = AssetDatabase.LoadAssetAtPath<StyleThemeConfig>("Packages/com.korolev.uilityai-package/Editor/BehaviorTreeEditor/Config/StyleThemeConfig.asset");
         
@@ -89,8 +93,31 @@ public class BehaviorTreeEditorWindow : EditorWindow
         
     }
 
-    private void OnSelectionChange() {
-        BehaviorTree behaviorTree = Selection.activeObject as BehaviorTree; // получили BehaviorTree, который выбрали мышкой
+    private void OnSelectionChange()
+    {
+        BehaviorTree behaviorTree;
+
+        if (Application.isPlaying)
+        {
+            GameObject gameObject = Selection.activeObject as GameObject;
+            if (gameObject != null)
+            {
+                EntityReference entityReference = gameObject.GetComponent<EntityReference>();
+                if (entityReference != null)
+                {
+                    EcsEntity ecsEntity = entityReference.Entity;
+                    if (ecsEntity.Has<BehaviorTreeComponent>())
+                    {
+                        ref var behaviorTreeComponent = ref ecsEntity.Get<BehaviorTreeComponent>();
+                        behaviorTree = behaviorTreeComponent.BehaviorTree;
+                        _behaviorTreeView.DrawSelectionTreeView(behaviorTree, behaviorTree.OrientationTree);
+                        return;
+                    }
+                }
+            }
+        }
+
+        behaviorTree = Selection.activeObject as BehaviorTree; // получили BehaviorTree, который выбрали мышкой
         if (behaviorTree != null)
         {
             var containsAsset = AssetDatabase.Contains(behaviorTree);
