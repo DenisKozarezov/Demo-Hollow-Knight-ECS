@@ -19,4 +19,4 @@ MonoBehaviour:
   _movementSpeed: 80
   _baseDamage: 10
   _attackRadius: 3
-  _maxHealth: 100
+  _maxHealth: 80
