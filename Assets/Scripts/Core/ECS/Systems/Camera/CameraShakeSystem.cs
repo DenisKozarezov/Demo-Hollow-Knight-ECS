@@ -4,14 +4,14 @@ using Examples.Example_1.ECS.Events;
 
 namespace Examples.Example_1.ECS.Systems
 {
-    internal sealed class CameraShakeAnimationSystem: IEcsRunSystem, IEcsInitSystem
+    internal sealed class CameraShakeSystem: IEcsRunSystem, IEcsInitSystem
     {
         private readonly EcsFilter<AnimateCameraShakeEventComponent> _filter = null;
 
         private readonly Animator CameraRefAnimator;
         private readonly float _timeAliveSeconds = 0.7f;
 
-        internal CameraShakeAnimationSystem(Camera camera)
+        internal CameraShakeSystem(Camera camera)
         {
             CameraRefAnimator = camera.GetComponent<Animator>();
         }

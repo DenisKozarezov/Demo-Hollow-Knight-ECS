@@ -36,37 +36,13 @@ namespace Examples.Example_1.ECS
         private void Start ()
         {            
             _world = new EcsWorld();
-            _systems = new EcsSystems(_world)
-                .ConvertScene() // Этот метод сконвертирует GO в Entity;
-            
-                // Init systems
-                .Add(new FalseKnightInitSystem(_unitsDefinitions.FalseKnight))
-                .Add(new PlayerInitSystem(_unitsDefinitions.PlayerModel))
-                .Add(new UnitInitSystem())
-                
-                // General systems
-                .Add(new DamageSystem())
-                .Add(new HealthSystem())
-                .Add(new GroundSystem())
-                
-                // Units systems               
-                .Add(new BehaviorTreeSystem())
-                .Add(new DestroyEntitiesSystem())
+            _systems = new EcsSystems(_world).ConvertScene(); // Этот метод сконвертирует GO в Entity;
 
-                // Player systems       
-                .Add(new PlayerMoveSystem(_inputSystem))    
-                .Add(new PlayerJumpSystem(_inputSystem))
-                .Add(new PlayerAttackSystem(_inputSystem, _unitsDefinitions.PlayerModel))
-                .Add(new PlayerAttackCooldownSystem(_inputSystem, _unitsDefinitions.PlayerModel))            
-                .Add(new PlayerAnimationSystem(_inputSystem))
-
-                // Other systems
-                .Add(new FalseKnightJumpAnimationSystem())
-                .Add(new FalseKnightAttackAnimationSystem())                
-                .Add(new DustCloudAnimationSystem(_prefabDustAnimation))           
-                .Add(new DamageAnimationSystem())        
-                .Add(new EnemyDeathEffectSystem())
-                .Add(new CameraShakeAnimationSystem(Camera.main));
+            AddInitSystems();
+            AddGeneralSystems();
+            AddPlayerSystems();
+            AddCameraSystems();
+            AddOtherSystems();
 
             AddOneFrames();
             AddInjections();
@@ -96,6 +72,47 @@ namespace Examples.Example_1.ECS
                 .OneFrame<DamageEventComponent>()
                 .OneFrame<UnitCreateEventComponent>()
                 .OneFrame<DiedComponent>();
+        }
+        private void AddInitSystems()
+        {
+            _systems
+                .Add(new FalseKnightInitSystem(_unitsDefinitions.FalseKnight))
+                .Add(new PlayerInitSystem(_unitsDefinitions.PlayerModel))
+                .Add(new UnitInitSystem());
+        }
+        private void AddGeneralSystems()
+        {
+            _systems
+                .Add(new DamageSystem())
+                .Add(new HealthSystem())
+                .Add(new GroundSystem())
+                .Add(new BehaviorTreeSystem())
+                .Add(new DestroyEntitiesSystem());
+        }
+        private void AddPlayerSystems()
+        {
+            _systems
+                .Add(new PlayerMoveSystem(_inputSystem))
+                .Add(new PlayerJumpSystem(_inputSystem))
+                .Add(new PlayerAttackSystem(_inputSystem, _unitsDefinitions.PlayerModel))
+                .Add(new PlayerAttackCooldownSystem(_inputSystem, _unitsDefinitions.PlayerModel))
+                .Add(new PlayerAnimationSystem(_inputSystem));
+        }
+        private void AddCameraSystems()
+        {
+            _systems
+                .Add(new CameraShakeSystem(Camera.main))
+                .Add(new CameraFadeSystem(Camera.main));
+                //.Add(new CameraFollowSystem(Camera.main));
+        }
+        private void AddOtherSystems()
+        {
+            _systems
+                .Add(new FalseKnightJumpAnimationSystem())
+                .Add(new FalseKnightAttackAnimationSystem())
+                .Add(new DustCloudAnimationSystem(_prefabDustAnimation))
+                .Add(new DamageAnimationSystem())
+                .Add(new EnemyDeathEffectSystem());
         }
     }
 }

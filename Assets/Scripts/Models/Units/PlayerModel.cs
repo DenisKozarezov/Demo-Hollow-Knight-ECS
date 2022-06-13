@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Core.Models
 {
     [CreateAssetMenu(menuName = "Configuration/Units/Create Player Model")]
-    public class PlayerModel : UnitModel
+    public sealed class PlayerModel : UnitModel
     {
         [SerializeField, Min(0f)]
         private float _attackCooldown;

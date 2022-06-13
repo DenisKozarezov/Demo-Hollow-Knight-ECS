@@ -12,6 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f33965c2e3ab6d748a14223e7739a13c, type: 3}
   m_Name: Units Definitions
   m_EditorClassIdentifier: 
-  _defenitions:
-  - {fileID: 11400000, guid: 6e0309b48a7b8744781be1332167abb1, type: 2}
-  - {fileID: 11400000, guid: e8bdab219cd8e6b47a022ded41a980ea, type: 2}
+  _playerModel: {fileID: 11400000, guid: 6e0309b48a7b8744781be1332167abb1, type: 2}
+  _falseKnight: {fileID: 11400000, guid: e8bdab219cd8e6b47a022ded41a980ea, type: 2}
