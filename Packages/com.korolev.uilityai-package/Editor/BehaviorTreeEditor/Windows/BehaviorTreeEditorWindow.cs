@@ -89,8 +89,6 @@ public class BehaviorTreeEditorWindow : EditorWindow
             SetLightTheme();
         else
             SetDarkTheme();
-        
-        
     }
 
     private void OnSelectionChange()

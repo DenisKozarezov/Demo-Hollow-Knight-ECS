@@ -36,14 +36,21 @@ namespace AI.BehaviorTree
         [SerializeField, HideInInspector] public EntityReference EntityReference;
         [SerializeField, HideInInspector] public TreeOrientation OrientationTree = TreeOrientation.Horizontal;
 
+        
+        public Action BehaviorTreeChanged;
+        
         [NonSerialized] private Node _prevNode;
         [NonSerialized] private Node _currentNode;
 
+        private void OnDestroy() { BehaviorTreeChanged -= OnBehaviorTreeChanged; }
+
+        public void OnBehaviorTreeChanged() { SetCurrentNode(RootNode); }
         //инициализация
         public void Init(EcsWorld ecsWorld)
         {
             _currentNode = RootNode;
-
+            BehaviorTreeChanged += OnBehaviorTreeChanged;
+            
             foreach (var node in Nodes)
             {
                 node.Init(this, ecsWorld);
@@ -97,14 +104,12 @@ namespace AI.BehaviorTree
                     return State.Running;
             }
         }
-
         public BehaviorTree Clone()
         {
             BehaviorTree clone = CloneNodes();
             CloneEdges(this, clone);
             return clone;
         }
-        
         public BehaviorTree CloneNodes()
         {
             BehaviorTree clone = Instantiate(this);
@@ -112,7 +117,6 @@ namespace AI.BehaviorTree
             clone.RootNode = clone.Nodes.First(i => i is RootNode);
             return clone;
         }
-
         public void CloneEdges(BehaviorTree originalTree, BehaviorTree clone)
         {
             foreach (var node in clone.Nodes)
