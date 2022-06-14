@@ -8,25 +8,18 @@ using Leopotam.Ecs;
 
 namespace AI.ECS.Systems
 {
-    public class BehaviorTreeSystem : IEcsInitSystem, IEcsRunSystem {
-        
+    public class BehaviorTreeSystem : IEcsRunSystem 
+    {        
         private readonly EcsWorld _world = null;
         private readonly EcsFilter<BehaviorTreeComponent> _filter = null;
 
-        public virtual void Init () 
+        public void Run()
         {
-            foreach (var i in _filter) 
+            foreach (var i in _filter)
             {
-                ref var ecsEntity = ref _filter.GetEntity(i);
-                ecsEntity.Get<BehaviorTreeComponent>().Init(_world);
-            }
-        }
-        public void Run () 
-        {
-            foreach (var i in _filter) 
-            {
-                ref var ecsEntity = ref _filter.GetEntity(i);
-                ref var component = ref ecsEntity.Get<BehaviorTreeComponent>();
+                ref var entity = ref _filter.GetEntity(i);
+                ref var component = ref entity.Get<BehaviorTreeComponent>();
+                if (!component.Initialized) component.Init(_world);
                 component.BehaviorTree.Update();
             }
         }

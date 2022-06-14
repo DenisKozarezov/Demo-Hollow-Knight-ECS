@@ -5,7 +5,6 @@
 
 using System;
 using Leopotam.Ecs;
-using UnityEngine;
 
 namespace AI.ECS.Components
 {
@@ -14,12 +13,13 @@ namespace AI.ECS.Components
     {
         public EntityReference EntityReference;
         public BehaviorTree.BehaviorTree BehaviorTree;
+        public bool Initialized;
     
         public void Init(EcsWorld ecsWorld) 
         {
             BehaviorTree = BehaviorTree.Clone();
-            BehaviorTree.Init(ecsWorld);
-            BehaviorTree.EntityReference = EntityReference;         
+            BehaviorTree.Init(ecsWorld, EntityReference);
+            Initialized = true;
         }
     }
 }

@@ -13,12 +13,11 @@ namespace Examples.Example_1.FalseKnight.AI.Actions
         private Fatigue _fatigue;
         private Animator _animator;
 
-        protected override void OnStart()
+        protected override void OnInit()
         {
             _fatigue = BehaviorTreeRef.Nodes.Where(n=> n is Fatigue).FirstOrDefault() as Fatigue;
             _animator = BehaviorTreeRef.EntityReference.Entity.Get<AnimatorComponent>().Value;
         }
-        protected override void OnStop() { }
         protected override State OnUpdate()
         {
             EcsEntity attackAnimationEntity = _world.NewEntity();

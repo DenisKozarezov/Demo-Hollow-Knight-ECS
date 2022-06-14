@@ -9,8 +9,6 @@ namespace AI.BehaviorTree.Nodes.ParameterNodes
     { 
         public float Value = 0f;
 
-        protected override void OnStart() { }
-        protected override void OnStop() { }
         protected override State OnUpdate() 
         {
             return State.Success;
