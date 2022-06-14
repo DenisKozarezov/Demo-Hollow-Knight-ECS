@@ -37,20 +37,18 @@ namespace AI.BehaviorTree
         [SerializeField, HideInInspector] public List<Node> Nodes = new List<Node>();
         [SerializeField, HideInInspector] public List<GroupSO> Groups = new List<GroupSO>();
         [SerializeField, HideInInspector] public TreeOrientation OrientationTree = TreeOrientation.Horizontal;
-
-        
-        public Action BehaviorTreeChanged;
-        
+                
         [NonSerialized] private Node _prevNode;
         [NonSerialized] private Node _currentNode;
 
-        public EntityReference EntityReference => _entityReference;
-        
+        public Action BehaviorTreeChanged; 
+
         private void OnDestroy() { BehaviorTreeChanged -= OnBehaviorTreeChanged; }
 
         public void OnBehaviorTreeChanged() { SetCurrentNode(RootNode); }
+
+        public EntityReference EntityReference => _entityReference;        
         
-        //инициализация
         public void Init(EcsWorld ecsWorld, EntityReference entityReference)
         {
             _currentNode = RootNode;
