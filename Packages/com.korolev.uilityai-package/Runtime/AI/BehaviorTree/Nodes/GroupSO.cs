@@ -1,10 +1,11 @@
+using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
 namespace AI.BehaviorTree.Nodes
 {
-    public class GroupSO : ScriptableObject
+    public class GroupSO : ScriptableObject, IEquatable<GroupSO>
     {
         [HideInInspector] public List<Node> Nodes = new List<Node>();
         public string Title;
@@ -15,6 +16,10 @@ namespace AI.BehaviorTree.Nodes
             clone.Nodes = Nodes.ConvertAll(child => child.Clone());
             clone.Title = clone.Title.Clone().ToString();
             return clone;
+        }
+        public bool Equals(GroupSO other)
+        {
+            return other.GUID.Equals(GUID);
         }
 
         /************ ПОЛЯ ДЛЯ ХРАНЕНИЯ ДАННЫХ ОТОБРАЖЕНИЯ ***************************/

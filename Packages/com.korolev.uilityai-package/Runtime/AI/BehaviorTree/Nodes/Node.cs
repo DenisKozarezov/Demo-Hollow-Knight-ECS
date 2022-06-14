@@ -7,6 +7,7 @@ using System;
 using Leopotam.Ecs;
 using UnityEngine;
 using UnityEngine.UIElements;
+using System.Collections.Generic;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -14,7 +15,7 @@ using UnityEditor;
 
 namespace AI.BehaviorTree.Nodes
 {
-    public abstract class Node : ScriptableObject
+    public abstract class Node : ScriptableObject, IEquatable<Node>
     {
         protected EcsWorld _world = null;        
         public IManipulator UnGroupManipulator = null;
@@ -53,7 +54,12 @@ namespace AI.BehaviorTree.Nodes
         public virtual float Cost(ParameterNode parameter) { return 1; }
         public virtual float Cost() { return 1; }
 
+        public abstract IEnumerable<Node> GetChildren();
         public abstract Node Clone();
+        public bool Equals(Node other)
+        {
+            return other.GUID.Equals(GUID);
+        }
 
         /************ ПОЛЯ ДЛЯ ХРАНЕНИЯ ДАННЫХ ОТОБРАЖЕНИЯ ***************************/
 #if UNITY_EDITOR

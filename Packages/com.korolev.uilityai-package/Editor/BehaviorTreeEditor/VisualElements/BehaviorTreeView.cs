@@ -259,8 +259,10 @@ namespace Editor.BehaviorTreeEditor.VisualElements
                 //отрисовывает каждое ребро
                 _behaviorTree.Nodes.ForEach(node =>
                 {
-                    var childern = _behaviorTree.GetChildren(node);
-                    childern.ForEach(child =>
+                    IEnumerable<Node> children = node.GetChildren();
+                    if (children == null || !children.Any() || children.Any(x => x is null)) return;
+
+                    foreach (Node child in children)
                     {
                         NodeView parentNodeView = FindNodeView(node);
                         NodeView childNodeView = FindNodeView(child);
@@ -268,23 +270,24 @@ namespace Editor.BehaviorTreeEditor.VisualElements
                         Edge edge;
                         if (parentNodeView is ChoiceNodeView)
                         {
-                            foreach (var parameterNode in ((ChoiceNode)(parentNodeView.Node)).ParametersList) {
-                                edge = FindNodeView(parameterNode).OutputPort.ConnectTo(((ChoiceNodeView) parentNodeView).InputParameterPort);
+                            foreach (var parameterNode in ((ChoiceNode)parentNodeView.Node).ParametersList)
+                            {
+                                edge = FindNodeView(parameterNode).OutputPort.ConnectTo(((ChoiceNodeView)parentNodeView).InputParameterPort);
                                 AddElement(edge);
                             }
                         }
 
                         edge = null;
-                        
+
                         if ((parentNodeView is FloatNodeView || parentNodeView is BooleanNodeView) && childNodeView is ChoiceNodeView)
-                            edge = parentNodeView.OutputPort.ConnectTo(((ChoiceNodeView) childNodeView).InputParameterPort);
+                            edge = parentNodeView.OutputPort.ConnectTo(((ChoiceNodeView)childNodeView).InputParameterPort);
                         else if (parentNodeView is ConditionNodeView && childNodeView is RepeatNodeView)
-                            edge = parentNodeView.OutputPort.ConnectTo(((RepeatNodeView) childNodeView).InputConpitionPort);
+                            edge = parentNodeView.OutputPort.ConnectTo(((RepeatNodeView)childNodeView).InputConpitionPort);
                         else
                             edge = parentNodeView.OutputPort.ConnectTo(childNodeView.InputPort);
-                        
+
                         AddElement(edge);
-                    });
+                    }
                 });
                 
                 //отрисовывает корневой узел
@@ -303,7 +306,6 @@ namespace Editor.BehaviorTreeEditor.VisualElements
             }
             else DeleteElements(graphElements);
         }
-        
         #endregion
         
         #region Update Graph Methods

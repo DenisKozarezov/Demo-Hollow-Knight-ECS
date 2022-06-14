@@ -6,7 +6,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Forms.DataVisualization.Charting;
 using UnityEngine;
 using Leopotam.Ecs;
 using AI.ECS;
@@ -118,14 +117,14 @@ namespace AI.BehaviorTree
         {
             foreach (var node in clone.Nodes)
             {
-                var originalNode = originalTree.Nodes.Find(i => i.GUID == node.GUID);
+                var originalNode = originalTree.Nodes.Find(i => i.Equals(node));
                 switch (originalNode)
                 {
                     case ActionNode:
-                        var cloneActionNode = clone.Nodes.FirstOrDefault(i => i.GUID == ((ActionNode) originalNode).GUID) as ActionNode;
+                        var cloneActionNode = clone.Nodes.FirstOrDefault(i => i.Equals(originalNode)) as ActionNode;
                         if (((ActionNode) originalNode).Parent != null)
                         {
-                            var cloneParentActionNode = clone.Nodes.FirstOrDefault(i => i.GUID == ((ActionNode) originalNode).Parent.GUID);
+                            var cloneParentActionNode = clone.Nodes.FirstOrDefault(i => i.Equals(originalNode.Parent));
                             cloneActionNode.Parent = cloneParentActionNode;
                         }
                         else 
@@ -135,23 +134,23 @@ namespace AI.BehaviorTree
                         ChoiceNode choiceNode = originalNode as ChoiceNode;
                         if (choiceNode)
                         {
-                            var cloneChoiceNode = clone.Nodes.FirstOrDefault(i => i.GUID == choiceNode.GUID) as ChoiceNode;
+                            var cloneChoiceNode = clone.Nodes.FirstOrDefault(i => i.Equals(choiceNode)) as ChoiceNode;
                             foreach (var parameterNode in choiceNode.ParametersList)
                             {
-                                var cloneParameter = clone.Nodes.FirstOrDefault(i => i.GUID == parameterNode.GUID) as ParameterNode;
+                                var cloneParameter = clone.Nodes.FirstOrDefault(i => i.Equals(parameterNode)) as ParameterNode;
                                 cloneParameter.ChildNode = cloneChoiceNode;
                                 cloneChoiceNode.ParametersList.Add(cloneParameter);
                             }
 
                             foreach (var child in choiceNode.ChildNodes)
                             {
-                                var cloneChild = clone.Nodes.FirstOrDefault(i => i.GUID == child.GUID);
+                                var cloneChild = clone.Nodes.FirstOrDefault(i => i.Equals(child));
                                 cloneChoiceNode.ChildNodes.Add(cloneChild);
                             }
 
                             if (choiceNode.Parent != null)
                             {
-                                var cloneParent = clone.Nodes.FirstOrDefault(i => i.GUID == choiceNode.Parent.GUID);
+                                var cloneParent = clone.Nodes.FirstOrDefault(i => i.Equals(choiceNode.Parent));
                                 cloneChoiceNode.Parent = cloneParent;
                             }
                             else 
@@ -162,16 +161,16 @@ namespace AI.BehaviorTree
                         SequencerNode sequencerNode = originalNode as SequencerNode;
                         if (sequencerNode)
                         {
-                            var cloneSequencerNode = clone.Nodes.FirstOrDefault(i => i.GUID == sequencerNode.GUID) as SequencerNode;
+                            var cloneSequencerNode = clone.Nodes.FirstOrDefault(i => i.Equals(sequencerNode)) as SequencerNode;
                             foreach (var child in sequencerNode.ChildNodes)
                             {
-                                var cloneChild = clone.Nodes.FirstOrDefault(i => i.GUID == child.GUID);
+                                var cloneChild = clone.Nodes.FirstOrDefault(i => i.Equals(child));
                                 cloneSequencerNode.ChildNodes.Add(cloneChild);
                             }
 
                             if (sequencerNode.Parent != null)
                             {
-                                var cloneParent = clone.Nodes.FirstOrDefault(i => i.GUID == sequencerNode.Parent.GUID);
+                                var cloneParent = clone.Nodes.FirstOrDefault(i => i.Equals(sequencerNode.Parent));
                                 cloneSequencerNode.Parent = cloneParent;
                             }
                             else
@@ -180,16 +179,16 @@ namespace AI.BehaviorTree
                             break;
                         }
                         
-                        var cloneCompositeNode = clone.Nodes.FirstOrDefault(i => i.GUID == ((CompositeNode)originalNode).GUID) as CompositeNode;
+                        var cloneCompositeNode = clone.Nodes.FirstOrDefault(i => i.Equals(originalNode)) as CompositeNode;
                         foreach (var child in ((CompositeNode)originalNode).ChildNodes)
                         {
-                            var cloneChild = clone.Nodes.FirstOrDefault(i => i.GUID == child.GUID);
+                            var cloneChild = clone.Nodes.FirstOrDefault(i => i.Equals(child));
                             cloneCompositeNode.ChildNodes.Add(cloneChild);
                         }
 
                         if (((CompositeNode) originalNode).Parent)
                         {
-                            var cloneParentCompositeNode = clone.Nodes.FirstOrDefault(i => i.GUID == ((CompositeNode) originalNode).Parent.GUID);
+                            var cloneParentCompositeNode = clone.Nodes.FirstOrDefault(i => i.Equals(originalNode.Parent));
                             cloneCompositeNode.Parent = cloneParentCompositeNode;
                         }
                         else 
@@ -201,11 +200,11 @@ namespace AI.BehaviorTree
                         RepeatNode repeatNode = originalNode as RepeatNode;
                         if (repeatNode)
                         {
-                            var cloneRepeatNode = clone.Nodes.FirstOrDefault(i => i.GUID == repeatNode.GUID) as RepeatNode;
+                            var cloneRepeatNode = clone.Nodes.FirstOrDefault(i => i.Equals(repeatNode)) as RepeatNode;
 
                             if (repeatNode.Parent != null)
                             {
-                                var cloneParent = clone.Nodes.FirstOrDefault(i => i.GUID == repeatNode.Parent.GUID);
+                                var cloneParent = clone.Nodes.FirstOrDefault(i => i.Equals(repeatNode.Parent));
                                 cloneRepeatNode.Parent = cloneParent;  
                             }
                             else
@@ -213,7 +212,7 @@ namespace AI.BehaviorTree
                             
                             if (repeatNode.Child != null)
                             {
-                                var cloneChild = clone.Nodes.FirstOrDefault(i => i.GUID == repeatNode.Child.GUID);
+                                var cloneChild = clone.Nodes.FirstOrDefault(i => i.Equals(repeatNode.Child));
                                 cloneRepeatNode.Child = cloneChild;
                             }
                             else
@@ -221,7 +220,7 @@ namespace AI.BehaviorTree
 
                             if (repeatNode.ConditionNode != null)
                             {
-                                var cloneConditionNode = clone.Nodes.FirstOrDefault(i => i.GUID == repeatNode.ConditionNode.GUID) as ConditionNode;
+                                var cloneConditionNode = clone.Nodes.FirstOrDefault(i => i.Equals(repeatNode.ConditionNode)) as ConditionNode;
                                 cloneRepeatNode.ConditionNode = cloneConditionNode;
                             }
                             else
@@ -232,10 +231,10 @@ namespace AI.BehaviorTree
                         RootNode rootNode = originalNode as RootNode;
                         if (rootNode)
                         {
-                            var cloneRootNode = clone.Nodes.FirstOrDefault(i => i.GUID == rootNode.GUID) as RootNode;
+                            var cloneRootNode = clone.Nodes.FirstOrDefault(i => i.Equals(rootNode)) as RootNode;
                             if (rootNode.Child != null)
                             {
-                                var cloneChild = clone.Nodes.FirstOrDefault(i => i.GUID == rootNode.Child.GUID);
+                                var cloneChild = clone.Nodes.FirstOrDefault(i => i.Equals(rootNode.Child));
                                 cloneRootNode.Child = cloneChild;
                             }
                             else 
@@ -244,12 +243,12 @@ namespace AI.BehaviorTree
                             break;
                         }
                         
-                        var cloneDecoratorNode = clone.Nodes.FirstOrDefault(i => i.GUID == originalNode.GUID) as DecoratorNode;
+                        var cloneDecoratorNode = clone.Nodes.FirstOrDefault(i => i.Equals(originalNode)) as DecoratorNode;
 
                         if (((DecoratorNode) originalNode).Child != null)
                         {
                             var cloneChidDecoratorNode = clone.Nodes.FirstOrDefault(i =>
-                                i.GUID == ((DecoratorNode) originalNode).Child.GUID);
+                                i.Equals((originalNode as DecoratorNode).Child));
                             cloneDecoratorNode.Child = cloneChidDecoratorNode;
                         }
                         else
@@ -257,7 +256,7 @@ namespace AI.BehaviorTree
 
                         if (((DecoratorNode) originalNode).Parent != null)
                         {
-                            var cloneParentDecoratorNode = clone.Nodes.FirstOrDefault(i => i.GUID == ((DecoratorNode)originalNode).Parent.GUID);
+                            var cloneParentDecoratorNode = clone.Nodes.FirstOrDefault(i => i.Equals((originalNode as DecoratorNode).Parent));
                             cloneDecoratorNode.Parent = cloneParentDecoratorNode;
                         }
                         else
@@ -265,19 +264,19 @@ namespace AI.BehaviorTree
 
                         break;
                     case ParameterNode:
-                        var cloneParameterNode = clone.Nodes.FirstOrDefault(i => i.GUID == ((ParameterNode) originalNode).GUID) as ParameterNode;
+                        var cloneParameterNode = clone.Nodes.FirstOrDefault(i => i.Equals(originalNode)) as ParameterNode;
                         if (((ParameterNode) originalNode).ChildNode != null)
                         {
-                            var cloneChildParameterNode = clone.Nodes.FirstOrDefault(i => i.GUID == ((ParameterNode) originalNode).ChildNode.GUID);
+                            var cloneChildParameterNode = clone.Nodes.FirstOrDefault(i => i.Equals((originalNode as ParameterNode).ChildNode));
                             cloneParameterNode.ChildNode = cloneChildParameterNode;
                         }
                         else cloneParameterNode.ChildNode = null;
                         break;
                     case ConditionNode:
-                        var cloneCondition = clone.Nodes.FirstOrDefault(i => i.GUID == ((ConditionNode) originalNode).GUID) as ConditionNode;
+                        var cloneCondition = clone.Nodes.FirstOrDefault(i => i.Equals(originalNode)) as ConditionNode;
                         if (((ConditionNode) originalNode).ChildNode == null)
                         {
-                            var cloneChildConditionNode = clone.Nodes.FirstOrDefault(i => i.GUID == ((ConditionNode) originalNode).ChildNode.GUID);
+                            var cloneChildConditionNode = clone.Nodes.FirstOrDefault(i => i.Equals(((ConditionNode) originalNode).ChildNode));
                             cloneCondition.ChildNode = cloneChildConditionNode;
                         }
                         else
@@ -285,10 +284,10 @@ namespace AI.BehaviorTree
                         
                         break;
                     case Node:
-                        var cloneNode = clone.Nodes.FirstOrDefault(i => i.GUID == originalNode.GUID);
+                        var cloneNode = clone.Nodes.FirstOrDefault(i => i.Equals(originalNode));
                         if (originalNode.Parent != null)
                         {
-                            var cloneParentNode = clone.Nodes.FirstOrDefault(i => i.GUID == originalNode.Parent.GUID);
+                            var cloneParentNode = clone.Nodes.FirstOrDefault(i => i.Equals(originalNode.Parent));
                             cloneNode.Parent = cloneParentNode;
                         }
                         else
@@ -411,30 +410,6 @@ namespace AI.BehaviorTree
             SaveNode(parentNode);
             SaveNode(childNode);
 #endif
-        }
-        public List<Node> GetChildren(Node parentNode)
-        {
-            List<Node> childern = new List<Node>();
-
-            DecoratorNode decoratorNode = parentNode as DecoratorNode;
-            if (decoratorNode && decoratorNode.Child != null)
-                childern.Add(decoratorNode.Child);
-
-            CompositeNode compositeNode = parentNode as CompositeNode;
-            if (compositeNode && compositeNode.ChildNodes.Count > 0)
-                return compositeNode.ChildNodes;
-
-            ParameterNode parameterNode = parentNode as ParameterNode;
-            if (parameterNode && parameterNode.ChildNode != null)
-                childern.Add(parameterNode.ChildNode);
-
-            ConditionNode conditionNode = parentNode as ConditionNode;
-            if (conditionNode && conditionNode.ChildNode != null)
-                childern.Add(conditionNode.ChildNode);
-
-            SaveNode(parentNode); 
-
-            return childern;
         }
 
         //Назначает узел текущим узлом для исполнения
