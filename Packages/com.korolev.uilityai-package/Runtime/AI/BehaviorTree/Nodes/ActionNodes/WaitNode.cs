@@ -12,8 +12,6 @@ namespace AI.BehaviorTree.Nodes.ActionNodes
         [HideInInspector] private float _currentTimeWait = 0;
         public float TimeWait;
 
-        protected override void OnStart() { }
-        protected override void OnStop() { }
         protected override State OnUpdate()
         {
             if (_currentTimeWait >= TimeWait)

@@ -13,6 +13,9 @@ namespace AI.BehaviorTree.Nodes
         public AnimationCurve Curve; 
         [HideInInspector] public Node Child;
 
+        protected override void OnInit() { }
+        protected override void OnStart() { }
+        protected override void OnStop() { }
         public override IEnumerable<Node> GetChildren()
         {
             yield return Child;

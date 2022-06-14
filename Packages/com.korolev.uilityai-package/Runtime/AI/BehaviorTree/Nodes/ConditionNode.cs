@@ -7,6 +7,9 @@ namespace AI.BehaviorTree.Nodes
     {
         [HideInInspector] public Node ChildNode;
 
+        protected override void OnInit() { }
+        protected override void OnStart() { }
+        protected override void OnStop() { }
         public abstract bool Condition();
         public override IEnumerable<Node> GetChildren()
         {

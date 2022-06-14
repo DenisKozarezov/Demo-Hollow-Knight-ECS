@@ -7,7 +7,6 @@ namespace Examples.Example_1.FalseKnight.AI.Parameters
 {
     public class Grounded : BooleanNode
     {
-        protected override void OnStart() { }
         protected override State OnUpdate()
         {
             Value = BehaviorTreeRef.EntityReference.Entity.Has<OnGroundComponent>();

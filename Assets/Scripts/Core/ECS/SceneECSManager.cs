@@ -54,7 +54,6 @@ namespace Examples.Example_1.ECS
         {
             _systems?.Run();
         }
-
         private void OnDestroy() 
         {
             _systems.Destroy();

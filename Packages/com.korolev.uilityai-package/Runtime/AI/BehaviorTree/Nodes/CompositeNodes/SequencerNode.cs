@@ -19,7 +19,6 @@ namespace AI.BehaviorTree.Nodes.CompositeNodes
         { 
             _currentNodeIndex = 0;
         }
-        protected override void OnStop() { }
         protected override State OnUpdate() 
         {
             if (ChildNodes.Count > 0)

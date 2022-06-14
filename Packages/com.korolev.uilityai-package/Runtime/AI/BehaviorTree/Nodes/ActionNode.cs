@@ -12,6 +12,10 @@ namespace AI.BehaviorTree.Nodes
     {
         public AnimationCurve Curve;
 
+        protected override void OnInit() { }
+        protected override void OnStart() { }
+        protected override void OnStop() { }
+
         public override IEnumerable<Node> GetChildren()
         {
             return null;

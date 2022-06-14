@@ -1,25 +1,26 @@
 using System.Linq;
+using UnityEngine;
 using AI.BehaviorTree.Nodes;
 using AI.BehaviorTree.Nodes.ParameterNodes;
-using UnityEngine;
+using Core.Units;
 
 namespace Examples.Example_1.FalseKnight.AI.Parameters
 {
     public class DistanceToPlayer : FloatNode
     {
-        private GameObject PlayerRef;
+        private Transform _player;
         private Transform _transform;
 
-        protected override void OnStart()
+        protected override void OnInit()
         {
             _transform = BehaviorTreeRef.EntityReference.transform;
-            PlayerRef = FindObjectsOfType<GameObject>().Where(i => i.layer == Constants.PlayerLayer).FirstOrDefault();
+            _player = FindObjectsOfType<UnitScript>().Where(i => i.gameObject.layer == Constants.PlayerLayer).First().transform;
         }
         protected override State OnUpdate() 
         {               
-            if (PlayerRef != null && _transform != null)
+            if (_player != null && _transform != null)
             {
-                Value = (_transform.position - PlayerRef.transform.position).magnitude;
+                Value = (_transform.position - _player.position).magnitude;
             }
             return State.Success; 
         }

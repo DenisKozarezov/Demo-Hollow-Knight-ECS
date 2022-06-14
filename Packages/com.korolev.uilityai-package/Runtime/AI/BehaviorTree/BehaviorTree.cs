@@ -29,11 +29,13 @@ namespace AI.BehaviorTree
     [CreateAssetMenu()]
     public class BehaviorTree : ScriptableObject
     {
+        [SerializeField, HideInInspector]
+        private EntityReference _entityReference;
+
         [NonSerialized] public State TreeState;
         [SerializeField, HideInInspector] public Node RootNode;
         [SerializeField, HideInInspector] public List<Node> Nodes = new List<Node>();
         [SerializeField, HideInInspector] public List<GroupSO> Groups = new List<GroupSO>();
-        [SerializeField, HideInInspector] public EntityReference EntityReference;
         [SerializeField, HideInInspector] public TreeOrientation OrientationTree = TreeOrientation.Horizontal;
 
         
@@ -42,13 +44,17 @@ namespace AI.BehaviorTree
         [NonSerialized] private Node _prevNode;
         [NonSerialized] private Node _currentNode;
 
+        public EntityReference EntityReference => _entityReference;
+        
         private void OnDestroy() { BehaviorTreeChanged -= OnBehaviorTreeChanged; }
 
         public void OnBehaviorTreeChanged() { SetCurrentNode(RootNode); }
+        
         //инициализация
-        public void Init(EcsWorld ecsWorld)
+        public void Init(EcsWorld ecsWorld, EntityReference entityReference)
         {
             _currentNode = RootNode;
+            _entityReference = entityReference;
             BehaviorTreeChanged += OnBehaviorTreeChanged;
             
             foreach (var node in Nodes)

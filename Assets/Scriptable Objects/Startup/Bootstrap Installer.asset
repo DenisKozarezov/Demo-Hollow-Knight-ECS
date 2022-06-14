@@ -9,7 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a75163672244f9788baba2609e274a5, type: 3}
-  m_Name: StyleThemeConfig
+  m_Script: {fileID: 11500000, guid: 9571629c09f900a4ba332e8bab4c3630, type: 3}
+  m_Name: Bootstrap Installer
   m_EditorClassIdentifier: 
-  Theme: 1

@@ -185,7 +185,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _prefabDustAnimation: {fileID: 7686983144733535779, guid: 7bdda781eec724179bfa7a4cd50fc452, type: 3}
-  _unitFactory: {fileID: 11400000, guid: 8c89850eb8bc21047851c27636c63fdb, type: 2}
 --- !u!4 &283022758
 Transform:
   m_ObjectHideFlags: 0

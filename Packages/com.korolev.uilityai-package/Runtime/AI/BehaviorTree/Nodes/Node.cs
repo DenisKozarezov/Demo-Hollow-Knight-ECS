@@ -4,10 +4,10 @@
  *******************************************/
 
 using System;
+using System.Collections.Generic;
 using Leopotam.Ecs;
 using UnityEngine;
 using UnityEngine.UIElements;
-using System.Collections.Generic;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -31,6 +31,7 @@ namespace AI.BehaviorTree.Nodes
         {
             BehaviorTreeRef = tree;
             _world = ecsWorld;
+            OnInit();
         }
         public State Update() 
         {
@@ -46,7 +47,8 @@ namespace AI.BehaviorTree.Nodes
                 Started = false;
             }
             return State;
-        }      
+        }
+        protected abstract void OnInit();
         protected abstract void OnStart();
         protected abstract void OnStop();
         protected abstract State OnUpdate();

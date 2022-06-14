@@ -13,6 +13,9 @@ namespace AI.BehaviorTree.Nodes
     {
         [HideInInspector] public Node ChildNode;
 
+        protected override void OnInit() { }
+        protected override void OnStart() { }
+        protected override void OnStop() { }
         public override IEnumerable<Node> GetChildren()
         {
             yield return ChildNode;
