@@ -21,7 +21,7 @@ MonoBehaviour:
   _attackRadius: 3
   _maxHealth: 100
   _jumpForce: 12
-  _attackCooldown: 0.5
+  _attackCooldown: 0.3
   _hitEnergyRestore: 0
   _abilities:
   - 
