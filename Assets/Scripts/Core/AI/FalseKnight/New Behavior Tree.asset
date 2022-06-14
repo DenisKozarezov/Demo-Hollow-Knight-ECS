@@ -16,28 +16,6 @@ MonoBehaviour:
   Title: Group
   _position: {x: 0, y: 0}
   GUID: 4a66309a322874b19aa0e43ca50198b5
---- !u!114 &-4407682157320369612
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 283c64a2e07e4fffa7b31a78c4e60f98, type: 3}
-  m_Name: Attack
-  m_EditorClassIdentifier: 
-  Parent: {fileID: -568919804256173499}
-  GroupSo: {fileID: -6888128297050948833}
-  _position: {x: 229, y: 166}
-  GUID: 3b9d4089401a04aa1a03dc86831747ba
-  Curve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!114 &-568919804256173499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,7 +38,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  Child: {fileID: -4407682157320369612}
+  Child: {fileID: 0}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76,7 +54,6 @@ MonoBehaviour:
   RootNode: {fileID: -568919804256173499}
   Nodes:
   - {fileID: -568919804256173499}
-  - {fileID: -4407682157320369612}
   Groups:
   - {fileID: -6888128297050948833}
   EntityReference: {fileID: 0}
