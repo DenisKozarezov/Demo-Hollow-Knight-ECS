@@ -30,6 +30,8 @@ namespace Editor.BehaviorTreeEditor.VisualElements
 {
     public class BehaviorTreeView : GraphView
     {
+        
+        
         private NodeSearchWindow _nodeSearchWindow;
         
         public Action<NodeView> OnNodeSelected;
@@ -327,6 +329,7 @@ namespace Editor.BehaviorTreeEditor.VisualElements
             return localMousePosition;
         }
         
+        
         /// <summary>
         /// Срабатывает при изменениях графа: добавление/удаление узла или ребра
         /// </summary>
@@ -352,6 +355,7 @@ namespace Editor.BehaviorTreeEditor.VisualElements
                         if(elemGroup != null)
                             _behaviorTree.RemoveGroup(FindGroupSO(elemGroup.viewDataKey));
                     });
+                    _behaviorTree.BehaviorTreeChanged?.Invoke();
                 }
                 //если создали новое ребро
                 if (graphviewchange.edgesToCreate != null)
@@ -362,6 +366,7 @@ namespace Editor.BehaviorTreeEditor.VisualElements
                         NodeView childNode = edge.input.node as NodeView;
                         _behaviorTree.AddChild(parentNode.Node, childNode.Node);
                     });
+                    _behaviorTree.BehaviorTreeChanged?.Invoke();
                 }
             }
             return graphviewchange;
