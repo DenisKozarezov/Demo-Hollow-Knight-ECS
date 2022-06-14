@@ -20,3 +20,4 @@ MonoBehaviour:
   _baseDamage: 10
   _attackRadius: 3
   _maxHealth: 80
+  _jumpForce: 12

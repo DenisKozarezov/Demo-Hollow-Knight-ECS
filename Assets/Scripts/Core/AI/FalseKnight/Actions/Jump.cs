@@ -11,18 +11,20 @@ namespace Examples.Example_1.FalseKnight.AI.Actions
     {
         private Fatigue _fatigue;
         private Rigidbody2D _rigidbody;
+        private float _jumpForce;
 
         protected override void OnStart()
         {
             _fatigue = BehaviorTreeRef.Nodes.Where(n=> n is Fatigue).FirstOrDefault() as Fatigue;
             _rigidbody = BehaviorTreeRef.EntityReference.Entity.Get<RigidbodyComponent>().Value;
+            _jumpForce = BehaviorTreeRef.EntityReference.Entity.Get<JumpComponent>().Value;
         }
         protected override void OnStop() { }
         protected override State OnUpdate()
         {           
             if (BehaviorTreeRef == null) return State.Failure;
 
-            _rigidbody.velocity = new Vector2(0, 10);
+            _rigidbody.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
             if (_fatigue) _fatigue.Value += 1.4f;
             return State.Success;
         }

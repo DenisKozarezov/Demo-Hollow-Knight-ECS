@@ -3,6 +3,7 @@
  * Last Modified 19.04.2022
  *******************************************/
 
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace AI.BehaviorTree.Nodes
@@ -11,6 +12,10 @@ namespace AI.BehaviorTree.Nodes
     {
         public AnimationCurve Curve;
 
+        public override IEnumerable<Node> GetChildren()
+        {
+            return null;
+        }
         public override Node Clone()
         {
             ActionNode clone = Instantiate(this);

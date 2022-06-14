@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace AI.BehaviorTree.Nodes
@@ -7,6 +8,10 @@ namespace AI.BehaviorTree.Nodes
         [HideInInspector] public Node ChildNode;
 
         public abstract bool Condition();
+        public override IEnumerable<Node> GetChildren()
+        {
+            yield return ChildNode;
+        }
         public override Node Clone()
         {
             ConditionNode clone = Instantiate(this);

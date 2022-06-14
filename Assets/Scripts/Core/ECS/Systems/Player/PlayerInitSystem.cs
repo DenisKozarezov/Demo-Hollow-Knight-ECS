@@ -25,9 +25,9 @@ namespace Examples.Example_1.ECS.Systems.FalseKnight
                         Health = _playerModel.MaxHealth,
                         MaxHealth = _playerModel.MaxHealth
                     })
-                    .Replace(new MovableComponent { Value = _playerModel.MovementSpeed })
                     .Replace(new DamageComponent { Value = _playerModel.BaseDamage })
-                    .Replace(new JumpComponent { Value = _playerModel.JumpForce });
+                    .Replace(new JumpComponent { Value = _playerModel.JumpForce })
+                    .Replace(new MovableComponent { Value = _playerModel.MovementSpeed });
             }            
         }
     }

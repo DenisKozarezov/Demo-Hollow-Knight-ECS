@@ -27,6 +27,8 @@ namespace Core.Models
         private float _attackRadius;
         [SerializeField, Min(0f)]
         private float _maxHealth;
+        [SerializeField, Min(0f)]
+        private float _jumpForce;
 
         public uint ID => _id;
         public string DisplayName => _displayName;
@@ -36,7 +38,7 @@ namespace Core.Models
         public float BaseDamage => _baseDamage;
         public float AttackRange => _attackRadius;
         public float MaxHealth => _maxHealth;
-
+        public float JumpForce => _jumpForce;
         protected virtual void OnValidate()
         {
             if (string.IsNullOrEmpty(_displayName))
