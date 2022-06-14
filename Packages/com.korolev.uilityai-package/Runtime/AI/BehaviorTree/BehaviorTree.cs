@@ -45,10 +45,18 @@ namespace AI.BehaviorTree
         private void OnDestroy() { BehaviorTreeChanged -= OnBehaviorTreeChanged; }
 
         public void OnBehaviorTreeChanged() { SetCurrentNode(RootNode); }
+
+        public EntityReference EntityReference => _entityReference;
+        
+        private void OnDestroy() { BehaviorTreeChanged -= OnBehaviorTreeChanged; }
+
+        public void OnBehaviorTreeChanged() { SetCurrentNode(RootNode); }
+        
         //инициализация
         public void Init(EcsWorld ecsWorld)
         {
             _currentNode = RootNode;
+            _entityReference = entityReference;
             BehaviorTreeChanged += OnBehaviorTreeChanged;
             
             foreach (var node in Nodes)
