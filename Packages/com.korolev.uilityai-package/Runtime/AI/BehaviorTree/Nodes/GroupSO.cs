@@ -35,7 +35,7 @@ namespace AI.BehaviorTree.Nodes
                 EditorUtility.SetDirty(this);
             }
         }
+#endif
         [HideInInspector] public string GUID;
-    #endif
     }
 }

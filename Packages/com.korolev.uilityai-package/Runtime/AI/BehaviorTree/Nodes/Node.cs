@@ -65,6 +65,7 @@ namespace AI.BehaviorTree.Nodes
 #if UNITY_EDITOR
         [SerializeField] [HideInInspector]
         private Vector2 _position;
+
         public Vector2 Position
         {
             get => _position;
@@ -74,7 +75,7 @@ namespace AI.BehaviorTree.Nodes
                 EditorUtility.SetDirty(this);
             }
         }
-        [HideInInspector] public string GUID;       
 #endif
+        [HideInInspector] public string GUID;    
     }
 }
