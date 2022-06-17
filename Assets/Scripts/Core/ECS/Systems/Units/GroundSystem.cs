@@ -11,7 +11,7 @@ namespace Core.ECS.Systems
 
         private bool OnGround(Collider2D collider, out Vector2 point)
         {
-            ContactFilter2D contactFilter = new ContactFilter2D { layerMask = Constants.GroundLayer };
+            ContactFilter2D contactFilter = new ContactFilter2D { layerMask = 1 << Constants.GroundLayer };
             List<ContactPoint2D> contacts = new List<ContactPoint2D>();
             
             // Check collision

@@ -1,9 +1,7 @@
-using System;
 using UnityEngine;
 
 namespace Core.ECS.Events
 {
-    [Serializable]
     public struct AnimateDustEventComponent
     {
         //** ПААМЕТРЫ ДЛЯ ИЗМЕНЕНИЯ ИЗВНЕ** //

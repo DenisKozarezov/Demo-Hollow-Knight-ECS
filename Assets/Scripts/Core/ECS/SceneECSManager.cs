@@ -69,6 +69,7 @@ namespace Core.ECS
         {
             _systems
                 .OneFrame<UnitInitComponent>()
+                .OneFrame<HitEventComponent>()
                 .OneFrame<DamageEventComponent>()
                 .OneFrame<UnitCreateEventComponent>()
                 .OneFrame<DiedComponent>();
@@ -83,6 +84,7 @@ namespace Core.ECS
         private void AddGeneralSystems()
         {
             _systems
+                .Add(new HitSystem())
                 .Add(new DamageSystem())
                 .Add(new HealthSystem())
                 .Add(new GroundSystem())

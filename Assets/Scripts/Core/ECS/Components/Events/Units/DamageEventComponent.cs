@@ -1,9 +1,7 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Core.ECS.Events
 {
-    [Serializable]
     internal struct DamageEventComponent
     {
         public float Damage;
