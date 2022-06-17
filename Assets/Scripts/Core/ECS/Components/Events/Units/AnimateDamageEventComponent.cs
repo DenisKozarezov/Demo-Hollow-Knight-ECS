@@ -1,9 +1,7 @@
-using System;
 using UnityEngine;
 
 namespace Core.ECS.Events
 {
-    [Serializable]
     public struct AnimateDamageEventComponent
     {
         //** ПААМЕТРЫ ДЛЯ ИЗМЕНЕНИЯ ИЗВНЕ** //
