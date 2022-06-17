@@ -3,7 +3,7 @@ using UnityEngine;
 using Leopotam.Ecs;
 using AI.ECS;
 
-namespace Examples.Example_1.ECS
+namespace Core.ECS.Components.Units
 {    
     [Serializable] internal struct UnitInitComponent { public EntityReference EntityReference; }   
     [Serializable] internal struct RigidbodyComponent { public Rigidbody2D Value; }

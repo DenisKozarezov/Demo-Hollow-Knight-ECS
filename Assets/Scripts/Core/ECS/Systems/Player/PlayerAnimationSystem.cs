@@ -1,9 +1,10 @@
 using UnityEngine;
 using Leopotam.Ecs;
 using Core.Input;
-using Examples.Example_1.ECS.Components.Player;
+using Core.ECS.Components.Player;
+using Core.ECS.Components.Units;
 
-namespace Examples.Example_1.ECS.Systems.Player
+namespace Core.ECS.Systems.Player
 {
     internal class PlayerAnimationSystem : IEcsRunSystem
     {

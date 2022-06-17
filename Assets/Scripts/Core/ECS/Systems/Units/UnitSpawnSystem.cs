@@ -1,10 +1,10 @@
 using UnityEngine;
 using Core.Models;
+using Core.ECS.Events;
 using Leopotam.Ecs;
-using Examples.Example_1.ECS.Events;
 using AI.ECS;
 
-namespace Examples.Example_1.ECS.Systems
+namespace Core.ECS.Systems
 {
     internal sealed class UnitSpawnSystem : IEcsRunSystem
     {

@@ -1,9 +1,9 @@
 using AI.BehaviorTree.Nodes;
 using AI.BehaviorTree.Nodes.ParameterNodes;
-using Examples.Example_1.ECS;
+using Core.ECS.Components.Units;
 using Leopotam.Ecs;
 
-namespace Examples.Example_1.FalseKnight.AI.Parameters
+namespace Core.AI.FalseKnight.Parameters
 {
     public class Grounded : BooleanNode
     {

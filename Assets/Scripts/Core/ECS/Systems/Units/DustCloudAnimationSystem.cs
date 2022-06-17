@@ -1,8 +1,8 @@
 using UnityEngine;
 using Leopotam.Ecs;
-using Examples.Example_1.ECS.Events;
+using Core.ECS.Events;
 
-namespace Examples.Example_1.ECS.Systems
+namespace Core.ECS.Systems
 {
     internal sealed class DustCloudAnimationSystem : IEcsRunSystem
     {

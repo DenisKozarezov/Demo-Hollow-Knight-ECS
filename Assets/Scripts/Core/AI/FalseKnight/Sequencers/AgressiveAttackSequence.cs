@@ -1,8 +1,8 @@
 using AI.BehaviorTree.Nodes;
 using AI.BehaviorTree.Nodes.CompositeNodes;
-using Examples.Example_1.FalseKnight.AI.Parameters;
+using Core.AI.FalseKnight.Parameters;
 
-namespace Examples.Example_1.FalseKnight.AI.Sequencers
+namespace Core.AI.FalseKnight.Sequencers
 {
     public class AgressiveAttackSequence : SequencerNode
     {

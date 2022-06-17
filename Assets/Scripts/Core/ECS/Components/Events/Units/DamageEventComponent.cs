@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Examples.Example_1.ECS.Events
+namespace Core.ECS.Events
 {
     [Serializable]
     internal struct DamageEventComponent

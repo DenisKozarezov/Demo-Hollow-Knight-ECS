@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using Leopotam.Ecs;
-using Examples.Example_1.ECS.Components.Player;
-using Examples.Example_1.ECS;
+using Core.ECS.Components.Units;
+using Core.ECS.Components.Player;
 
-namespace Examples.Example_1.ECS.Systems
+namespace Core.ECS.Systems
 {
     internal class CameraFollowSystem : IEcsRunSystem
     {

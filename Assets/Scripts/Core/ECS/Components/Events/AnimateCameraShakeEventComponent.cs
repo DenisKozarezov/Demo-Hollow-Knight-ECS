@@ -1,6 +1,6 @@
 using System;
 
-namespace Examples.Example_1.ECS.Events
+namespace Core.ECS.Events
 {
     [Serializable]
     public struct AnimateCameraShakeEventComponent

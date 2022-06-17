@@ -1,12 +1,12 @@
 using System.Linq;
 using UnityEngine;
-using AI.BehaviorTree.Nodes;
-using Examples.Example_1.ECS.Events.FalseKnight;
-using Examples.Example_1.FalseKnight.AI.Parameters;
 using Leopotam.Ecs;
-using Examples.Example_1.ECS;
+using AI.BehaviorTree.Nodes;
+using Core.ECS.Components.Units;
+using Core.ECS.Events.FalseKnight;
+using Core.AI.FalseKnight.Parameters;
 
-namespace Examples.Example_1.FalseKnight.AI.Actions
+namespace Core.AI.FalseKnight.Actions
 {
     public class Attack : ActionNode
     {

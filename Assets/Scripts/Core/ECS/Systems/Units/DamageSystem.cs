@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using Leopotam.Ecs;
-using Examples.Example_1.ECS.Events;
+using Core.ECS.Events;
+using Core.ECS.Components.Units;
 
-namespace Examples.Example_1.ECS.Systems
+namespace Core.ECS.Systems
 {
     internal sealed class DamageSystem : IEcsRunSystem
     {
