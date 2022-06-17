@@ -360,6 +360,7 @@ MonoBehaviour:
   value:
     EntityReference: {fileID: 8787886631456955396}
     BehaviorTree: {fileID: 11400000, guid: 6f18207472b7349ae9cb02870954e442, type: 2}
+    Initialized: 0
 --- !u!114 &4080128436791937422
 MonoBehaviour:
   m_ObjectHideFlags: 0
