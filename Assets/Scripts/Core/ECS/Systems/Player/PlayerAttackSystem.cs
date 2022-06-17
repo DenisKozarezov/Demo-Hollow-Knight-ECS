@@ -4,10 +4,11 @@ using Leopotam.Ecs;
 using Core.Units;
 using Core.Models;
 using Core.Input;
-using Examples.Example_1.ECS.Events;
-using Examples.Example_1.ECS.Components.Player;
+using Core.ECS.Events;
+using Core.ECS.Components.Player;
+using Core.ECS.Components.Units;
 
-namespace Examples.Example_1.ECS.Systems.Player
+namespace Core.ECS.Systems.Player
 {
     internal class PlayerAttackSystem : IEcsInitSystem, IEcsDestroySystem
     {

@@ -1,7 +1,8 @@
 using UnityEngine;
 using Leopotam.Ecs;
+using Core.ECS.Components.Units;
 
-namespace Examples.Example_1.ECS.Systems
+namespace Core.ECS.Systems
 {
     internal sealed class EnemyDeathEffectSystem : IEcsRunSystem
     {

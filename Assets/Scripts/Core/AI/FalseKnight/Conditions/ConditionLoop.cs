@@ -1,6 +1,6 @@
 using AI.BehaviorTree.Nodes;
 
-namespace Examples.Example_1.FalseKnight.AI.Conditions
+namespace Core.AI.FalseKnight.Conditions
 {
     public class ConditionLoop : ConditionNode
     {

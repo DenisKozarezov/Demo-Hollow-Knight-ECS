@@ -1,7 +1,8 @@
+using Core.ECS.Components.Units;
 using Core.Models;
 using Leopotam.Ecs;
 
-namespace Examples.Example_1.ECS.Systems.FalseKnight
+namespace Core.ECS.Systems.FalseKnight
 {
     internal class FalseKnightInitSystem : IEcsRunSystem 
     {

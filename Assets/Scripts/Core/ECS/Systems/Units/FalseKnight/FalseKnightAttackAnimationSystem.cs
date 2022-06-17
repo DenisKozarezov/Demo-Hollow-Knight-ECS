@@ -1,8 +1,9 @@
 using Leopotam.Ecs;
-using Examples.Example_1.ECS.Events;
-using Examples.Example_1.ECS.Events.FalseKnight;
+using Core.ECS.Events;
+using Core.ECS.Components.Units;
+using Core.ECS.Events.FalseKnight;
 
-namespace Examples.Example_1.ECS.Systems.FalseKnight
+namespace Core.ECS.Systems.FalseKnight
 {
     internal class FalseKnightAttackAnimationSystem : IEcsRunSystem
     {

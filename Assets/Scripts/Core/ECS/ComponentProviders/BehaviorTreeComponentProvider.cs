@@ -6,7 +6,7 @@
 using AI.ECS.Components;
 using Voody.UniLeo;
 
-namespace Examples.Example_1.ECS
+namespace Core.ECS.ComponentProviders
 {
     public sealed class BehaviorTreeComponentProvider : MonoProvider<BehaviorTreeComponent> { }
 }

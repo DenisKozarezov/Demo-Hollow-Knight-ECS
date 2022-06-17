@@ -2,10 +2,10 @@ using System.Linq;
 using UnityEngine;
 using Leopotam.Ecs;
 using Core.Units;
+using Core.ECS.Components.Units;
 using AI.BehaviorTree.Nodes;
-using Examples.Example_1.ECS;
 
-namespace Examples.Example_1.FalseKnight.AI.Actions
+namespace Core.AI.FalseKnight.Actions
 {
     public class WatchToPlayer : ActionNode
     {

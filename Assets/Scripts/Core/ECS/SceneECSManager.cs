@@ -5,18 +5,19 @@
 
 using UnityEngine;
 using Leopotam.Ecs;
-using Voody.UniLeo;
-using Zenject;
 using Core.Input;
 using Core.Models;
 using Core.Units;
+using Core.ECS.Events;
+using Core.ECS.Systems;
+using Core.ECS.Systems.FalseKnight;
+using Core.ECS.Systems.Player;
+using Core.ECS.Components.Units;
+using Voody.UniLeo;
+using Zenject;
 using AI.ECS.Systems;
-using Examples.Example_1.ECS.Events;
-using Examples.Example_1.ECS.Systems;
-using Examples.Example_1.ECS.Systems.FalseKnight;
-using Examples.Example_1.ECS.Systems.Player;
 
-namespace Examples.Example_1.ECS
+namespace Core.ECS
 {
     public class SceneECSManager : MonoBehaviour
     {

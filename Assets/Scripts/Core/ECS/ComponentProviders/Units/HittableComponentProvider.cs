@@ -1,6 +1,7 @@
+using Core.ECS.Components.Units;
 using Voody.UniLeo;
 
-namespace Examples.Example_1.ECS.ComponentProviders
+namespace Core.ECS.ComponentProviders
 {
     internal sealed class HittableComponentProvider : MonoProvider<HittableComponent> { }
 }

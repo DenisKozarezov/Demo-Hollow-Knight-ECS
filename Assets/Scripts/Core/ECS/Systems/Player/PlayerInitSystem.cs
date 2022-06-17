@@ -1,8 +1,9 @@
 using Core.Models;
-using Examples.Example_1.ECS.Components.Player;
+using Core.ECS.Components.Player;
+using Core.ECS.Components.Units;
 using Leopotam.Ecs;
 
-namespace Examples.Example_1.ECS.Systems.FalseKnight
+namespace Core.ECS.Systems.FalseKnight
 {
     internal class PlayerInitSystem : IEcsRunSystem 
     {

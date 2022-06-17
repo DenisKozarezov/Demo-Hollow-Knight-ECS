@@ -4,7 +4,7 @@ using AI.BehaviorTree.Nodes;
 using AI.BehaviorTree.Nodes.ParameterNodes;
 using Core.Units;
 
-namespace Examples.Example_1.FalseKnight.AI.Parameters
+namespace Core.AI.FalseKnight.Parameters
 {
     public class DistanceToPlayer : FloatNode
     {
