@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Core.ECS.Events
 {
-    public struct AnimateDustEventComponent
+    internal struct AnimateDustEventComponent
     {
         //** ПААМЕТРЫ ДЛЯ ИЗМЕНЕНИЯ ИЗВНЕ** //
         public Vector3 Point;

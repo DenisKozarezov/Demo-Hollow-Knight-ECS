@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Core.ECS.Events
 {
-    public struct AnimateDamageEventComponent
+    internal struct AnimateDamageEventComponent
     {
         //** ПААМЕТРЫ ДЛЯ ИЗМЕНЕНИЯ ИЗВНЕ** //
         public GameObject GameObjectRef;
