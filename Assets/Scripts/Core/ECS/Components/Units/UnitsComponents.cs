@@ -10,10 +10,10 @@ namespace Core.ECS.Components.Units
     [Serializable] internal struct ColliderComponent { public Collider2D Value; }
     [Serializable] internal struct AnimatorComponent { public Animator Value; }
     [Serializable] internal struct SpriteRendererComponent { public SpriteRenderer Value; }
-    internal struct HealthComponent { public float Health; public float MaxHealth; }  
+    internal struct HealthComponent { public byte Health; public byte MaxHealth; }  
     internal struct DamageComponent { public float Value; }
     internal struct MovableComponent { public float Value; }
-    internal struct JumpComponent { public float Value; }
+    internal struct JumpComponent { public Vector2 JumpForceRange; }
     internal struct OnGroundComponent { public Vector2 Point; }
     internal struct UnitComponent : IEcsIgnoreInFilter { }
     internal struct EnemyComponent : IEcsIgnoreInFilter { }

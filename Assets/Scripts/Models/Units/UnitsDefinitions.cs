@@ -9,9 +9,9 @@ namespace Core.Models
         [SerializeField]
         private PlayerModel _playerModel;
         [SerializeField]
-        private UnitModel _falseKnight;
+        private FalseKnightModel _falseKnight;
 
         public PlayerModel PlayerModel => _playerModel;
-        public UnitModel FalseKnight => _falseKnight;
+        public FalseKnightModel FalseKnight => _falseKnight;
     }
 }

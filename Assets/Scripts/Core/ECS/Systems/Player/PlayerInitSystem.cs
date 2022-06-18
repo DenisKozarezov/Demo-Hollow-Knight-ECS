@@ -27,7 +27,7 @@ namespace Core.ECS.Systems.FalseKnight
                         MaxHealth = _playerModel.MaxHealth
                     })
                     .Replace(new DamageComponent { Value = _playerModel.BaseDamage })
-                    .Replace(new JumpComponent { Value = _playerModel.JumpForce })
+                    .Replace(new JumpComponent { JumpForceRange = _playerModel.JumpForceRange })
                     .Replace(new MovableComponent { Value = _playerModel.MovementSpeed });
             }            
         }

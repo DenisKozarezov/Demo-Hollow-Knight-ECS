@@ -17,7 +17,7 @@ namespace Core.AI.FalseKnight.Actions
         {
             _fatigue = BehaviorTreeRef.Nodes.Where(n=> n is Fatigue).FirstOrDefault() as Fatigue;
             _rigidbody = BehaviorTreeRef.EntityReference.Entity.Get<RigidbodyComponent>().Value;
-            _jumpForce = BehaviorTreeRef.EntityReference.Entity.Get<JumpComponent>().Value;
+            _jumpForce = BehaviorTreeRef.EntityReference.Entity.Get<JumpComponent>().JumpForceRange.x;
         }
         protected override State OnUpdate()
         {           

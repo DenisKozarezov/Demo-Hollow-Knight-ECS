@@ -17,7 +17,7 @@ namespace Core.AI.FalseKnight.Actions
         {
             _spriteRenderer = BehaviorTreeRef.EntityReference.Entity.Get<SpriteRendererComponent>().Value;
             _rigidbody = BehaviorTreeRef.EntityReference.Entity.Get<RigidbodyComponent>().Value;
-            _jumpForce = BehaviorTreeRef.EntityReference.Entity.Get<JumpComponent>().Value;
+            _jumpForce = BehaviorTreeRef.EntityReference.Entity.Get<JumpComponent>().JumpForceRange.x;
         }
         protected override State OnUpdate()
         {

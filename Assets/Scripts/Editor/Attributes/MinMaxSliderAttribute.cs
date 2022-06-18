@@ -38,7 +38,7 @@ namespace Editor
             var rangeAttribute = (MinMaxSliderAttribute)attribute;
 
             EditorGUI.LabelField(position, new GUIContent(property.displayName));
-            
+
             Rect rect = new Rect(EditorGUIUtility.labelWidth, position.y, FloatWidth / 2, EditorGUIUtility.singleLineHeight);
             Rect minRect = GetRect(rect, FloatWidth, 2f);
             Rect sliderRect = GetRect(minRect, position.width - minRect.x - FloatWidth * 2 + 8f);
@@ -48,16 +48,16 @@ namespace Editor
             float max = isVector2Int ? property.vector2IntValue.y : property.vector2Value.y;
 
             EditorGUI.BeginProperty(position, label, property);
+            EditorGUI.BeginChangeCheck();
             min = EditorGUI.FloatField(minRect, min);
             max = EditorGUI.FloatField(maxRect, max);
-
-            EditorGUI.BeginChangeCheck();
             EditorGUI.MinMaxSlider(sliderRect, ref min, ref max, rangeAttribute.MinLimit, rangeAttribute.MaxLimit);
             if (EditorGUI.EndChangeCheck())
             {
                 if (isVector2Int)
                     property.vector2IntValue = CalculateIntRange(min, max);
-                else 
+
+                else
                     property.vector2Value = new Vector2(min, max);
 
                 property.serializedObject.ApplyModifiedProperties();

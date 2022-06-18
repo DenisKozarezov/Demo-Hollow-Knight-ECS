@@ -4,7 +4,7 @@ namespace Core.ECS.Events
 {
     internal struct DamageEventComponent
     {
-        public float Damage;
+        public byte Damage;
         public GameObject Target;
         public GameObject Source;
     }

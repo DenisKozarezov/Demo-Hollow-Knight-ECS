@@ -29,13 +29,40 @@
                     "id": "7ef3c2d4-54da-4896-862b-57fde05bbd0f",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press",
+                    "interactions": "",
                     "initialStateCheck": true
                 },
                 {
                     "name": "Pause",
                     "type": "Button",
                     "id": "2352ea2c-20a1-46c0-9335-1292b140d3c3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Spell",
+                    "type": "Button",
+                    "id": "95fa235e-6eae-473a-9874-695a001b0823",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Focus",
+                    "type": "Button",
+                    "id": "526b635b-6969-48a0-8db1-1f0b78f85db8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Dash",
+                    "type": "Button",
+                    "id": "f30c41e2-61b0-4f29-a4e4-bd77217ecb97",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -47,7 +74,7 @@
                     "name": "",
                     "id": "fcb1f097-a2ac-4e5b-a6b9-7356faa8cf00",
                     "path": "<Keyboard>/space",
-                    "interactions": "",
+                    "interactions": "Hold",
                     "processors": "",
                     "groups": "",
                     "action": "Jump",
@@ -57,7 +84,7 @@
                 {
                     "name": "",
                     "id": "820f47b5-53a4-4a4d-bfe3-7610aa21a2fd",
-                    "path": "<Keyboard>/ctrl",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -79,7 +106,7 @@
                 {
                     "name": "up",
                     "id": "1460a920-67c8-47fb-9712-d7a060b3fa41",
-                    "path": "<Keyboard>/upArrow",
+                    "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -90,7 +117,7 @@
                 {
                     "name": "down",
                     "id": "68d6c6b6-3383-4a4e-8b0f-d12212cabf7f",
-                    "path": "<Keyboard>/downArrow",
+                    "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -101,7 +128,7 @@
                 {
                     "name": "left",
                     "id": "08a5a492-f515-42b9-9e77-29e7f1981ef9",
-                    "path": "<Keyboard>/leftArrow",
+                    "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -112,7 +139,7 @@
                 {
                     "name": "right",
                     "id": "d4180022-f8a6-4deb-af43-cb13b50c3cf4",
-                    "path": "<Keyboard>/rightArrow",
+                    "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -128,6 +155,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dedcf1a3-8d57-4ea5-b674-c297a0d75d24",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Spell",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bc65b73a-a5cc-4e8d-b261-5236e3928d5e",
+                    "path": "<Keyboard>/b",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Focus",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f326f64a-3b33-4aa4-a413-c31c55ea635b",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
