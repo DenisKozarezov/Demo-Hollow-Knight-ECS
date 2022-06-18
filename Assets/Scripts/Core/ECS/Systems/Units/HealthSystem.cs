@@ -18,7 +18,7 @@ namespace Core.ECS.Systems
                 ref var healthComponent = ref _filter.Get1(i);
                 ref var animatorComponent = ref _filter.Get2(i);
 
-                if (healthComponent.Health <= 0f)
+                if (healthComponent.Health <= 0)
                 {
                     // Play dead
                     animatorComponent.Value.SetTrigger(DEATH_KEY);

@@ -9,15 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 281c098b310609643a294142508769cd, type: 3}
-  m_Name: False Knight
+  m_Script: {fileID: 11500000, guid: c556a82dddd1fea4992f13c3da12ae57, type: 3}
+  m_Name: False Knight Model
   m_EditorClassIdentifier: 
   _id: 1
-  _displayName: False Knight
+  _displayName: False Knight Model
   _description: 
-  _prefabPath: Resources/Prefabs/False Knight
+  _prefabPath: Prefabs/Units/False Knight
   _movementSpeed: 80
-  _baseDamage: 10
-  _attackRadius: 3
+  _baseDamage: 5
+  _attackRadius: 1
   _maxHealth: 80
-  _jumpForce: 12
+  _jumpForce: 15

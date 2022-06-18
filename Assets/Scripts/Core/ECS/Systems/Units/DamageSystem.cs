@@ -38,7 +38,7 @@ namespace Core.ECS.Systems
                     // Make the enemy red
                     entity.Get<AnimateDamageEventComponent>().GameObjectRef = damageComponent.Target;
                 }
-                else healthComponent.Health = 0f; 
+                else healthComponent.Health = 0; 
             }
         }
     }

@@ -4,7 +4,7 @@ namespace Core.ECS.Events
 {
     internal struct HitEventComponent
     {
-        public float Damage;
+        public byte Damage;
         public Vector2 HitPosition;
         public float HitRadius;
         public int TargetLayer;

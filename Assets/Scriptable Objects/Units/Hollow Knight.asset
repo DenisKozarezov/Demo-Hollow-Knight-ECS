@@ -18,9 +18,9 @@ MonoBehaviour:
   _prefabPath: Prefabs/Units/Character
   _movementSpeed: 280
   _baseDamage: 10
-  _attackRadius: 3
+  _attackRadius: 0.75
   _maxHealth: 100
-  _jumpForce: 12
+  _jumpForceRange: {x: 12, y: 15}
   _attackCooldown: 0.3
   _hitEnergyRestore: 0
   _abilities:
