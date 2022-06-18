@@ -1,6 +1,6 @@
 namespace Core.ECS.Events
 {
-    public struct AnimateCameraShakeEventComponent
+    internal struct AnimateCameraShakeEventComponent
     {
         public float TimeAlive;
     }
