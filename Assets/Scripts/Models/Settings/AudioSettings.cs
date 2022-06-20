@@ -1,5 +1,5 @@
 using UnityEngine;
-using Unity.Plastic.Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Linq;
 using Core.Serializable;
 
 namespace Core.Models
