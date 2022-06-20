@@ -15,7 +15,7 @@ MonoBehaviour:
   _id: 1
   _displayName: False Knight Model
   _description: 
-  _prefabPath: Prefabs/Units/False Knight
+  _prefabPath: Prefabs/Units/False Knight/False Knight
   _movementSpeed: 80
   _baseDamage: 5
   _attackRadius: 1

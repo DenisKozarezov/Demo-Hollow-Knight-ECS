@@ -1,7 +1,7 @@
 using UnityEngine;
 using Newtonsoft.Json.Linq;
 using Zenject;
-using Core.Serializable;
+using Core.Serialization;
 
 namespace Core.Models
 {
@@ -25,8 +25,8 @@ namespace Core.Models
         public JObject Serialize()
         {
             JObject obj = new JObject();
-            obj.Add(_audioSettings.Serialize());
-            obj.Add(_graphicsSettings.Serialize());
+            obj.Add("audioSettings", _audioSettings.Serialize());
+            obj.Add("graphicsSettings", _graphicsSettings.Serialize());
             return obj;
         }
     }
