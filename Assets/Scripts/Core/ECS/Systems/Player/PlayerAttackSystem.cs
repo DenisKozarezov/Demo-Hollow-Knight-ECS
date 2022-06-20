@@ -1,25 +1,25 @@
-using UnityEngine;
 using Leopotam.Ecs;
-using Core.Units;
 using Core.Models;
 using Core.Input;
 using Core.ECS.Events;
 using Core.ECS.Components.Player;
+using Core.ECS.Components.Units;
 
 namespace Core.ECS.Systems.Player
 {
     internal class PlayerAttackSystem : IEcsInitSystem, IEcsDestroySystem
     {
         private readonly EcsWorld _world = null;
+        private readonly EcsFilter<
+            AnimatorComponent, 
+            ColliderComponent, 
+            CanAttackComponent, 
+            PlayerTagComponent>
+            .Exclude<DiedComponent> _filter = null;
 
         private readonly IInputSystem _playerInput;
-        private readonly UnitScript _player = null;
         private readonly PlayerModel _playerModel;
-        private const string ATTACK_KEY = "Attack";      
-                     
-        private Animator Animator;    
-
-        private bool CanAttack => _player.EntityReference.Entity.Has<CanAttackComponent>();
+        private const string ATTACK_KEY = "Attack";                           
 
         internal PlayerAttackSystem(IInputSystem playerInput, PlayerModel playerModel)
         {
@@ -30,25 +30,29 @@ namespace Core.ECS.Systems.Player
         public void Init()
         {
             _playerInput.Attack += OnAttack;
-            Animator = _player.GetComponent<Animator>();
         }
         public void Destroy()
         {
             _playerInput.Attack -= OnAttack;
         }
-
         private void OnAttack()
         {
-            if (!CanAttack) return;
+            foreach (var i in _filter)
+            {
+                ref var entity = ref _filter.GetEntity(i);
+                ref var animator = ref _filter.Get1(i).Value;
+                ref var collider = ref _filter.Get2(i).Value;
 
-            Animator.SetTrigger(ATTACK_KEY);
+                animator.SetTrigger(ATTACK_KEY);
 
-            ref var hitEntity = ref _world.NewEntity().Get<HitEventComponent>();
-            hitEntity.HitPosition = _player.transform.position;
-            hitEntity.HitRadius = _playerModel.AttackRange;
-            hitEntity.Damage = _playerModel.BaseDamage;
-            hitEntity.TargetLayer = Constants.EnemyLayer;
-            hitEntity.Source = _player.gameObject;
+                // Hit nearby enemies
+                ref var hitEntity = ref _world.NewEntity().Get<HitEventComponent>();
+                hitEntity.HitPosition = collider.bounds.center;
+                hitEntity.HitRadius = _playerModel.AttackRange;
+                hitEntity.Damage = _playerModel.BaseDamage;
+                hitEntity.TargetLayer = Constants.EnemyLayer;
+                hitEntity.Source = animator.gameObject;
+            }
         }
     }
 }

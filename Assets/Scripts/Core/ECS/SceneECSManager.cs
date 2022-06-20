@@ -37,11 +37,11 @@ namespace Core.ECS
             _world = new EcsWorld();
             _systems = new EcsSystems(_world).ConvertScene(); // Этот метод сконвертирует GO в Entity;
 
+            AddOtherSystems();
             AddInitSystems();
             AddGeneralSystems();
             AddPlayerSystems();
-            AddCameraSystems();
-            AddOtherSystems();
+            AddCameraSystems();      
 
             AddOneFrames();
             AddInjections();
@@ -66,8 +66,8 @@ namespace Core.ECS
         {
             _systems
                 .OneFrame<UnitInitComponent>()
-                .OneFrame<HitEventComponent>()
                 .OneFrame<DamageEventComponent>()
+                .OneFrame<HitEventComponent>()
                 .OneFrame<UnitCreateEventComponent>()
                 .OneFrame<DiedComponent>()
                 .OneFrame<PlayerRecievedDamageEvent>()
@@ -112,7 +112,7 @@ namespace Core.ECS
         {
             _systems
                 .Add(new FalseKnightJumpAnimationSystem())
-                .Add(new FalseKnightAttackAnimationSystem())
+                .Add(new FalseKnightAttackAnimationSystem(_unitsDefinitions.FalseKnight))
                 .Add(new DustCloudAnimationSystem())
                 .Add(new DamageAnimationSystem())
                 .Add(new EnemyDeathEffectSystem());
