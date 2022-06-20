@@ -8,7 +8,7 @@ namespace Core.ECS.Systems.FalseKnight
     internal class PlayerInitSystem : IEcsRunSystem 
     {
         private readonly EcsFilter<UnitInitComponent, PlayerTagComponent> _filter = null;
-        private PlayerModel _playerModel;
+        private readonly PlayerModel _playerModel;
 
         public PlayerInitSystem(PlayerModel playerModel)
         {

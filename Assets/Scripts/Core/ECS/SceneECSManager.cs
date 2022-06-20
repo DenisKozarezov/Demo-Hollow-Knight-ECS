@@ -9,6 +9,7 @@ using Core.Input;
 using Core.Models;
 using Core.Units;
 using Core.ECS.Events;
+using Core.ECS.Events.Player;
 using Core.ECS.Systems;
 using Core.ECS.Systems.FalseKnight;
 using Core.ECS.Systems.Player;
@@ -31,9 +32,6 @@ namespace Core.ECS
         [Inject]
         private readonly UnitsDefinitions _unitsDefinitions = null;
 
-        [SerializeField] 
-        private GameObject _prefabDustAnimation;
-
         private void Start ()
         {            
             _world = new EcsWorld();
@@ -50,7 +48,6 @@ namespace Core.ECS
 
             _systems?.Init();
         }
-
         private void FixedUpdate() 
         {
             _systems?.Run();
@@ -72,7 +69,9 @@ namespace Core.ECS
                 .OneFrame<HitEventComponent>()
                 .OneFrame<DamageEventComponent>()
                 .OneFrame<UnitCreateEventComponent>()
-                .OneFrame<DiedComponent>();
+                .OneFrame<DiedComponent>()
+                .OneFrame<PlayerRecievedDamageEvent>()
+                .OneFrame<PlayerHealthModifiedEvent>();
         }
         private void AddInitSystems()
         {
@@ -94,6 +93,8 @@ namespace Core.ECS
         private void AddPlayerSystems()
         {
             _systems
+                .Add(new PlayerRecievedDamageSystem())
+                .Add(new PlayerHealthModifiedSystem())
                 .Add(new PlayerMoveSystem(_inputSystem))
                 .Add(new PlayerJumpSystem(_inputSystem))
                 .Add(new PlayerAttackSystem(_inputSystem, _unitsDefinitions.PlayerModel))
@@ -112,7 +113,7 @@ namespace Core.ECS
             _systems
                 .Add(new FalseKnightJumpAnimationSystem())
                 .Add(new FalseKnightAttackAnimationSystem())
-                .Add(new DustCloudAnimationSystem(_prefabDustAnimation))
+                .Add(new DustCloudAnimationSystem())
                 .Add(new DamageAnimationSystem())
                 .Add(new EnemyDeathEffectSystem());
         }

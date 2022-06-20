@@ -8,7 +8,7 @@ namespace Core.ECS.Systems.FalseKnight
     internal class FalseKnightInitSystem : IEcsRunSystem 
     {
         private readonly EcsFilter<UnitInitComponent, FalseKnightTagComponent> _filter = null;
-        private FalseKnightModel _unitModel;
+        private readonly FalseKnightModel _unitModel;
 
         public FalseKnightInitSystem(FalseKnightModel unitModel)
         {
