@@ -15,7 +15,7 @@ MonoBehaviour:
   _id: 0
   _displayName: Hollow Knight
   _description: 
-  _prefabPath: Prefabs/Units/Character
+  _prefabPath: Prefabs/Units/Character/Hollow Knight
   _movementSpeed: 280
   _baseDamage: 10
   _attackRadius: 0.75

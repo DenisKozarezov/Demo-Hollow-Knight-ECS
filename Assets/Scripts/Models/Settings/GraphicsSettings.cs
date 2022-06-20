@@ -1,6 +1,6 @@
 using UnityEngine;
 using Newtonsoft.Json.Linq;
-using Core.Serializable;
+using Core.Serialization;
 
 namespace Core.Models
 {
@@ -23,7 +23,7 @@ namespace Core.Models
         public JObject Serialize()
         {
             JObject obj = new JObject();
-            obj.Add("resolution:", (byte)_screenResolution);
+            obj.Add("resolution", (byte)_screenResolution);
             return obj;
         }
     }

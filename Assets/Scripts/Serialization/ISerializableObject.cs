@@ -1,6 +1,6 @@
 using Newtonsoft.Json.Linq;
 
-namespace Core.Serializable
+namespace Core.Serialization
 {
     internal interface ISerializableObject
     {

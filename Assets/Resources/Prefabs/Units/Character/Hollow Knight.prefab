@@ -31,7 +31,7 @@ GameObject:
   - component: {fileID: 1670326355653064732}
   - component: {fileID: -7869354717568998479}
   m_Layer: 9
-  m_Name: Character
+  m_Name: Hollow Knight
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
