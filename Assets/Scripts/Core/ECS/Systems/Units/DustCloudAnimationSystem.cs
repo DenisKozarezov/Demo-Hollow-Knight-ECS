@@ -8,18 +8,13 @@ namespace Core.ECS.Systems
     {
         private readonly EcsFilter<AnimateDustEventComponent> _filter = null;
 
+        private const string PrefabPath = "Prefabs/Effects/Dust";
         private float TimeAliveSeconds = 0.7f;
-
-        private GameObject _prefabDustAnimation;
-
-        public DustCloudAnimationSystem(GameObject prefabDustAnimation)
-        {
-            _prefabDustAnimation = prefabDustAnimation;
-        }      
 
         private GameObject InstantiatePrefab(ref AnimateDustEventComponent dustComponent)
         {
-            GameObject prefab = GameObject.Instantiate(_prefabDustAnimation);
+            var asset = Resources.Load(PrefabPath) as GameObject;
+            GameObject prefab = GameObject.Instantiate(asset);
             prefab.transform.position = dustComponent.Point;
             prefab.transform.rotation = Quaternion.identity;
             prefab.transform.localScale = dustComponent.Scale;
@@ -49,7 +44,7 @@ namespace Core.ECS.Systems
         private static void DestroyPrefab(GameObject prefab, ref EcsEntity ecsEntity)
         {
             GameObject.Destroy(prefab);
-            ecsEntity.Del<AnimateDustEventComponent>();
+            ecsEntity.Destroy();
         }
     }
 }
