@@ -9,8 +9,7 @@ namespace Core.ECS.Systems.Player
 {
     internal class PlayerAttackCooldownSystem : IEcsInitSystem, IEcsRunSystem, IEcsDestroySystem
     {
-        private readonly EcsFilter<CanAttackComponent, PlayerTagComponent>
-            .Exclude<DiedComponent> _filter = null;
+        private readonly EcsFilter<PlayerTagComponent>.Exclude<DiedComponent> _filter = null;
 
         private readonly IInputSystem _playerInput;
         private readonly PlayerModel _playerModel;
@@ -26,16 +25,8 @@ namespace Core.ECS.Systems.Player
 
         private void OnAttack()
         {
-            if (_canAttack) SetAttack(false);
+            if (_canAttack) _canAttack = false;
         }
-        private void SetAttack(bool canAttack)
-        {
-            _canAttack = canAttack;
-            var entity = _filter.GetEntity(0);
-            if (canAttack) entity.Get<CanAttackComponent>();
-            else entity.Del<CanAttackComponent>();
-        }
-
         public void Init()
         {
             _playerInput.Attack += OnAttack;
@@ -48,11 +39,18 @@ namespace Core.ECS.Systems.Player
         {
             if (_canAttack) return;
 
-            if (_timer > 0f) _timer -= Time.deltaTime;
-            else 
+            foreach (var i in _filter)
             {
-                SetAttack(true);
-                _timer = _playerModel.AttackCooldown;
+                ref var entity = ref _filter.GetEntity(i);
+                if (entity.Has<CanAttackComponent>()) entity.Del<CanAttackComponent>();
+
+                if (_timer > 0f) _timer -= Time.deltaTime;
+                else
+                {
+                    entity.Get<CanAttackComponent>();
+                    _canAttack = true;
+                    _timer = _playerModel.AttackCooldown;
+                }
             }
         }
     }

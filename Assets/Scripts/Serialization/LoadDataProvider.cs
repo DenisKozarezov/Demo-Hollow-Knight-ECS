@@ -1,5 +1,4 @@
 using System.IO;
-using System.Text;
 using Newtonsoft.Json.Linq;
 
 #if UNITY_EDITOR
@@ -27,14 +26,12 @@ namespace Core.Serialization
 #endif
             }
 
-            // Clear file
-            var file = File.OpenWrite(ConfigPath + fileName);
-            file.Flush();
+            string data = save.Serialize().ToString();
+            if (string.IsNullOrEmpty(data)) return;
 
             // Write to file
-            byte[] bytes = Encoding.Default.GetBytes(save.Serialize().ToString());
-            await file.WriteAsync(bytes, 0, bytes.Length);
-            file.Close();
+            byte[] bytes = Constants.DefaultEncoding.GetBytes(data);
+            await File.WriteAllBytesAsync(ConfigPath + fileName, bytes);
         }
         public static JObject Load(string slotName)
         {

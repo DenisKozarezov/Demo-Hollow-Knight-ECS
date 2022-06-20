@@ -1,6 +1,7 @@
 ﻿using Leopotam.Ecs;
 using Core.ECS.Events;
 using Core.ECS.Components.Units;
+using UnityEngine;
 
 namespace Core.ECS.Systems
 {
@@ -29,6 +30,10 @@ namespace Core.ECS.Systems
                 if (healthComponent.Health - damageComponent.Damage > 0)
                 {
                     healthComponent.Health -= damageComponent.Damage;
+
+#if UNITY_EDITOR
+                    Debug.Log($"Unit <b><color=yellow>{damageComponent.Target.name}</color></b> recieved <b><color=red>{damageComponent.Damage}</color></b> damage from <b><color=yellow>{damageComponent.Source.name}</color></b>. Current health: <b><color=green>{healthComponent.Health}</color></b>.");
+#endif
 
                     // Make the enemy red
                     entity.Get<AnimateDamageEventComponent>().GameObjectRef = damageComponent.Target;
