@@ -18,6 +18,6 @@ MonoBehaviour:
   _prefabPath: Prefabs/Units/False Knight/False Knight
   _movementSpeed: 80
   _baseDamage: 10
-  _attackRadius: 1.65
+  _attackRadius: 2
   _maxHealth: 80
   _jumpForce: 15

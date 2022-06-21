@@ -26,8 +26,6 @@ namespace Core.ECS
         private EcsSystems _systems;
           
         [Inject]
-        private readonly UnitScript _player = null;
-        [Inject]
         private readonly IInputSystem _inputSystem = null;
         [Inject]
         private readonly UnitsDefinitions _unitsDefinitions = null;
@@ -44,7 +42,6 @@ namespace Core.ECS
             AddCameraSystems();      
 
             AddOneFrames();
-            AddInjections();
 
             _systems?.Init();
         }
@@ -58,10 +55,6 @@ namespace Core.ECS
             _world.Destroy();
         }
 
-        private void AddInjections()
-        {
-            _systems.Inject(_player);
-        }
         private void AddOneFrames()
         {
             _systems
@@ -97,8 +90,8 @@ namespace Core.ECS
                 .Add(new PlayerHealthModifiedSystem())
                 .Add(new PlayerMoveSystem(_inputSystem))
                 .Add(new PlayerJumpSystem(_inputSystem))
-                .Add(new PlayerAttackSystem(_inputSystem, _unitsDefinitions.PlayerModel))
-                .Add(new PlayerAttackCooldownSystem(_inputSystem, _unitsDefinitions.PlayerModel))
+                .Add(new PlayerAttackSystem(_inputSystem))
+                .Add(new PlayerAttackCooldownSystem(_inputSystem))
                 .Add(new PlayerAnimationSystem(_inputSystem));
         }
         private void AddCameraSystems()
@@ -112,7 +105,7 @@ namespace Core.ECS
         {
             _systems
                 .Add(new FalseKnightJumpAnimationSystem())
-                .Add(new FalseKnightAttackAnimationSystem(_unitsDefinitions.FalseKnight))
+                .Add(new FalseKnightAttackAnimationSystem())
                 .Add(new DustCloudAnimationSystem())
                 .Add(new DamageAnimationSystem())
                 .Add(new EnemyDeathEffectSystem());

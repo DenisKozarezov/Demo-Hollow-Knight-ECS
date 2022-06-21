@@ -13,18 +13,17 @@ namespace Core.ECS.Systems.Player
         private readonly EcsFilter<
             AnimatorComponent, 
             ColliderComponent, 
+            DamageComponent,
             CanAttackComponent, 
             PlayerTagComponent>
             .Exclude<DiedComponent> _filter = null;
 
         private readonly IInputSystem _playerInput;
-        private readonly PlayerModel _playerModel;
         private const string ATTACK_KEY = "Attack";                           
 
-        internal PlayerAttackSystem(IInputSystem playerInput, PlayerModel playerModel)
+        internal PlayerAttackSystem(IInputSystem playerInput)
         {
             _playerInput = playerInput;
-            _playerModel = playerModel;
         }
 
         public void Init()
@@ -42,14 +41,15 @@ namespace Core.ECS.Systems.Player
                 ref var entity = ref _filter.GetEntity(i);
                 ref var animator = ref _filter.Get1(i).Value;
                 ref var collider = ref _filter.Get2(i).Value;
+                ref var damage = ref _filter.Get3(i);
 
                 animator.SetTrigger(ATTACK_KEY);
 
                 // Hit nearby enemies
                 ref var hitEntity = ref _world.NewEntity().Get<HitEventComponent>();
                 hitEntity.HitPosition = collider.bounds.center;
-                hitEntity.HitRadius = _playerModel.AttackRange;
-                hitEntity.Damage = _playerModel.BaseDamage;
+                hitEntity.HitRadius = damage.AttackRange;
+                hitEntity.Damage = damage.Damage;
                 hitEntity.TargetLayer = Constants.EnemyLayer;
                 hitEntity.Source = animator.gameObject;
             }
