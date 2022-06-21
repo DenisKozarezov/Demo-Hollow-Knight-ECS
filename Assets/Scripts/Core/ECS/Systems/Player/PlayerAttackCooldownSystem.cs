@@ -1,6 +1,5 @@
 using UnityEngine;
 using Leopotam.Ecs;
-using Core.Models;
 using Core.Input;
 using Core.ECS.Components.Player;
 using Core.ECS.Components.Units;
@@ -9,18 +8,15 @@ namespace Core.ECS.Systems.Player
 {
     internal class PlayerAttackCooldownSystem : IEcsInitSystem, IEcsRunSystem, IEcsDestroySystem
     {
-        private readonly EcsFilter<PlayerTagComponent>.Exclude<DiedComponent> _filter = null;
+        private readonly EcsFilter<AttackCooldownComponent, PlayerTagComponent>.Exclude<DiedComponent> _filter = null;
 
         private readonly IInputSystem _playerInput;
-        private readonly PlayerModel _playerModel;
-        private float _timer;
         private bool _canAttack = true;
+        private float _timer;
 
-        public PlayerAttackCooldownSystem(IInputSystem playerInput, PlayerModel playerModel)
+        public PlayerAttackCooldownSystem(IInputSystem playerInput)
         {
             _playerInput = playerInput;
-            _playerModel = playerModel;
-            _timer = _playerModel.AttackCooldown;
         }
 
         private void OnAttack()
@@ -41,15 +37,20 @@ namespace Core.ECS.Systems.Player
 
             foreach (var i in _filter)
             {
-                ref var entity = ref _filter.GetEntity(i);
-                if (entity.Has<CanAttackComponent>()) entity.Del<CanAttackComponent>();
+                ref var entity = ref _filter.GetEntity(i);             
+         
+                if (entity.Has<CanAttackComponent>())
+                {
+                    ref var component = ref entity.Get<AttackCooldownComponent>();
+                    _timer = component.Value;
+                    entity.Del<CanAttackComponent>();
+                }
 
                 if (_timer > 0f) _timer -= Time.deltaTime;
                 else
                 {
                     entity.Get<CanAttackComponent>();
                     _canAttack = true;
-                    _timer = _playerModel.AttackCooldown;
                 }
             }
         }

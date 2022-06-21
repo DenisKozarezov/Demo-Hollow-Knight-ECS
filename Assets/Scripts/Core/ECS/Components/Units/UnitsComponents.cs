@@ -11,7 +11,7 @@ namespace Core.ECS.Components.Units
     [Serializable] internal struct AnimatorComponent { public Animator Value; }
     [Serializable] internal struct SpriteRendererComponent { public SpriteRenderer Value; }
     internal struct HealthComponent { public byte Health; public byte MaxHealth; }  
-    internal struct DamageComponent { public float Value; }
+    internal struct DamageComponent { public byte Damage; public float AttackRange; }
     internal struct MovableComponent { public float Value; }
     internal struct JumpComponent { public Vector2 JumpForceRange; }
     internal struct OnGroundComponent { public Vector2 Point; }
