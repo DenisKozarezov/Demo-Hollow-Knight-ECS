@@ -1,6 +1,4 @@
-﻿using Core.ECS.Events.Player;
-
-namespace Core.ECS.Systems.Player
+﻿namespace Core.ECS.Systems.Player
 {
     internal class PlayerSystems : Feature
     {

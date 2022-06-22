@@ -6,7 +6,7 @@
         {
             Add(new CameraShakeSystem(UnityEngine.Camera.main));
             Add(new CameraFadeSystem(UnityEngine.Camera.main));
-            //.Add(new CameraFollowSystem(Camera.main));
+            //Add(new CameraFollowSystem(UnityEngine.Camera.main));
         }
     }
 }

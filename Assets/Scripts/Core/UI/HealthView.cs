@@ -9,14 +9,15 @@ namespace Core.UI
         private Transform _healthTransform;
         [SerializeField, ObjectPicker]
         private string _healthPrefab;
+        private string _additiveHealthPrefab;
 
         private byte Value => (byte)_healthTransform.childCount;
 
-        public void AddHealth(byte value)
+        public void AddHealth(byte value, bool additiveHealth = false)
         {
             if (value == 0) return;
 
-            var asset = Resources.Load(_healthPrefab);
+            var asset = Resources.Load(additiveHealth ? _additiveHealthPrefab : _healthPrefab);
             for (byte i = 0; i < value; i++) Instantiate(asset, _healthTransform);
         }
         public void RemoveHealth(byte value)
