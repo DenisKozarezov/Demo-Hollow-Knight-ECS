@@ -7,12 +7,12 @@ using UnityEngine;
 using Leopotam.Ecs;
 using Core.Input;
 using Core.Models;
-using Core.Units;
 using Core.ECS.Events;
 using Core.ECS.Events.Player;
 using Core.ECS.Systems;
 using Core.ECS.Systems.FalseKnight;
 using Core.ECS.Systems.Player;
+using Core.ECS.Systems.UI;
 using Core.ECS.Components.Units;
 using Voody.UniLeo;
 using Zenject;
@@ -39,7 +39,9 @@ namespace Core.ECS
             AddInitSystems();
             AddGeneralSystems();
             AddPlayerSystems();
-            AddCameraSystems();      
+            AddUISystems();
+            AddCameraSystems();
+            AddCleanupSystems();
 
             AddOneFrames();
 
@@ -64,7 +66,8 @@ namespace Core.ECS
                 .OneFrame<UnitCreateEventComponent>()
                 .OneFrame<DiedComponent>()
                 .OneFrame<PlayerRecievedDamageEvent>()
-                .OneFrame<PlayerHealthModifiedEvent>();
+                .OneFrame<PlayerDiedEvent>()
+                .OneFrame<PlayerHealedEvent>();
         }
         private void AddInitSystems()
         {
@@ -80,14 +83,12 @@ namespace Core.ECS
                 .Add(new DamageSystem())
                 .Add(new HealthSystem())
                 .Add(new GroundSystem())
-                .Add(new BehaviorTreeSystem())
-                .Add(new DestroyEntitiesSystem());
+                .Add(new BehaviorTreeSystem());
         }
         private void AddPlayerSystems()
         {
             _systems
                 .Add(new PlayerRecievedDamageSystem())
-                .Add(new PlayerHealthModifiedSystem())
                 .Add(new PlayerMoveSystem(_inputSystem))
                 .Add(new PlayerJumpSystem(_inputSystem))
                 .Add(new PlayerAttackSystem(_inputSystem))
@@ -109,6 +110,17 @@ namespace Core.ECS
                 .Add(new DustCloudAnimationSystem())
                 .Add(new DamageAnimationSystem())
                 .Add(new EnemyDeathEffectSystem());
+        }
+        private void AddUISystems()
+        {
+            _systems
+                .Add(new HealthViewInitSystem())
+                .Add(new HealthViewReducedSystem())
+                .Add(new HealthViewHealedSystem());
+        }
+        private void AddCleanupSystems()
+        {
+            _systems.Add(new DestroyEntitiesSystem());
         }
     }
 }
