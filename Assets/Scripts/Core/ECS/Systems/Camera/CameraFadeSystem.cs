@@ -1,11 +1,10 @@
-﻿using UnityEngine;
-using Leopotam.Ecs;
+﻿using Leopotam.Ecs;
 
-namespace Core.ECS.Systems
+namespace Core.ECS.Systems.Camera
 {
     internal class CameraFadeSystem : IEcsRunSystem
     {
-        internal CameraFadeSystem(Camera camera)
+        internal CameraFadeSystem(UnityEngine.Camera camera)
         {
             
         }

@@ -3,16 +3,16 @@ using Leopotam.Ecs;
 using Core.ECS.Components.Units;
 using Core.ECS.Components.Player;
 
-namespace Core.ECS.Systems
+namespace Core.ECS.Systems.Camera
 {
     internal class CameraFollowSystem : IEcsRunSystem
     {
         private readonly EcsFilter<SpriteRendererComponent, PlayerTagComponent> _filter = null;
-        private readonly Camera _camera;
+        private readonly UnityEngine.Camera _camera;
         private Vector2 _velocity;
         private float _smoothTime = 0.2f;
 
-        internal CameraFollowSystem(Camera camera)
+        internal CameraFollowSystem(UnityEngine.Camera camera)
         {
             _camera = camera;
         }

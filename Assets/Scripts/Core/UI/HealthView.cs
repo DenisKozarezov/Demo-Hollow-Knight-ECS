@@ -10,7 +10,7 @@ namespace Core.UI
         [SerializeField, ObjectPicker]
         private string _healthPrefab;
 
-        public byte Value => (byte)_healthTransform.childCount;
+        private byte Value => (byte)_healthTransform.childCount;
 
         public void AddHealth(byte value)
         {

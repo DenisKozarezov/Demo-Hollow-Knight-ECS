@@ -10,13 +10,9 @@ using Core.Models;
 using Core.ECS.Events;
 using Core.ECS.Events.Player;
 using Core.ECS.Systems;
-using Core.ECS.Systems.FalseKnight;
-using Core.ECS.Systems.Player;
-using Core.ECS.Systems.UI;
 using Core.ECS.Components.Units;
 using Voody.UniLeo;
 using Zenject;
-using AI.ECS.Systems;
 
 namespace Core.ECS
 {
@@ -24,6 +20,7 @@ namespace Core.ECS
     {
         private EcsWorld _world;
         private EcsSystems _systems;
+        private AllSystems _allSystems;
           
         [Inject]
         private readonly IInputSystem _inputSystem = null;
@@ -34,26 +31,21 @@ namespace Core.ECS
         {            
             _world = new EcsWorld();
             _systems = new EcsSystems(_world).ConvertScene(); // Этот метод сконвертирует GO в Entity;
-
-            AddOtherSystems();
-            AddInitSystems();
-            AddGeneralSystems();
-            AddPlayerSystems();
-            AddUISystems();
-            AddCameraSystems();
-            AddCleanupSystems();
-
+            
+            GameContext context = new GameContext(_systems, _inputSystem, _unitsDefinitions);
+            _allSystems = new AllSystems(context);
+            
             AddOneFrames();
 
-            _systems?.Init();
+            _allSystems.Init();
         }
         private void FixedUpdate() 
         {
-            _systems?.Run();
+            _allSystems.Run();
         }
         private void OnDestroy() 
         {
-            _systems.Destroy();
+            _allSystems.Destroy();
             _world.Destroy();
         }
 
@@ -68,59 +60,6 @@ namespace Core.ECS
                 .OneFrame<PlayerRecievedDamageEvent>()
                 .OneFrame<PlayerDiedEvent>()
                 .OneFrame<PlayerHealedEvent>();
-        }
-        private void AddInitSystems()
-        {
-            _systems
-                .Add(new FalseKnightInitSystem(_unitsDefinitions.FalseKnight))
-                .Add(new PlayerInitSystem(_unitsDefinitions.PlayerModel))
-                .Add(new UnitInitSystem());
-        }
-        private void AddGeneralSystems()
-        {
-            _systems
-                .Add(new HitSystem())
-                .Add(new DamageSystem())
-                .Add(new HealthSystem())
-                .Add(new GroundSystem())
-                .Add(new BehaviorTreeSystem());
-        }
-        private void AddPlayerSystems()
-        {
-            _systems
-                .Add(new PlayerRecievedDamageSystem())
-                .Add(new PlayerMoveSystem(_inputSystem))
-                .Add(new PlayerJumpSystem(_inputSystem))
-                .Add(new PlayerAttackSystem(_inputSystem))
-                .Add(new PlayerAttackCooldownSystem(_inputSystem))
-                .Add(new PlayerAnimationSystem(_inputSystem));
-        }
-        private void AddCameraSystems()
-        {
-            _systems
-                .Add(new CameraShakeSystem(Camera.main))
-                .Add(new CameraFadeSystem(Camera.main));
-                //.Add(new CameraFollowSystem(Camera.main));
-        }
-        private void AddOtherSystems()
-        {
-            _systems
-                .Add(new FalseKnightJumpAnimationSystem())
-                .Add(new FalseKnightAttackAnimationSystem())
-                .Add(new DustCloudAnimationSystem())
-                .Add(new DamageAnimationSystem())
-                .Add(new EnemyDeathEffectSystem());
-        }
-        private void AddUISystems()
-        {
-            _systems
-                .Add(new HealthViewInitSystem())
-                .Add(new HealthViewReducedSystem())
-                .Add(new HealthViewHealedSystem());
-        }
-        private void AddCleanupSystems()
-        {
-            _systems.Add(new DestroyEntitiesSystem());
         }
     }
 }
