@@ -6,6 +6,8 @@
         {
             Add(new PlayerInitSystem(context.UnitsDefinitions.PlayerModel));
             Add(new PlayerRecievedDamageSystem());
+            Add(new PlayerFocusSystem(context.InputSystem));
+            Add(new PlayerHealingSystem());
             Add(new PlayerMoveSystem(context.InputSystem));
             Add(new PlayerJumpSystem(context.InputSystem));
             Add(new PlayerAttackSystem(context.InputSystem));
