@@ -2,7 +2,7 @@ using UnityEngine;
 using Leopotam.Ecs;
 using Core.ECS.Events;
 
-namespace Core.ECS.Systems
+namespace Core.ECS.Systems.Camera
 {
     internal sealed class CameraShakeSystem: IEcsRunSystem, IEcsInitSystem
     {
@@ -11,7 +11,7 @@ namespace Core.ECS.Systems
         private readonly Animator CameraRefAnimator;
         private readonly float _timeAliveSeconds = 0.7f;
 
-        internal CameraShakeSystem(Camera camera)
+        internal CameraShakeSystem(UnityEngine.Camera camera)
         {
             CameraRefAnimator = camera.GetComponent<Animator>();
         }

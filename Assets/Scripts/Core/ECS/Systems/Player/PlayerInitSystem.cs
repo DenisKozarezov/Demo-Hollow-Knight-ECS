@@ -3,7 +3,7 @@ using Core.ECS.Components.Player;
 using Core.ECS.Components.Units;
 using Leopotam.Ecs;
 
-namespace Core.ECS.Systems.FalseKnight
+namespace Core.ECS.Systems.Player
 {
     internal class PlayerInitSystem : IEcsRunSystem 
     {
