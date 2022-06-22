@@ -2,9 +2,7 @@
 
 namespace Core.ECS.Events.Player
 {
-    internal struct PlayerRecievedDamageEvent : IEcsIgnoreInFilter {  }
-    internal struct PlayerHealthModifiedEvent
-    {
-        public short Delta;
-    }
+    internal struct PlayerRecievedDamageEvent { public byte Value;  }
+    internal struct PlayerHealedEvent { public byte Value; }
+    internal struct PlayerDiedEvent : IEcsIgnoreInFilter { }
 }

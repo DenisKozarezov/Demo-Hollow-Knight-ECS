@@ -1,7 +1,7 @@
+using UnityEngine;
+using Leopotam.Ecs;
 using Core.ECS.Components.Units;
 using Core.Models;
-using Leopotam.Ecs;
-using UnityEngine;
 
 namespace Core.ECS.Systems.FalseKnight
 {
