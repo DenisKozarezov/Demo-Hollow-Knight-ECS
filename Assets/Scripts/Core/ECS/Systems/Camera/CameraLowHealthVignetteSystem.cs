@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
+using Leopotam.Ecs;
 using Core.ECS.Components.Player;
 using Core.ECS.Components.Units;
-using Leopotam.Ecs;
 
 namespace Core.ECS.Systems.Camera
 {

@@ -14,6 +14,8 @@ namespace Core.Input
         public event Action Move;
         public event Action Jump;
         public event Action Attack;
+        public event Action FocusStarted;
+        public event Action FocusCancelled;
         public event Action Pause;
         public bool Enabled => _enabled;
         public bool IsMoving => _direction.sqrMagnitude > 0;
@@ -25,6 +27,8 @@ namespace Core.Input
             _playerInput.Keyboard.Jump.started += _ => Jump?.Invoke();
             _playerInput.Keyboard.Attack.started += _ => Attack?.Invoke();
             _playerInput.Keyboard.Pause.performed += _ => Pause?.Invoke();
+            _playerInput.Keyboard.Focus.started += _ => FocusStarted?.Invoke();
+            _playerInput.Keyboard.Focus.canceled += _ => FocusCancelled?.Invoke();
         }
         private void Start()
         {

@@ -8,7 +8,6 @@ namespace Core.ECS.Systems
     internal sealed class DamageSystem : IEcsRunSystem
     {
         private readonly EcsFilter<HealthComponent, DamageEventComponent>
-            .Exclude<InvulnerableComponent>
             .Exclude<DiedComponent> _filter = null;
 
         public void Run()
