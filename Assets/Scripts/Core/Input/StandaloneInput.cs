@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Core.Input
 {
     [DisallowMultipleComponent]
-    public class KeyboardInput : MonoBehaviour, IInputSystem
+    public class StandaloneInput : MonoBehaviour, IInputSystem
     {
         private PlayerInputController _playerInput;
         private Vector2 _direction;

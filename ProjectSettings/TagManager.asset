@@ -11,10 +11,10 @@ TagManager:
   - Ground
   - Water
   - UI
-  - 
+  - PostProcessing
   - Enemy
-  - FireBall
   - Player
+  - 
   - 
   - 
   - 
