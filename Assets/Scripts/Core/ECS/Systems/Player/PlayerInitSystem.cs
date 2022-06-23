@@ -1,6 +1,7 @@
 using Core.Models;
-using Core.ECS.Components.Player;
+using Core.ECS.Components;
 using Core.ECS.Components.Units;
+using Core.ECS.Components.Player;
 using Leopotam.Ecs;
 
 namespace Core.ECS.Systems.Player

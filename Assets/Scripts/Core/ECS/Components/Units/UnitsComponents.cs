@@ -20,6 +20,6 @@ namespace Core.ECS.Components.Units
     internal struct DiedComponent : IEcsIgnoreInFilter { }
     internal struct HittableComponent : IEcsIgnoreInFilter { }
     internal struct InvulnerableComponent : IEcsIgnoreInFilter { }   
-
+    internal struct ChannellingComponent : IEcsIgnoreInFilter { }
     internal struct FalseKnightTagComponent : IEcsIgnoreInFilter { }
 }

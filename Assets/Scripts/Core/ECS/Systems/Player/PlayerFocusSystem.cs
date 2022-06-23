@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Leopotam.Ecs;
 using Core.ECS.Events.Player;
-using Core.ECS.Components.Player;
+using Core.ECS.Components;
 using Core.ECS.Components.Units;
 using Core.Input;
 
@@ -26,12 +26,12 @@ namespace Core.ECS.Systems.Player
         public void Init()
         {
             _playerInput.FocusStarted += OnFocusStarted;
-            _playerInput.FocusCancelled += OnFocusCancelled;
+            _playerInput.FocusCanceled += OnFocusCancelled;
         }
         public void Destroy()
         {
             _playerInput.FocusStarted -= OnFocusStarted;
-            _playerInput.FocusCancelled -= OnFocusCancelled;
+            _playerInput.FocusCanceled -= OnFocusCancelled;
         }
 
         private void OnFocusStarted()
@@ -45,17 +45,18 @@ namespace Core.ECS.Systems.Player
         }
         private void OnFocusCancelled()
         {
-            Reset();
             foreach (var i in _filter)
             {
+                Reset(ref _filter.GetEntity(i));
                 var animator = _filter.Get1(i).Value;
                 animator.SetBool(FOCUS_KEY, false);
             }
         }
-        private void Reset()
+        private void Reset(ref EcsEntity entity)
         {
             _focusing = false;
             _timer = 0f;
+            if (entity.Has<ChannellingComponent>()) entity.Del<ChannellingComponent>();
         }
         public void Run()
         {
@@ -63,15 +64,20 @@ namespace Core.ECS.Systems.Player
 
             foreach (var i in _filter)
             {
+                ref var entity = ref _filter.GetEntity(i);
+                ref var health = ref _filter.Get2(i);
+
+                // If full HP
+                if (health.Health == health.MaxHealth) continue;
+
+                if (!entity.Has<ChannellingComponent>()) entity.Get<ChannellingComponent>();
+
                 _timer += Time.deltaTime;
                 if (_timer >= FocusHold)
-                {
-                    Reset();
+                {                    
+                    Reset(ref entity);
 
                     // Heal
-                    ref var entity = ref _filter.GetEntity(i);
-                    ref var health = ref _filter.Get2(i);
-                    if (health.Health >= health.MaxHealth) continue;
                     entity.Get<PlayerHealedEvent>().Value = 1;
                 }
             }
