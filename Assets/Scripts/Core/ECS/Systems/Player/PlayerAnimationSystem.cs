@@ -1,7 +1,7 @@
 using UnityEngine;
 using Leopotam.Ecs;
 using Core.Input;
-using Core.ECS.Components.Player;
+using Core.ECS.Components;
 using Core.ECS.Components.Units;
 
 namespace Core.ECS.Systems.Player
@@ -31,6 +31,7 @@ namespace Core.ECS.Systems.Player
                 var entity = _filter.GetEntity(i);
                 Animator animator = _filter.Get1(i).Value;
                 bool onGround = entity.Has<OnGroundComponent>();
+                bool channelling = entity.Has<ChannellingComponent>();
 
                 // Falling and Jumping
                 if (!onGround)
@@ -47,7 +48,7 @@ namespace Core.ECS.Systems.Player
                 animator.SetBool(GROUND_KEY, onGround);
 
                 // Movement
-                animator.SetBool(MOVE_KEY, _playerInput.IsMoving && onGround);
+                animator.SetBool(MOVE_KEY, _playerInput.IsMoving && onGround && !channelling);
             }
         }
     }

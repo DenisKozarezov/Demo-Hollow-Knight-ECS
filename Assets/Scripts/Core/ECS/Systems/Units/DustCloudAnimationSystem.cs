@@ -8,7 +8,7 @@ namespace Core.ECS.Systems
     {
         private readonly EcsFilter<AnimateDustEventComponent> _filter = null;
 
-        private const string PrefabPath = "Prefabs/Effects/Dust";
+        private const string PrefabPath = "Prefabs/Effects/Smoke/Dust";
         private float TimeAliveSeconds = 0.7f;
 
         private GameObject InstantiatePrefab(ref AnimateDustEventComponent dustComponent)

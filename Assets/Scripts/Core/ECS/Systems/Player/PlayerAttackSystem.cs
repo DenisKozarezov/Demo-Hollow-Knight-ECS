@@ -1,8 +1,9 @@
 using Leopotam.Ecs;
 using Core.Input;
 using Core.ECS.Events;
-using Core.ECS.Components.Player;
+using Core.ECS.Components;
 using Core.ECS.Components.Units;
+using Core.ECS.Components.Player;
 
 namespace Core.ECS.Systems.Player
 {
@@ -15,7 +16,7 @@ namespace Core.ECS.Systems.Player
             DamageComponent,
             CanAttackComponent, 
             PlayerTagComponent>
-            .Exclude<DiedComponent> _filter = null;
+            .Exclude<DiedComponent, ChannellingComponent> _filter = null;
 
         private readonly IInputSystem _playerInput;
         private const string ATTACK_KEY = "Attack";                           

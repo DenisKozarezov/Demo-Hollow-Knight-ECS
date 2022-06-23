@@ -1,8 +1,9 @@
 using UnityEngine;
 using Leopotam.Ecs;
 using Core.Input;
-using Core.ECS.Components.Player;
+using Core.ECS.Components;
 using Core.ECS.Components.Units;
+using Core.ECS.Components.Player;
 
 namespace Core.ECS.Systems.Player
 {

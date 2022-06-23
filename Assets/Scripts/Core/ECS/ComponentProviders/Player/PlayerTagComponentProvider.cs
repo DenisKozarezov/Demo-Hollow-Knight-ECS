@@ -1,4 +1,4 @@
-using Core.ECS.Components.Player;
+using Core.ECS.Components;
 using Voody.UniLeo;
 
 namespace Core.ECS.ComponentProviders.Player

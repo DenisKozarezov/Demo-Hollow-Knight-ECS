@@ -1,7 +1,7 @@
 using UnityEngine;
 using Leopotam.Ecs;
 using Core.Input;
-using Core.ECS.Components.Player;
+using Core.ECS.Components;
 using Core.ECS.Components.Units;
 
 namespace Core.ECS.Systems.Player
@@ -12,7 +12,8 @@ namespace Core.ECS.Systems.Player
             RigidbodyComponent, 
             SpriteRendererComponent,
             MovableComponent,
-            PlayerTagComponent>.Exclude<DiedComponent> _filter = null;
+            PlayerTagComponent>
+            .Exclude<DiedComponent, ChannellingComponent> _filter = null;
 
         private readonly IInputSystem _playerInput;
         private Vector2 _lastDirection;

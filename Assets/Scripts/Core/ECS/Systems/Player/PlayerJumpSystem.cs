@@ -1,14 +1,19 @@
 using UnityEngine;
 using Leopotam.Ecs;
 using Core.Input;
-using Core.ECS.Components.Player;
+using Core.ECS.Components;
 using Core.ECS.Components.Units;
 
 namespace Core.ECS.Systems.Player
 {
     internal class PlayerJumpSystem : IEcsInitSystem, IEcsDestroySystem
     {
-        private readonly EcsFilter<RigidbodyComponent, JumpComponent, OnGroundComponent, PlayerTagComponent> _filter = null;
+        private readonly EcsFilter<
+            RigidbodyComponent, 
+            JumpComponent, 
+            OnGroundComponent, 
+            PlayerTagComponent>
+            .Exclude<DiedComponent, ChannellingComponent> _filter = null;
 
         private readonly IInputSystem _playerInput;
               
