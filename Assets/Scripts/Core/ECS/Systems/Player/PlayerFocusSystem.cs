@@ -45,17 +45,13 @@ namespace Core.ECS.Systems.Player
         }
         private void OnFocusCancelled()
         {
-            foreach (var i in _filter)
-            {
-                Reset(ref _filter.GetEntity(i));
-                var animator = _filter.Get1(i).Value;
-                animator.SetBool(FOCUS_KEY, false);
-            }
+            foreach (var i in _filter) Reset(ref _filter.GetEntity(i));
         }
         private void Reset(ref EcsEntity entity)
         {
             _focusing = false;
             _timer = 0f;
+            entity.Get<AnimatorComponent>().Value.SetBool(FOCUS_KEY, false);
             if (entity.Has<ChannellingComponent>()) entity.Del<ChannellingComponent>();
         }
         public void Run()
@@ -68,7 +64,7 @@ namespace Core.ECS.Systems.Player
                 ref var health = ref _filter.Get2(i);
 
                 // If full HP
-                if (health.Health == health.MaxHealth) continue;
+                if (health.Health >= health.MaxHealth) continue;
 
                 if (!entity.Has<ChannellingComponent>()) entity.Get<ChannellingComponent>();
 
@@ -76,6 +72,9 @@ namespace Core.ECS.Systems.Player
                 if (_timer >= FocusHold)
                 {                    
                     Reset(ref entity);
+
+                    // Reduce energy
+                    entity.Get<EnergyReducedEvent>().Value = 25f;
 
                     // Heal
                     entity.Get<PlayerHealedEvent>().Value = 1;

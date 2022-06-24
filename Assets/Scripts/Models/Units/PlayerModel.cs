@@ -20,6 +20,6 @@ namespace Core.Models
         public Vector2 JumpForceRange => _jumpForceRange;
         public float AttackCooldown => _attackCooldown;
         public float HitEnergyRestore => _hitEnergyRestore;
-        public const float EnergyCapacity = 100f;
+        public float EnergyCapacity => 100f;
     }
 }
