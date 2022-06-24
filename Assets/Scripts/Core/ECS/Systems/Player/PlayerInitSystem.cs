@@ -1,12 +1,12 @@
+using Leopotam.Ecs;
 using Core.Models;
 using Core.ECS.Components;
 using Core.ECS.Components.Units;
 using Core.ECS.Components.Player;
-using Leopotam.Ecs;
 
 namespace Core.ECS.Systems.Player
 {
-    internal class PlayerInitSystem : IEcsRunSystem 
+    internal class PlayerInitSystem : IEcsInitSystem 
     {
         private readonly EcsFilter<UnitInitComponent, PlayerTagComponent> _filter = null;
         private readonly PlayerModel _playerModel;
@@ -16,21 +16,18 @@ namespace Core.ECS.Systems.Player
             _playerModel = playerModel;
         }
 
-        public void Run()
+        public void Init()
         {
             foreach (var i in _filter)
             {
                 ref var entity = ref _filter.GetEntity(i);
                 entity
-                    .Replace(new HealthComponent
-                    {
-                        Health = _playerModel.MaxHealth,
-                        MaxHealth = _playerModel.MaxHealth
-                    })
+                    .Replace(new HealthComponent { Health = _playerModel.MaxHealth, MaxHealth = _playerModel.MaxHealth })
                     .Replace(new DamageComponent { Damage = _playerModel.BaseDamage, AttackRange = _playerModel.AttackRange })
                     .Replace(new JumpComponent { JumpForceRange = _playerModel.JumpForceRange })
                     .Replace(new MovableComponent { Value = _playerModel.MovementSpeed })
-                    .Replace(new AttackCooldownComponent { Value = _playerModel.AttackCooldown });
+                    .Replace(new AttackCooldownComponent { Value = _playerModel.AttackCooldown })
+                    .Replace(new EnergyComponent { Energy = _playerModel.EnergyCapacity, MaxEnergy = _playerModel.EnergyCapacity });
             }            
         }
     }

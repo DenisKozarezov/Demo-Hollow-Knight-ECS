@@ -59,7 +59,8 @@ namespace Core.ECS
                 .OneFrame<DiedComponent>()
                 .OneFrame<PlayerRecievedDamageEvent>()
                 .OneFrame<PlayerDiedEvent>()
-                .OneFrame<PlayerHealedEvent>();
+                .OneFrame<PlayerHealedEvent>()
+                .OneFrame<EnergyReducedEvent>();
         }
     }
 }

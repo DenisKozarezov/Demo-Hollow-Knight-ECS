@@ -36,7 +36,7 @@ namespace Core.ECS.Systems
                 else healthComponent.Health = 0;
 
 #if UNITY_EDITOR
-                    Debug.Log($"Unit <b><color=yellow>{damageComponent.Target.name}</color></b> recieved <b><color=red>{damageComponent.Damage}</color></b> damage from <b><color=yellow>{damageComponent.Source.name}</color></b>. Current health: <b><color=green>{healthComponent.Health}</color></b>.");
+                Debug.Log($"Unit <b><color=yellow>{damageComponent.Target.name}</color></b> recieved <b><color=red>{damageComponent.Damage}</color></b> damage from <b><color=yellow>{damageComponent.Source.name}</color></b>. Current health: <b><color=green>{healthComponent.Health}</color></b>.");
 #endif
             }
         }

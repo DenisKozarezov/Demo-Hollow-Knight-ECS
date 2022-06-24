@@ -7,18 +7,19 @@ namespace Core.ECS.Systems.UI
 {
     internal class HealthViewInitSystem : IEcsInitSystem
     {
-        private readonly EcsFilter<HealthViewComponent> _filter = null;
+        private readonly EcsFilter<HealthViewComponent> _healthView = null;
         private readonly EcsFilter<HealthComponent, PlayerTagComponent> _player = null;
         
         public void Init()
         {
             foreach (var player in _player)
             {
-                foreach (var i in _filter)
+                foreach (var i in _healthView)
                 {
-                    var healthView = _filter.Get1(i).HealthView;
+                    var healthView = _healthView.Get1(i).HealthView;
+                    ref var health = ref _player.Get1(player);
                     healthView.Clear();
-                    healthView.AddHealth(5);
+                    healthView.Init(health.MaxHealth);
                 }
             }
         }
