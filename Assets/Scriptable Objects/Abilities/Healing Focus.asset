@@ -19,3 +19,4 @@ MonoBehaviour:
   _energyCost: 25
   _healthRestore: 1
   _holdTime: 1.5
+  _effectPath: Prefabs/Effects/Spells/Focus Effect
