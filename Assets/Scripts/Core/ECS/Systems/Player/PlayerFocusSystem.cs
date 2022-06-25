@@ -17,7 +17,7 @@ namespace Core.ECS.Systems.Player
 
         private bool _focusing;
         private float _timer;
-        private const string FOCUS_KEY = "IsFocusing";
+        private const string FOCUS_KEY = "Is Focusing";
 
         internal PlayerFocusSystem(IInputSystem playerInput, PlayerModel playerModel)
         {
