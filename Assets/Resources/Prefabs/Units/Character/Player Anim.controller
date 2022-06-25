@@ -12,7 +12,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Move
     m_EventTreshold: 0.1
   - m_ConditionMode: 1
-    m_ConditionEvent: OnGround
+    m_ConditionEvent: On Ground
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -6238294785312022215}
@@ -62,13 +62,13 @@ AnimatorTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: IsJumping
+    m_ConditionEvent: Is Jumping
     m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: On Wall
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: OnGround
+    m_ConditionEvent: On Ground
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -2827086954000271913}
@@ -113,10 +113,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: IsSwimming
+    m_ConditionEvent: Is Swimming
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: IsJumping
+    m_ConditionEvent: Is Jumping
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -5111812942593181127}
@@ -188,6 +188,34 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+--- !u!1101 &-6021786527139016184
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: Attack Down
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: On Ground
+    m_EventTreshold: 0
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: -450456569041369137}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 0.25
+  m_TransitionOffset: 0
+  m_ExitTime: 0.75
+  m_HasExitTime: 0
+  m_HasFixedDuration: 1
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
 --- !u!1102 &-5753985241415048209
 AnimatorState:
   serializedVersion: 6
@@ -273,7 +301,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: OnGround
+    m_ConditionEvent: On Ground
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -94216090241888009}
@@ -301,7 +329,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Move
     m_EventTreshold: 0.1
   - m_ConditionMode: 1
-    m_ConditionEvent: OnGround
+    m_ConditionEvent: On Ground
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -94216090241888009}
@@ -411,7 +439,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Move
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: OnGround
+    m_ConditionEvent: On Ground
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -6238294785312022215}
@@ -421,8 +449,8 @@ AnimatorStateTransition:
   serializedVersion: 3
   m_TransitionDuration: 0.25
   m_TransitionOffset: 0
-  m_ExitTime: 0.75
-  m_HasExitTime: 1
+  m_ExitTime: 0
+  m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
@@ -439,10 +467,10 @@ AnimatorStateTransition:
     m_ConditionEvent: Jump
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: IsJumping
+    m_ConditionEvent: Is Jumping
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: OnGround
+    m_ConditionEvent: On Ground
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -6064160148374064148}
@@ -489,10 +517,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: IsJumping
+    m_ConditionEvent: Is Jumping
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: OnGround
+    m_ConditionEvent: On Ground
     m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: Move
@@ -601,66 +629,78 @@ AnimatorController:
   m_Name: Player Anim
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: IsJumping
+  - m_Name: Is Jumping
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: IsFocusing
+    m_Controller: {fileID: 0}
+  - m_Name: Is Focusing
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: IsSwimming
+    m_Controller: {fileID: 0}
+  - m_Name: Is Swimming
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: On Wall
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: Jump
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: Death
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: Attack
-    m_Type: 9
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: Dash
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: Move
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: OnGround
+    m_Controller: {fileID: 0}
+  - m_Name: On Ground
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
+  - m_Name: Default Attack
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: Attack Down
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: Attack Up
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -683,13 +723,13 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Attack
+    m_ConditionEvent: Default Attack
     m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: Move
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: OnGround
+    m_ConditionEvent: On Ground
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 9140694814625503575}
   m_DstState: {fileID: 0}
@@ -714,10 +754,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: IsJumping
+    m_ConditionEvent: Is Jumping
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: OnGround
+    m_ConditionEvent: On Ground
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 6307617841594523607}
@@ -742,10 +782,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: IsJumping
+    m_ConditionEvent: Is Jumping
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: OnGround
+    m_ConditionEvent: On Ground
     m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: Jump
@@ -805,7 +845,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: OnGround
+    m_ConditionEvent: On Ground
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -94216090241888009}
@@ -856,6 +896,8 @@ AnimatorStateMachine:
   - {fileID: -8241504173005816073}
   - {fileID: 3352849743501629663}
   - {fileID: 2968611352852628224}
+  - {fileID: 5590848381882262576}
+  - {fileID: -6021786527139016184}
   m_EntryTransitions: []
   m_StateMachineTransitions:
   - first: {fileID: 9140694814625503575}
@@ -906,10 +948,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: IsJumping
+    m_ConditionEvent: Is Jumping
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: OnGround
+    m_ConditionEvent: On Ground
     m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: Jump
@@ -937,7 +979,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Attack
+    m_ConditionEvent: Default Attack
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -6703870710001793431}
@@ -962,7 +1004,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: OnGround
+    m_ConditionEvent: On Ground
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -94216090241888009}
@@ -990,7 +1032,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Move
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: OnGround
+    m_ConditionEvent: On Ground
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -6238294785312022215}
@@ -1000,8 +1042,8 @@ AnimatorStateTransition:
   serializedVersion: 3
   m_TransitionDuration: 0.25
   m_TransitionOffset: 0
-  m_ExitTime: 0.5
-  m_HasExitTime: 1
+  m_ExitTime: 0
+  m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
@@ -1015,10 +1057,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: IsJumping
+    m_ConditionEvent: Is Jumping
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: OnGround
+    m_ConditionEvent: On Ground
     m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: Move
@@ -1034,6 +1076,31 @@ AnimatorStateTransition:
   m_ExitTime: 0.1
   m_HasExitTime: 1
   m_HasFixedDuration: 0
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
+--- !u!1101 &5590848381882262576
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: Attack Up
+    m_EventTreshold: 0
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: -3023588857279720933}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 0.25
+  m_TransitionOffset: 0
+  m_ExitTime: 0.75
+  m_HasExitTime: 0
+  m_HasFixedDuration: 1
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
@@ -1093,10 +1160,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: OnGround
+    m_ConditionEvent: On Ground
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: IsJumping
+    m_ConditionEvent: Is Jumping
     m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: On Wall
@@ -1127,7 +1194,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Move
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: OnGround
+    m_ConditionEvent: On Ground
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -6238294785312022215}
@@ -1137,8 +1204,8 @@ AnimatorStateTransition:
   serializedVersion: 3
   m_TransitionDuration: 0.25
   m_TransitionOffset: 0
-  m_ExitTime: 0.75
-  m_HasExitTime: 1
+  m_ExitTime: 0
+  m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
@@ -1180,10 +1247,10 @@ AnimatorTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: IsJumping
+    m_ConditionEvent: Is Jumping
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: OnGround
+    m_ConditionEvent: On Ground
     m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: On Wall
@@ -1203,10 +1270,10 @@ AnimatorTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: IsJumping
+    m_ConditionEvent: Is Jumping
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: OnGround
+    m_ConditionEvent: On Ground
     m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: On Wall
@@ -1226,10 +1293,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: OnGround
+    m_ConditionEvent: On Ground
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: IsJumping
+    m_ConditionEvent: Is Jumping
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 2249438178805882564}

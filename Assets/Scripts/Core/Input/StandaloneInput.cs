@@ -18,7 +18,7 @@ namespace Core.Input
         public event Action FocusCanceled;
         public event Action Pause;
         public bool Enabled => _enabled;
-        public bool IsMoving => _direction.sqrMagnitude > 0;
+        public bool IsMoving => _direction.x != 0;
 
         private void Awake()
         {
@@ -42,7 +42,8 @@ namespace Core.Input
         {
             if (!_enabled) return;
 
-            _direction = _playerInput.Keyboard.Move.ReadValue<Vector2>();
+            _direction.x = _playerInput.Keyboard.Move.ReadValue<float>();
+            _direction.y = _playerInput.Keyboard.Look.ReadValue<float>();
         }
         public void Disable()
         {

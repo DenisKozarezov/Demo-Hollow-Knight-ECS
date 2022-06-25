@@ -13,17 +13,17 @@ namespace Core.ECS.Systems.Player
         private readonly IInputSystem _playerInput;
 
         // ==== ANIMATIONS KEYS ===
-        private const string FALL_KEY = "IsJumping";
+        private const string FALL_KEY = "Is Jumping";
         private const string JUMP_KEY = "Jump";
         private const string MOVE_KEY = "Move";
-        private const string GROUND_KEY = "OnGround";
+        private const string GROUND_KEY = "On Ground";
         // ========================
 
         internal PlayerAnimationSystem(IInputSystem playerInput) 
         { 
             _playerInput = playerInput; 
         }
-        
+
         public void Run()
         {
             foreach (var i in _filter)
@@ -51,5 +51,6 @@ namespace Core.ECS.Systems.Player
                 animator.SetBool(MOVE_KEY, _playerInput.IsMoving && onGround && !channelling);
             }
         }
+
     }
 }

@@ -9,9 +9,18 @@
                     "name": "Move",
                     "type": "Value",
                     "id": "0b006c79-8759-4fc1-9189-1bcb7cdacdba",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "Press(behavior=2)",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Look",
+                    "type": "Value",
+                    "id": "4c321624-cd83-4f8e-91dc-a35f406fabfa",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
                     "initialStateCheck": true
                 },
                 {
@@ -93,9 +102,9 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "2D Vector",
-                    "id": "26d99b4e-1aca-47c9-b9fd-824e571c27e3",
-                    "path": "2DVector",
+                    "name": "1D Axis",
+                    "id": "29e45367-8ab7-4213-9bb1-64276cee07aa",
+                    "path": "1DAxis",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -104,30 +113,8 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "up",
-                    "id": "1460a920-67c8-47fb-9712-d7a060b3fa41",
-                    "path": "<Keyboard>/w",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "down",
-                    "id": "68d6c6b6-3383-4a4e-8b0f-d12212cabf7f",
-                    "path": "<Keyboard>/s",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "left",
-                    "id": "08a5a492-f515-42b9-9e77-29e7f1981ef9",
+                    "name": "negative",
+                    "id": "60055ac7-d312-4bc0-a70f-6273e20d3af5",
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
@@ -137,8 +124,8 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "right",
-                    "id": "d4180022-f8a6-4deb-af43-cb13b50c3cf4",
+                    "name": "positive",
+                    "id": "5fd9c93a-a308-433d-8991-96756292a743",
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
@@ -190,6 +177,39 @@
                     "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "cb670a29-9798-4e43-bb77-f09f7cc5b5ee",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Look",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "9579ef2b-3c51-4148-9da0-df844d5ed399",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "7bd331a9-ad3d-47f0-b636-55aaec37a17d",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         },
