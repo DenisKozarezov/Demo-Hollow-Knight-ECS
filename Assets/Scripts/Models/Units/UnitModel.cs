@@ -20,11 +20,11 @@ namespace Core.Models
         [Header("Unit Characteristics")]
         [SerializeField, Min(0f)]
         private float _movementSpeed;
-        [SerializeField]
+        [SerializeField, Min(0)]
         private int _baseDamage;
         [SerializeField, Range(0f, 5f)]
         private float _attackRadius;
-        [SerializeField]
+        [SerializeField, Min(0)]
         private int _maxHealth;
 
         public uint ID => _id;
