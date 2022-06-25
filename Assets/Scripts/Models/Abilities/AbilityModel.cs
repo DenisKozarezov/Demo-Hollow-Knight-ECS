@@ -4,7 +4,7 @@ using Editor;
 
 namespace Core.Models
 {
-    public abstract class UnitModel : ScriptableObject, IEquatable<UnitModel>
+    public abstract class AbilityModel : ScriptableObject, IEquatable<AbilityModel>
     {
         [Header("Common Characteristics")]
         [SerializeField]
@@ -14,27 +14,18 @@ namespace Core.Models
         [SerializeField, TextArea]
         private string _description;
 
-        [Space, SerializeField, ObjectPicker]
-        private string _prefabPath;
+        [Space, SerializeField]
+        private Sprite _icon;
 
-        [Header("Unit Characteristics")]
+        [Header("Ability Characteristics")]
         [SerializeField, Min(0f)]
-        private float _movementSpeed;
-        [SerializeField]
-        private int _baseDamage;
-        [SerializeField, Range(0f, 5f)]
-        private float _attackRadius;
-        [SerializeField]
-        private int _maxHealth;
+        private float _energyCost;
 
         public uint ID => _id;
         public string DisplayName => _displayName;
         public string Description => _description;
-        public string PrefabPath => _prefabPath;  
-        public float MovementSpeed => _movementSpeed;
-        public int BaseDamage => _baseDamage;
-        public float AttackRange => _attackRadius;
-        public int MaxHealth => _maxHealth;
+        public Sprite Icon => _icon;
+        public float EnergyCost => _energyCost;
 
         protected virtual void OnValidate()
         {
@@ -44,7 +35,7 @@ namespace Core.Models
             }
         }
 
-        public bool Equals(UnitModel other)
+        public bool Equals(AbilityModel other)
         {
             return _id == other._id;
         }

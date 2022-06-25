@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Leopotam.Ecs;
 using Core.ECS.Components.Units;
 using Core.ECS.Events.Player;
@@ -26,10 +27,10 @@ namespace Core.ECS.Systems
                 }
 
                 // Heal
-                health.Health += heal.Value;
+                health.Health = Math.Min(health.Health + heal.Value, health.MaxHealth);
 
 #if UNITY_EDITOR
-                Debug.Log($"<b><color=yellow>Player</color></b> healed <b><color=green>{heal.Value}</color></b> health point.");
+                Debug.Log($"<b><color=yellow>Player</color></b> restored <b><color=green>{heal.Value}</color></b> health point.");
 #endif
             }
         }

@@ -24,7 +24,7 @@ namespace Core.ECS.Systems.Player
                 entity
                     .Replace(new HealthComponent { Health = _playerModel.MaxHealth, MaxHealth = _playerModel.MaxHealth })
                     .Replace(new DamageComponent { Damage = _playerModel.BaseDamage, AttackRange = _playerModel.AttackRange })
-                    .Replace(new JumpComponent { JumpForceRange = _playerModel.JumpForceRange })
+                    .Replace(new JumpComponent { JumpForceRange = _playerModel.JumpHeightRange })
                     .Replace(new MovableComponent { Value = _playerModel.MovementSpeed })
                     .Replace(new AttackCooldownComponent { Value = _playerModel.AttackCooldown })
                     .Replace(new EnergyComponent { Energy = _playerModel.EnergyCapacity, MaxEnergy = _playerModel.EnergyCapacity });

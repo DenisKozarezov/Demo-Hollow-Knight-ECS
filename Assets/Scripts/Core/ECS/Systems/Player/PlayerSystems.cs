@@ -6,7 +6,7 @@
         {
             Add(new PlayerInitSystem(context.UnitsDefinitions.PlayerModel));
             Add(new PlayerRecievedDamageSystem());
-            Add(new PlayerFocusSystem(context.InputSystem));
+            Add(new PlayerFocusSystem(context.InputSystem, context.UnitsDefinitions.PlayerModel));
             Add(new EnergySystem());
             Add(new PlayerDiedSystem());
             Add(new PlayerHealingSystem());

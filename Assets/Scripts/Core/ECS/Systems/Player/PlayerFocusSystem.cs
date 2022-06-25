@@ -4,6 +4,7 @@ using Core.ECS.Events.Player;
 using Core.ECS.Components;
 using Core.ECS.Components.Units;
 using Core.Input;
+using Core.Models;
 
 namespace Core.ECS.Systems.Player
 {
@@ -12,15 +13,16 @@ namespace Core.ECS.Systems.Player
         private readonly EcsFilter<AnimatorComponent, HealthComponent, PlayerTagComponent>
           .Exclude<DiedComponent> _filter = null;
         private readonly IInputSystem _playerInput;
+        private readonly HealingFocusAbility _focusAbility;
 
         private bool _focusing;
         private float _timer;
-        private const float FocusHold = 1.5f;
         private const string FOCUS_KEY = "IsFocusing";
 
-        internal PlayerFocusSystem(IInputSystem playerInput)
+        internal PlayerFocusSystem(IInputSystem playerInput, PlayerModel playerModel)
         {
             _playerInput = playerInput;
+            _focusAbility = playerModel.GetAbility<HealingFocusAbility>();
         }
 
         public void Init()
@@ -56,7 +58,7 @@ namespace Core.ECS.Systems.Player
         }
         public void Run()
         {
-            if (!_focusing || _timer > FocusHold) return;
+            if (!_focusing || _timer > _focusAbility.HoldTime) return;
 
             foreach (var i in _filter)
             {
@@ -69,15 +71,15 @@ namespace Core.ECS.Systems.Player
                 if (!entity.Has<ChannellingComponent>()) entity.Get<ChannellingComponent>();
 
                 _timer += Time.deltaTime;
-                if (_timer >= FocusHold)
+                if (_timer >= _focusAbility.HoldTime)
                 {                    
                     Reset(ref entity);
 
                     // Reduce energy
-                    entity.Get<EnergyReducedEvent>().Value = 25f;
+                    entity.Get<EnergyReducedEvent>().Value = _focusAbility.EnergyCost;
 
                     // Heal
-                    entity.Get<PlayerHealedEvent>().Value = 1;
+                    entity.Get<PlayerHealedEvent>().Value = _focusAbility.HealthRestore;
                 }
             }
         }

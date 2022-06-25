@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using Editor;
+using System;
 
 namespace Core.UI
 {
@@ -16,39 +17,39 @@ namespace Core.UI
         private string _healthPrefab;
         private string _additiveHealthPrefab;
 
-        private byte _currentHealth;
+        private int _currentHealth;
         private int Count => _healthTransform.childCount;
 
-        public void Init(byte value, bool additiveHealth = false)
+        public void Init(int value, bool additiveHealth = false)
         {
             if (value == 0) return;
 
             _currentHealth = value;
 
             var asset = Resources.Load(additiveHealth ? _additiveHealthPrefab : _healthPrefab);
-            for (byte i = 0; i < value; i++) Instantiate(asset, _healthTransform);
+            for (int i = 0; i < value; i++) Instantiate(asset, _healthTransform);
         }
-        public void RestoreHealth(byte value)
+        public void RestoreHealth(int value)
         {
-            if (value == 0) return;
+            if (value == 0 || _currentHealth >= Count) return;
 
-            for (byte i = _currentHealth; i < _currentHealth + value; i++)
+            for (int i = _currentHealth; i < _currentHealth + value && i < Count; i++)
             {
                 var image = _healthTransform.GetChild(i).GetComponentInChildren<Image>();
                 image.sprite = _fullHealth;
             }
-            _currentHealth += value;
+            _currentHealth = Math.Min(_currentHealth + value, Count);
         }
-        public void Hit(byte value)
+        public void Hit(int value)
         {
             if (value == 0 || Count == 0 || _currentHealth == 0) return;
 
-            for (byte i = _currentHealth; i > _currentHealth - value && i > 0; i--)
+            for (int i = _currentHealth; i > _currentHealth - value && i > 0; i--)
             {
                 var image = _healthTransform.GetChild(i - 1).GetComponentInChildren<Image>();
                 image.sprite = _emptyHealth;
             }
-            _currentHealth -= value;
+            _currentHealth = Math.Max(_currentHealth - value, 0);
         }
         public void Clear()
         {
