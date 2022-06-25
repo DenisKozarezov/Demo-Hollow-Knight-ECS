@@ -20,21 +20,21 @@ namespace Core.Models
         [Header("Unit Characteristics")]
         [SerializeField, Min(0f)]
         private float _movementSpeed;
-        [SerializeField]
-        private byte _baseDamage;
+        [SerializeField, Min(0)]
+        private int _baseDamage;
         [SerializeField, Range(0f, 5f)]
         private float _attackRadius;
-        [SerializeField]
-        private byte _maxHealth;
+        [SerializeField, Min(0)]
+        private int _maxHealth;
 
         public uint ID => _id;
         public string DisplayName => _displayName;
         public string Description => _description;
         public string PrefabPath => _prefabPath;  
         public float MovementSpeed => _movementSpeed;
-        public byte BaseDamage => _baseDamage;
+        public int BaseDamage => _baseDamage;
         public float AttackRange => _attackRadius;
-        public byte MaxHealth => _maxHealth;
+        public int MaxHealth => _maxHealth;
 
         protected virtual void OnValidate()
         {

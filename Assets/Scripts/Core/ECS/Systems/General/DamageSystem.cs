@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Leopotam.Ecs;
 using Core.ECS.Events;
 using Core.ECS.Components.Units;
@@ -15,28 +16,24 @@ namespace Core.ECS.Systems
             foreach (var i in _filter)
             {
                 ref var entity = ref _filter.GetEntity(i);
-                ref var healthComponent = ref _filter.Get1(i);
-                ref var damageComponent = ref _filter.Get2(i);
+                ref var health = ref _filter.Get1(i);
+                ref var damage = ref _filter.Get2(i);
 
                 // If damage is zero then delete immediately
-                if (damageComponent.Damage == 0)
+                if (damage.Damage == 0)
                 {
                     entity.Del<DamageEventComponent>();
                     continue;
                 }
 
                 // Apply damage
-                if (healthComponent.Health - damageComponent.Damage > 0)
-                {
-                    healthComponent.Health -= damageComponent.Damage;
-
-                    // Make the enemy red
-                    entity.Get<AnimateDamageEventComponent>().GameObjectRef = damageComponent.Target;
-                }
-                else healthComponent.Health = 0;
+                health.Health = Math.Max(health.Health - damage.Damage, 0);
+                
+                // Make the enemy red
+                entity.Get<AnimateDamageEventComponent>().GameObjectRef = damage.Target;
 
 #if UNITY_EDITOR
-                Debug.Log($"Unit <b><color=yellow>{damageComponent.Target.name}</color></b> recieved <b><color=red>{damageComponent.Damage}</color></b> damage from <b><color=yellow>{damageComponent.Source.name}</color></b>. Current health: <b><color=green>{healthComponent.Health}</color></b>.");
+                Debug.Log($"Unit <b><color=yellow>{damage.Target.name}</color></b> recieved <b><color=red>{damage.Damage}</color></b> damage from <b><color=yellow>{damage.Source.name}</color></b>. Current health: <b><color=green>{health.Health}</color></b>.");
 #endif
             }
         }

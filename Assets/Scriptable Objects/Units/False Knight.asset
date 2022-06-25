@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c556a82dddd1fea4992f13c3da12ae57, type: 3}
-  m_Name: False Knight Model
+  m_Name: False Knight
   m_EditorClassIdentifier: 
   _id: 1
-  _displayName: False Knight Model
+  _displayName: False Knight
   _description: 
   _prefabPath: Prefabs/Units/False Knight/False Knight
   _movementSpeed: 80

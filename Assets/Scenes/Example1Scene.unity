@@ -563,6 +563,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: False Knight (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7559006615654855930, guid: afc326e2bcb93ee4cbb7cf8d2ae9b097, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: afc326e2bcb93ee4cbb7cf8d2ae9b097, type: 3}
 --- !u!4 &692553502 stripped
@@ -948,6 +952,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: False Knight
       objectReference: {fileID: 0}
+    - target: {fileID: 7559006615654855930, guid: afc326e2bcb93ee4cbb7cf8d2ae9b097, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: afc326e2bcb93ee4cbb7cf8d2ae9b097, type: 3}
 --- !u!4 &989872549 stripped
@@ -1246,6 +1254,10 @@ PrefabInstance:
     - target: {fileID: 7559006615654855930, guid: afc326e2bcb93ee4cbb7cf8d2ae9b097, type: 3}
       propertyPath: m_Name
       value: False Knight
+      objectReference: {fileID: 0}
+    - target: {fileID: 7559006615654855930, guid: afc326e2bcb93ee4cbb7cf8d2ae9b097, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: afc326e2bcb93ee4cbb7cf8d2ae9b097, type: 3}
