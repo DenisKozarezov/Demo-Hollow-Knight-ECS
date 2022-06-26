@@ -1,4 +1,5 @@
-﻿using Leopotam.Ecs;
+﻿using UnityEngine;
+using Leopotam.Ecs;
 using Core.ECS.Events;
 using Core.ECS.Events.Player;
 using Core.ECS.Components;
@@ -9,7 +10,19 @@ namespace Core.ECS.Systems.Player
     internal class PlayerRecievedDamageSystem : IEcsRunSystem
     {
         private readonly EcsWorld _world = null;
-        private readonly EcsFilter<HealthComponent, DamageEventComponent, PlayerTagComponent> _filter = null;
+        private readonly EcsFilter<
+            HealthComponent, 
+            DamageEventComponent, 
+            ColliderComponent, 
+            PlayerTagComponent> _filter = null;
+
+        private const string HitEffectPath = "Prefabs/Effects/Impact/Hit Crack Impact";
+
+        private GameObject CreateEffect(Vector2 position)
+        {
+            var asset = Resources.Load<GameObject>(HitEffectPath);
+            return GameObject.Instantiate(asset, position, Quaternion.identity);
+        }
 
         public void Run()
         {
@@ -17,10 +30,14 @@ namespace Core.ECS.Systems.Player
             {
                 ref var health = ref _filter.Get1(i);
                 ref var damage = ref _filter.Get2(i);
+                ref var collider = ref _filter.Get3(i);
 
                 // Player recieved damage
                 _world.NewEntity().Get<PlayerRecievedDamageEvent>().Value = damage.Damage;
-            
+
+                // Create hit effect
+                GameObject.Destroy(CreateEffect(collider.Value.bounds.center), 0.5f);
+
                 // Player died
                 if (health.Health == 0) _world.NewEntity().Get<PlayerDiedEvent>();
             }

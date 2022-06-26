@@ -14,7 +14,6 @@ namespace Core.ECS.Systems
             Add(new DamageSystem());
             Add(new PlayerSystems(context));
             Add(new HealthSystem());
-            Add(new GroundSystem());
             Add(new CameraSystems(context, UnityEngine.Camera.main));
             Add(new BehaviorTreeSystem());
         }

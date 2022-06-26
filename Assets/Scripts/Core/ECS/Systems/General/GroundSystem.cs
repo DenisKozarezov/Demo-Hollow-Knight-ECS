@@ -32,17 +32,7 @@ namespace Core.ECS.Systems
 
         public void Run()
         {
-            foreach (var i in _filter)
-            {
-                ref var entity = ref _filter.GetEntity(i);
-                ref var collider = ref _filter.Get1(i);
-                
-                if (OnGround(collider.Value, out Vector2 point))
-                {
-                    entity.Get<OnGroundComponent>().Point = point;
-                }
-                else entity.Del<OnGroundComponent>();
-            }
+
         }
     }
 }

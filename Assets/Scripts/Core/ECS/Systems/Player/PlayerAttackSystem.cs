@@ -107,8 +107,12 @@ namespace Core.ECS.Systems.Player
             {
                 case AttackDirection.Default:
                     animator.SetTrigger(DEFAULT_ATTACK_KEY);
-                    if (flipX) effect.transform.localPosition *= -1;
-                    effect.GetComponent<SpriteRenderer>().flipY = flipX;
+                    if (flipX)
+                    {
+                        localPosition.x *= -1f;
+                        effect.transform.localPosition = localPosition;
+                    }
+                    effect.GetComponent<SpriteRenderer>().flipY = flipX;                    
                     break;
                 case AttackDirection.Up:
                     animator.SetTrigger(ATTACK_UP_KEY);

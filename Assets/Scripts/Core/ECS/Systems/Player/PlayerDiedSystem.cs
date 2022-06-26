@@ -34,7 +34,6 @@ namespace Core.ECS.Systems.Player
                 {
                     // Lock physics
                     Collider2D collider = _player.Get1(pl).Value;
-                    collider.attachedRigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
 
                     // Death Effect
                     CreateDeathEffect(collider.bounds.center);

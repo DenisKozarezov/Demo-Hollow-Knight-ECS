@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -6,6 +7,7 @@ using UnityEditor;
 
 namespace Editor
 {
+    [AttributeUsage(AttributeTargets.Field)]
     public class ReadOnlyAttribute : PropertyAttribute
     {
         public ReadOnlyAttribute()
