@@ -11,12 +11,17 @@ namespace Core.ECS.Systems.Player
         private readonly EcsFilter<PlayerDiedEvent> _filter = null;
         private readonly EcsFilter<ColliderComponent, PlayerTagComponent> _player = null;
 
-        private const string DeathEffect = "Prefabs/Effects/Low Health Hit/Low Health Hit";
+        private const string DeathBlow = "Prefabs/Effects/Player Death/Low Health Hit";
+        private const string DeathParticle = "Prefabs/Effects/Player Death/Death Effect";
 
         private GameObject CreateDeathEffect(Vector2 position)
         {
-            var asset = Resources.Load<GameObject>(DeathEffect);
-            var effect = GameObject.Instantiate(asset, position, Quaternion.identity);
+            var deathBlow = Resources.Load<GameObject>(DeathBlow);
+            var deathParticle = Resources.Load<GameObject>(DeathParticle);
+
+            var effect = GameObject.Instantiate(deathBlow, position, Quaternion.identity);
+            GameObject.Destroy(effect, 0.5f);
+            GameObject.Instantiate(deathParticle, position, Quaternion.identity);
             return effect;
         }
         public void Run()
@@ -30,7 +35,7 @@ namespace Core.ECS.Systems.Player
                     collider.attachedRigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
 
                     // Death Effect
-                    GameObject.Destroy(CreateDeathEffect(collider.bounds.center), 0.5f);                    
+                    CreateDeathEffect(collider.bounds.center);                    
                 }
             }
         }
