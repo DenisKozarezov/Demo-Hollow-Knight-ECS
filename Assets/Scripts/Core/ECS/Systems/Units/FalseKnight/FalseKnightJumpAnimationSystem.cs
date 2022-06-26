@@ -54,7 +54,7 @@ namespace Core.ECS.Systems.FalseKnight
                     CreateDust(ref entity.Get<OnGroundComponent>().Point);
 
                     // Shake camera when landed
-                    _world.NewEntity().Get<AnimateCameraShakeEventComponent>();
+                    _world.NewEntity().Get<AnimateCameraShakeEventComponent>().ShakeDuration = 0.3f;
                 }
             }
         }
