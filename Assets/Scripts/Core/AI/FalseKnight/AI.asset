@@ -347,6 +347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e079b22fc2924114b8b38ab9616f5d12, type: 3}
   m_Name: AI
   m_EditorClassIdentifier: 
+  _entityReference: {fileID: 0}
   RootNode: {fileID: -4620815090318103733}
   Nodes:
   - {fileID: -4620815090318103733}
@@ -376,7 +377,6 @@ MonoBehaviour:
   - {fileID: 1027363895931364201}
   - {fileID: 558800295767579824}
   - {fileID: 6518784542748760188}
-  EntityReference: {fileID: 0}
   OrientationTree: 1
 --- !u!114 &558800295767579824
 MonoBehaviour:
