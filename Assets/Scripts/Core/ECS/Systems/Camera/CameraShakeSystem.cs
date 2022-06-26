@@ -10,7 +10,6 @@ namespace Core.ECS.Systems.Camera
         private readonly EcsFilter<AnimateCameraShakeEventComponent> _filter = null;
 
         private readonly MonoBehaviour _monoBehaviour;
-        private const float ShakeDuration = 0.3f;
         private const float ShakeForce = 0.2f;
         private bool _shaking;
 
@@ -26,7 +25,8 @@ namespace Core.ECS.Systems.Camera
             foreach (var i in _filter)
             {
                 ref var entity = ref _filter.GetEntity(i);
-                _monoBehaviour.StartCoroutine(ShakeCoroutine(ShakeDuration, ShakeForce));
+                ref var component = ref _filter.Get1(i);
+                _monoBehaviour.StartCoroutine(ShakeCoroutine(component.ShakeDuration, ShakeForce));
                 entity.Destroy();
             }
         }

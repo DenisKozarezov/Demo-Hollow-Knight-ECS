@@ -36,7 +36,7 @@ namespace Core.ECS.Systems.FalseKnight
                 hit.Source = animator.gameObject;
                
                 // Camera Shake
-                _world.NewEntity().Get<AnimateCameraShakeEventComponent>();
+                _world.NewEntity().Get<AnimateCameraShakeEventComponent>().ShakeDuration = 0.3f;
             }
         }
     }

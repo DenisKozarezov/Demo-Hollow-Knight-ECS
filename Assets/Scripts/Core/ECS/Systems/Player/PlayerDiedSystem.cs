@@ -3,11 +3,13 @@ using Leopotam.Ecs;
 using Core.ECS.Components.Units;
 using Core.ECS.Events.Player;
 using Core.ECS.Components;
+using Core.ECS.Events;
 
 namespace Core.ECS.Systems.Player
 {
     internal class PlayerDiedSystem : IEcsRunSystem
     {
+        private readonly EcsWorld _world = null;
         private readonly EcsFilter<PlayerDiedEvent> _filter = null;
         private readonly EcsFilter<ColliderComponent, PlayerTagComponent> _player = null;
 
@@ -20,7 +22,7 @@ namespace Core.ECS.Systems.Player
             var deathParticle = Resources.Load<GameObject>(DeathParticle);
 
             var effect = GameObject.Instantiate(deathBlow, position, Quaternion.identity);
-            GameObject.Destroy(effect, 0.5f);
+            GameObject.Destroy(effect, 0.7f);
             GameObject.Instantiate(deathParticle, position, Quaternion.identity);
             return effect;
         }
@@ -35,7 +37,10 @@ namespace Core.ECS.Systems.Player
                     collider.attachedRigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
 
                     // Death Effect
-                    CreateDeathEffect(collider.bounds.center);                    
+                    CreateDeathEffect(collider.bounds.center);
+
+                    // Camer Shake
+                    _world.NewEntity().Get<AnimateCameraShakeEventComponent>().ShakeDuration = 5f;
                 }
             }
         }
