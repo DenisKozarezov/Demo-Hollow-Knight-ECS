@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using Leopotam.Ecs;
+using Core.Models;
 using AI.ECS;
 
 namespace Core.ECS.Components.Units
@@ -10,6 +11,7 @@ namespace Core.ECS.Components.Units
     [Serializable] internal struct ColliderComponent { public Collider2D Value; }
     [Serializable] internal struct AnimatorComponent { public Animator Value; }
     [Serializable] internal struct SpriteRendererComponent { public SpriteRenderer Value; }
+    [Serializable] internal struct BossFightTriggerComponent { public UnitModel BossModel; }
     internal struct HealthComponent { public int Health; public int MaxHealth; }  
     internal struct DamageComponent { public int Damage; public float AttackRange; }
     internal struct MovableComponent { public float Value; }
