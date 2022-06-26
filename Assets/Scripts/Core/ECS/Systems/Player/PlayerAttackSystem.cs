@@ -84,6 +84,7 @@ namespace Core.ECS.Systems.Player
                     if (entity.Has<OnGroundComponent>()) continue;
                     attackEffect = CreateAttackEffect(animator, AttackDirection.Down);
                 }
+                GameObject.Destroy(attackEffect, 0.15f);
 
                 // Hit nearby enemies
                 ref var hitEntity = ref _world.NewEntity().Get<HitEventComponent>();
@@ -115,15 +116,8 @@ namespace Core.ECS.Systems.Player
                 case AttackDirection.Down:
                     animator.SetTrigger(ATTACK_DOWN_KEY);
                     break;
-            }
-
-            animator.GetComponent<MonoBehaviour>().StartCoroutine(AttackCoroutine(effect));
+            }                        
             return effect;
-        }
-        private IEnumerator AttackCoroutine(GameObject effect)
-        {
-            yield return new WaitForSeconds(0.15f);
-            GameObject.Destroy(effect);
         }
     }
 }
