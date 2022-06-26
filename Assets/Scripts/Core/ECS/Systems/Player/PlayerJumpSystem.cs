@@ -37,13 +37,9 @@ namespace Core.ECS.Systems.Player
             {
                 Rigidbody2D rigidbody = _filter.Get1(i).Value;
                 float jumpHeight = _filter.Get2(i).JumpForceRange.x;
-                float jumpForce = CalculateJumpForce(Physics2D.gravity.magnitude, jumpHeight);
-                rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+                float jumpForce = Utils.CalculateJumpForce(Physics2D.gravity.magnitude, jumpHeight);
+                rigidbody.velocity = Vector2.up * jumpForce;
             }
-        }   
-        private float CalculateJumpForce(float gravity, float height)
-        {
-            return Mathf.Sqrt(2 * gravity * height);
-        }
+        }         
     }
 }

@@ -11,7 +11,6 @@ namespace Core.ECS.Systems.FalseKnight
         private readonly EcsWorld _world = null;
         private readonly EcsFilter<
             AnimatorComponent, 
-            ColliderComponent, 
             DamageComponent,
             FalseKnightAttackEventComponent>.Exclude<DiedComponent> _filter = null;
 
@@ -21,15 +20,14 @@ namespace Core.ECS.Systems.FalseKnight
             {         
                 ref var ecsEntity = ref _filter.GetEntity(i);
                 ref var animator = ref _filter.Get1(i).Value;
-                ref var collider = ref _filter.Get2(i).Value;
-                ref var damage = ref _filter.Get3(i);
+                ref var damage = ref _filter.Get2(i);
 
                 animator.SetTrigger("Attack");
                 ecsEntity.Del<FalseKnightAttackEventComponent>();
 
                 // Hit enemies
                 ref var hit = ref _world.NewEntity().Get<HitEventComponent>();
-                hit.HitPosition = collider.bounds.center;
+                hit.HitPosition = animator.transform.position;
                 hit.HitRadius = damage.AttackRange;
                 hit.TargetLayer = Constants.PlayerLayer;
                 hit.Damage = damage.Damage;

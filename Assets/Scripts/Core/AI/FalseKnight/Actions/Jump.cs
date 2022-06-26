@@ -17,13 +17,14 @@ namespace Core.AI.FalseKnight.Actions
         {
             _fatigue = BehaviorTreeRef.Nodes.Where(n=> n is Fatigue).FirstOrDefault() as Fatigue;
             _rigidbody = BehaviorTreeRef.EntityReference.Entity.Get<RigidbodyComponent>().Value;
-            _jumpForce = BehaviorTreeRef.EntityReference.Entity.Get<JumpComponent>().JumpForceRange.x;
+            var jumpHeight = BehaviorTreeRef.EntityReference.Entity.Get<JumpComponent>().JumpForceRange.x;
+            _jumpForce = Utils.CalculateJumpForce(Physics2D.gravity.magnitude, jumpHeight);
         }
         protected override State OnUpdate()
         {           
             if (BehaviorTreeRef == null) return State.Failure;
 
-            _rigidbody.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
+            _rigidbody.velocity = Vector2.up * _jumpForce;
             if (_fatigue) _fatigue.Value += 1.4f;
             return State.Success;
         }
