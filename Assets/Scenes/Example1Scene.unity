@@ -204,7 +204,7 @@ GameObject:
   - component: {fileID: 283022758}
   - component: {fileID: 283022757}
   m_Layer: 0
-  m_Name: '[SceneECSManager]'
+  m_Name: EscStartup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

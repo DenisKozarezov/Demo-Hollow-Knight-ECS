@@ -1,49 +1,49 @@
 using UnityEngine;
+using System.Collections;
 using Leopotam.Ecs;
 using Core.ECS.Events;
 
 namespace Core.ECS.Systems.Camera
 {
-    internal sealed class CameraShakeSystem: IEcsRunSystem, IEcsInitSystem
+    internal sealed class CameraShakeSystem: IEcsRunSystem
     {
         private readonly EcsFilter<AnimateCameraShakeEventComponent> _filter = null;
 
-        private readonly Animator CameraRefAnimator;
-        private readonly float _timeAliveSeconds = 0.7f;
+        private readonly MonoBehaviour _monoBehaviour;
+        private const float ShakeDuration = 0.3f;
+        private const float ShakeForce = 0.2f;
+        private bool _shaking;
 
         internal CameraShakeSystem(UnityEngine.Camera camera)
         {
-            CameraRefAnimator = camera.GetComponent<Animator>();
+            _monoBehaviour = camera.GetComponent<MonoBehaviour>();
         }
 
-        public void Init()
-        {
-            CameraRefAnimator.enabled = false;
-        }
-        
         public void Run()
         {
+            if (_shaking) return;
+
             foreach (var i in _filter)
             {
-                ref var ecsEntity = ref _filter.GetEntity(i);
-                ref var shakeComponent = ref ecsEntity.Get<AnimateCameraShakeEventComponent>();
-
-                // Shake effect
-                CameraRefAnimator.enabled = true;
-
-                // Effect lifetime
-                shakeComponent.TimeAlive += Time.deltaTime;
-                if (shakeComponent.TimeAlive > _timeAliveSeconds)
-                {
-                    Reset(ref ecsEntity);
-                }
+                ref var entity = ref _filter.GetEntity(i);
+                _monoBehaviour.StartCoroutine(ShakeCoroutine(ShakeDuration, ShakeForce));
+                entity.Destroy();
             }
         }
 
-        private void Reset(ref EcsEntity ecsEntity)
+        private IEnumerator ShakeCoroutine(float duration, float magnitude)
         {
-            CameraRefAnimator.enabled = false;
-            ecsEntity.Del<AnimateCameraShakeEventComponent>();
+            _shaking = true;
+            float elapsedTime = 0f;
+            Vector3 startPosition = _monoBehaviour.transform.localPosition;
+            while (elapsedTime < duration)
+            {
+                _monoBehaviour.transform.localPosition = startPosition + Random.insideUnitSphere * magnitude;
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+            _shaking = false;
+            _monoBehaviour.transform.localPosition = startPosition;
         }
     }
 }
