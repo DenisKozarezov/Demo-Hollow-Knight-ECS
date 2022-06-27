@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Leopotam.Ecs;
 using Core.ECS.Events.Player;
-using Core.ECS.Components;
+using Core.ECS.Components.Player;
 using Core.ECS.Components.Units;
 using Core.Input;
 using Core.Models;

@@ -4,9 +4,9 @@ using Core.ECS.Events;
 using Leopotam.Ecs;
 using TMPro;
 
-namespace Core.ECS.Systems
+namespace Core.ECS.Systems.UI
 {
-    internal class InteractSystem : IEcsRunSystem
+    internal class InteractablePromptSystem : IEcsRunSystem
     {
         private readonly EcsFilter<InteractableTriggerEnterEvent> _enter = null;
         private readonly EcsFilter<InteractableTriggerExitEvent> _exit = null;

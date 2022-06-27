@@ -10,11 +10,11 @@ namespace Core.UI
         [SerializeField]
         private string _interactableLabel;
         [SerializeField]
-        private InteractType _interactType;
+        private InteractType _interactionType;
         private float _height;
         
         public string InteractableLabel => _interactableLabel;
-        public InteractType InteractType => _interactType;
+        public InteractType InteractionType => _interactionType;
 
         private void Start()
         {

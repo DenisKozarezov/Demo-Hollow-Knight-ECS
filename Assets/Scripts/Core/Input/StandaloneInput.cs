@@ -12,6 +12,7 @@ namespace Core.Input
 
         public ref Vector2 Direction => ref _direction;
         public event Action Move;
+        public event Action Look;
         public event Action Jump;
         public event Action Attack;
         public event Action FocusStarted;
@@ -29,6 +30,7 @@ namespace Core.Input
             _playerInput.Keyboard.Pause.performed += _ => Pause?.Invoke();
             _playerInput.Keyboard.Focus.started += _ => FocusStarted?.Invoke();
             _playerInput.Keyboard.Focus.canceled += _ => FocusCanceled?.Invoke();
+            _playerInput.Keyboard.Look.started += _ => Look?.Invoke();
         }
         private void Start()
         {
