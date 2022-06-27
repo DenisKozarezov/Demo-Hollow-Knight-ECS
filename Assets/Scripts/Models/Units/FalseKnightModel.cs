@@ -6,8 +6,8 @@ namespace Core.Models
     public class FalseKnightModel : UnitModel
     {
         [SerializeField, Min(0f)]
-        private float _jumpForce;
+        private float _jumpHeight;
 
-        public float JumpForce => _jumpForce;
+        public float JumpHeight => _jumpHeight;
     }
 }

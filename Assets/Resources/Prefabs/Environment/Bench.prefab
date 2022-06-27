@@ -169,3 +169,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interactableLabel: Rest
+  _interactType: 1

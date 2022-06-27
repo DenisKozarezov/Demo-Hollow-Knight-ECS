@@ -9,8 +9,12 @@ namespace Core.UI
     {
         [SerializeField]
         private string _interactableLabel;
+        [SerializeField]
+        private InteractType _interactType;
         private float _height;
+        
         public string InteractableLabel => _interactableLabel;
+        public InteractType InteractType => _interactType;
 
         private void Start()
         {
