@@ -92,12 +92,14 @@ namespace Core.ECS.Systems.Player
                 GameObject.Destroy(attackEffect, 0.15f);
 
                 // Hit nearby enemies
-                ref var hitEntity = ref _world.NewEntity().Get<HitEventComponent>();
-                hitEntity.HitPosition = attackEffect.transform.position;
-                hitEntity.HitRadius = damage.AttackRange;
-                hitEntity.Damage = damage.Damage;
-                hitEntity.TargetLayer = Constants.EnemyLayer;
-                hitEntity.Source = animator.gameObject;
+                _world.NewEntity(new HitEventComponent
+                {
+                    HitPosition = attackEffect.transform.position,
+                    HitRadius = damage.AttackRange,
+                    Damage = damage.Damage,
+                    TargetLayer = Constants.EnemyLayer,
+                    Source = animator.gameObject
+                });
             }
         }
         private GameObject CreateAttackEffect(Animator animator, AttackDirection direction = AttackDirection.Default)

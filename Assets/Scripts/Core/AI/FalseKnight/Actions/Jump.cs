@@ -20,39 +20,24 @@ namespace Core.AI.FalseKnight.Actions
         {
             _fatigue = BehaviorTreeRef.Nodes.Where(n=> n is Fatigue).FirstOrDefault() as Fatigue;
             _rigidbody = BehaviorTreeRef.EntityReference.Entity.Get<RigidbodyComponent>().Value;
-            var jumpHeight = BehaviorTreeRef.EntityReference.Entity.Get<JumpComponent>().JumpForceRange.y;
+            float jumpHeight = BehaviorTreeRef.EntityReference.Entity.Get<JumpComponent>().JumpForceRange.y;
             _jumpForce = Utils.CalculateJumpForce(Physics2D.gravity.magnitude, jumpHeight);
             _player = FindObjectsOfType<UnitScript>().Where(i => i.gameObject.layer == Constants.PlayerLayer).First().transform;
         }
-        private bool PlayerIsRight() => (_player.position.x - _rigidbody.transform.position.x) > 0;
         private bool PlayerIsLeft() => (_rigidbody.transform.position.x - _player.position.x ) > 0;
         
         protected override State OnUpdate()
         {           
             if (BehaviorTreeRef == null) return State.Failure;
 
-            //1. Определить где находится игрок
-            if (PlayerIsRight())
-            {
-                float distance = Math.Abs(_rigidbody.transform.position.x - _player.position.x);
-                float distanceToPlayer =  distance > 1 ? 1 : distance;
-                Vector2 jumpForce = new Vector2(_jumpForce * distanceToPlayer, _jumpForce);
-                _rigidbody.velocity = jumpForce;
-                
-                _fatigue.Value += 0.6f;
-                return State.Success;
-            }
+            float distance = Math.Abs(_rigidbody.transform.position.x - _player.position.x);
+            float distanceToPlayer = distance > 1 ? 1 : distance;
+            Vector2 jumpForce = new Vector2(_jumpForce * distanceToPlayer, _jumpForce);
 
-            if (PlayerIsLeft())
-            {
-                float distance = Math.Abs(_rigidbody.transform.position.x - _player.position.x);
-                float distanceToPlayer =  distance > 1 ? 1 : distance;
-                Vector2 jumpForce = new Vector2(- _jumpForce * distanceToPlayer, _jumpForce);
-                _rigidbody.velocity = jumpForce;
-                
-                _fatigue.Value += 0.6f;
-                return State.Success;
-            }
+            if (PlayerIsLeft()) jumpForce.x *= -1;
+
+            _rigidbody.velocity = jumpForce;
+            _fatigue.Value += 0.6f;
             return State.Success;
         }
         
@@ -76,7 +61,7 @@ namespace Core.AI.FalseKnight.Actions
                 return grounded.Value ? 1f : 0f;
             }
             
-            return 1f;
+            return base.Cost();
         }
     }
 }

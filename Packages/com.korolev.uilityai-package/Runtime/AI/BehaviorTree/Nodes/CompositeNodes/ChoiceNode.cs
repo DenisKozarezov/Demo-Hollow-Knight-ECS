@@ -30,7 +30,7 @@ namespace AI.BehaviorTree.Nodes.CompositeNodes
                     {
                         foreach (var parameter in ParametersList)
                         {
-                            var cost = node.Cost(parameter);
+                            float cost = node.Cost(parameter);
                             if (cost == 0 || cost < 0.001f)
                                 _existZeroParameter = true;
                             currentCost += cost ;

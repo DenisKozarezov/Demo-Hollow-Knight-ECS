@@ -39,7 +39,7 @@ namespace Core.ECS.Systems.Player
                     CreateDeathEffect(collider.bounds.center);
 
                     // Camer Shake
-                    _world.NewEntity().Get<AnimateCameraShakeEventComponent>().ShakeDuration = 5f;
+                    _world.NewEntity(new AnimateCameraShakeEventComponent { ShakeDuration = 5f });
                 }
             }
         }

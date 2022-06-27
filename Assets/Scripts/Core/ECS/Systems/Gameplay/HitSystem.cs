@@ -17,7 +17,7 @@ namespace Core.ECS.Systems
                 if (target == null) continue;
 
                 var entityRef = target.GetComponent<EntityReference>();
-                if (!entityRef.Entity.IsAlive() || entityRef.Entity.IsNull()) continue;
+                if (entityRef.Entity.IsNullOrEmpty()) continue;
                 
                 ref var damageEntity = ref entityRef.Entity.Get<DamageEventComponent>();
                 damageEntity.Damage = component.Damage;

@@ -1,4 +1,5 @@
 ﻿using AI.ECS.Systems;
+using Core.ECS.Events;
 using Core.ECS.Systems.Camera;
 using Core.ECS.Systems.Player;
 using Core.ECS.Systems.Units;
@@ -16,6 +17,9 @@ namespace Core.ECS.Systems
             Add(new HealthSystem());
             Add(new CameraSystems(context, UnityEngine.Camera.main));
             Add(new BehaviorTreeSystem());
+
+            OneFrame<DamageEventComponent>();
+            OneFrame<HitEventComponent>();
         }
     }
 }

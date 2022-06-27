@@ -1,10 +1,10 @@
-﻿using Leopotam.Ecs;
+﻿using UnityEngine;
+using Leopotam.Ecs;
 using Core.ECS.Events;
 using Core.ECS.Components.Player;
 using Core.ECS.Components.Units;
 using Core.UI;
 using Core.Input;
-using UnityEngine;
 
 namespace Core.ECS.Systems.Player
 {
@@ -40,14 +40,12 @@ namespace Core.ECS.Systems.Player
                 // Player can interact with something
                 foreach (var i in _enter)
                 {
-                    ref var view = ref _enter.Get1(i).View;
-                    SetInteractable(ref entity, true, view);
+                    SetInteractable(ref entity, true, _enter.Get1(i).View);
                 }
 
                 // Player left interactable object
                 foreach (var i in _exit)
                 {
-                    ref var view = ref _enter.Get1(i).View;
                     SetInteractable(ref entity, false);
                 }
             }
@@ -67,13 +65,17 @@ namespace Core.ECS.Systems.Player
         }
         private void OnInteract()
         {
-            if (!_entity.Has<CanInteractComponent>()) return;
-            
-            _entity.Del<CanInteractComponent>();
+            foreach (var i in _player)
+            {
+                if (_entity.Has<CanInteractComponent>())
+                {
+                    _entity.Del<CanInteractComponent>();
 
 #if UNITY_EDITOR
-            Debug.Log($"Player interacting with <b><color=yellow>{_view.name}</color></b>. Interaction type: <b><color=green>{_view.InteractionType}</color></b>.");
+                    Debug.Log($"Player interacting with <b><color=yellow>{_view.name}</color></b>. Interaction type: <b><color=green>{_view.InteractionType}</color></b>.");
 #endif
+                }
+            }
         }
     }
 }

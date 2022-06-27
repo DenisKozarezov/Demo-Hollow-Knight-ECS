@@ -13,8 +13,7 @@ namespace Core.AI.FalseKnight.Parameters
             if (BehaviorTreeRef.EntityReference.Entity.Has<DamageEventComponent>())
             {
                 Value += 0.7f;
-            }
-            
+            }            
             
             if (Value == 0 || Value < 0.001f)
             {

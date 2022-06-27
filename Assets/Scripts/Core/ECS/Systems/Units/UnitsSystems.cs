@@ -1,4 +1,6 @@
-﻿using Core.ECS.Systems.FalseKnight;
+﻿using Core.ECS.Events;
+using Core.ECS.Components.Units;
+using Core.ECS.Systems.FalseKnight;
 
 namespace Core.ECS.Systems.Units
 {
@@ -13,6 +15,10 @@ namespace Core.ECS.Systems.Units
             Add(new DustCloudAnimationSystem());
             Add(new DamageAnimationSystem());
             Add(new EnemyDeathEffectSystem());
+
+            OneFrame<UnitInitComponent>();
+            OneFrame<UnitCreateEventComponent>();
+            OneFrame<DiedComponent>();
         }
     }
 }

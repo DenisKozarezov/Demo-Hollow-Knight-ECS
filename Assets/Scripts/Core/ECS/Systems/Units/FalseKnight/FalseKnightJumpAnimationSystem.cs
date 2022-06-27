@@ -19,10 +19,11 @@ namespace Core.ECS.Systems.FalseKnight
 
         private void CreateDust(ref Vector2 point)
         {
-            EcsEntity dustAnimationEntity = _world.NewEntity();
-            ref var dust = ref dustAnimationEntity.Get<AnimateDustEventComponent>();
-            dust.Point = point;
-            dust.Scale = Vector3.one;
+            _world.NewEntity(new AnimateDustEventComponent
+            {
+                Point = point,
+                Scale = Vector3.one
+            });
         }
 
         public void Run()
@@ -54,7 +55,7 @@ namespace Core.ECS.Systems.FalseKnight
                     CreateDust(ref entity.Get<OnGroundComponent>().Point);
 
                     // Shake camera when landed
-                    _world.NewEntity().Get<AnimateCameraShakeEventComponent>().ShakeDuration = 0.3f;
+                    _world.NewEntity(new AnimateCameraShakeEventComponent { ShakeDuration = 0.3f });
                 }
             }
         }

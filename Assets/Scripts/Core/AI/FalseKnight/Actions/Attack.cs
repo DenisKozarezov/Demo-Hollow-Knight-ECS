@@ -35,7 +35,7 @@ namespace Core.AI.FalseKnight.Actions
                 return fatigue.Value < 0.2f ? 1f : 0f;
             }
             
-            return 1f;
+            return base.Cost();
         }
     }
 }
