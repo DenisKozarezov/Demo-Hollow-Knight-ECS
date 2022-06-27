@@ -12,6 +12,7 @@ namespace Core.ECS.Systems
             Add(new UnitsSystems(context));
             Add(new HitSystem());
             Add(new DamageSystem());
+            Add(new InteractSystem());
             Add(new PlayerSystems(context));
             Add(new HealthSystem());
             Add(new CameraSystems(context, UnityEngine.Camera.main));
