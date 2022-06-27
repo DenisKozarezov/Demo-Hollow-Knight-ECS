@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
+using Leopotam.Ecs;
 
 namespace Core
 {
@@ -24,6 +25,18 @@ namespace Core
         {
             color.a = alpha;
             return color;
+        }
+    }
+
+    public static class EcsExtensions
+    {
+        public static T NewEntity<T>(this EcsWorld world) where T : struct
+        {
+            return world.NewEntity().Get<T>();
+        }
+        public static void NewEntity<T>(this EcsWorld world, in T value) where T : struct
+        {
+            world.NewEntity().Get<T>() = value;
         }
     }
 }

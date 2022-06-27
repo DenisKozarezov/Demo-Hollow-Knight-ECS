@@ -9,7 +9,6 @@ namespace Core.UI
         [SerializeField]
         private TextMeshProUGUI _announcementText;
 
-        private enum FadeMode { On, Off }
         private const float AnnouncementDuration = 5f;
         private const float AnnouncementAppearenceTime = 2f;
 

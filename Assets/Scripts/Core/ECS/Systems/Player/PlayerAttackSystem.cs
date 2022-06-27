@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using Leopotam.Ecs;
 using Core.Input;
@@ -11,7 +10,13 @@ namespace Core.ECS.Systems.Player
 {
     internal class PlayerAttackSystem : IEcsInitSystem, IEcsDestroySystem
     {
-        private enum AttackDirection { None, Default, Up, Down }
+        private enum AttackDirection : byte
+        { 
+            None = 0x00, 
+            Default = 0x01, 
+            Up = 0x02, 
+            Down = 0x03 
+        }
 
         private readonly EcsWorld _world = null;
         private readonly EcsFilter<
