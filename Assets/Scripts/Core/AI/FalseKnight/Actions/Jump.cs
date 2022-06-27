@@ -1,9 +1,11 @@
+using System;
 using System.Linq;
 using UnityEngine;
 using Leopotam.Ecs;
 using AI.BehaviorTree.Nodes;
 using Core.ECS.Components.Units;
 using Core.AI.FalseKnight.Parameters;
+using Core.Units;
 
 namespace Core.AI.FalseKnight.Actions
 {
@@ -12,20 +14,45 @@ namespace Core.AI.FalseKnight.Actions
         private Fatigue _fatigue;
         private Rigidbody2D _rigidbody;
         private float _jumpForce;
+        private Transform _player;
 
         protected override void OnInit()
         {
             _fatigue = BehaviorTreeRef.Nodes.Where(n=> n is Fatigue).FirstOrDefault() as Fatigue;
             _rigidbody = BehaviorTreeRef.EntityReference.Entity.Get<RigidbodyComponent>().Value;
-            var jumpHeight = BehaviorTreeRef.EntityReference.Entity.Get<JumpComponent>().JumpForceRange.x;
+            var jumpHeight = BehaviorTreeRef.EntityReference.Entity.Get<JumpComponent>().JumpForceRange.y;
             _jumpForce = Utils.CalculateJumpForce(Physics2D.gravity.magnitude, jumpHeight);
+            _player = FindObjectsOfType<UnitScript>().Where(i => i.gameObject.layer == Constants.PlayerLayer).First().transform;
         }
+        private bool PlayerIsRight() => (_player.position.x - _rigidbody.transform.position.x) > 0;
+        private bool PlayerIsLeft() => (_rigidbody.transform.position.x - _player.position.x ) > 0;
+        
         protected override State OnUpdate()
         {           
             if (BehaviorTreeRef == null) return State.Failure;
 
-            _rigidbody.velocity = Vector2.up * _jumpForce;
-            if (_fatigue) _fatigue.Value += 1.4f;
+            //1. Определить где находится игрок
+            if (PlayerIsRight())
+            {
+                float distance = Math.Abs(_rigidbody.transform.position.x - _player.position.x);
+                float distanceToPlayer =  distance > 1 ? 1 : distance;
+                Vector2 jumpForce = new Vector2(_jumpForce * distanceToPlayer, _jumpForce);
+                _rigidbody.velocity = jumpForce;
+                
+                _fatigue.Value += 0.6f;
+                return State.Success;
+            }
+
+            if (PlayerIsLeft())
+            {
+                float distance = Math.Abs(_rigidbody.transform.position.x - _player.position.x);
+                float distanceToPlayer =  distance > 1 ? 1 : distance;
+                Vector2 jumpForce = new Vector2(- _jumpForce * distanceToPlayer, _jumpForce);
+                _rigidbody.velocity = jumpForce;
+                
+                _fatigue.Value += 0.6f;
+                return State.Success;
+            }
             return State.Success;
         }
         
