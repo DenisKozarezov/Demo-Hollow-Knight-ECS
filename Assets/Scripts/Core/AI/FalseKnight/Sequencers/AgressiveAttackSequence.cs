@@ -12,7 +12,7 @@ namespace Core.AI.FalseKnight.Sequencers
 
             if (aggression)
             {
-                return aggression.Value > 0.5f ? 5f : 0f;
+                return aggression.Value > 1f ? 5f : 0f;
             }
 
             return 1;
