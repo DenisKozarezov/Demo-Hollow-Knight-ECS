@@ -6,10 +6,9 @@ namespace Core.ECS.Events
     {
         //** ПААМЕТРЫ ДЛЯ ИЗМЕНЕНИЯ ИЗВНЕ** //
         public GameObject GameObjectRef;
-        public Color ColorRef;
         
         //** ПААМЕТРЫ ДЛЯ ИЗМЕНЕНИЯ ВНУТРИ СИСТЕМЫ DustCloudAnimationSystem** //
-        public float TimeAlive;
+        public float Duration;
         public bool Damaged;
     }
 }
