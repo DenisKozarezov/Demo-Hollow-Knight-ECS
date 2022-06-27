@@ -1,15 +1,16 @@
 using UnityEngine;
 using Leopotam.Ecs;
 using Core.ECS.Events;
+using Core.ECS.Components.Units;
 
 namespace Core.ECS.Systems
 {
     internal sealed class DamageAnimationSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<AnimateDamageEventComponent> _filter = null;
+        private readonly EcsFilter<AnimateDamageEventComponent>.Exclude<DiedComponent> _filter = null;
 
-        private float TimeAliveSeconds = 0.7f;
-        private Color RedColor = new Color(10, 0, 0, 1);
+        private const float Duration = 0.4f;
+        private Color WhiteColor = new Color(1, 1, 1, 0.7f);
 
         public void Run()
         {
@@ -20,22 +21,21 @@ namespace Core.ECS.Systems
 
                 SpriteRenderer renderer = eventComponent.GameObjectRef.GetComponent<SpriteRenderer>();
 
-                // Colorize in red
-                if (eventComponent.Damaged == false)
+                // Colorize in white
+                if (!eventComponent.Damaged)
                 {
-                    eventComponent.ColorRef = renderer.color;
-                    renderer.color = RedColor;
+                    renderer.color = WhiteColor;
                     eventComponent.Damaged = true;
-                    eventComponent.TimeAlive = 0;
+                    eventComponent.Duration = Duration;
                 }
 
                 // Return default color
                 else
                 {
-                    eventComponent.TimeAlive += Time.deltaTime;
-                    if (eventComponent.TimeAlive >= TimeAliveSeconds)
+                    eventComponent.Duration -= Time.deltaTime;
+                    if (eventComponent.Duration < 0f)
                     {
-                        renderer.color = eventComponent.ColorRef;
+                        renderer.color = Color.black;
                         entity.Del<AnimateDamageEventComponent>();
                     }
                 }
