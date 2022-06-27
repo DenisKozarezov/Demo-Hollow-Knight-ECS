@@ -2,7 +2,7 @@
 using Leopotam.Ecs;
 using Core.ECS.Events;
 using Core.ECS.Events.Player;
-using Core.ECS.Components;
+using Core.ECS.Components.Player;
 using Core.ECS.Components.Units;
 
 namespace Core.ECS.Systems.Player
@@ -33,13 +33,13 @@ namespace Core.ECS.Systems.Player
                 ref var collider = ref _filter.Get3(i);
 
                 // Player recieved damage
-                _world.NewEntity().Get<PlayerRecievedDamageEvent>().Value = damage.Damage;
+                _world.NewEntity(new PlayerRecievedDamageEvent { Value = damage.Damage });
 
                 // Create hit effect
                 GameObject.Destroy(CreateEffect(collider.Value.bounds.center), 0.5f);
 
                 // Player died
-                if (health.Health == 0) _world.NewEntity().Get<PlayerDiedEvent>();
+                if (health.Health == 0) _world.NewEntity<PlayerDiedEvent>();
             }
         }
     }

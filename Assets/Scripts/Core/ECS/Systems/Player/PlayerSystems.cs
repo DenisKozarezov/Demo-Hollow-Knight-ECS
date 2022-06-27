@@ -1,9 +1,16 @@
-﻿namespace Core.ECS.Systems.Player
+﻿using Core.ECS.Events.Player;
+
+namespace Core.ECS.Systems.Player
 {
     internal class PlayerSystems : Feature
     {
         internal PlayerSystems(GameContext context) : base(context)
         {
+            OneFrame<PlayerRecievedDamageEvent>();
+            OneFrame<PlayerDiedEvent>();
+            OneFrame<PlayerHealedEvent>();
+            OneFrame<EnergyReducedEvent>();
+
             Add(new PlayerInitSystem(context.UnitsDefinitions.PlayerModel));
             Add(new PlayerRecievedDamageSystem());
             Add(new PlayerFocusSystem(context.InputSystem, context.UnitsDefinitions.PlayerModel));
@@ -16,6 +23,7 @@
             Add(new PlayerAttackCooldownSystem(context.InputSystem));
             Add(new PlayerAnimationSystem(context.InputSystem));
             Add(new PlayerEnteredBossZoneSystem());
+            Add(new PlayerInteractSystem(context.InputSystem));
         }
     }
 }

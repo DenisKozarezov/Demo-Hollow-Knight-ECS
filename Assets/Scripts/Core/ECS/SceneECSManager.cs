@@ -33,10 +33,7 @@ namespace Core.ECS
             _systems = new EcsSystems(_world).ConvertScene(); // Этот метод сконвертирует GO в Entity;
             
             GameContext context = new GameContext(_systems, _inputSystem, _unitsDefinitions);
-            _allSystems = new AllSystems(context);
-            
-            AddOneFrames();
-
+            _allSystems = new AllSystems(context);            
             _allSystems.Init();
         }
         private void FixedUpdate() 
@@ -47,20 +44,6 @@ namespace Core.ECS
         {
             _allSystems.Destroy();
             _world.Destroy();
-        }
-
-        private void AddOneFrames()
-        {
-            _systems
-                .OneFrame<UnitInitComponent>()
-                .OneFrame<DamageEventComponent>()
-                .OneFrame<HitEventComponent>()
-                .OneFrame<UnitCreateEventComponent>()
-                .OneFrame<DiedComponent>()
-                .OneFrame<PlayerRecievedDamageEvent>()
-                .OneFrame<PlayerDiedEvent>()
-                .OneFrame<PlayerHealedEvent>()
-                .OneFrame<EnergyReducedEvent>();
         }
     }
 }

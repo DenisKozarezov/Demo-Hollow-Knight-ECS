@@ -13,12 +13,6 @@ namespace Core.ECS.Systems
 
         private const string HitEffectPath = "Prefabs/Effects/Impact/Hit Crack Impact";
 
-        private GameObject CreateEffect(Vector2 position)
-        {
-            var asset = Resources.Load<GameObject>(HitEffectPath);
-            return GameObject.Instantiate(asset, position, Quaternion.identity);
-        }
-
         public void Run()
         {
             foreach (var i in _filter)

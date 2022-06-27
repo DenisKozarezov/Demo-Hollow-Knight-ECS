@@ -17,7 +17,7 @@ namespace Core.ECS.Systems.FalseKnight
         public void Run()
         {
             foreach (var i in _filter)
-            {         
+            {
                 ref var ecsEntity = ref _filter.GetEntity(i);
                 ref var animator = ref _filter.Get1(i).Value;
                 ref var damage = ref _filter.Get2(i);
@@ -32,9 +32,9 @@ namespace Core.ECS.Systems.FalseKnight
                 hit.TargetLayer = Constants.PlayerLayer;
                 hit.Damage = damage.Damage;
                 hit.Source = animator.gameObject;
-               
+
                 // Camera Shake
-                _world.NewEntity().Get<AnimateCameraShakeEventComponent>().ShakeDuration = 0.3f;
+                _world.NewEntity(new AnimateCameraShakeEventComponent { ShakeDuration = 0.3f });
             }
         }
     }

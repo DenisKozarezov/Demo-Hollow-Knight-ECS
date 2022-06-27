@@ -18,7 +18,7 @@ namespace Core.ECS.Systems.Player
                     ref var entity = ref _filter.GetEntity(@event);
                     ref var gameView = ref _gameView.Get1(i);
                     ref var bossEvent = ref _filter.Get1(@event);
-                    gameView.GameView.Announce(bossEvent.BossModel.DisplayName);
+                    gameView.GameView.AnnounceBoss(bossEvent.BossModel.DisplayName);
                     entity.Destroy();
                 }
             }

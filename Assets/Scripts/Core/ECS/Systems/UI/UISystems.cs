@@ -7,6 +7,7 @@
             Add(new HealthViewInitSystem());
             Add(new HealthViewReducedSystem());
             Add(new HealthViewHealedSystem());
+            Add(new InteractablePromptSystem());
         }
     }
 }

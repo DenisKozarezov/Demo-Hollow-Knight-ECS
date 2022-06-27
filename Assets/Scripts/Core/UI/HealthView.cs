@@ -1,7 +1,7 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using Editor;
-using System;
 
 namespace Core.UI
 {

@@ -35,7 +35,7 @@ namespace Core.Units
         }
         private void OnCollisionExit2D(Collision2D collision)
         {
-            if (!_entityReference.Entity.IsAlive() || _entityReference.Entity.IsNull()) return;
+            if (_entityReference.Entity.IsNullOrEmpty()) return;
 
             if (collision.collider.gameObject.layer == Constants.GroundLayer)
             {

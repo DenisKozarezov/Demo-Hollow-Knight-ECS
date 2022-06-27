@@ -7,6 +7,7 @@ namespace Core.Input
     {
         ref Vector2 Direction { get; }
         event Action Move;
+        event Action Look;
         event Action Jump;
         event Action Attack;
         event Action FocusStarted;

@@ -1,7 +1,7 @@
+using Leopotam.Ecs;
 using AI.BehaviorTree.Nodes;
 using AI.BehaviorTree.Nodes.ParameterNodes;
 using Core.ECS.Components.Units;
-using Leopotam.Ecs;
 
 namespace Core.AI.FalseKnight.Parameters
 {

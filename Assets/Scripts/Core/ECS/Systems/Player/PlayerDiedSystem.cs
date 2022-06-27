@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using Leopotam.Ecs;
-using Core.ECS.Components.Units;
-using Core.ECS.Events.Player;
-using Core.ECS.Components;
 using Core.ECS.Events;
+using Core.ECS.Events.Player;
+using Core.ECS.Components.Player;
+using Core.ECS.Components.Units;
 
 namespace Core.ECS.Systems.Player
 {
@@ -39,7 +39,7 @@ namespace Core.ECS.Systems.Player
                     CreateDeathEffect(collider.bounds.center);
 
                     // Camer Shake
-                    _world.NewEntity().Get<AnimateCameraShakeEventComponent>().ShakeDuration = 5f;
+                    _world.NewEntity(new AnimateCameraShakeEventComponent { ShakeDuration = 5f });
                 }
             }
         }

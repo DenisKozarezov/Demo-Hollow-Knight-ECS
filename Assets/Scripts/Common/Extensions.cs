@@ -30,6 +30,10 @@ namespace Core
 
     public static class EcsExtensions
     {
+        public static bool IsNullOrEmpty(this EcsEntity entity)
+        {
+            return !entity.IsAlive() && entity.IsNull();
+        }
         public static T NewEntity<T>(this EcsWorld world) where T : struct
         {
             return world.NewEntity().Get<T>();
