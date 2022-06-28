@@ -42,7 +42,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -66,7 +66,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 8192
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -138,7 +138,28 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: atlas0 #00000354_7
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 247
+        width: 30
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e86d83386033a8b49a61416916d6727f
+      internalID: 210372836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -149,7 +170,29 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      atlas0 #00000354_5: 1864097479
+      atlas0 #00000354_18: 1603750620
+      atlas0 #00000354_4: 429406933
+      atlas0 #00000354_14: -355490642
+      atlas0 #00000354_8: -1390927429
+      atlas0 #00000354_9: -327407325
+      atlas0 #00000354_6: -1309039474
+      atlas0 #00000354_1: 237198628
+      atlas0 #00000354_20: -455673781
+      atlas0 #00000354_11: -959980304
+      atlas0 #00000354_17: -2093261796
+      atlas0 #00000354_10: 879825962
+      atlas0 #00000354_2: -48859841
+      atlas0 #00000354_0: -1702615061
+      atlas0 #00000354_21: 941984024
+      atlas0 #00000354_13: 301718997
+      atlas0 #00000354_19: 2001272103
+      atlas0 #00000354_12: 1532798900
+      atlas0 #00000354_3: 947068490
+      atlas0 #00000354_7: 210372836
+      atlas0 #00000354_15: 1155902159
+      atlas0 #00000354_16: -1998717690
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

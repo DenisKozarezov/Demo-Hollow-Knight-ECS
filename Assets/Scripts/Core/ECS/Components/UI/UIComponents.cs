@@ -5,4 +5,5 @@ namespace Core.ECS.Components.UI
 {
     [Serializable] internal struct HealthViewComponent { public HealthView HealthView; }
     [Serializable] internal struct GameViewComponent { public GameView GameView; }
+    [Serializable] internal struct GeoViewComponent { public GeoView GeoView; }
 }

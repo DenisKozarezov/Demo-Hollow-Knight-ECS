@@ -58,7 +58,7 @@ namespace Core.AI.FalseKnight.Actions
             Grounded grounded = parameter as Grounded;
             if (grounded)
             {
-                return grounded.Value ? 1f : 0f;
+                return grounded.Cost();
             }
             
             return base.Cost();

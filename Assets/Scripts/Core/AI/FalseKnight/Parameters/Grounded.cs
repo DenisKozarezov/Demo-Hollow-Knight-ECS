@@ -12,5 +12,9 @@ namespace Core.AI.FalseKnight.Parameters
             Value = BehaviorTreeRef.EntityReference.Entity.Has<OnGroundComponent>();
             return State.Success;
         }
+        public override float Cost()
+        {
+            return Value ? 1f : 0f;
+        }
     }
 }

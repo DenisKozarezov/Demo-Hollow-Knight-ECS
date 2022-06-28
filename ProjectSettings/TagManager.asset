@@ -15,7 +15,7 @@ TagManager:
   - PostProcessing
   - Enemy
   - Player
-  - 
+  - Items
   - 
   - 
   - 
@@ -56,4 +56,7 @@ TagManager:
     locked: 0
   - name: Foreground
     uniqueID: 126030259
+    locked: 0
+  - name: UI
+    uniqueID: 3871049501
     locked: 0

@@ -1,22 +1,40 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
+using System.Collections.Generic;
 
 namespace Core.UI
 {
     public class GameView : MonoBehaviour
     {
+        public enum GameEventType : byte
+        {
+            GameSave = 0x00,
+            MapUpdated = 0x01,
+        }
+        private Dictionary<GameEventType, string> _gameEvents = new Dictionary<GameEventType, string>
+        {
+            { GameEventType.GameSave, "Game saved" },
+            { GameEventType.MapUpdated, "Map updated" }
+        };
+
         [Header("UI")]
         [SerializeField]
         private TextMeshProUGUI _bossText;
         [SerializeField]
         private TextMeshProUGUI _locationText;
         [SerializeField]
-        private TextMeshProUGUI _gameOptionText;
+        private TextMeshProUGUI _gameEventText;
 
         private const float AnnouncementDuration = 5f;
         private const float AnnouncementAppearenceTime = 2f;
 
+        private void Start()
+        {
+            _bossText.gameObject.SetActive(false);
+            _locationText.gameObject.SetActive(false);
+            _gameEventText.gameObject.SetActive(false);
+        }
         public void AnnounceBoss(string message)
         {
             _bossText.text = message;
@@ -31,12 +49,12 @@ namespace Core.UI
             _locationText.gameObject.SetActive(true);
             StartCoroutine(AnnounceCoroutine(_locationText));
         }
-        public void AnnounceGameOption(string message)
+        public void AnnounceGameMessage(GameEventType messageType)
         {
-            _gameOptionText.text = message;
-            _gameOptionText.color = _gameOptionText.color.SetAlpha(0f);
-            _gameOptionText.gameObject.SetActive(true);
-            StartCoroutine(AnnounceCoroutine(_gameOptionText));
+            _gameEventText.text = _gameEvents[messageType];
+            _gameEventText.color = _gameEventText.color.SetAlpha(0f);
+            _gameEventText.gameObject.SetActive(true);
+            StartCoroutine(AnnounceCoroutine(_gameEventText));
         }
         private IEnumerator Fade(TextMeshProUGUI text, FadeMode mode)
         {
@@ -48,14 +66,14 @@ namespace Core.UI
                 text.color = Color.Lerp(startColor, endColor, elapsedTime / AnnouncementAppearenceTime);
                 elapsedTime += Time.deltaTime;
                 yield return null;
-            }          
+            }        
+            if (mode == FadeMode.Off) text.gameObject.SetActive(false);
         }
         private IEnumerator AnnounceCoroutine(TextMeshProUGUI text)
         {
             yield return Fade(text, FadeMode.On);
             yield return new WaitForSeconds(AnnouncementDuration);
             yield return Fade(text, FadeMode.Off);
-            text.gameObject.SetActive(false);
         }
     }
 }
