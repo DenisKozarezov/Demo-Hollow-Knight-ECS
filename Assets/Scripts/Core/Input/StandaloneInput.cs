@@ -8,10 +8,11 @@ namespace Core.Input
     {
         private PlayerInputController _playerInput;
         private Vector2 _direction;
+        private float _jumpHoldTime;
         private bool _enabled;
 
         public ref Vector2 Direction => ref _direction;
-        public event Action Move;
+        public ref float JumpHoldTime => ref _jumpHoldTime;
         public event Action Look;
         public event Action Jump;
         public event Action Attack;
@@ -24,7 +25,6 @@ namespace Core.Input
         private void Awake()
         {
             _playerInput = new PlayerInputController();
-            _playerInput.Keyboard.Move.started += _ => Move?.Invoke();
             _playerInput.Keyboard.Jump.started += _ => Jump?.Invoke();
             _playerInput.Keyboard.Attack.started += _ => Attack?.Invoke();
             _playerInput.Keyboard.Pause.performed += _ => Pause?.Invoke();
@@ -46,6 +46,10 @@ namespace Core.Input
 
             _direction.x = _playerInput.Keyboard.Move.ReadValue<float>();
             _direction.y = _playerInput.Keyboard.Look.ReadValue<float>();
+
+            if (_playerInput.Keyboard.Jump.IsPressed()) _jumpHoldTime += Time.deltaTime;
+            else _jumpHoldTime = 0f;
+
         }
         public void Disable()
         {

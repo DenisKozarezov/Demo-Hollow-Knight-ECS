@@ -10,17 +10,13 @@ namespace Core.UI
         [SerializeField]
         private string _interactableLabel;
         [SerializeField]
+        private float _offsetY;
+        [SerializeField]
         private InteractType _interactionType;
-        private float _height;
         
         public string InteractableLabel => _interactableLabel;
         public InteractType InteractionType => _interactionType;
 
-        private void Start()
-        {
-            var collider = GetComponent<Collider2D>();
-            _height = collider.bounds.size.y;
-        }
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.gameObject.layer == Constants.PlayerLayer)
@@ -28,7 +24,7 @@ namespace Core.UI
                 WorldHandler.GetWorld().NewEntity(new InteractableTriggerEnterEvent
                 {
                     View = this,
-                    LocalPosition = Vector2.up * _height
+                    OffsetY = _offsetY
                 });
             }
         }

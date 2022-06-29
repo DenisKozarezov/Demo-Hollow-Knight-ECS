@@ -6,7 +6,7 @@ using TMPro;
 
 namespace Core.ECS.Systems.UI
 {
-    internal class InteractablePromptSystem : IEcsRunSystem
+    internal class InteractablePromptUISystem : IEcsRunSystem
     {
         private readonly EcsFilter<InteractableTriggerEnterEvent> _enter = null;
         private readonly EcsFilter<InteractableTriggerExitEvent> _exit = null;
@@ -17,11 +17,11 @@ namespace Core.ECS.Systems.UI
         private SpriteRenderer _renderer;
         private TextMeshPro _text;
 
-        private GameObject CreatePrompt(Transform target, Vector2 localPosition)
+        private GameObject CreatePrompt(Transform target, float offsetY)
         {
             var asset = Resources.Load<GameObject>(PromptPath);
-            var go = GameObject.Instantiate(asset, target);
-            go.transform.localPosition = localPosition;
+            var go = GameObject.Instantiate(asset, target.position, Quaternion.identity);
+            go.transform.position += Vector3.up * offsetY;
             return go;
         }
         public void Run()
@@ -47,7 +47,7 @@ namespace Core.ECS.Systems.UI
         }
         private void ShowLabel(ref InteractableTriggerEnterEvent component, float fadeTime)
         {      
-            var prompt = CreatePrompt(component.View.transform, component.LocalPosition);
+            var prompt = CreatePrompt(component.View.transform, component.OffsetY);
 
             _renderer = prompt.GetComponentInChildren<SpriteRenderer>();
             _renderer.color = _renderer.color.SetAlpha(0f);

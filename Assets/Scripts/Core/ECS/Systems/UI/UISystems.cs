@@ -5,9 +5,10 @@
         internal UISystems(GameContext context) : base(context)
         {
             Add(new HealthViewInitSystem());
-            Add(new HealthViewReducedSystem());
-            Add(new HealthViewHealedSystem());
-            Add(new InteractablePromptSystem());
+            Add(new HealthReducedUISystem());
+            Add(new HealthHealedUISystem());
+            Add(new InteractablePromptUISystem());
+            Add(new GeoObtainedUISystem());
         }
     }
 }

@@ -11,7 +11,7 @@ namespace Core.ECS.Systems.Player
         private readonly EcsFilter<
             RigidbodyComponent, 
             JumpComponent, 
-            OnGroundComponent, 
+            OnGroundComponent,
             PlayerTagComponent>
             .Exclude<DiedComponent, ChannellingComponent> _filter = null;
 
@@ -21,25 +21,24 @@ namespace Core.ECS.Systems.Player
         {
             _playerInput = playerInput;
         }
-        
-        public virtual void Init() 
+
+        public virtual void Init()
         {
-            _playerInput.Jump += OnJump;        
+            _playerInput.Jump += OnJump;
         }
         public void Destroy()
         {
             _playerInput.Jump -= OnJump;
-        }
-
-        private void OnJump() 
+        }        
+        private void OnJump()
         {
             foreach (var i in _filter)
             {
                 Rigidbody2D rigidbody = _filter.Get1(i).Value;
                 float jumpHeight = _filter.Get2(i).JumpForceRange.x;
                 float jumpForce = Utils.CalculateJumpForce(Physics2D.gravity.magnitude, jumpHeight);
-                rigidbody.velocity = Vector2.up * jumpForce;
+                rigidbody.velocity += Vector2.up * jumpForce;
             }
-        }         
+        }
     }
 }

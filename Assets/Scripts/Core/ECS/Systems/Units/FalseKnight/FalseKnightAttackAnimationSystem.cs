@@ -2,7 +2,6 @@ using Leopotam.Ecs;
 using Core.ECS.Events;
 using Core.ECS.Components.Units;
 using Core.ECS.Events.FalseKnight;
-using Core.Models;
 
 namespace Core.ECS.Systems.FalseKnight
 {
@@ -26,12 +25,14 @@ namespace Core.ECS.Systems.FalseKnight
                 ecsEntity.Del<FalseKnightAttackEventComponent>();
 
                 // Hit enemies
-                ref var hit = ref _world.NewEntity().Get<HitEventComponent>();
-                hit.HitPosition = animator.transform.position;
-                hit.HitRadius = damage.AttackRange;
-                hit.TargetLayer = Constants.PlayerLayer;
-                hit.Damage = damage.Damage;
-                hit.Source = animator.gameObject;
+                _world.NewEntity(new HitEventComponent
+                {
+                    HitPosition = animator.transform.position,
+                    HitRadius = damage.AttackRange,
+                    TargetLayer = Constants.PlayerLayer,
+                    Damage = damage.Damage,
+                    Source = animator.gameObject
+                });
 
                 // Camera Shake
                 _world.NewEntity(new AnimateCameraShakeEventComponent { ShakeDuration = 0.3f });

@@ -6,7 +6,7 @@ namespace Core.Input
     internal interface IInputSystem
     {
         ref Vector2 Direction { get; }
-        event Action Move;
+        ref float JumpHoldTime { get; }
         event Action Look;
         event Action Jump;
         event Action Attack;

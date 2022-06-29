@@ -17,7 +17,7 @@ namespace AI.BehaviorTree.Nodes.CompositeNodes
         protected override State OnUpdate()
         {
             _existZeroParameter = false;
-            maxCost = 0;
+            maxCost = 0f;
             actualNode = null;
             
             if (ChildNodes.Count > 0)
@@ -25,15 +25,15 @@ namespace AI.BehaviorTree.Nodes.CompositeNodes
                 foreach (var node in ChildNodes)
                 {
                     _existZeroParameter = false;
-                    float currentCost = 0;
+                    float currentCost = 0f;
                     if (ParametersList.Count > 0)
                     {
                         foreach (var parameter in ParametersList)
                         {
                             float cost = node.Cost(parameter);
-                            if (cost == 0 || cost < 0.001f)
+                            if (cost == 0f || cost < 0.001f)
                                 _existZeroParameter = true;
-                            currentCost += cost ;
+                            currentCost += cost;
                         }
                     }
                     else
