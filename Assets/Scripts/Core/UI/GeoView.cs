@@ -9,10 +9,14 @@ namespace Core.UI
     public class GeoView : MonoBehaviour
     {
         [SerializeField]
-        private TextMeshProUGUI _geoText;
+        private TextMeshProUGUI _geoCurrentText;
         [SerializeField]
-        private Image _image; 
+        private TextMeshProUGUI _geoAddingText;
+        [SerializeField]
+        private Image _image;
+
         private int _currentValue;
+        private int _addingValue;
         private Coroutine _coroutine;
         private bool _fading;
         private const float AnnouncementDuration = 5f;
@@ -20,73 +24,91 @@ namespace Core.UI
 
         private void Start()
         {
-            _geoText.gameObject.SetActive(false);
-            _image.gameObject.SetActive(false);
-            _geoText.color = _geoText.color.SetAlpha(0f);
-            _image.color = _geoText.color.SetAlpha(0f);
+            SetActive(false);
+            SetColor(_geoCurrentText.color.SetAlpha(0f), _geoAddingText.color.SetAlpha(0f));
+        }
+        private void SetActive(bool isActive)
+        {
+            _geoCurrentText.gameObject.SetActive(isActive);
+            _geoAddingText.gameObject.SetActive(isActive);
+            _image.gameObject.SetActive(isActive);
+        }
+        private void SetColor(Color currentColor, Color addingColor)
+        {
+            _geoCurrentText.color = currentColor;
+            _image.color = currentColor;
+            _geoAddingText.color = addingColor;
+        }
+        private void SetAddingValue(int value)
+        {
+            _addingValue = value;
+            _geoAddingText.text = $"+{value}";
+        }
+        private void SetCurrentValue(int value)
+        {
+            _currentValue = value;
+            _geoCurrentText.text = value.ToString();
         }
         public void AddValue(int value)
         {
             if (_coroutine != null) StopCoroutine(_coroutine);
 
-            _currentValue += value;
+            SetAddingValue(_addingValue + value);
 
             if (!_fading) StartCoroutine(Fade(FadeMode.On));
-            _coroutine = StartCoroutine(GeoCoroutine(value, true));
-            StartCoroutine(WaitCoroutine());
+            if (_coroutine != null) StopCoroutine(_coroutine);
+            _coroutine = StartCoroutine(GeoCoroutine());
         }
         public void ReduceValue(int value)
         {
             if (_coroutine != null) StopCoroutine(_coroutine);
 
-            _currentValue = Math.Max(_currentValue - value, 0);
+            SetAddingValue(_addingValue - value);
 
             if (!_fading) StartCoroutine(Fade(FadeMode.On));
-            _coroutine = StartCoroutine(GeoCoroutine(value, false));
-            StartCoroutine(WaitCoroutine());
+            if (_coroutine != null) StopCoroutine(_coroutine);
+            _coroutine = StartCoroutine(GeoCoroutine());
         }     
-        private IEnumerator GeoCoroutine(int value, bool add)
+        private IEnumerator GeoCoroutine()
         {
-            int startValue = _currentValue;
-            int endValue = add ? startValue + value : startValue - value;
+            yield return new WaitForSeconds(2f);
+
+            int startCurrentValue = _currentValue;
+            int startAddingValue = _addingValue;
             float elapsedTime = 0f;
-            while (elapsedTime <= AnnouncementAppearenceTime)
+            while (elapsedTime <= 1f)
             {
-                int lerp = Mathf.RoundToInt(Mathf.Lerp(startValue, endValue, elapsedTime / AnnouncementAppearenceTime));
-                _geoText.text = lerp.ToString();
+                SetCurrentValue(Mathf.RoundToInt(Mathf.Lerp(startCurrentValue, _currentValue + _addingValue, elapsedTime)));             
+                SetAddingValue(Mathf.RoundToInt(Mathf.Lerp(startAddingValue, 0, elapsedTime)));
                 elapsedTime += Time.deltaTime;
                 yield return null;
             }
+
+            yield return new WaitForSeconds(AnnouncementDuration);
+            yield return Fade(FadeMode.Off);
         }
         private IEnumerator Fade(FadeMode mode)
         {
             _fading = true;
 
-            _geoText.gameObject.SetActive(true);
-            _image.gameObject.SetActive(true);
+            SetActive(true);
 
             float elapsedTime = 0f;
-            Color startColor = _geoText.color;
-            Color endColor = startColor.SetAlpha(mode == FadeMode.Off ? 0f : 1f);
+            Color startCurrentColor = _geoCurrentText.color;
+            Color startAddingColor = _geoAddingText.color;
+            Color endCurrentColor = startCurrentColor.SetAlpha(mode == FadeMode.Off ? 0f : 1f);
+            Color endAddingColor = startAddingColor.SetAlpha(mode == FadeMode.Off ? 0f : 1f);
             while (elapsedTime < AnnouncementAppearenceTime)
             {
-                _geoText.color = Color.Lerp(startColor, endColor, elapsedTime / AnnouncementAppearenceTime);
-                _image.color = Color.Lerp(startColor, endColor, elapsedTime / AnnouncementAppearenceTime);
+                float factor = elapsedTime / AnnouncementAppearenceTime;
+                Color currentLerpColor = Color.Lerp(startCurrentColor, endCurrentColor, factor);
+                Color addingLerpColor = Color.Lerp(startAddingColor, endAddingColor, factor);
+                SetColor(currentLerpColor, addingLerpColor);
                 elapsedTime += Time.deltaTime;
                 yield return null;
             }
-            if (mode == FadeMode.Off)
-            {
-                _geoText.gameObject.SetActive(false);
-                _image.gameObject.SetActive(false);
-            }
+            if (mode == FadeMode.Off) SetActive(false);
             _fading = false;
-        }
-        private IEnumerator WaitCoroutine()
-        {
-            yield return _coroutine;
-            yield return new WaitForSeconds(AnnouncementDuration);
-            yield return Fade(FadeMode.Off);
         }
     }
 }
