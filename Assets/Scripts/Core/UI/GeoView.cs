@@ -19,8 +19,8 @@ namespace Core.UI
         private int _addingValue;
         private Coroutine _coroutine;
         private bool _fading;
-        private const float AnnouncementDuration = 5f;
-        private const float AnnouncementAppearenceTime = 2f;
+        private const float Duration = 5f;
+        private const float AppearenceTime = 2f;
 
         private void Start()
         {
@@ -84,7 +84,7 @@ namespace Core.UI
                 yield return null;
             }
 
-            yield return new WaitForSeconds(AnnouncementDuration);
+            yield return new WaitForSeconds(Duration);
             yield return Fade(FadeMode.Off);
         }
         private IEnumerator Fade(FadeMode mode)
@@ -98,9 +98,9 @@ namespace Core.UI
             Color startAddingColor = _geoAddingText.color;
             Color endCurrentColor = startCurrentColor.SetAlpha(mode == FadeMode.Off ? 0f : 1f);
             Color endAddingColor = startAddingColor.SetAlpha(mode == FadeMode.Off ? 0f : 1f);
-            while (elapsedTime < AnnouncementAppearenceTime)
+            while (elapsedTime < AppearenceTime)
             {
-                float factor = elapsedTime / AnnouncementAppearenceTime;
+                float factor = elapsedTime / AppearenceTime;
                 Color currentLerpColor = Color.Lerp(startCurrentColor, endCurrentColor, factor);
                 Color addingLerpColor = Color.Lerp(startAddingColor, endAddingColor, factor);
                 SetColor(currentLerpColor, addingLerpColor);
