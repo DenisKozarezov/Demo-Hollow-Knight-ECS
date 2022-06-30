@@ -95,7 +95,6 @@ namespace Core.UI
             int startCurrentValue = _currentValue;
 
             var sequence = DOTween.Sequence();
-            sequence.AppendInterval(1f);
             sequence.Append(DOTween.To(() => _currentValue, x => SetCurrentValue(x), startCurrentValue + _addingValue, 1f));
             sequence.Join(DOTween.To(() => _addingValue, x => SetAddingValue(x), 0, 1f));
             sequence.AppendInterval(Duration);

@@ -1,10 +1,10 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
 using Core.Models;
-using UnityEngine.UI;
 
 namespace Core.UI
 {
@@ -30,11 +30,12 @@ namespace Core.UI
         public void SetConversationContext(ConversationContext context)
         {
             _context = context;
+            _currentIndex = 0;
             _phrasesCount = context.Conversation.Count;
         }
         public void PlayNext()
         {
-            if (PhrasesEnded)
+            if (_context == null || PhrasesEnded)
             {
                 CloseDialog();
                 return;
