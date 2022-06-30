@@ -15,7 +15,6 @@ namespace Core.ECS.Systems.Player
         private readonly EcsFilter<PlayerTagComponent>.Exclude<DiedComponent> _player = null;
         private readonly IInputSystem _inputSystem;
         private InteractableView _view;
-        private EcsEntity _entity;
 
         internal PlayerInteractSystem(IInputSystem inputSystem)
         {
@@ -35,7 +34,6 @@ namespace Core.ECS.Systems.Player
             foreach (var player in _player)
             {
                 ref var entity = ref _player.GetEntity(player);
-                _entity = entity;
 
                 // Player can interact with something
                 foreach (var i in _enter)
@@ -65,16 +63,33 @@ namespace Core.ECS.Systems.Player
         }
         private void OnInteract()
         {
+            if (_view == null) return;
+
             foreach (var i in _player)
             {
-                if (_entity.Has<CanInteractComponent>())
+                ref var entity = ref _player.GetEntity(i);
+                if (entity.Has<CanInteractComponent>())
                 {
-                    _entity.Del<CanInteractComponent>();
-
+                    entity.Del<CanInteractComponent>();
+                    ExecuteInteraction(_view.InteractionType);
 #if UNITY_EDITOR
                     Debug.Log($"Player interacting with <b><color=yellow>{_view.name}</color></b>. Interaction type: <b><color=green>{_view.InteractionType}</color></b>.");
 #endif
                 }
+            }
+        }
+        private void ExecuteInteraction(InteractType type)
+        {
+            switch (type)
+            {
+                case InteractType.Rest:
+                    break;
+                case InteractType.Read:
+                    break;
+                case InteractType.Talk:
+                    break;
+                case InteractType.Trade:
+                    break;
             }
         }
     }

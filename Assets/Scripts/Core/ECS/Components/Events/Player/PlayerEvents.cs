@@ -9,4 +9,5 @@ namespace Core.ECS.Events.Player
     internal struct PlayerHealedEvent { public int Value; }
     internal struct EnergyReducedEvent { public float Value; }
     internal struct PlayerEnteredBossZoneEvent { public UnitModel BossModel; }
+    internal struct PlayerInteractedWithNPCEvent { }
 }

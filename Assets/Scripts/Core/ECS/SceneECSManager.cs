@@ -7,10 +7,7 @@ using UnityEngine;
 using Leopotam.Ecs;
 using Core.Input;
 using Core.Models;
-using Core.ECS.Events;
-using Core.ECS.Events.Player;
 using Core.ECS.Systems;
-using Core.ECS.Components.Units;
 using Voody.UniLeo;
 using Zenject;
 

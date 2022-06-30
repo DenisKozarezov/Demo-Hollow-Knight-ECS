@@ -15,11 +15,11 @@ MonoBehaviour:
   _id: 0
   _isLoop: 0
   _conversation:
-  - Ho, hello there, traveller! I'm afraid there is only me to offer welcome. Our
-    town's fallen quiet you see.
-  - Ho, hello there, traveller! I'm afraid there is only me to offer welcome. Our
-    town's fallen quiet you see.
-  - 'Ho, hello there, traveller! I''m afraid there is only me to offer welcome. Our
-    town''s fallen quiet you see.
+  - Ho there, traveller! I'm afraid there is only me to offer welcome. Our town's
+    fallen quiet you see.
+  - Ho there, traveller! I'm afraid there is only me to offer welcome. Our town's
+    fallen quiet you see.
+  - 'Ho there, traveller! I''m afraid there is only me to offer welcome. Our town''s
+    fallen quiet you see.
 
 '

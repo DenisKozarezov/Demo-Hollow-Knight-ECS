@@ -13,6 +13,9 @@ GameObject:
   - component: {fileID: 417439987548578997}
   - component: {fileID: 7877330409622547916}
   - component: {fileID: 3679317781255835431}
+  - component: {fileID: -274068683025750250}
+  - component: {fileID: -8508400842242721570}
+  - component: {fileID: -1028390621050233941}
   - component: {fileID: 2560238241253341815}
   m_Layer: 0
   m_Name: Elderbug
@@ -141,6 +144,48 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value:
     Value: {fileID: 417439987548578997}
+--- !u!114 &-274068683025750250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5392100171666890834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c51965847953ea0458fda3e5c4558c7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-8508400842242721570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5392100171666890834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e4ef28d346a7fc43891e7a78d20ac8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value:
+    EntityReference: {fileID: -274068683025750250}
+--- !u!114 &-1028390621050233941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5392100171666890834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e28109e7011a2c344bb487921958dcb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value:
+    Interactable: 1
+    _conversations:
+    - {fileID: 11400000, guid: 59897d5f52f6fcb4295f16205f180af5, type: 2}
 --- !u!114 &2560238241253341815
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,6 +198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e9d04047db154540a67833af8662386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _interactableLabel: Listen
+  _interactable: 1
+  _label: Listen
   _offsetY: 2
   _interactionType: 4
