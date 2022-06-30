@@ -5,17 +5,19 @@ using Core.ECS.Components.Player;
 using Core.ECS.Components.Units;
 using Core.UI;
 using Core.Input;
+using Core.ECS.Events.Player;
+using AI.ECS;
 
 namespace Core.ECS.Systems.Player
 {
     internal class PlayerInteractSystem : IEcsInitSystem, IEcsRunSystem, IEcsDestroySystem
     {
+        private readonly EcsWorld _world = null;
         private readonly EcsFilter<InteractableTriggerEnterEvent> _enter = null;
         private readonly EcsFilter<InteractableTriggerExitEvent> _exit = null;
         private readonly EcsFilter<PlayerTagComponent>.Exclude<DiedComponent> _player = null;
         private readonly IInputSystem _inputSystem;
         private InteractableView _view;
-        private EcsEntity _entity;
 
         internal PlayerInteractSystem(IInputSystem inputSystem)
         {
@@ -35,7 +37,6 @@ namespace Core.ECS.Systems.Player
             foreach (var player in _player)
             {
                 ref var entity = ref _player.GetEntity(player);
-                _entity = entity;
 
                 // Player can interact with something
                 foreach (var i in _enter)
@@ -52,29 +53,40 @@ namespace Core.ECS.Systems.Player
         }
         private void SetInteractable(ref EcsEntity player, bool isInteractable, InteractableView view = null)
         {
-            if (isInteractable)
-            {
-                player.Get<CanInteractComponent>().View = view;
-                _view = view;
-            }
-            else
-            {
-                player.Del<CanInteractComponent>();
-                _view = null;
-            }
+            if (isInteractable) player.Get<CanInteractComponent>().View = view;
+            else player.Del<CanInteractComponent>();
+            _view = view;
         }
         private void OnInteract()
         {
+            if (_view == null) return;
+
             foreach (var i in _player)
             {
-                if (_entity.Has<CanInteractComponent>())
+                ref var entity = ref _player.GetEntity(i);
+                if (entity.Has<CanInteractComponent>())
                 {
-                    _entity.Del<CanInteractComponent>();
-
+                    ExecuteInteraction(_view);
 #if UNITY_EDITOR
                     Debug.Log($"Player interacting with <b><color=yellow>{_view.name}</color></b>. Interaction type: <b><color=green>{_view.InteractionType}</color></b>.");
 #endif
                 }
+            }
+        }
+        private void ExecuteInteraction(InteractableView view)
+        {
+            switch (view.InteractionType)
+            {
+                case InteractType.Rest:
+                    break;
+                case InteractType.Read:
+                    break;
+                case InteractType.Talk:
+                    ref var npc = ref _view.GetComponent<EntityReference>().Entity.Get<NPCComponent>();
+                    _world.NewEntity(new PlayerTalkingWithNPCEvent { NPC = npc });
+                    break;
+                case InteractType.Trade:
+                    break;
             }
         }
     }

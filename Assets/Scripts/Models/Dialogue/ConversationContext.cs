@@ -16,7 +16,7 @@ namespace Core.Models
 
         public uint ID => _id;
         public bool IsLoop => _isLoop;
-        public Queue<string> Conversation => new Queue<string>(_conversation);
+        public IReadOnlyList<string> Conversation => _conversation;
 
         public bool Equals(ConversationContext other)
         {

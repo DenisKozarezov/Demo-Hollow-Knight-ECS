@@ -55,26 +55,24 @@ namespace Core.UI
             if (IsPlaying) _sequence.Kill();
 
             SetAddingValue(_addingValue + value);
-
-            _sequence = DOTween.Sequence();
-            if (!_fading) _sequence.Join(Fade(FadeMode.On));
-            _sequence = _sequence.Append(GeoSequence());
-            _sequence.Append(Fade(FadeMode.Off));
-            _sequence.OnKill(() => _fading = false);
+            ShowGeo();
         }
         public void ReduceValue(int value)
         {
             if (IsPlaying) _sequence.Kill();
 
             SetAddingValue(_addingValue - value);
-
+            ShowGeo();
+        }    
+        private void ShowGeo()
+        {
             _sequence = DOTween.Sequence();
             if (!_fading) _sequence.Join(Fade(FadeMode.On));
             _sequence = _sequence.Append(GeoSequence());
             _sequence.Append(Fade(FadeMode.Off));
             _sequence.OnKill(() => _fading = false);
-        }     
-        private Tween Fade(FadeMode mode)
+        }
+        private Sequence Fade(FadeMode mode)
         {
             _fading = true;
             float alpha = mode == FadeMode.On ? 1f : 0f;
@@ -97,7 +95,6 @@ namespace Core.UI
             int startCurrentValue = _currentValue;
 
             var sequence = DOTween.Sequence();
-            sequence.AppendInterval(1f);
             sequence.Append(DOTween.To(() => _currentValue, x => SetCurrentValue(x), startCurrentValue + _addingValue, 1f));
             sequence.Join(DOTween.To(() => _addingValue, x => SetAddingValue(x), 0, 1f));
             sequence.AppendInterval(Duration);

@@ -1,8 +1,9 @@
 using System;
 using System.Collections;
-using System.Text;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
+using DG.Tweening;
 using Core.Models;
 
 namespace Core.UI
@@ -12,61 +13,75 @@ namespace Core.UI
         [SerializeField]
         private TextMeshProUGUI _text;
 
+        private const float FadeTime = 2f;
         private const float TypingSpeed = 1f;
         private ConversationContext _context;
         private int _currentIndex;
         private int _phrasesCount;
-        private bool PhrasesEnded => _currentIndex >= _phrasesCount;
+        public bool IsConversating => _currentIndex < _phrasesCount;
 
         public event Action ConversationEnded;
 
-        public void SetDialogueContext(ConversationContext context)
+        private void Start()
+        {
+            ResetColor();
+            gameObject.SetActive(false);
+        }
+        public void SetConversationContext(ConversationContext context)
         {
             _context = context;
+            _currentIndex = 0;
             _phrasesCount = context.Conversation.Count;
         }
         public void PlayNext()
         {
-            if (PhrasesEnded)
+            if (_context == null || !IsConversating)
             {
                 CloseDialog();
+                ConversationEnded?.Invoke();
                 return;
             }
 
-            StartCoroutine(SequentialCoroutine(_context.Conversation.Peek(), TypingSpeed));
+            _text.text = _context.Conversation[_currentIndex];
+            StartCoroutine(SequentialCoroutine(_context.Conversation[_currentIndex]));
             _currentIndex++;
         }
         public void OpenDialog()
         {
             gameObject.SetActive(true);
+            ResetColor();
+            var sequence = DOTween.Sequence();
+            foreach (var image in gameObject.GetComponentsInChildren<MaskableGraphic>())
+            {
+                sequence.Join(image.DOColor(image.color.SetAlpha(1f), FadeTime));
+            }
         }
         public void CloseDialog()
         {
-            gameObject.SetActive(false);
+            var sequence = DOTween.Sequence();
+            foreach (var image in gameObject.GetComponentsInChildren<MaskableGraphic>())
+            {
+                sequence.Join(image.DOColor(image.color.SetAlpha(0f), FadeTime));
+            }
+            sequence.OnComplete(() => gameObject.SetActive(false));
         }
-        private IEnumerator SequentialCoroutine(string message, float time)
+        private void ResetColor()
         {
-            _text.text = "";
-            int index = 0;
-            StringBuilder builder = new StringBuilder(message);
-            builder.Clear();
-            float elapsedTime = 0f;
-            while (index < message.Length)
-            {                
-                builder.Append(message[index]);
+            foreach (var image in gameObject.GetComponentsInChildren<MaskableGraphic>())
+            {
+                image.color = image.color.SetAlpha(0f);
+            }
+        }
 
-                // Space-symbol
-                if (index + 1 < message.Length && message[index + 1] == ' ')
-                {
-                    builder.Append(' ');
-                    index++;
-                }
-                _text.text = builder.ToString();
-                index++;
-                float _time = time / message.Length;
-                elapsedTime += _time;
-                yield return new WaitForSecondsRealtime(time / message.Length);
-                Debug.Log(elapsedTime);
+        private IEnumerator SequentialCoroutine(string message)
+        {
+            _text.text = string.Empty;
+            int length = message.Length;
+            while (message.Length > 0)
+            {
+                _text.text += message.Substring(0, 1);
+                message = message.Substring(1, message.Length - 1);
+                yield return new WaitForSeconds(TypingSpeed / length);
             }
         }
     }

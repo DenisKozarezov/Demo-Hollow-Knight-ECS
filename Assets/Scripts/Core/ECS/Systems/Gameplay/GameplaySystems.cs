@@ -16,6 +16,7 @@ namespace Core.ECS.Systems
             Add(new PlayerSystems(context));
             Add(new HealthSystem());
             Add(new CameraSystems(context, UnityEngine.Camera.main));
+            Add(new DialogueSystem());
             Add(new BehaviorTreeSystem());
 
             OneFrame<DamageEventComponent>();

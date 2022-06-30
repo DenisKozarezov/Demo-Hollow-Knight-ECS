@@ -3,7 +3,8 @@ using Core.UI;
 
 namespace Core.ECS.Components.UI
 {
-    [Serializable] internal struct HealthViewComponent { public HealthView HealthView; }
-    [Serializable] internal struct GameViewComponent { public GameView GameView; }
-    [Serializable] internal struct GeoViewComponent { public GeoView GeoView; }
+    [Serializable] internal struct HealthViewComponent { public HealthView View; }
+    [Serializable] internal struct GameViewComponent { public GameView View; }
+    [Serializable] internal struct GeoViewComponent { public GeoView View; }
+    [Serializable] internal struct DialogueViewComponent { public DialogueView View; }
 }

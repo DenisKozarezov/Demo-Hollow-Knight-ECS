@@ -6,7 +6,8 @@ namespace Core
         None = 0x00,
         Read = 0x01,
         Rest = 0x02,
-        Talk = 0x04
+        Talk = 0x04,
+        Trade = 0x08
     }
     public enum ItemType : byte
     {

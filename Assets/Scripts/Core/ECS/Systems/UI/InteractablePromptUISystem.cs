@@ -55,7 +55,7 @@ namespace Core.ECS.Systems.UI
                 _renderer = prompt.GetComponentInChildren<SpriteRenderer>();
                 _renderer.color = _renderer.color.SetAlpha(0f);
                 _text = prompt.GetComponentInChildren<TextMeshPro>();
-                _text.text = component.View.InteractableLabel;
+                _text.text = component.View.Label;
                 _text.color = _text.color.SetAlpha(0f);
             }
             Fade(FadeMode.On);

@@ -4975,6 +4975,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e9d04047db154540a67833af8662386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _interactableLabel: Inspect
+  _interactable: 1
+  _label: Inspect
   _offsetY: 2.3
   _interactionType: 1
