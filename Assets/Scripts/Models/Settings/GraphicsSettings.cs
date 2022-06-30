@@ -13,7 +13,7 @@ namespace Core.Models
 
     }
 
-    [CreateAssetMenu(menuName = "Configuration/Settings/Create GraphicsSettings")]
+    [CreateAssetMenu(menuName = "Configuration/Settings/Create Graphics Settings")]
     public class GraphicsSettings : ScriptableObject, ISerializableObject
     {
         [Header("Settings")]

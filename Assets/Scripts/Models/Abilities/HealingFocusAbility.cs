@@ -3,7 +3,7 @@ using Editor;
 
 namespace Core.Models
 {
-    [CreateAssetMenu(menuName = "Configuration/Abilities/Create HealingFocus")]
+    [CreateAssetMenu(menuName = "Configuration/Abilities/Create Healing Focus")]
     public class HealingFocusAbility : AbilityModel
     {
         [SerializeField, Min(0)]

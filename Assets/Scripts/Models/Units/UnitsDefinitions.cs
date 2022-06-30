@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Core.Models
 {
-    [CreateAssetMenu(menuName = "Configuration/Create UnitsDefinitions")]
+    [CreateAssetMenu(menuName = "Configuration/Create Units Definitions")]
     public sealed class UnitsDefinitions : ScriptableObject
     {
         [Header("Units")]
