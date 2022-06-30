@@ -1,7 +1,7 @@
-using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using System.Collections.Generic;
+using DG.Tweening;
 
 namespace Core.UI
 {
@@ -27,7 +27,7 @@ namespace Core.UI
         private TextMeshProUGUI _gameEventText;
 
         private const float AnnouncementDuration = 5f;
-        private const float AnnouncementAppearenceTime = 2f;
+        private const float FadeTime = 2f;
 
         private void Start()
         {
@@ -38,42 +38,31 @@ namespace Core.UI
         public void AnnounceBoss(string message)
         {
             _bossText.text = message;
-            _bossText.color = _bossText.color.SetAlpha(0f);
-            _bossText.gameObject.SetActive(true);
-            StartCoroutine(AnnounceCoroutine(_bossText));
+            ShowText(_bossText);
         }
         public void AnnounceLocation(string message)
         {
             _locationText.text = message;
-            _locationText.color = _locationText.color.SetAlpha(0f);
-            _locationText.gameObject.SetActive(true);
-            StartCoroutine(AnnounceCoroutine(_locationText));
+            ShowText(_locationText);
         }
         public void AnnounceGameMessage(GameEventType messageType)
         {
             _gameEventText.text = _gameEvents[messageType];
-            _gameEventText.color = _gameEventText.color.SetAlpha(0f);
-            _gameEventText.gameObject.SetActive(true);
-            StartCoroutine(AnnounceCoroutine(_gameEventText));
+            ShowText(_gameEventText);
         }
-        private IEnumerator Fade(TextMeshProUGUI text, FadeMode mode)
+        private void ShowText(TextMeshProUGUI text)
         {
-            float elapsedTime = 0f;
-            Color startColor = text.color;
-            Color endColor = startColor.SetAlpha(mode == FadeMode.On ? 1f : 0f);
-            while (elapsedTime < AnnouncementAppearenceTime)
+            text.color = _gameEventText.color.SetAlpha(0f);
+            text.gameObject.SetActive(true);
+
+            var sequence = DOTween.Sequence();
+            sequence.Append(text.DOColor(text.color.SetAlpha(1f), FadeTime));
+            sequence.AppendInterval(AnnouncementDuration);
+            sequence.Append(text.DOColor(text.color.SetAlpha(0f), FadeTime));
+            sequence.OnComplete(() =>
             {
-                text.color = Color.Lerp(startColor, endColor, elapsedTime / AnnouncementAppearenceTime);
-                elapsedTime += Time.deltaTime;
-                yield return null;
-            }        
-            if (mode == FadeMode.Off) text.gameObject.SetActive(false);
-        }
-        private IEnumerator AnnounceCoroutine(TextMeshProUGUI text)
-        {
-            yield return Fade(text, FadeMode.On);
-            yield return new WaitForSeconds(AnnouncementDuration);
-            yield return Fade(text, FadeMode.Off);
+                text.gameObject.SetActive(false);
+            });
         }
     }
 }

@@ -4,7 +4,7 @@ using Core.Serialization;
 
 namespace Core.Models
 {
-    [CreateAssetMenu(menuName = "Configuration/Settings/Create AudioSettings")]
+    [CreateAssetMenu(menuName = "Configuration/Settings/Create Audio Settings")]
     public class AudioSettings : ScriptableObject, ISerializableObject
     {
         [Header("Settings")]

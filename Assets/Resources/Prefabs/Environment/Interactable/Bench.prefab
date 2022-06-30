@@ -4976,5 +4976,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interactableLabel: Rest
-  _offsetY: 1.6
+  _offsetY: 2
   _interactionType: 2

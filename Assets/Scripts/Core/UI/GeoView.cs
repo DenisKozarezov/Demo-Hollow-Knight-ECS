@@ -1,8 +1,7 @@
-using System;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using DG.Tweening;
 
 namespace Core.UI
 {
@@ -17,10 +16,12 @@ namespace Core.UI
 
         private int _currentValue;
         private int _addingValue;
-        private Coroutine _coroutine;
+        private Sequence _sequence;
         private bool _fading;
-        private const float AnnouncementDuration = 5f;
-        private const float AnnouncementAppearenceTime = 2f;
+        private const float Duration = 5f;
+        private const float AppearenceTime = 2f;
+
+        private bool IsPlaying => _sequence.IsActive() && _sequence.IsPlaying();
 
         private void Start()
         {
@@ -42,7 +43,7 @@ namespace Core.UI
         private void SetAddingValue(int value)
         {
             _addingValue = value;
-            _geoAddingText.text = $"+{value}";
+            _geoAddingText.text = $"{(value >= 0 ? "+" : "-")}{value}";
         }
         private void SetCurrentValue(int value)
         {
@@ -51,64 +52,56 @@ namespace Core.UI
         }
         public void AddValue(int value)
         {
-            if (_coroutine != null) StopCoroutine(_coroutine);
+            if (IsPlaying) _sequence.Kill();
 
             SetAddingValue(_addingValue + value);
 
-            if (!_fading) StartCoroutine(Fade(FadeMode.On));
-            if (_coroutine != null) StopCoroutine(_coroutine);
-            _coroutine = StartCoroutine(GeoCoroutine());
+            _sequence = DOTween.Sequence();
+            if (!_fading) _sequence.Join(Fade(FadeMode.On));
+            _sequence = _sequence.Append(GeoSequence());
+            _sequence.Append(Fade(FadeMode.Off));
+            _sequence.OnKill(() => _fading = false);
         }
         public void ReduceValue(int value)
         {
-            if (_coroutine != null) StopCoroutine(_coroutine);
+            if (IsPlaying) _sequence.Kill();
 
             SetAddingValue(_addingValue - value);
 
-            if (!_fading) StartCoroutine(Fade(FadeMode.On));
-            if (_coroutine != null) StopCoroutine(_coroutine);
-            _coroutine = StartCoroutine(GeoCoroutine());
+            _sequence = DOTween.Sequence();
+            if (!_fading) _sequence.Join(Fade(FadeMode.On));
+            _sequence = _sequence.Append(GeoSequence());
+            _sequence.Append(Fade(FadeMode.Off));
+            _sequence.OnKill(() => _fading = false);
         }     
-        private IEnumerator GeoCoroutine()
-        {
-            yield return new WaitForSeconds(2f);
-
-            int startCurrentValue = _currentValue;
-            int startAddingValue = _addingValue;
-            float elapsedTime = 0f;
-            while (elapsedTime <= 1f)
-            {
-                SetCurrentValue(Mathf.RoundToInt(Mathf.Lerp(startCurrentValue, _currentValue + _addingValue, elapsedTime)));             
-                SetAddingValue(Mathf.RoundToInt(Mathf.Lerp(startAddingValue, 0, elapsedTime)));
-                elapsedTime += Time.deltaTime;
-                yield return null;
-            }
-
-            yield return new WaitForSeconds(AnnouncementDuration);
-            yield return Fade(FadeMode.Off);
-        }
-        private IEnumerator Fade(FadeMode mode)
+        private Tween Fade(FadeMode mode)
         {
             _fading = true;
+            float alpha = mode == FadeMode.On ? 1f : 0f;
 
             SetActive(true);
 
-            float elapsedTime = 0f;
-            Color startCurrentColor = _geoCurrentText.color;
-            Color startAddingColor = _geoAddingText.color;
-            Color endCurrentColor = startCurrentColor.SetAlpha(mode == FadeMode.Off ? 0f : 1f);
-            Color endAddingColor = startAddingColor.SetAlpha(mode == FadeMode.Off ? 0f : 1f);
-            while (elapsedTime < AnnouncementAppearenceTime)
+            var sequence = DOTween.Sequence();
+            sequence.Join(_image.DOColor(_image.color.SetAlpha(alpha), AppearenceTime));
+            sequence.Join(_geoCurrentText.DOColor(_geoCurrentText.color.SetAlpha(alpha), AppearenceTime));
+            sequence.Join(_geoAddingText.DOColor(_geoAddingText.color.SetAlpha(alpha), AppearenceTime));
+            sequence.OnComplete(() =>
             {
-                float factor = elapsedTime / AnnouncementAppearenceTime;
-                Color currentLerpColor = Color.Lerp(startCurrentColor, endCurrentColor, factor);
-                Color addingLerpColor = Color.Lerp(startAddingColor, endAddingColor, factor);
-                SetColor(currentLerpColor, addingLerpColor);
-                elapsedTime += Time.deltaTime;
-                yield return null;
-            }
-            if (mode == FadeMode.Off) SetActive(false);
-            _fading = false;
+                _fading = false;
+                if (mode == FadeMode.Off) SetActive(false);
+            });
+            return sequence;
+        }
+        private Sequence GeoSequence()
+        {
+            int startCurrentValue = _currentValue;
+
+            var sequence = DOTween.Sequence();
+            sequence.AppendInterval(1f);
+            sequence.Append(DOTween.To(() => _currentValue, x => SetCurrentValue(x), startCurrentValue + _addingValue, 1f));
+            sequence.Join(DOTween.To(() => _addingValue, x => SetAddingValue(x), 0, 1f));
+            sequence.AppendInterval(Duration);
+            return sequence;
         }
     }
 }

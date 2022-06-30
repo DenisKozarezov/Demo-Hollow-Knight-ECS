@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
-using System.Collections;
 using Core.ECS.Events;
 using Leopotam.Ecs;
 using TMPro;
+using DG.Tweening;
 
 namespace Core.ECS.Systems.UI
 {
@@ -13,9 +13,10 @@ namespace Core.ECS.Systems.UI
         private const float FadeTime = 0.5f;
         private const string PromptPath = "Prefabs/UI/Interactable Prompt";
 
-        private Coroutine _coroutine;
+        private Sequence _sequence;
         private SpriteRenderer _renderer;
         private TextMeshPro _text;
+        private bool IsPlaying => _sequence.IsActive() && _sequence.IsPlaying();
 
         private GameObject CreatePrompt(Transform target, float offsetY)
         {
@@ -30,51 +31,48 @@ namespace Core.ECS.Systems.UI
             {
                 ref var entity = ref _enter.GetEntity(i);
                 ref var view = ref _enter.Get1(i);
-                ShowLabel(ref view, FadeTime);
+                ShowLabel(ref view);
                 entity.Destroy();
             }
             foreach (var i in _exit)
             {
                 ref var entity = ref _exit.GetEntity(i);
                 ref var view = ref _exit.Get1(i);
-                HideLabel(ref view, FadeTime);
+                HideLabel(ref view);
                 entity.Destroy();
             }
         }
-        private void HideLabel(ref InteractableTriggerExitEvent component, float fadeTime)
+        private void HideLabel(ref InteractableTriggerExitEvent component)
         {
-            _coroutine = component.View.StartCoroutine(Fade(_renderer, _text, FadeMode.Off, fadeTime));
+            Fade(FadeMode.Off);
         }
-        private void ShowLabel(ref InteractableTriggerEnterEvent component, float fadeTime)
-        {      
-            var prompt = CreatePrompt(component.View.transform, component.OffsetY);
-
-            _renderer = prompt.GetComponentInChildren<SpriteRenderer>();
-            _renderer.color = _renderer.color.SetAlpha(0f);
-            _text = prompt.GetComponentInChildren<TextMeshPro>();
-            _text.color = _text.color.SetAlpha(0f);
-            _text.text = component.View.InteractableLabel;
-            _coroutine = component.View.StartCoroutine(Fade(_renderer, _text, FadeMode.On, fadeTime));
-        }
-        private IEnumerator Fade(SpriteRenderer renderer, TextMeshPro text, FadeMode mode, float fadeTime)
+        private void ShowLabel(ref InteractableTriggerEnterEvent component)
         {
-            if (_coroutine != null) yield return _coroutine;    
-
-            float elapsedTime = 0f;
-            Color startColor = renderer.color;
-            Color endColor = startColor.SetAlpha(mode == FadeMode.On ? 1f : 0f);
-            while (elapsedTime < fadeTime)
+            if (!IsPlaying)
             {
-                if (renderer == null || text == null) yield return null;
+                var prompt = CreatePrompt(component.View.transform, component.OffsetY);
 
-                renderer.color = Color.Lerp(startColor, endColor, elapsedTime / fadeTime);
-                text.color = Color.Lerp(startColor, endColor, elapsedTime / fadeTime);
-                elapsedTime += Time.deltaTime;
-                yield return null;
+                _renderer = prompt.GetComponentInChildren<SpriteRenderer>();
+                _renderer.color = _renderer.color.SetAlpha(0f);
+                _text = prompt.GetComponentInChildren<TextMeshPro>();
+                _text.text = component.View.InteractableLabel;
+                _text.color = _text.color.SetAlpha(0f);
             }
-            if (mode == FadeMode.Off) GameObject.DestroyImmediate(renderer.gameObject);
-            _coroutine = null;
-            yield break;
+            Fade(FadeMode.On);
+        }
+        private void Fade(FadeMode mode)
+        {
+            if (IsPlaying) _sequence.Kill();
+
+            float alpha = mode == FadeMode.On ? 1f : 0f;
+
+            _sequence = DOTween.Sequence();
+            _sequence.Join(_renderer.DOColor(_renderer.color.SetAlpha(alpha), FadeTime));
+            _sequence.Join(_text.DOColor(_renderer.color.SetAlpha(alpha), FadeTime));
+            _sequence.OnComplete(() =>
+            {
+                if (mode == FadeMode.Off) GameObject.DestroyImmediate(_renderer.gameObject);
+            });
         }
     }
 }

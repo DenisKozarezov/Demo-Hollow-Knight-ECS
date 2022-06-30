@@ -5,7 +5,7 @@ using Core.Serialization;
 
 namespace Core.Models
 {
-    [CreateAssetMenu(menuName = "Configuration/Settings/Create GameSettings")]
+    [CreateAssetMenu(menuName = "Configuration/Settings/Create Game Settings")]
     public class GameSettingsInstaller : ScriptableObjectInstaller, ISerializableObject
     {
         [Header("Settings")]
