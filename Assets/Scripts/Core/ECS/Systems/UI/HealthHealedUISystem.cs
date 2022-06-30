@@ -19,7 +19,7 @@ namespace Core.ECS.Systems.UI
                     ref var heal = ref _filter.Get1(i);
 
                     // Heal
-                    healthView.HealthView.RestoreHealth(heal.Value);
+                    healthView.View.RestoreHealth(heal.Value);
                 }
             }
         }

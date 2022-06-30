@@ -18,14 +18,14 @@ namespace Core.UI
         private ConversationContext _context;
         private int _currentIndex;
         private int _phrasesCount;
-        private bool PhrasesEnded => _currentIndex >= _phrasesCount;
+        public bool IsConversating => _currentIndex < _phrasesCount;
 
         public event Action ConversationEnded;
 
         private void Start()
         {
-            OpenDialog();
-            StartCoroutine(SequentialCoroutine("Ho there, traveller! I'm afraid there is only me to offer welcome. Our town's fallen quiet you see."));
+            ResetColor();
+            gameObject.SetActive(false);
         }
         public void SetConversationContext(ConversationContext context)
         {
@@ -35,26 +35,23 @@ namespace Core.UI
         }
         public void PlayNext()
         {
-            if (_context == null || PhrasesEnded)
+            if (_context == null || !IsConversating)
             {
                 CloseDialog();
+                ConversationEnded?.Invoke();
                 return;
             }
 
-            _text.text = _context.Conversation.Peek();
-            StartCoroutine(SequentialCoroutine(_context.Conversation.Peek()));
+            _text.text = _context.Conversation[_currentIndex];
+            StartCoroutine(SequentialCoroutine(_context.Conversation[_currentIndex]));
             _currentIndex++;
         }
         public void OpenDialog()
         {
             gameObject.SetActive(true);
-            var objects = gameObject.GetComponentsInChildren<MaskableGraphic>();
-            foreach (var image in objects)
-            {
-                image.color = image.color.SetAlpha(0f);
-            }
+            ResetColor();
             var sequence = DOTween.Sequence();
-            foreach (var image in objects)
+            foreach (var image in gameObject.GetComponentsInChildren<MaskableGraphic>())
             {
                 sequence.Join(image.DOColor(image.color.SetAlpha(1f), FadeTime));
             }
@@ -68,6 +65,14 @@ namespace Core.UI
             }
             sequence.OnComplete(() => gameObject.SetActive(false));
         }
+        private void ResetColor()
+        {
+            foreach (var image in gameObject.GetComponentsInChildren<MaskableGraphic>())
+            {
+                image.color = image.color.SetAlpha(0f);
+            }
+        }
+
         private IEnumerator SequentialCoroutine(string message)
         {
             _text.text = string.Empty;

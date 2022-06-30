@@ -183,8 +183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value:
-    Interactable: 1
-    _conversations:
+    Conversations:
     - {fileID: 11400000, guid: 59897d5f52f6fcb4295f16205f180af5, type: 2}
 --- !u!114 &2560238241253341815
 MonoBehaviour:

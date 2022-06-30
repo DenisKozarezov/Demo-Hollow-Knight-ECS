@@ -16,7 +16,7 @@ namespace Core.ECS.Systems.UI
             {
                 foreach (var i in _healthView)
                 {
-                    var healthView = _healthView.Get1(i).HealthView;
+                    var healthView = _healthView.Get1(i).View;
                     ref var health = ref _player.Get1(player);
                     healthView.Clear();
                     healthView.Init(health.MaxHealth);

@@ -20,7 +20,7 @@ namespace Core.ECS.Systems.UI
                     ref var value = ref _filter.Get1(i);
 
                     // Add geo
-                    view.GeoView.AddValue(value.Value);
+                    view.View.AddValue(value.Value);
 
                     entity.Destroy();
                 }

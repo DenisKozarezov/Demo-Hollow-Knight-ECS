@@ -18,7 +18,7 @@ namespace Core.ECS.Systems.UI
                     ref var healthView = ref _hp.Get1(hp);
                     ref var damage = ref _filter.Get1(i);
 
-                    healthView.HealthView.Hit(damage.Value);
+                    healthView.View.Hit(damage.Value);
                 }
             }
         }
