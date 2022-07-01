@@ -24,7 +24,7 @@ namespace Core.ECS
         [Inject]
         private readonly UnitsDefinitions _unitsDefinitions = null;
 
-        private void Start ()
+        private void Awake ()
         {            
             _world = new EcsWorld();
             _systems = new EcsSystems(_world).ConvertScene(); // Этот метод сконвертирует GO в Entity;
