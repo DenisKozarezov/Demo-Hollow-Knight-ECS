@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using DG.Tweening;
+using UnityEngine.UI;
 
 namespace Core.UI
 {
@@ -19,25 +20,27 @@ namespace Core.UI
         };
 
         [Header("UI")]
-        [SerializeField]
-        private TextMeshProUGUI _bossText;
-        [SerializeField]
-        private TextMeshProUGUI _locationText;
-        [SerializeField]
-        private TextMeshProUGUI _gameEventText;
+        [SerializeField] private TextMeshProUGUI _bossText;
+        [SerializeField] private TextMeshProUGUI _locationText;
+        [SerializeField] private TextMeshProUGUI _gameEventText;
+        [SerializeField] private Image _bottomFleur, _topFleur;
 
-        private const float AnnouncementDuration = 5f;
-        private const float FadeTime = 2f;
+        private const float AnnouncementDuration = 1f;
+        private const float FadeTime = 1f;
 
         private void Start()
         {
             _bossText.gameObject.SetActive(false);
             _locationText.gameObject.SetActive(false);
             _gameEventText.gameObject.SetActive(false);
+            _bottomFleur.gameObject.SetActive(false);
+            _topFleur.gameObject.SetActive(false);
         }
         public void AnnounceBoss(string message)
         {
             _bossText.text = message;
+            ShowFleurImage(_bottomFleur);
+            ShowFleurImage(_topFleur);
             ShowText(_bossText);
         }
         public void AnnounceLocation(string message)
@@ -50,6 +53,21 @@ namespace Core.UI
             _gameEventText.text = _gameEvents[messageType];
             ShowText(_gameEventText);
         }
+
+        private void ShowFleurImage(Image image)
+        {
+            image.gameObject.SetActive(true);
+
+            var sequence = DOTween.Sequence();
+            sequence.Append(image.DOColor(image.color.SetAlpha(1f), FadeTime));
+            sequence.AppendInterval(AnnouncementDuration);
+            sequence.Append(image.DOColor(image.color.SetAlpha(0f), FadeTime));
+            sequence.OnComplete(() =>
+            {
+                image.gameObject.SetActive(false);
+            });
+        }
+        
         private void ShowText(TextMeshProUGUI text)
         {
             text.color = _gameEventText.color.SetAlpha(0f);

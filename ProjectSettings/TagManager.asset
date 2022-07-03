@@ -16,7 +16,7 @@ TagManager:
   - Enemy
   - Player
   - Items
-  - 
+  - Light
   - 
   - 
   - 
@@ -59,4 +59,7 @@ TagManager:
     locked: 0
   - name: UI
     uniqueID: 3871049501
+    locked: 0
+  - name: Light
+    uniqueID: 1316774317
     locked: 0
