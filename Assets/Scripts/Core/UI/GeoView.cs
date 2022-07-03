@@ -52,20 +52,18 @@ namespace Core.UI
         }
         public void AddValue(int value)
         {
-            if (IsPlaying) _sequence.Kill();
-
             SetAddingValue(_addingValue + value);
             ShowGeo();
         }
         public void ReduceValue(int value)
         {
-            if (IsPlaying) _sequence.Kill();
-
             SetAddingValue(_addingValue - value);
             ShowGeo();
         }    
         private void ShowGeo()
         {
+            if (IsPlaying) _sequence.Kill();
+
             _sequence = DOTween.Sequence();
             if (!_fading) _sequence.Join(Fade(FadeMode.On));
             _sequence = _sequence.Append(GeoSequence());

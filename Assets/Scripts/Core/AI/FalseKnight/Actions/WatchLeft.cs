@@ -14,7 +14,9 @@ namespace Core.AI.FalseKnight.Actions
         }
         protected override State OnUpdate()
         {
-            _gameObject.transform.localScale = new Vector3((_gameObject.transform.localScale.x < 0) ? _gameObject.transform.localScale.x : _gameObject.transform.localScale.x * -1, _gameObject.transform.localScale.y, _gameObject.transform.localScale.z);
+            Vector3 scale = _gameObject.transform.localScale;
+            scale.x = 1f;
+            _gameObject.transform.localScale = scale;
             return State.Success;
         }
     }

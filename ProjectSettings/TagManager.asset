@@ -51,9 +51,6 @@ TagManager:
   - name: Player
     uniqueID: 2675485657
     locked: 0
-  - name: Fireball
-    uniqueID: 4158470357
-    locked: 0
   - name: Foreground
     uniqueID: 126030259
     locked: 0

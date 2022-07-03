@@ -43,4 +43,14 @@ namespace Core
             world.NewEntity().Get<T>() = value;
         }
     }
+
+    public static class MathExtensions
+    {
+        public static Vector2 RotateVector(this Vector2 vector, float angle)
+        {
+            float x = Mathf.Cos(angle) * vector.x - Mathf.Sin(angle) * vector.y;
+            float y = Mathf.Sin(angle) * vector.x + Mathf.Cos(angle) * vector.y;
+            return new Vector2(x, y);
+        }
+    }
 }

@@ -17,9 +17,9 @@ MonoBehaviour:
   _description: 
   _prefabPath: Prefabs/Units/Character/Hollow Knight
   _movementSpeed: 280
-  _baseDamage: 1
+  _baseDamage: 9
   _attackRadius: 1.5
-  _maxHealth: 5
+  _maxHealth: 20
   _jumpHeightRange: {x: 7, y: 12}
   _attackCooldown: 0.33
   _hitEnergyRestore: 0

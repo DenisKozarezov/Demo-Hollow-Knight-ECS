@@ -20,11 +20,13 @@ namespace Core.AI.FalseKnight.Actions
         protected override State OnUpdate()
         {
             float directionWatch = (_player.position - _gameObject.transform.position).x;
-
+           
+            Vector3 scale = _gameObject.transform.localScale;
             if (directionWatch < -0.1f)
-                _gameObject.transform.localScale = new Vector3((_gameObject.transform.localScale.x < 0) ? _gameObject.transform.localScale.x : _gameObject.transform.localScale.x * -1, _gameObject.transform.localScale.y, _gameObject.transform.localScale.z);
-            else
-                _gameObject.transform.localScale = new Vector3((_gameObject.transform.localScale.x > 0) ? _gameObject.transform.localScale.x : _gameObject.transform.localScale.x * -1, _gameObject.transform.localScale.y, _gameObject.transform.localScale.z);
+            {
+                scale.x = -1f;
+                _gameObject.transform.localScale = scale;
+            }
 
             return State.Success;
         }
