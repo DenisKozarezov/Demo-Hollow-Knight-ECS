@@ -8,8 +8,8 @@ namespace Core.ECS.Systems
 {
     internal sealed class DamageSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<HealthComponent, DamageEventComponent>
-            .Exclude<DiedComponent> _filter = null;
+        private readonly EcsFilter<HealthComponent, DamageEventComponent, HittableComponent>
+            .Exclude<InvulnerableComponent, DiedComponent> _filter = null;
 
         private const string HitEffectPath = "Prefabs/Effects/Impact/Hit Crack Impact";
 

@@ -1,18 +1,18 @@
 using UnityEngine;
-using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.Rendering;
 using Leopotam.Ecs;
 
 namespace Core
 {
     public static class CameraExtensions
     {
-        public static T GetPostProcessSetting<T>(this Camera camera) where T : PostProcessEffectSettings
+        public static T GetPostProcessSetting<T>(this Camera camera) where T : VolumeComponent
         {
-            var volume = camera.GetComponentInChildren<PostProcessVolume>();
-            if (!volume.profile.TryGetSettings<T>(out var setting))
+            var volume = camera.GetComponentInChildren<Volume>();
+            if (!volume.profile.TryGet<T>(out var setting))
             {
 #if UNITY_EDITOR
-                Debug.LogWarning($"There is no override <b><color=yellow>{typeof(T).Name}</color></b> in camera post-process volume. ");
+                Debug.LogWarning($"There is no override <b><color=yellow>{typeof(T).Name}</color></b> in camera Global Volume. ");
 #endif
             }
             return setting;
