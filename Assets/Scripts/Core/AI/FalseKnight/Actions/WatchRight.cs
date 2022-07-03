@@ -7,14 +7,14 @@ namespace Core.AI.FalseKnight.Actions
 {
     public class WatchRight: ActionNode
     {
-        private SpriteRenderer _spriteRenderer;
+        private GameObject _gameObject;
         protected override void OnInit()
         {
-            _spriteRenderer = BehaviorTreeRef.EntityReference.Entity.Get<SpriteRendererComponent>().Value;
+            _gameObject = BehaviorTreeRef.EntityReference.gameObject;
         }
         protected override State OnUpdate()
         {
-            _spriteRenderer.flipX = false;
+            _gameObject.transform.localScale = new Vector3((_gameObject.transform.localScale.x > 0) ? _gameObject.transform.localScale.x : _gameObject.transform.localScale.x * -1, _gameObject.transform.localScale.y, _gameObject.transform.localScale.z);
             return State.Success;
         }
     }
