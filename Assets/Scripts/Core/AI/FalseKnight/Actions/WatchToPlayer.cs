@@ -22,12 +22,8 @@ namespace Core.AI.FalseKnight.Actions
             float directionWatch = (_player.position - _gameObject.transform.position).x;
            
             Vector3 scale = _gameObject.transform.localScale;
-            if (directionWatch < -0.1f)
-            {
-                scale.x = -1f;
-                _gameObject.transform.localScale = scale;
-            }
-
+            scale.x = directionWatch < -0.1f ? -1f : 1f;
+            _gameObject.transform.localScale = scale;
             return State.Success;
         }
     }
