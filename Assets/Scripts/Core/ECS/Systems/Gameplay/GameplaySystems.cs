@@ -18,6 +18,8 @@ namespace Core.ECS.Systems
             Add(new CameraSystems(context, UnityEngine.Camera.main));
             Add(new DialogueSystem());
             Add(new BehaviorTreeSystem());
+            Add(new EnemyDeathEffectSystem());
+            Add(new EnemyDroppingGeoSystem());
 
             OneFrame<DamageEventComponent>();
             OneFrame<HitEventComponent>();

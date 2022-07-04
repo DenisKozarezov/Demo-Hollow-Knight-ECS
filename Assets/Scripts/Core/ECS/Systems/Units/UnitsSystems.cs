@@ -14,7 +14,6 @@ namespace Core.ECS.Systems.Units
             Add(new FalseKnightAttackAnimationSystem());
             Add(new DustCloudAnimationSystem());
             Add(new DamageAnimationSystem());
-            Add(new EnemyDeathEffectSystem());
 
             OneFrame<UnitInitComponent>();
             OneFrame<UnitCreateEventComponent>();

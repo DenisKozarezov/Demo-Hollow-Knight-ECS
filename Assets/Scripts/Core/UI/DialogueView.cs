@@ -43,6 +43,7 @@ namespace Core.UI
             }
 
             _text.text = _context.Conversation[_currentIndex];
+            StopCoroutine("SequentialCoroutine");
             StartCoroutine(SequentialCoroutine(_context.Conversation[_currentIndex]));
             _currentIndex++;
         }
