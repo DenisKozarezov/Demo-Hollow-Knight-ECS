@@ -17,16 +17,30 @@ namespace Core.UI
         private int _currentValue;
         private int _addingValue;
         private Sequence _sequence;
+        private Sequence _geoSequence;
         private bool _fading;
+        private bool _paused;
+        private float _timer;
         private const float Duration = 5f;
         private const float AppearenceTime = 2f;
-
-        private bool IsPlaying => _sequence.IsActive() && _sequence.IsPlaying();
+        private bool IsPlaying => _sequence != null && _sequence.IsActive();
 
         private void Start()
         {
             SetActive(false);
             SetColor(_geoCurrentText.color.SetAlpha(0f), _geoAddingText.color.SetAlpha(0f));
+        }
+        private void Update()
+        {
+            if (_sequence == null || !_paused) return;
+
+            if (_timer < AppearenceTime) _timer += Time.deltaTime;
+            else
+            {
+                _paused = false;
+                _timer = 0f;
+                StartSequence();
+            }
         }
         private void SetActive(bool isActive)
         {
@@ -62,13 +76,26 @@ namespace Core.UI
         }    
         private void ShowGeo()
         {
-            if (IsPlaying) _sequence.Kill();
+            if (!_fading) Fade(FadeMode.On);
 
-            _sequence = DOTween.Sequence();
-            if (!_fading) _sequence.Join(Fade(FadeMode.On));
-            _sequence = _sequence.Append(GeoSequence());
+            if (IsPlaying)
+            {
+                _geoSequence.Kill();
+                _sequence.Kill();
+                _paused = true;
+            }
+            if (_paused)
+            {
+                _timer = 0f;
+                return;
+            }
+            StartSequence();
+        }
+        private void StartSequence()
+        {
+            _sequence = DOTween.Sequence();           
+            _sequence.Append(GeoSequence());
             _sequence.Append(Fade(FadeMode.Off));
-            _sequence.OnKill(() => _fading = false);
         }
         private Sequence Fade(FadeMode mode)
         {
@@ -92,11 +119,11 @@ namespace Core.UI
         {
             int startCurrentValue = _currentValue;
 
-            var sequence = DOTween.Sequence();
-            sequence.Append(DOTween.To(() => _currentValue, x => SetCurrentValue(x), startCurrentValue + _addingValue, 1f));
-            sequence.Join(DOTween.To(() => _addingValue, x => SetAddingValue(x), 0, 1f));
-            sequence.AppendInterval(Duration);
-            return sequence;
+            _geoSequence = DOTween.Sequence();
+            _geoSequence.Append(DOTween.To(() => _currentValue, x => SetCurrentValue(x), startCurrentValue + _addingValue, 1f));
+            _geoSequence.Join(DOTween.To(() => _addingValue, x => SetAddingValue(x), 0, 1f));
+            _geoSequence.AppendInterval(Duration);
+            return _geoSequence;
         }
     }
 }

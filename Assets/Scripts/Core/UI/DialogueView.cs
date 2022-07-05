@@ -16,6 +16,7 @@ namespace Core.UI
         private const float FadeTime = 2f;
         private const float TypingSpeed = 1f;
         private ConversationContext _context;
+        private Coroutine _coroutine;
         private int _currentIndex;
         private int _phrasesCount;
         public bool IsConversating => _currentIndex < _phrasesCount;
@@ -43,8 +44,8 @@ namespace Core.UI
             }
 
             _text.text = _context.Conversation[_currentIndex];
-            StopCoroutine("SequentialCoroutine");
-            StartCoroutine(SequentialCoroutine(_context.Conversation[_currentIndex]));
+            if (_coroutine != null) StopCoroutine(_coroutine);
+            _coroutine = StartCoroutine(SequentialCoroutine(_context.Conversation[_currentIndex]));
             _currentIndex++;
         }
         public void OpenDialog()
