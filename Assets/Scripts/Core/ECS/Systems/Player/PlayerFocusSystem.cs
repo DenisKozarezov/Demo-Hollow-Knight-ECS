@@ -8,7 +8,7 @@ using Core.Models;
 
 namespace Core.ECS.Systems.Player
 {
-    internal class PlayerFocusSystem : IEcsInitSystem, IEcsDestroySystem, IEcsRunSystem
+    public class PlayerFocusSystem : IEcsInitSystem, IEcsDestroySystem, IEcsRunSystem
     {
         private readonly EcsFilter<AnimatorComponent, HealthComponent, PlayerTagComponent>
           .Exclude<DiedComponent> _filter = null;
@@ -19,7 +19,7 @@ namespace Core.ECS.Systems.Player
         private float _timer;
         private const string FOCUS_KEY = "Is Focusing";
 
-        internal PlayerFocusSystem(IInputSystem playerInput, PlayerModel playerModel)
+        public PlayerFocusSystem(IInputSystem playerInput, PlayerModel playerModel)
         {
             _playerInput = playerInput;
             _focusAbility = playerModel.GetAbility<HealingFocusAbility>();

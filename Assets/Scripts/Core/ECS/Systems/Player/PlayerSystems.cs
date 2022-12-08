@@ -2,9 +2,9 @@
 
 namespace Core.ECS.Systems.Player
 {
-    internal class PlayerSystems : Feature
+    public class PlayerSystems : Feature
     {
-        internal PlayerSystems(GameContext context) : base(context)
+        public PlayerSystems(GameContext context) : base(context)
         {
             OneFrame<PlayerRecievedDamageEvent>();
             OneFrame<PlayerDiedEvent>();

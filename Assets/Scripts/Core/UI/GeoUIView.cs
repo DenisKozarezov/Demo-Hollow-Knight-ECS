@@ -5,7 +5,7 @@ using DG.Tweening;
 
 namespace Core.UI
 {
-    public class GeoView : MonoBehaviour
+    public class GeoUIView : MonoBehaviour
     {
         [SerializeField]
         private TextMeshProUGUI _geoCurrentText;

@@ -5,7 +5,7 @@ using Core.ECS.Components.Units;
 
 namespace Core.ECS.Systems.UI
 {
-    internal class HealthViewInitSystem : IEcsInitSystem
+    public class HealthViewInitSystem : IEcsInitSystem
     {
         private readonly EcsFilter<HealthViewComponent> _healthView = null;
         private readonly EcsFilter<HealthComponent, PlayerTagComponent> _player = null;

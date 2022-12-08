@@ -10,7 +10,7 @@ using AI.ECS;
 
 namespace Core.ECS.Systems.Player
 {
-    internal class PlayerInteractSystem : IEcsInitSystem, IEcsRunSystem, IEcsDestroySystem
+    public class PlayerInteractSystem : IEcsInitSystem, IEcsRunSystem, IEcsDestroySystem
     {
         private readonly EcsWorld _world = null;
         private readonly EcsFilter<InteractableTriggerEnterEvent> _enter = null;
@@ -19,7 +19,7 @@ namespace Core.ECS.Systems.Player
         private readonly IInputSystem _inputSystem;
         private InteractableView _view;
 
-        internal PlayerInteractSystem(IInputSystem inputSystem)
+        public PlayerInteractSystem(IInputSystem inputSystem)
         {
             _inputSystem = inputSystem;
         }

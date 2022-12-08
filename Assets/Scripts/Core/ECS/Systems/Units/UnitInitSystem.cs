@@ -3,7 +3,7 @@ using Core.ECS.Components.Units;
 
 namespace Core.ECS.Systems
 {
-    internal sealed class UnitInitSystem : IEcsRunSystem
+    public sealed class UnitInitSystem : IEcsRunSystem
     {
         private readonly EcsFilter<UnitInitComponent> _filter = null;
 

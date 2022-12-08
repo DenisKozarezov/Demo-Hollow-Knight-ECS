@@ -4,7 +4,7 @@ using Leopotam.Ecs;
 
 namespace Core.ECS.Systems.Player
 {
-    internal class PlayerEnteredBossZoneSystem : IEcsRunSystem
+    public class PlayerEnteredBossZoneSystem : IEcsRunSystem
     {
         private readonly EcsFilter<PlayerEnteredBossZoneEvent> _filter = null;
         private readonly EcsFilter<GameViewComponent> _gameView = null;

@@ -6,7 +6,7 @@ using Core.ECS.Components.Units;
 
 namespace Core.ECS.Systems.Player
 {
-    internal class PlayerJumpSystem : IEcsInitSystem, IEcsDestroySystem
+    public class PlayerJumpSystem : IEcsInitSystem, IEcsDestroySystem
     {
         private readonly EcsFilter<
             RigidbodyComponent, 
@@ -17,7 +17,7 @@ namespace Core.ECS.Systems.Player
 
         private readonly IInputSystem _playerInput;
               
-        internal PlayerJumpSystem(IInputSystem playerInput) 
+        public PlayerJumpSystem(IInputSystem playerInput) 
         {
             _playerInput = playerInput;
         }

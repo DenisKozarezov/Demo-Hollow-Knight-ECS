@@ -4,7 +4,7 @@ using Core.ECS.Components.Units;
 
 namespace Core.ECS.Systems
 {
-    internal sealed class EnemyDeathEffectSystem : IEcsRunSystem
+    public sealed class EnemyDeathEffectSystem : IEcsRunSystem
     {
         private readonly EcsFilter<ColliderComponent, EnemyComponent, DiedComponent> _filter = null;
 

@@ -1,12 +1,11 @@
 using Leopotam.Ecs;
 using Core.Models;
-using Core.ECS.Components;
 using Core.ECS.Components.Units;
 using Core.ECS.Components.Player;
 
 namespace Core.ECS.Systems.Player
 {
-    internal class PlayerInitSystem : IEcsInitSystem 
+    public class PlayerInitSystem : IEcsInitSystem 
     {
         private readonly EcsFilter<UnitInitComponent, PlayerTagComponent> _filter = null;
         private readonly PlayerModel _playerModel;

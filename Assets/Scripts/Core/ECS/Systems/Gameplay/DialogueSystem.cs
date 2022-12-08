@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Core.ECS.Systems
 {
-    internal class DialogueSystem : IEcsRunSystem
+    public class DialogueSystem : IEcsRunSystem
     {
         private readonly EcsFilter<PlayerTalkingWithNPCEvent> _filter = null;
         private readonly EcsFilter<DialogueViewComponent> _dialogue = null;

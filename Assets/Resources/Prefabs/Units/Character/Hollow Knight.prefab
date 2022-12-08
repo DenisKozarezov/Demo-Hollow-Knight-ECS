@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 339477802832129859}
   - component: {fileID: 339477802832129856}
   - component: {fileID: 153767733}
-  - component: {fileID: 6237696810026829610}
   - component: {fileID: 4543246622052920862}
+  - component: {fileID: 6237696810026829610}
   - component: {fileID: 4652797575984559654}
   - component: {fileID: 5713900880543262916}
   - component: {fileID: 7026177336291130317}
@@ -31,7 +31,6 @@ GameObject:
   - component: {fileID: -2814685225000914185}
   - component: {fileID: 2465082576744761386}
   - component: {fileID: 1670326355653064732}
-  - component: {fileID: -7869354717568998479}
   - component: {fileID: 1613676012003623090}
   m_Layer: 8
   m_Name: Hollow Knight
@@ -271,6 +270,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4543246622052920862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 339477802832129857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c51965847953ea0458fda3e5c4558c7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6237696810026829610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,18 +296,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value:
     EntityReference: {fileID: 4543246622052920862}
---- !u!114 &4543246622052920862
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 339477802832129857}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c51965847953ea0458fda3e5c4558c7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &4652797575984559654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -486,18 +485,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acb9a0a2217dae54c8fdef21e6a38488, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-7869354717568998479
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 339477802832129857}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ced210abb2b0d6f4faec5e5d9a5348e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1613676012003623090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -528,7 +515,7 @@ MonoBehaviour:
   - {x: -0.1767688, y: 0.6022581, z: 0}
   m_ShapePathHash: -1639614098
   m_Mesh: {fileID: 0}
-  m_InstanceId: 39322
+  m_InstanceId: 47598
 --- !u!1 &4711098500422762093
 GameObject:
   m_ObjectHideFlags: 0

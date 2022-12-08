@@ -8,7 +8,7 @@ using Core.ECS.Components.Player;
 
 namespace Core.ECS.Systems.Player
 {
-    internal class PlayerAttackSystem : IEcsInitSystem, IEcsDestroySystem
+    public class PlayerAttackSystem : IEcsInitSystem, IEcsDestroySystem
     {
         private enum AttackDirection : byte
         { 
@@ -39,7 +39,7 @@ namespace Core.ECS.Systems.Player
         private const string AttackUpPath = "Prefabs/Effects/Attack Up";
         private const string AttackDownPath = "Prefabs/Effects/Attack Down";
 
-        internal PlayerAttackSystem(IInputSystem playerInput)
+        public PlayerAttackSystem(IInputSystem playerInput)
         {
             _playerInput = playerInput;
         }

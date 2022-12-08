@@ -6,7 +6,7 @@ using Core.ECS.Components.Units;
 
 namespace Core.ECS.Systems
 {
-    internal sealed class DamageSystem : IEcsRunSystem
+    public sealed class DamageSystem : IEcsRunSystem
     {
         private readonly EcsFilter<HealthComponent, DamageEventComponent, HittableComponent>
             .Exclude<InvulnerableComponent, DiedComponent> _filter = null;

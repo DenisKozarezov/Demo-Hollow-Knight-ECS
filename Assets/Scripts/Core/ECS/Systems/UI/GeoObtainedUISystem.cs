@@ -4,7 +4,7 @@ using Leopotam.Ecs;
 
 namespace Core.ECS.Systems.UI
 {
-    internal class GeoObtainedUISystem : IEcsRunSystem
+    public class GeoObtainedUISystem : IEcsRunSystem
     {
         private readonly EcsFilter<PlayerObtainedGeoEvent> _filter = null;
         private readonly EcsFilter<GeoViewComponent> _geoView = null;

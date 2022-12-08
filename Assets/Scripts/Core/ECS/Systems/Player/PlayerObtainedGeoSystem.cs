@@ -4,10 +4,10 @@ using Leopotam.Ecs;
 
 namespace Core.ECS.Systems.Player
 {
-    internal class PlayerObtainedGeoSystem : IEcsRunSystem
+    public class PlayerObtainedGeoSystem : IEcsRunSystem
     {
         private readonly EcsFilter<PlayerObtainedGeoEvent> _filter = null;
-        private readonly EcsFilter<PlayerTagComponent> _player = null;
+        private readonly EcsFilter<GeoComponent> _player = null;
 
         public void Run()
         {

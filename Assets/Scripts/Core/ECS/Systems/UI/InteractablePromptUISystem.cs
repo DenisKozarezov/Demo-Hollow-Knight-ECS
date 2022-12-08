@@ -6,7 +6,7 @@ using DG.Tweening;
 
 namespace Core.ECS.Systems.UI
 {
-    internal class InteractablePromptUISystem : IEcsRunSystem
+    public class InteractablePromptUISystem : IEcsRunSystem
     {
         private readonly EcsFilter<InteractableTriggerEnterEvent> _enter = null;
         private readonly EcsFilter<InteractableTriggerExitEvent> _exit = null;

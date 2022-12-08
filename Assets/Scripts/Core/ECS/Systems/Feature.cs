@@ -2,11 +2,11 @@
 
 namespace Core.ECS.Systems
 {
-    internal abstract class Feature : IEcsSystem
+    public abstract class Feature : IEcsSystem
     {
         protected readonly GameContext GameContext;
 
-        internal Feature(GameContext context)
+        public Feature(GameContext context)
         {
             GameContext = context;
         }

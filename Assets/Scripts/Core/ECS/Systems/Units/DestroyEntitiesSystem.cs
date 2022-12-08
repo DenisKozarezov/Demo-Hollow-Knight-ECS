@@ -5,7 +5,7 @@ using DG.Tweening;
 
 namespace Core.ECS.Systems
 {
-    internal sealed class DestroyEntitiesSystem : IEcsRunSystem
+    public sealed class DestroyEntitiesSystem : IEcsRunSystem
     {
         private readonly EcsFilter<ColliderComponent, SpriteRendererComponent, DiedComponent> _filter = null;
 

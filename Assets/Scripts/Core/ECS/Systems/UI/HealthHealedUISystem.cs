@@ -4,7 +4,7 @@ using Leopotam.Ecs;
 
 namespace Core.ECS.Systems.UI
 {
-    internal class HealthHealedUISystem : IEcsRunSystem
+    public class HealthHealedUISystem : IEcsRunSystem
     {
         private readonly EcsFilter<PlayerHealedEvent> _filter = null;
         private readonly EcsFilter<HealthViewComponent> _hp = null;

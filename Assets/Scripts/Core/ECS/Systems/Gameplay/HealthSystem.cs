@@ -4,7 +4,7 @@ using Core.ECS.Components.Units;
 
 namespace Core.ECS.Systems
 {
-    internal sealed class HealthSystem : IEcsRunSystem
+    public sealed class HealthSystem : IEcsRunSystem
     {
         private readonly EcsFilter<HealthComponent, AnimatorComponent>.Exclude<DiedComponent> _filter = null;
 

@@ -6,7 +6,7 @@ using AI.ECS;
 
 namespace Core.ECS.Systems
 {
-    internal class HitSystem : IEcsRunSystem
+    public class HitSystem : IEcsRunSystem
     {
         private readonly EcsFilter<HitEventComponent> _filter = null;
 
@@ -25,7 +25,6 @@ namespace Core.ECS.Systems
                 damageEntity.Source = component.Source;
             }
         }
-
 
         public void Run()
         {
