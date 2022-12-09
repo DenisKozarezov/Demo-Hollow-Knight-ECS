@@ -10,7 +10,7 @@ namespace Core.ECS.Systems.UI
         private readonly EcsFilter<HealthViewComponent> _healthView = null;
         private readonly EcsFilter<HealthComponent, PlayerTagComponent> _player = null;
         
-        public void Init()
+        void IEcsInitSystem.Init()
         {
             foreach (var player in _player)
             {

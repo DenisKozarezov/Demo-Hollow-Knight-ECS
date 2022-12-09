@@ -4,7 +4,7 @@
     {
         public CameraSystems(GameContext context, UnityEngine.Camera camera) : base(context)
         {
-            Add(new CameraShakeSystem(camera));
+            Add(new CameraShakeSystem(context.CoroutineRunner, camera));
             Add(new CameraFadeSystem(camera));
             Add(new CameraLowHealthVignetteSystem(camera));
         }

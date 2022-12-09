@@ -6,20 +6,18 @@ namespace Core.ECS.Systems.UI
 {
     public class HealthHealedUISystem : IEcsRunSystem
     {
-        private readonly EcsFilter<PlayerHealedEvent> _filter = null;
+        private readonly EcsFilter<PlayerHealedEvent> _event = null;
         private readonly EcsFilter<HealthViewComponent> _hp = null;
 
-        public void Run()
+        void IEcsRunSystem.Run()
         {
-            foreach (var i in _filter)
+            foreach (var @event in _event)
             {
                 foreach (var hp in _hp)
                 {
                     ref var healthView = ref _hp.Get1(hp);
-                    ref var heal = ref _filter.Get1(i);
-
-                    // Heal
-                    healthView.View.RestoreHealth(heal.Value);
+                    ref int heal = ref _event.Get1(@event).Value;
+                    healthView.View.RestoreHealth(heal);
                 }
             }
         }

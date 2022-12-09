@@ -12,7 +12,7 @@ namespace Core.ECS.Systems
         private const float Duration = 0.4f;
         private Color WhiteColor = new Color(1, 1, 1, 0.7f);
 
-        public void Run()
+        void IEcsRunSystem.Run()
         {
             foreach (var i in _filter)
             {

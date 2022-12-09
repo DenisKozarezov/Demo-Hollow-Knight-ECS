@@ -13,6 +13,7 @@ namespace Core.Infrastructure.Installers
         public override void InstallBindings()
         {
             Container.BindInterfacesTo<StandaloneInput>().AsSingle();
+            Container.Bind<ICoroutineRunner>().To<AsyncProcessor>().FromNewComponentOnNewGameObject().AsSingle();
             Container.BindInterfacesTo<ECSStartup>().AsSingle();
 
             BindPools();

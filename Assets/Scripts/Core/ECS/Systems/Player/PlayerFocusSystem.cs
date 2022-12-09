@@ -10,6 +10,7 @@ namespace Core.ECS.Systems.Player
 {
     public class PlayerFocusSystem : IEcsInitSystem, IEcsDestroySystem, IEcsRunSystem
     {
+        private readonly EcsWorld _world = null;
         private readonly EcsFilter<AnimatorComponent, HealthComponent, PlayerTagComponent>
           .Exclude<DiedComponent> _filter = null;
         private readonly IInputSystem _playerInput;
@@ -25,12 +26,12 @@ namespace Core.ECS.Systems.Player
             _focusAbility = playerModel.GetAbility<HealingFocusAbility>();
         }
 
-        public void Init()
+        void IEcsInitSystem.Init()
         {
             _playerInput.FocusStarted += OnFocusStarted;
             _playerInput.FocusCanceled += OnFocusCancelled;
         }
-        public void Destroy()
+        void IEcsDestroySystem.Destroy()
         {
             _playerInput.FocusStarted -= OnFocusStarted;
             _playerInput.FocusCanceled -= OnFocusCancelled;
@@ -56,7 +57,7 @@ namespace Core.ECS.Systems.Player
             entity.Get<AnimatorComponent>().Value.SetBool(FOCUS_KEY, false);
             if (entity.Has<ChannellingComponent>()) entity.Del<ChannellingComponent>();
         }
-        public void Run()
+        void IEcsRunSystem.Run()
         {
             if (!_focusing || _timer > _focusAbility.HoldTime) return;
 
@@ -76,10 +77,10 @@ namespace Core.ECS.Systems.Player
                     Reset(ref entity);
 
                     // Reduce energy
-                    entity.Get<EnergyReducedEvent>().Value = _focusAbility.EnergyCost;
+                    _world.NewEntity(new EnergyReducedEvent { Value = _focusAbility.EnergyCost });
 
                     // Heal
-                    entity.Get<PlayerHealedEvent>().Value = _focusAbility.HealthRestore;
+                    _world.NewEntity(new PlayerHealedEvent { Value = _focusAbility.HealthRestore });
                 }
             }
         }

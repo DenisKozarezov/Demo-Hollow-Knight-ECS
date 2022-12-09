@@ -2,7 +2,7 @@
 
 namespace Core.ECS.Events
 {
-    internal struct DamageEventComponent
+    public struct DamageEventComponent
     {
         public int Damage;
         public GameObject Target;

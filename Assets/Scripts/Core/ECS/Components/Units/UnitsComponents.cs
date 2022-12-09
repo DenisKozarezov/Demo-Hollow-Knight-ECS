@@ -7,22 +7,22 @@ using System.Collections.Generic;
 
 namespace Core.ECS.Components.Units
 {
-    [Serializable] internal struct UnitInitComponent { public EntityReference EntityReference; }   
-    [Serializable] internal struct RigidbodyComponent { public Rigidbody2D Value; }
-    [Serializable] internal struct ColliderComponent { public Collider2D Value; }
-    [Serializable] internal struct AnimatorComponent { public Animator Value; }
-    [Serializable] internal struct SpriteRendererComponent { public SpriteRenderer Value; }
-    [Serializable] internal struct NPCComponent { public List<ConversationContext> Conversations; }
-    internal struct HealthComponent { public int Health; public int MaxHealth; }  
-    internal struct DamageComponent { public int Damage; public float AttackRange; }
-    internal struct MovableComponent { public float Value; }
-    internal struct JumpComponent { public Vector2 JumpForceRange; }
-    internal struct OnGroundComponent { public Vector2 Point; }
-    internal struct UnitComponent : IEcsIgnoreInFilter { }
-    internal struct EnemyComponent : IEcsIgnoreInFilter { }
-    internal struct DiedComponent : IEcsIgnoreInFilter { }
-    internal struct HittableComponent : IEcsIgnoreInFilter { }
-    internal struct InvulnerableComponent : IEcsIgnoreInFilter { }   
-    internal struct ChannellingComponent : IEcsIgnoreInFilter { }
-    internal struct FalseKnightTagComponent : IEcsIgnoreInFilter { }
+    [Serializable] public struct UnitInitComponent { public EntityReference EntityReference; }   
+    [Serializable] public struct RigidbodyComponent { public Rigidbody2D Value; }
+    [Serializable] public struct ColliderComponent { public Collider2D Value; }
+    [Serializable] public struct AnimatorComponent { public Animator Value; }
+    [Serializable] public struct SpriteRendererComponent { public SpriteRenderer Value; }
+    [Serializable] public struct NPCComponent { public List<ConversationContext> Conversations; }
+    public struct HealthComponent { public int Health; public int MaxHealth; }  
+    public struct DamageComponent { public int Damage; public float AttackRange; }
+    public struct MovableComponent { public float Value; }
+    public struct JumpComponent { public Vector2 JumpForceRange; }
+    public struct OnGroundComponent { public Vector2 Point; }
+    public struct UnitComponent : IEcsIgnoreInFilter { }
+    public struct EnemyComponent : IEcsIgnoreInFilter { }
+    public struct DiedComponent : IEcsIgnoreInFilter { }
+    public struct HittableComponent : IEcsIgnoreInFilter { }
+    public struct InvulnerableComponent : IEcsIgnoreInFilter { }   
+    public struct ChannellingComponent : IEcsIgnoreInFilter { }
+    public struct FalseKnightTagComponent : IEcsIgnoreInFilter { }
 }

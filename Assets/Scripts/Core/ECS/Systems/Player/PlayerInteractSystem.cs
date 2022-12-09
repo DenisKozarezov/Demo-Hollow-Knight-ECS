@@ -24,15 +24,15 @@ namespace Core.ECS.Systems.Player
             _inputSystem = inputSystem;
         }
 
-        public void Init()
+        void IEcsInitSystem.Init()
         {
             _inputSystem.Look += OnInteract;
         }
-        public void Destroy()
+        void IEcsDestroySystem.Destroy()
         {
             _inputSystem.Look -= OnInteract;
         }
-        public void Run()
+        void IEcsRunSystem.Run()
         {
             foreach (var player in _player)
             {

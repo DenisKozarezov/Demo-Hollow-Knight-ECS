@@ -13,7 +13,7 @@ namespace Core.ECS.Systems
 
         private const string HitEffectPath = "Prefabs/Effects/Impact/Hit Crack Impact";
 
-        public void Run()
+        void IEcsRunSystem.Run()
         {
             foreach (var i in _filter)
             {
@@ -22,11 +22,7 @@ namespace Core.ECS.Systems
                 ref var damage = ref _filter.Get2(i);
 
                 // If damage is zero then delete immediately
-                if (damage.Damage == 0)
-                {
-                    entity.Del<DamageEventComponent>();
-                    continue;
-                }
+                if (damage.Damage == 0) continue;
 
                 // Apply damage
                 health.Health = Math.Max(health.Health - damage.Damage, 0);

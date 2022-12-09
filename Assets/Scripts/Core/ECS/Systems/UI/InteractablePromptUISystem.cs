@@ -25,7 +25,7 @@ namespace Core.ECS.Systems.UI
             go.transform.position += Vector3.up * offsetY;
             return go;
         }
-        public void Run()
+        void IEcsRunSystem.Run()
         {
             foreach (var i in _enter)
             {

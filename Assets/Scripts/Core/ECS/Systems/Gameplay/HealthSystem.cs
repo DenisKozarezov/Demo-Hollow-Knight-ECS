@@ -10,7 +10,7 @@ namespace Core.ECS.Systems
 
         private const string DEATH_KEY = "Death";
 
-        public void Run()
+        void IEcsRunSystem.Run()
         {
             foreach (var i in _filter)
             {

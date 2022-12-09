@@ -15,7 +15,7 @@ namespace Core.ECS.Systems.Player
             _playerModel = playerModel;
         }
 
-        public void Init()
+        void IEcsInitSystem.Init()
         {
             foreach (var i in _filter)
             {

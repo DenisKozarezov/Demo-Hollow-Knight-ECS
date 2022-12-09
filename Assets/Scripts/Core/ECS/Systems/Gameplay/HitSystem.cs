@@ -26,7 +26,7 @@ namespace Core.ECS.Systems
             }
         }
 
-        public void Run()
+        void IEcsRunSystem.Run()
         {
             foreach (var i in _filter)
             {

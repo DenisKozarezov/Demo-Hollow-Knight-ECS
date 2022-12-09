@@ -7,17 +7,21 @@ namespace Core.ECS.Systems
 {
     public class EnergySystem : IEcsRunSystem
     {
-        private readonly EcsFilter<EnergyComponent, EnergyReducedEvent> _filter = null;
+        private readonly EcsFilter<EnergyReducedEvent> _event = null;
+        private readonly EcsFilter<EnergyComponent> _filter = null;
 
         public void Run()
         {
-            foreach (var i in _filter)
+            foreach (var @event in _event)
             {
-                ref var energyComponent = ref _filter.Get1(i);
-                ref var energyEvent = ref _filter.Get2(i);
+                foreach (var i in _filter)
+                {
+                    ref var reducedEnergy = ref _event.Get1(i);
+                    ref var currentEnergy = ref _filter.Get1(i);
 
-                // Reduce energy
-                energyComponent.Energy = Math.Max(energyComponent.Energy - energyEvent.Value, 0f);     
+                    // Reduce energy
+                    currentEnergy.Energy = Math.Max(currentEnergy.Energy - reducedEnergy.Value, 0f);
+                }
             }
         }
     }

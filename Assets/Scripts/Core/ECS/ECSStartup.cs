@@ -18,13 +18,15 @@ namespace Core.ECS
         private EcsSystems _systems;
         private AllSystems _allSystems;          
         private readonly IInputSystem _inputSystem;
+        private readonly ICoroutineRunner _coroutineRunner;
         private readonly UnitsDefinitions _unitsDefinitions;
         private readonly DiContainer _container;
 
-        public ECSStartup(IInputSystem inputSystem, UnitsDefinitions unitsDefinitions, DiContainer container)
+        public ECSStartup(IInputSystem inputSystem, ICoroutineRunner coroutineRunner, UnitsDefinitions unitsDefinitions, DiContainer container)
         {
             _world = new EcsWorld();
             _inputSystem = inputSystem;
+            _coroutineRunner = coroutineRunner;
             _unitsDefinitions = unitsDefinitions;
             _container = container;
         }
@@ -33,7 +35,7 @@ namespace Core.ECS
         {            
             _world = new EcsWorld();
             _systems = new EcsSystems(_world).ConvertScene();
-            GameContext context = new GameContext(_systems, _inputSystem, _unitsDefinitions, _container);
+            GameContext context = new GameContext(_systems, _inputSystem, _coroutineRunner, _unitsDefinitions, _container);
             _allSystems = new AllSystems(context);            
             _allSystems.Init();
         }

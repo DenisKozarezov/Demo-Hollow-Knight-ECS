@@ -4,11 +4,11 @@ using Core.Models;
 
 namespace Core.ECS.Events.Player
 {
-    internal struct PlayerDiedEvent : IEcsIgnoreInFilter { }
-    internal struct PlayerObtainedGeoEvent { public int Value; }
-    internal struct PlayerRecievedDamageEvent { public int Value;  }
-    internal struct PlayerHealedEvent { public int Value; }
-    internal struct EnergyReducedEvent { public float Value; }
-    internal struct PlayerEnteredBossZoneEvent { public UnitModel BossModel; }
-    internal struct PlayerTalkingWithNPCEvent { public NPCComponent NPC; }
+    public struct PlayerDiedEvent : IEcsIgnoreInFilter { }
+    public struct PlayerObtainedGeoEvent { public int Value; }
+    public struct PlayerRecievedDamageEvent { public int Value;  }
+    public struct PlayerHealedEvent { public int Value; }
+    public struct EnergyReducedEvent { public float Value; }
+    public struct PlayerEnteredBossZoneEvent { public UnitModel BossModel; }
+    public struct PlayerTalkingWithNPCEvent { public NPCComponent NPC; }
 }

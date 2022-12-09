@@ -24,15 +24,15 @@ namespace Core.ECS.Systems.Player
         {
             if (_canAttack) _canAttack = false;
         }
-        public void Init()
+        void IEcsInitSystem.Init()
         {
             _playerInput.Attack += OnAttack;
         }
-        public void Destroy()
+        void IEcsDestroySystem.Destroy()
         {
             _playerInput.Attack -= OnAttack;
         }
-        public void Run()
+        void IEcsRunSystem.Run()
         {
             if (_canAttack) return;
 

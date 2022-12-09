@@ -24,7 +24,7 @@ namespace Core.ECS.Systems.Player
             return GameObject.Instantiate(asset, position, Quaternion.identity);
         }
 
-        public void Run()
+        void IEcsRunSystem.Run()
         {
             foreach (var i in _filter)
             {

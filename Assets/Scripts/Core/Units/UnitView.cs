@@ -5,7 +5,7 @@ using Core.ECS.Components.Units;
 
 namespace Core.Units
 {
-    public class UnitScript : MonoBehaviour
+    public class UnitView : MonoBehaviour
     {
         private EntityReference _entityReference;
         public EntityReference EntityReference => _entityReference;

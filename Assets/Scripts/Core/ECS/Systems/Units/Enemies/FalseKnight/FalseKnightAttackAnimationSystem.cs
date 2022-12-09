@@ -35,7 +35,7 @@ namespace Core.ECS.Systems.FalseKnight
                 });
 
                 // Camera Shake
-                _world.NewEntity(new AnimateCameraShakeEventComponent { ShakeDuration = 0.3f });
+                _world.NewEntity(new CameraShakeEventComponent { ShakeDuration = 0.3f, ShakeForce = 0.2f });
             }
         }
     }

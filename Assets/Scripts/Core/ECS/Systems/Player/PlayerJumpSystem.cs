@@ -22,11 +22,11 @@ namespace Core.ECS.Systems.Player
             _playerInput = playerInput;
         }
 
-        public virtual void Init()
+        void IEcsInitSystem.Init()
         {
             _playerInput.Jump += OnJump;
         }
-        public void Destroy()
+        void IEcsDestroySystem.Destroy()
         {
             _playerInput.Jump -= OnJump;
         }        
@@ -35,7 +35,7 @@ namespace Core.ECS.Systems.Player
             foreach (var i in _filter)
             {
                 Rigidbody2D rigidbody = _filter.Get1(i).Value;
-                float jumpHeight = _filter.Get2(i).JumpForceRange.x;
+                ref float jumpHeight = ref _filter.Get2(i).JumpForceRange.x;
                 float jumpForce = Utils.CalculateJumpForce(Physics2D.gravity.magnitude, jumpHeight);
                 rigidbody.velocity += Vector2.up * jumpForce;
             }

@@ -7,8 +7,7 @@ namespace Core.UI
     [RequireComponent(typeof(Collider2D))]
     public class InteractableView : MonoBehaviour
     {
-        [SerializeField]
-        private bool _interactable = true;
+        [field: SerializeField] public bool Interactable { get; set; } = true;
         [Space, SerializeField]
         private string _label;
         [SerializeField]
@@ -16,18 +15,17 @@ namespace Core.UI
         [SerializeField]
         private InteractType _interactionType;
 
-        public bool Interactable => _interactable;
         public string Label => _label;
         public InteractType InteractionType => _interactionType;
 
         public void SetInteractable(bool isInteractable)
         {
-            _interactable = isInteractable;
+            Interactable = isInteractable;
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (!_interactable) return;
+            if (!Interactable) return;
 
             if (collision.gameObject.layer == Constants.PlayerLayer)
             {
@@ -40,7 +38,7 @@ namespace Core.UI
         }
         private void OnTriggerExit2D(Collider2D collision)
         {
-            if (!_interactable) return;
+            if (!Interactable) return;
 
             if (collision.gameObject.layer == Constants.PlayerLayer)
             {

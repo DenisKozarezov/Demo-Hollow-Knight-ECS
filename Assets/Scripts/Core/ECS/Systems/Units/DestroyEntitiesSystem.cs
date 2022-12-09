@@ -9,7 +9,7 @@ namespace Core.ECS.Systems
     {
         private readonly EcsFilter<ColliderComponent, SpriteRendererComponent, DiedComponent> _filter = null;
 
-        public void Run()
+        void IEcsRunSystem.Run()
         {
             foreach (var i in _filter)
             {

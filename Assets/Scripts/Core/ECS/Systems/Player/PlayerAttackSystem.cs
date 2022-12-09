@@ -2,7 +2,6 @@ using UnityEngine;
 using Leopotam.Ecs;
 using Core.Input;
 using Core.ECS.Events;
-using Core.ECS.Components;
 using Core.ECS.Components.Units;
 using Core.ECS.Components.Player;
 
@@ -44,11 +43,11 @@ namespace Core.ECS.Systems.Player
             _playerInput = playerInput;
         }
 
-        public void Init()
+        void IEcsInitSystem.Init()
         {
             _playerInput.Attack += OnAttack;
         }
-        public void Destroy()
+        void IEcsDestroySystem.Destroy()
         {
             _playerInput.Attack -= OnAttack;
         }

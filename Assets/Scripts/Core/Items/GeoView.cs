@@ -44,8 +44,7 @@ namespace Core
                 GeoView geo = base.Create();
                 geo.Disposed += OnGeoDisposed;
                 _geos.AddLast(geo);
-
-                return base.Create();
+                return geo;
             }
             private void OnGeoDisposed(GeoView geo)
             {

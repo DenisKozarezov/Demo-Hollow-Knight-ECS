@@ -1,6 +1,4 @@
-﻿using Leopotam.Ecs;
-using Core.UI;
-using UnityEngine;
+﻿using Core.UI;
 
 namespace Core.ECS.Events
 {

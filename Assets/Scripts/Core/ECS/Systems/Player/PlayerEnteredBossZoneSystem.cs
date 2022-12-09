@@ -9,7 +9,7 @@ namespace Core.ECS.Systems.Player
         private readonly EcsFilter<PlayerEnteredBossZoneEvent> _filter = null;
         private readonly EcsFilter<GameViewComponent> _gameView = null;
 
-        public void Run()
+        void IEcsRunSystem.Run()
         {
             foreach (var i in _gameView)
             {
@@ -17,8 +17,8 @@ namespace Core.ECS.Systems.Player
                 {
                     ref var entity = ref _filter.GetEntity(@event);
                     ref var gameView = ref _gameView.Get1(i);
-                    ref var bossEvent = ref _filter.Get1(@event);
-                    gameView.View.AnnounceBoss(bossEvent.BossModel.DisplayName);
+                    string displayName = _filter.Get1(@event).BossModel.DisplayName;
+                    gameView.View.AnnounceBoss(displayName);
                     entity.Destroy();
                 }
             }

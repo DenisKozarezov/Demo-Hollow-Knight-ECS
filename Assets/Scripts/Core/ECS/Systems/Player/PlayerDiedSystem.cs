@@ -10,7 +10,7 @@ namespace Core.ECS.Systems.Player
     public class PlayerDiedSystem : IEcsRunSystem
     {
         private readonly EcsWorld _world = null;
-        private readonly EcsFilter<PlayerDiedEvent> _filter = null;
+        private readonly EcsFilter<PlayerDiedEvent> _event = null;
         private readonly EcsFilter<ColliderComponent, PlayerTagComponent> _player = null;
 
         private const string DeathBlow = "Prefabs/Effects/Player Death/Low Health Hit";
@@ -26,20 +26,19 @@ namespace Core.ECS.Systems.Player
             GameObject.Instantiate(deathParticle, position, Quaternion.identity);
             return effect;
         }
-        public void Run()
+        void IEcsRunSystem.Run()
         {
-            foreach (var i in _filter)
+            foreach (var @event in _event)
             {
                 foreach (var pl in _player)
                 {
-                    // Lock physics
-                    Collider2D collider = _player.Get1(pl).Value;
+                    Vector2 position = _player.Get1(pl).Value.bounds.center;
 
                     // Death Effect
-                    CreateDeathEffect(collider.bounds.center);
+                    CreateDeathEffect(position);
 
-                    // Camer Shake
-                    _world.NewEntity(new AnimateCameraShakeEventComponent { ShakeDuration = 5f });
+                    // Camera Shake
+                    _world.NewEntity(new CameraShakeEventComponent { ShakeDuration = 5f, ShakeForce = 0.2f });
                 }
             }
         }

@@ -6,7 +6,7 @@ using Core.ECS.Components.Player;
 
 namespace Core.ECS.Systems.Camera
 {
-    internal class CameraLowHealthVignetteSystem : IEcsRunSystem
+    public class CameraLowHealthVignetteSystem : IEcsRunSystem
     {
         private readonly EcsFilter<HealthComponent, PlayerTagComponent> _filter = null;
         private readonly Vignette _vignette;
@@ -14,12 +14,12 @@ namespace Core.ECS.Systems.Camera
 
         private const float IntensityMax = 0.55f;
 
-        internal CameraLowHealthVignetteSystem(UnityEngine.Camera camera)
+        public CameraLowHealthVignetteSystem(UnityEngine.Camera camera)
         {
             _vignette = camera.GetPostProcessSetting<Vignette>();
         }
 
-        public void Run()
+        void IEcsRunSystem.Run()
         {
             foreach (var i in _filter)
             {
@@ -27,7 +27,7 @@ namespace Core.ECS.Systems.Camera
 
                 if (health.Health == 0 || health.Health == health.MaxHealth) continue;
 
-                float factor = Mathf.Clamp(1 - (float)health.Health / (float)health.MaxHealth, 0f, IntensityMax);
+                float factor = Mathf.Clamp(1f - (float)health.Health / health.MaxHealth, 0f, IntensityMax);
                 _vignette.intensity.value = Mathf.SmoothDamp(_vignette.intensity.value, factor, ref _currentVelocity, 0.3f);
             }
         }

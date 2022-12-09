@@ -28,13 +28,13 @@ namespace Core.ECS.Systems.Player
             return direction.sqrMagnitude == 0f ? _lastDirection.x < 0f : direction.x < 0f;
         }
 
-        public void Run()
+        void IEcsRunSystem.Run()
         {
             foreach (var i in _filter)
             {
                 Rigidbody2D rigidbody = _filter.Get1(i).Value;
                 SpriteRenderer spriteRenderer = _filter.Get2(i).Value;
-                float speed = _filter.Get3(i).Value;
+                ref float speed = ref _filter.Get3(i).Value;
 
                 // Set velocity
                 Vector2 velocity = Vector2.right * _playerInput.Direction.x * speed * Time.deltaTime;

@@ -10,7 +10,7 @@ namespace Core.ECS.Systems
         private readonly EcsFilter<PlayerTalkingWithNPCEvent> _filter = null;
         private readonly EcsFilter<DialogueViewComponent> _dialogue = null;
 
-        public void Run()
+        void IEcsRunSystem.Run()
         {
             foreach (var i in _filter)
             {
