@@ -1,6 +1,6 @@
-﻿using Core.ECS.Components.UI;
+﻿using Leopotam.Ecs;
+using Core.ECS.Components.UI;
 using Core.ECS.Events.Player;
-using Leopotam.Ecs;
 
 namespace Core.ECS.Systems.Player
 {

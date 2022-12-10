@@ -1,8 +1,6 @@
-﻿using Core.ECS.Events;
-
-namespace Core.ECS.Systems.UI
+﻿namespace Core.ECS.Systems.UI
 {
-    public class UISystems : Feature
+    public sealed class UISystems : Feature
     {
         public UISystems(GameContext context) : base(context)
         {

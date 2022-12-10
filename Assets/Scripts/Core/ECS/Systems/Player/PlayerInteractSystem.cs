@@ -38,16 +38,16 @@ namespace Core.ECS.Systems.Player
             foreach (var pl in _player)
             {
                 // Player can interact with some object
-                foreach (var i in _enter)
+                foreach (var @event in _enter)
                 {
                     _playerEntity = _player.GetEntity(pl);
-                    _interactableEntity = _enter.Get1(i).InteractableEntity;
-                    _interactableComponent = _enter.Get1(i).InteractableComponent;
+                    _interactableEntity = _enter.Get1(@event).InteractableEntity;
+                    _interactableComponent = _enter.Get1(@event).InteractableComponent;
                     _playerEntity.Get<CanInteractComponent>();
                 }
 
                 // Player left interactable object
-                foreach (var i in _exit)
+                foreach (var @event in _exit)
                 {
                     _playerEntity.Del<CanInteractComponent>();
                 }

@@ -12,7 +12,7 @@ namespace Core.ECS.Systems
 
         private void HitAllTargets(IEnumerable<Collider2D> targets, ref HitEventComponent component)
         {
-            foreach (var target in targets)
+            foreach (Collider2D target in targets)
             {
                 if (target == null) continue;
 
@@ -35,7 +35,7 @@ namespace Core.ECS.Systems
                 int hits = Physics2D.OverlapCircleNonAlloc(component.HitPosition, component.HitRadius, targets, 1 << component.TargetLayer);
                 
                 // Missed
-                if (hits == 0) return;
+                if (hits == 0) continue;
 
                 // Damage all targets
                 HitAllTargets(targets, ref component);

@@ -6,7 +6,7 @@ using Core.ECS.Systems.Units;
 
 namespace Core.ECS.Systems
 {
-    public class GameplaySystems : Feature
+    public sealed class GameplaySystems : Feature
     {
         public GameplaySystems(GameContext context) : base(context)
         {

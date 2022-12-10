@@ -1,7 +1,6 @@
 using UnityEngine;
 using Leopotam.Ecs;
 using Core.Input;
-using Core.ECS.Components;
 using Core.ECS.Components.Units;
 using Core.ECS.Components.Player;
 
@@ -42,8 +41,7 @@ namespace Core.ECS.Systems.Player
          
                 if (entity.Has<CanAttackComponent>())
                 {
-                    ref var component = ref entity.Get<AttackCooldownComponent>();
-                    _timer = component.Value;
+                    _timer = entity.Get<AttackCooldownComponent>().Value;
                     entity.Del<CanAttackComponent>();
                 }
 

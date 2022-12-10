@@ -13,7 +13,7 @@ namespace Core.ECS.Systems.Player
         private readonly EcsFilter<
             HealthComponent, 
             DamageEventComponent, 
-            ColliderComponent, 
+            ColliderComponent,
             PlayerTagComponent> _filter = null;
 
         private const string HitEffectPath = "Prefabs/Effects/Impact/Hit Crack Impact";

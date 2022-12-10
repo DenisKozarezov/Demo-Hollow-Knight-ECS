@@ -1,23 +1,21 @@
 using UnityEngine;
 using Leopotam.Ecs;
 using Core.ECS.Events;
-using Core.ECS.Components.Units;
 
 namespace Core.ECS.Systems
 {
-    internal sealed class DamageAnimationSystem : IEcsRunSystem
+    public sealed class DamageAnimationSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<AnimateDamageEventComponent>.Exclude<DiedComponent> _filter = null;
-
+        private readonly EcsFilter<AnimateDamageEventComponent> _event = null;
         private const float Duration = 0.4f;
         private Color WhiteColor = new Color(1, 1, 1, 0.7f);
 
         void IEcsRunSystem.Run()
         {
-            foreach (var i in _filter)
+            foreach (var @event in _event)
             {
-                ref var entity = ref _filter.GetEntity(i);
-                ref var eventComponent = ref entity.Get<AnimateDamageEventComponent>();
+                ref var entity = ref _event.GetEntity(@event);
+                ref var eventComponent = ref _event.Get1(@event);
 
                 SpriteRenderer renderer = eventComponent.GameObjectRef.GetComponent<SpriteRenderer>();
 
@@ -33,7 +31,7 @@ namespace Core.ECS.Systems
                 else
                 {
                     eventComponent.Duration -= Time.deltaTime;
-                    if (eventComponent.Duration < 0f)
+                    if (eventComponent.Duration <= 0f)
                     {
                         renderer.color = Color.black;
                         entity.Del<AnimateDamageEventComponent>();

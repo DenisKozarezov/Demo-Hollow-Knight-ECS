@@ -1,4 +1,5 @@
 ﻿using Core.ECS.Events.Player;
+using Core.Models;
 
 namespace Core.ECS.Systems.Player
 {
@@ -13,7 +14,7 @@ namespace Core.ECS.Systems.Player
 
             Add(new PlayerInitSystem(context.UnitsDefinitions.PlayerModel));
             Add(new PlayerRecievedDamageSystem());
-            Add(new PlayerFocusSystem(context.InputSystem, context.UnitsDefinitions.PlayerModel));
+            Add(new PlayerFocusSystem(context.InputSystem, context.UnitsDefinitions.PlayerModel.GetAbility<HealingFocusAbility>()));
             Add(new EnergySystem());
             Add(new PlayerDiedSystem());
             Add(new PlayerHealingSystem());

@@ -1,11 +1,11 @@
-﻿using Leopotam.Ecs;
+﻿using System.Linq;
+using Leopotam.Ecs;
 using Core.ECS.Components.UI;
 using Core.ECS.Events.Player;
-using System.Linq;
 
 namespace Core.ECS.Systems
 {
-    public class DialogueSystem : IEcsRunSystem
+    public sealed class DialogueSystem : IEcsRunSystem
     {
         private readonly EcsFilter<PlayerTalkingWithNPCEvent> _filter = null;
         private readonly EcsFilter<DialogueViewComponent> _dialogue = null;
