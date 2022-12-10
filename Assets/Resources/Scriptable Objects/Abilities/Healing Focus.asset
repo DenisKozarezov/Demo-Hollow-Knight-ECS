@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0ef1a08a242b6b449bf1883586ece96, type: 3}
   m_Name: Healing Focus
   m_EditorClassIdentifier: 
-  _id: 0
-  _displayName: Healing Focus
-  _description: 
-  _icon: {fileID: 0}
-  _energyCost: 25
-  _healthRestore: 1
-  _holdTime: 1.5
-  _effectPath: Prefabs/Effects/Spells/Focus Effect
+  <ID>k__BackingField: 0
+  <DisplayName>k__BackingField: Healing Focus
+  <Description>k__BackingField: 
+  <Icon>k__BackingField: {fileID: 0}
+  <EnergyCost>k__BackingField: 25
+  <HealthRestore>k__BackingField: 1
+  <HoldTime>k__BackingField: 1.5
+  <EffectPath>k__BackingField: Prefabs/Effects/Spells/Focus Effect

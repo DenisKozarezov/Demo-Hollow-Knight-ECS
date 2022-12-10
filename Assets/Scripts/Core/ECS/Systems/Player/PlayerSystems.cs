@@ -12,9 +12,11 @@ namespace Core.ECS.Systems.Player
             OneFrame<PlayerHealedEvent>();
             OneFrame<EnergyReducedEvent>();
 
-            Add(new PlayerInitSystem(context.UnitsDefinitions.PlayerModel));
+            PlayerModel model = context.UnitsModelsProvider.Resolve<PlayerModel>();
+
+            Add(new PlayerInitSystem(model));
             Add(new PlayerRecievedDamageSystem());
-            Add(new PlayerFocusSystem(context.InputSystem, context.UnitsDefinitions.PlayerModel.GetAbility<HealingFocusAbility>()));
+            Add(new PlayerFocusSystem(context.InputSystem, model.GetAbility<HealingFocusAbility>()));
             Add(new EnergySystem());
             Add(new PlayerDiedSystem());
             Add(new PlayerHealingSystem());

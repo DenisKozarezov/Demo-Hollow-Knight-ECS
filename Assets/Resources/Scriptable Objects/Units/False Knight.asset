@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c556a82dddd1fea4992f13c3da12ae57, type: 3}
   m_Name: False Knight
   m_EditorClassIdentifier: 
-  _id: 1
-  _displayName: False Knight
-  _description: 
-  _prefabPath: Prefabs/Units/False Knight/False Knight
-  _movementSpeed: 80
-  _baseDamage: 1
-  _attackRadius: 4
-  _maxHealth: 20
+  <ID>k__BackingField: 1
+  <DisplayName>k__BackingField: False Knight
+  <Description>k__BackingField: 
+  <PrefabPath>k__BackingField: Prefabs/Units/False Knight/False Knight
+  <MovementSpeed>k__BackingField: 80
+  <BaseDamage>k__BackingField: 1
+  <AttackRange>k__BackingField: 4
+  <MaxHealth>k__BackingField: 20
   _jumpHeight: 15
