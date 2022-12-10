@@ -28,7 +28,7 @@ namespace Core.UI
         private void Start()
         {
             SetActive(false);
-            SetColor(_geoCurrentText.color.SetAlpha(0f), _geoAddingText.color.SetAlpha(0f));
+            SetColor(_geoCurrentText.color.WithAlpha(0f), _geoAddingText.color.WithAlpha(0f));
         }
         private void Update()
         {
@@ -105,9 +105,9 @@ namespace Core.UI
             SetActive(true);
 
             var sequence = DOTween.Sequence();
-            sequence.Join(_image.DOColor(_image.color.SetAlpha(alpha), AppearenceTime));
-            sequence.Join(_geoCurrentText.DOColor(_geoCurrentText.color.SetAlpha(alpha), AppearenceTime));
-            sequence.Join(_geoAddingText.DOColor(_geoAddingText.color.SetAlpha(alpha), AppearenceTime));
+            sequence.Join(_image.DOColor(_image.color.WithAlpha(alpha), AppearenceTime));
+            sequence.Join(_geoCurrentText.DOColor(_geoCurrentText.color.WithAlpha(alpha), AppearenceTime));
+            sequence.Join(_geoAddingText.DOColor(_geoAddingText.color.WithAlpha(alpha), AppearenceTime));
             sequence.OnComplete(() =>
             {
                 _fading = false;

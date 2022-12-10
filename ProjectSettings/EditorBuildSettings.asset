@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Bootstrap.unity
+    guid: 5d0a53ae631cbf7459f169e6075c8387
+  - enabled: 1
     path: Assets/Scenes/Hollow Knight Demo.unity
     guid: 9f7ed268fc4fd4faeb301dc1900061fc
   m_configObjects:

@@ -1,4 +1,6 @@
-﻿namespace Core.ECS.Systems.UI
+﻿using Core.ECS.Events;
+
+namespace Core.ECS.Systems.UI
 {
     public class UISystems : Feature
     {

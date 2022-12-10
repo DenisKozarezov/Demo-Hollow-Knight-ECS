@@ -8,14 +8,14 @@ namespace Core.ECS.Systems.Units
     {
         public UnitsSystems(GameContext context) : base(context)
         {
-            Add(new UnitInitSystem());
+            Add(new EntityInitSystem());
             Add(new FalseKnightInitSystem(context.UnitsDefinitions.FalseKnight));
             Add(new FalseKnightJumpAnimationSystem());
             Add(new FalseKnightAttackAnimationSystem());
             Add(new DustCloudAnimationSystem());
             Add(new DamageAnimationSystem());
 
-            OneFrame<UnitInitComponent>();
+            OneFrame<EntityInitComponent>();
             OneFrame<UnitCreateEventComponent>();
             OneFrame<DiedComponent>();
         }

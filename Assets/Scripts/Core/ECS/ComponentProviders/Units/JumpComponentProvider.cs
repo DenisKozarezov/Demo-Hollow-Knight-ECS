@@ -3,5 +3,5 @@ using Voody.UniLeo;
 
 namespace Core.ECS.ComponentProviders
 {
-    internal sealed class JumpComponentProvider : MonoProvider<JumpComponent> { }
+    public sealed class JumpComponentProvider : MonoProvider<JumpComponent> { }
 }

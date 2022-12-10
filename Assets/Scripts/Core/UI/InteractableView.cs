@@ -1,51 +1,36 @@
 using UnityEngine;
 using Core.ECS.Events;
 using Voody.UniLeo;
+using AI.ECS;
+using Core.ECS.Components;
+using Leopotam.Ecs;
 
 namespace Core.UI
 {
     [RequireComponent(typeof(Collider2D))]
+    [RequireComponent(typeof(EntityReference))]
     public class InteractableView : MonoBehaviour
     {
-        [field: SerializeField] public bool Interactable { get; set; } = true;
-        [Space, SerializeField]
-        private string _label;
         [SerializeField]
-        private float _offsetY;
-        [SerializeField]
-        private InteractType _interactionType;
-
-        public string Label => _label;
-        public InteractType InteractionType => _interactionType;
-
-        public void SetInteractable(bool isInteractable)
-        {
-            Interactable = isInteractable;
-        }
+        private EntityReference _entityReference;
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (!Interactable) return;
-
             if (collision.gameObject.layer == Constants.PlayerLayer)
             {
                 WorldHandler.GetWorld().NewEntity(new InteractableTriggerEnterEvent
                 {
-                    View = this,
-                    OffsetY = _offsetY
+                    InteractableEntity = _entityReference.Entity,
+                    InteractableComponent = _entityReference.Entity.Get<InteractableComponent>(),
+                    Position = transform.position
                 });
             }
         }
         private void OnTriggerExit2D(Collider2D collision)
         {
-            if (!Interactable) return;
-
             if (collision.gameObject.layer == Constants.PlayerLayer)
             {
-                WorldHandler.GetWorld().NewEntity(new InteractableTriggerExitEvent
-                {
-                    View = this
-                });
+                WorldHandler.GetWorld().NewEntity<InteractableTriggerExitEvent>();
             }
         }
     }

@@ -18,11 +18,16 @@ namespace Core.ECS.Systems.UI
         private TextMeshPro _text;
         private bool IsPlaying => _sequence.IsActive() && _sequence.IsPlaying();
 
-        private GameObject CreatePrompt(Transform target, float offsetY)
+        private GameObject CreatePrompt(Vector2 position, string label)
         {
             var asset = Resources.Load<GameObject>(PromptPath);
-            var go = GameObject.Instantiate(asset, target.position, Quaternion.identity);
-            go.transform.position += Vector3.up * offsetY;
+            GameObject go = GameObject.Instantiate(asset, position, Quaternion.identity);
+            _text = go.GetComponentInChildren<TextMeshPro>();
+            _text.text = label;
+            _text.color = _text.color.WithAlpha(0f);
+
+            _renderer = go.GetComponentInChildren<SpriteRenderer>();
+            _renderer.color = _renderer.color.WithAlpha(0f);
             return go;
         }
         void IEcsRunSystem.Run()
@@ -30,33 +35,30 @@ namespace Core.ECS.Systems.UI
             foreach (var i in _enter)
             {
                 ref var entity = ref _enter.GetEntity(i);
-                ref var view = ref _enter.Get1(i);
-                ShowLabel(ref view);
+                ref var @event = ref _enter.Get1(i);
+
+                Vector2 position = @event.Position + Vector2.up * @event.InteractableComponent.OffsetY;
+                ref string label = ref @event.InteractableComponent.Label;
+
+                ShowLabel(ref position, ref label);
                 entity.Destroy();
             }
             foreach (var i in _exit)
             {
                 ref var entity = ref _exit.GetEntity(i);
-                ref var view = ref _exit.Get1(i);
-                HideLabel(ref view);
+                HideLabel();
                 entity.Destroy();
             }
         }
-        private void HideLabel(ref InteractableTriggerExitEvent component)
+        private void HideLabel()
         {
             Fade(FadeMode.Off);
         }
-        private void ShowLabel(ref InteractableTriggerEnterEvent component)
+        private void ShowLabel(ref Vector2 position, ref string label)
         {
             if (!IsPlaying)
             {
-                var prompt = CreatePrompt(component.View.transform, component.OffsetY);
-
-                _renderer = prompt.GetComponentInChildren<SpriteRenderer>();
-                _renderer.color = _renderer.color.SetAlpha(0f);
-                _text = prompt.GetComponentInChildren<TextMeshPro>();
-                _text.text = component.View.Label;
-                _text.color = _text.color.SetAlpha(0f);
+                CreatePrompt(position, label);
             }
             Fade(FadeMode.On);
         }
@@ -67,8 +69,8 @@ namespace Core.ECS.Systems.UI
             float alpha = mode == FadeMode.On ? 1f : 0f;
 
             _sequence = DOTween.Sequence();
-            _sequence.Join(_renderer.DOColor(_renderer.color.SetAlpha(alpha), FadeTime));
-            _sequence.Join(_text.DOColor(_renderer.color.SetAlpha(alpha), FadeTime));
+            _sequence.Join(_renderer.DOColor(_renderer.color.WithAlpha(alpha), FadeTime));
+            _sequence.Join(_text.DOColor(_renderer.color.WithAlpha(alpha), FadeTime));
             _sequence.OnComplete(() =>
             {
                 if (mode == FadeMode.Off) GameObject.DestroyImmediate(_renderer.gameObject);

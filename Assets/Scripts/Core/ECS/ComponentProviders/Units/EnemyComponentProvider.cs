@@ -3,5 +3,5 @@ using Voody.UniLeo;
 
 namespace Core.ECS.ComponentProviders
 {
-    internal sealed class EnemyComponentProvider : MonoProvider<EnemyComponent> { }
+    public sealed class EnemyComponentProvider : MonoProvider<EnemyComponent> { }
 }

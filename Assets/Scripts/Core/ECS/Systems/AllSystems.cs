@@ -8,7 +8,7 @@ namespace Core.ECS.Systems
         {
             Add(new GameplaySystems(context));         
             Add(new UISystems(context));
-            Add(new DestroyEntitiesSystem());
+            Add(new EntitiesCleanupSystem());
         }
     }
 }

@@ -21,7 +21,7 @@ namespace Core
 
     public static class ColorExtensions
     {
-        public static Color SetAlpha(this Color color, float alpha)
+        public static Color WithAlpha(this Color color, float alpha)
         {
             color.a = alpha;
             return color;
@@ -32,7 +32,7 @@ namespace Core
     {
         public static bool IsNullOrEmpty(this EcsEntity entity)
         {
-            return !entity.IsAlive() && entity.IsNull();
+            return !entity.IsAlive() || entity.IsNull() || !entity.IsWorldAlive();
         }
         public static T NewEntity<T>(this EcsWorld world) where T : struct
         {

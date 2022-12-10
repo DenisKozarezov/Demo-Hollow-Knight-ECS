@@ -3,6 +3,6 @@ using Voody.UniLeo;
 
 namespace Core.ECS.ComponentProviders.Player
 {
-    internal sealed class CanAttackComponentProvider : MonoProvider<CanAttackComponent> { }
+    public sealed class CanAttackComponentProvider : MonoProvider<CanAttackComponent> { }
     
 }

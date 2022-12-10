@@ -7,7 +7,7 @@ namespace Core.ECS.Systems.Player
 {
     public class PlayerInitSystem : IEcsInitSystem 
     {
-        private readonly EcsFilter<UnitInitComponent, PlayerTagComponent> _filter = null;
+        private readonly EcsFilter<EntityInitComponent, PlayerTagComponent> _filter = null;
         private readonly PlayerModel _playerModel;
 
         public PlayerInitSystem(PlayerModel playerModel)
