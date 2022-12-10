@@ -4,13 +4,13 @@ using Core.ECS.Components.Units;
 
 namespace Core.ECS.Systems
 {
-    internal sealed class HealthSystem : IEcsRunSystem
+    public sealed class HealthSystem : IEcsRunSystem
     {
         private readonly EcsFilter<HealthComponent, AnimatorComponent>.Exclude<DiedComponent> _filter = null;
 
         private const string DEATH_KEY = "Death";
 
-        public void Run()
+        void IEcsRunSystem.Run()
         {
             foreach (var i in _filter)
             {

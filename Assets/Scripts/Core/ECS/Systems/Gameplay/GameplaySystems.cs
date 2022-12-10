@@ -6,9 +6,9 @@ using Core.ECS.Systems.Units;
 
 namespace Core.ECS.Systems
 {
-    internal class GameplaySystems : Feature
+    public sealed class GameplaySystems : Feature
     {
-        internal GameplaySystems(GameContext context) : base(context)
+        public GameplaySystems(GameContext context) : base(context)
         {
             Add(new UnitsSystems(context));
             Add(new HitSystem());
@@ -19,7 +19,7 @@ namespace Core.ECS.Systems
             Add(new DialogueSystem());
             Add(new BehaviorTreeSystem());
             Add(new EnemyDeathEffectSystem());
-            Add(new EnemyDroppingGeoSystem());
+            Add(new EnemyDroppingGeoSystem(context.DiContainer.Resolve<GeoView.Factory>()));
 
             OneFrame<DamageEventComponent>();
             OneFrame<HitEventComponent>();

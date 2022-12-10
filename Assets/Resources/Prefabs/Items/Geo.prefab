@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: -780746682267887123}
   - component: {fileID: 6614844245354795197}
   - component: {fileID: -302570695480864263}
-  - component: {fileID: 4668966887443323345}
+  - component: {fileID: -7426300505137369090}
   m_Layer: 9
   m_Name: Geo
   m_TagString: Interactable
@@ -124,7 +124,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &4668966887443323345
+--- !u!114 &-7426300505137369090
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

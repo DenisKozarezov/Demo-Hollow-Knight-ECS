@@ -1,10 +1,10 @@
 ﻿namespace Core.ECS.Systems.Camera
 {
-    internal class CameraSystems : Feature
+    public class CameraSystems : Feature
     {
-        internal CameraSystems(GameContext context, UnityEngine.Camera camera) : base(context)
+        public CameraSystems(GameContext context, UnityEngine.Camera camera) : base(context)
         {
-            Add(new CameraShakeSystem(camera));
+            Add(new CameraShakeSystem(context.CoroutineRunner, camera));
             Add(new CameraFadeSystem(camera));
             Add(new CameraLowHealthVignetteSystem(camera));
         }

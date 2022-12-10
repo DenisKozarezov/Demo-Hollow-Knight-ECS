@@ -5,20 +5,20 @@ using Core.ECS.Events;
 
 namespace Core.ECS.Systems.Camera
 {
-    internal sealed class CameraShakeSystem: IEcsRunSystem
+    public sealed class CameraShakeSystem: IEcsRunSystem
     {
-        private readonly EcsFilter<AnimateCameraShakeEventComponent> _filter = null;
-
-        private readonly MonoBehaviour _monoBehaviour;
-        private const float ShakeForce = 0.2f;
+        private readonly EcsFilter<CameraShakeEventComponent> _filter = null;
+        private readonly ICoroutineRunner _coroutineRunner;
+        private readonly UnityEngine.Camera _camera;
         private bool _shaking;
 
-        internal CameraShakeSystem(UnityEngine.Camera camera)
+        public CameraShakeSystem(ICoroutineRunner coroutineRunner, UnityEngine.Camera camera)
         {
-            _monoBehaviour = camera.GetComponent<MonoBehaviour>();
+            _coroutineRunner = coroutineRunner;
+            _camera = camera;
         }
 
-        public void Run()
+        void IEcsRunSystem.Run()
         {
             if (_shaking) return;
 
@@ -26,7 +26,7 @@ namespace Core.ECS.Systems.Camera
             {
                 ref var entity = ref _filter.GetEntity(i);
                 ref var component = ref _filter.Get1(i);
-                _monoBehaviour.StartCoroutine(ShakeCoroutine(component.ShakeDuration, ShakeForce));
+                _coroutineRunner.StartCoroutine(ShakeCoroutine(component.ShakeDuration, component.ShakeForce));
                 entity.Destroy();
             }
         }
@@ -35,15 +35,15 @@ namespace Core.ECS.Systems.Camera
         {
             _shaking = true;
             float elapsedTime = 0f;
-            Vector3 startPosition = _monoBehaviour.transform.localPosition;
+            Vector3 startPosition = _camera.transform.localPosition;
             while (elapsedTime < duration)
             {
-                _monoBehaviour.transform.localPosition = startPosition + Random.insideUnitSphere * magnitude;
+                _camera.transform.localPosition = startPosition + Random.insideUnitSphere * magnitude;
                 elapsedTime += Time.deltaTime;
                 yield return null;
             }
             _shaking = false;
-            _monoBehaviour.transform.localPosition = startPosition;
+            _camera.transform.localPosition = startPosition;
         }
     }
 }

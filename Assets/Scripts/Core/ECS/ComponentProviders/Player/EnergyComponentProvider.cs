@@ -3,5 +3,5 @@ using Voody.UniLeo;
 
 namespace Core.ECS.ComponentProviders.Player
 {
-    internal sealed class EnergyComponentProvider : MonoProvider<EnergyComponent> { }
+    public sealed class EnergyComponentProvider : MonoProvider<EnergyComponent> { }
 }

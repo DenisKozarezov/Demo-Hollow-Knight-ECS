@@ -2,14 +2,14 @@
 
 namespace Core.ECS.Systems.Camera
 {
-    internal class CameraFadeSystem : IEcsRunSystem
+    public class CameraFadeSystem : IEcsRunSystem
     {
-        internal CameraFadeSystem(UnityEngine.Camera camera)
+        public CameraFadeSystem(UnityEngine.Camera camera)
         {
             
         }
 
-        public void Run()
+        void IEcsRunSystem.Run()
         {
            
         }

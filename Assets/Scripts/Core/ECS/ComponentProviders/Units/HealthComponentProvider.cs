@@ -3,5 +3,5 @@ using Voody.UniLeo;
 
 namespace Core.ECS.ComponentProviders
 {
-    internal sealed class HealthComponentProvider : MonoProvider<HealthComponent> { }
+    public sealed class HealthComponentProvider : MonoProvider<HealthComponent> { }
 }

@@ -1,8 +1,8 @@
 ﻿namespace Core.ECS.Systems.UI
 {
-    internal class UISystems : Feature
+    public sealed class UISystems : Feature
     {
-        internal UISystems(GameContext context) : base(context)
+        public UISystems(GameContext context) : base(context)
         {
             Add(new HealthViewInitSystem());
             Add(new HealthReducedUISystem());

@@ -3,5 +3,5 @@ using Voody.UniLeo;
 
 namespace Core.ECS.ComponentProviders
 {
-    internal sealed class RigidbodyComponentProvider : MonoProvider<RigidbodyComponent> { }
+    public sealed class RigidbodyComponentProvider : MonoProvider<RigidbodyComponent> { }
 }

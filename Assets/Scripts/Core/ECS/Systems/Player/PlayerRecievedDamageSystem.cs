@@ -7,13 +7,13 @@ using Core.ECS.Components.Units;
 
 namespace Core.ECS.Systems.Player
 {
-    internal class PlayerRecievedDamageSystem : IEcsRunSystem
+    public class PlayerRecievedDamageSystem : IEcsRunSystem
     {
         private readonly EcsWorld _world = null;
         private readonly EcsFilter<
             HealthComponent, 
             DamageEventComponent, 
-            ColliderComponent, 
+            ColliderComponent,
             PlayerTagComponent> _filter = null;
 
         private const string HitEffectPath = "Prefabs/Effects/Impact/Hit Crack Impact";
@@ -24,7 +24,7 @@ namespace Core.ECS.Systems.Player
             return GameObject.Instantiate(asset, position, Quaternion.identity);
         }
 
-        public void Run()
+        void IEcsRunSystem.Run()
         {
             foreach (var i in _filter)
             {

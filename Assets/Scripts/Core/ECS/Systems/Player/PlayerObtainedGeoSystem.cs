@@ -1,24 +1,23 @@
-﻿using Core.ECS.Components.Player;
+﻿using Leopotam.Ecs;
+using Core.ECS.Components.Player;
 using Core.ECS.Events.Player;
-using Leopotam.Ecs;
 
 namespace Core.ECS.Systems.Player
 {
-    internal class PlayerObtainedGeoSystem : IEcsRunSystem
+    public class PlayerObtainedGeoSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<PlayerObtainedGeoEvent> _filter = null;
-        private readonly EcsFilter<PlayerTagComponent> _player = null;
+        private readonly EcsFilter<PlayerObtainedGeoEvent> _event = null;
+        private readonly EcsFilter<GeoComponent> _player = null;
 
-        public void Run()
+        void IEcsRunSystem.Run()
         {
-            foreach (var i in _filter)
+            foreach (var @event in _event)
             {
                 foreach (var pl in _player)
                 {
-                    ref var entity = ref _filter.GetEntity(i);
-                    ref var component = ref _filter.Get1(i);
-                    ref var player = ref _player.GetEntity(pl);
-                    player.Get<GeoComponent>().Value += component.Value;
+                    ref var obtainedGeo = ref _event.Get1(@event);
+                    ref var currentGeo = ref _player.Get1(pl);
+                    currentGeo.Value += obtainedGeo.Value;
                 }
             }
         }

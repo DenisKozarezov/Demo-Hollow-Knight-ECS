@@ -3,5 +3,5 @@ using Voody.UniLeo;
 
 namespace Core.ECS.ComponentProviders
 {
-    internal sealed class ColliderComponentProvider : MonoProvider<ColliderComponent> { }
+    public sealed class ColliderComponentProvider : MonoProvider<ColliderComponent> { }
 }

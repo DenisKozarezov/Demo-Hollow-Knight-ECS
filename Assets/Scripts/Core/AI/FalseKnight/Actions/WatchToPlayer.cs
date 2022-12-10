@@ -15,7 +15,7 @@ namespace Core.AI.FalseKnight.Actions
         protected override void OnInit()
         {
             _gameObject = BehaviorTreeRef.EntityReference.gameObject;
-            _player = FindObjectsOfType<UnitScript>().Where(i => i.gameObject.layer == Constants.PlayerLayer).First().transform;
+            _player = FindObjectsOfType<UnitView>().Where(i => i.gameObject.layer == Constants.PlayerLayer).First().transform;
         }
         protected override State OnUpdate()
         {

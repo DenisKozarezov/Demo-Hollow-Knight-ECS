@@ -4,24 +4,21 @@ using Leopotam.Ecs;
 
 namespace Core.ECS.Systems.UI
 {
-    internal class GeoObtainedUISystem : IEcsRunSystem
+    public class GeoObtainedUISystem : IEcsRunSystem
     {
-        private readonly EcsFilter<PlayerObtainedGeoEvent> _filter = null;
+        private readonly EcsFilter<PlayerObtainedGeoEvent> _event = null;
         private readonly EcsFilter<GeoViewComponent> _geoView = null;
 
-        public void Run()
+        void IEcsRunSystem.Run()
         {
-            foreach (var i in _filter)
+            foreach (var @event in _event)
             {
                 foreach (var geo in _geoView)
                 {
-                    ref var entity = ref _filter.GetEntity(i);
+                    ref var entity = ref _event.GetEntity(@event);
                     ref var view = ref _geoView.Get1(geo);
-                    ref var value = ref _filter.Get1(i);
-
-                    // Add geo
-                    view.View.AddValue(value.Value);
-
+                    ref int obtainedGeo = ref _event.Get1(@event).Value;
+                    view.View.AddValue(obtainedGeo);
                     entity.Destroy();
                 }
             }

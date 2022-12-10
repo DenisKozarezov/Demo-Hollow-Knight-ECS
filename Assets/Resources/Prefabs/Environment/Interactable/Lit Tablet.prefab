@@ -4833,8 +4833,11 @@ GameObject:
   - component: {fileID: 8612914875454351432}
   - component: {fileID: 4531995642760247017}
   - component: {fileID: 807575553973773622}
+  - component: {fileID: 8061376952603867627}
+  - component: {fileID: 7950353085639685470}
   - component: {fileID: 1852373575616213826}
   - component: {fileID: 6003322450361064370}
+  - component: {fileID: -9180910844094074414}
   m_Layer: 0
   m_Name: Lit Tablet
   m_TagString: Interactable
@@ -4949,6 +4952,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   convertMode: 0
+--- !u!114 &8061376952603867627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8612914875454351433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c51965847953ea0458fda3e5c4558c7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7950353085639685470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8612914875454351433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e4ef28d346a7fc43891e7a78d20ac8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value:
+    EntityReference: {fileID: 8061376952603867627}
 --- !u!114 &1852373575616213826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4975,7 +5004,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e9d04047db154540a67833af8662386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _interactable: 1
-  _label: Inspect
-  _offsetY: 2.3
-  _interactionType: 1
+  _entityReference: {fileID: 8061376952603867627}
+--- !u!114 &-9180910844094074414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8612914875454351433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5536cd1877029f449af1457ef38472e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value:
+    IsInteractable: 1
+    Label: Inspect
+    OffsetY: 3
+    InteractType: 1

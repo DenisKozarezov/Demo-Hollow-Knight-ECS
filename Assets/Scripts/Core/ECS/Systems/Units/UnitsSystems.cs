@@ -4,18 +4,18 @@ using Core.ECS.Systems.FalseKnight;
 
 namespace Core.ECS.Systems.Units
 {
-    internal class UnitsSystems : Feature
+    public class UnitsSystems : Feature
     {
-        internal UnitsSystems(GameContext context) : base(context)
+        public UnitsSystems(GameContext context) : base(context)
         {
-            Add(new UnitInitSystem());
+            Add(new EntityInitSystem());
             Add(new FalseKnightInitSystem(context.UnitsDefinitions.FalseKnight));
             Add(new FalseKnightJumpAnimationSystem());
             Add(new FalseKnightAttackAnimationSystem());
             Add(new DustCloudAnimationSystem());
             Add(new DamageAnimationSystem());
 
-            OneFrame<UnitInitComponent>();
+            OneFrame<EntityInitComponent>();
             OneFrame<UnitCreateEventComponent>();
             OneFrame<DiedComponent>();
         }

@@ -6,7 +6,7 @@ using Core.ECS.Components.Units;
 
 namespace Core.ECS.Systems.Player
 {
-    internal class PlayerJumpSystem : IEcsInitSystem, IEcsDestroySystem
+    public class PlayerJumpSystem : IEcsInitSystem, IEcsDestroySystem
     {
         private readonly EcsFilter<
             RigidbodyComponent, 
@@ -17,16 +17,16 @@ namespace Core.ECS.Systems.Player
 
         private readonly IInputSystem _playerInput;
               
-        internal PlayerJumpSystem(IInputSystem playerInput) 
+        public PlayerJumpSystem(IInputSystem playerInput) 
         {
             _playerInput = playerInput;
         }
 
-        public virtual void Init()
+        void IEcsInitSystem.Init()
         {
             _playerInput.Jump += OnJump;
         }
-        public void Destroy()
+        void IEcsDestroySystem.Destroy()
         {
             _playerInput.Jump -= OnJump;
         }        
@@ -35,7 +35,7 @@ namespace Core.ECS.Systems.Player
             foreach (var i in _filter)
             {
                 Rigidbody2D rigidbody = _filter.Get1(i).Value;
-                float jumpHeight = _filter.Get2(i).JumpForceRange.x;
+                ref float jumpHeight = ref _filter.Get2(i).JumpForceRange.x;
                 float jumpForce = Utils.CalculateJumpForce(Physics2D.gravity.magnitude, jumpHeight);
                 rigidbody.velocity += Vector2.up * jumpForce;
             }

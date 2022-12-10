@@ -2,13 +2,13 @@
 
 namespace Core.ECS.Systems
 {
-    internal class AllSystems : Feature
+    public sealed class AllSystems : Feature
     {
-        internal AllSystems(GameContext context) : base(context)
+        public AllSystems(GameContext context) : base(context)
         {
             Add(new GameplaySystems(context));         
             Add(new UISystems(context));
-            Add(new DestroyEntitiesSystem());
+            Add(new EntitiesCleanupSystem());
         }
     }
 }

@@ -55,7 +55,7 @@ namespace Core.UI
             var sequence = DOTween.Sequence();
             foreach (var image in gameObject.GetComponentsInChildren<MaskableGraphic>())
             {
-                sequence.Join(image.DOColor(image.color.SetAlpha(1f), FadeTime));
+                sequence.Join(image.DOColor(image.color.WithAlpha(1f), FadeTime));
             }
         }
         public void CloseDialog()
@@ -63,7 +63,7 @@ namespace Core.UI
             var sequence = DOTween.Sequence();
             foreach (var image in gameObject.GetComponentsInChildren<MaskableGraphic>())
             {
-                sequence.Join(image.DOColor(image.color.SetAlpha(0f), FadeTime));
+                sequence.Join(image.DOColor(image.color.WithAlpha(0f), FadeTime));
             }
             sequence.OnComplete(() => gameObject.SetActive(false));
         }
@@ -71,7 +71,7 @@ namespace Core.UI
         {
             foreach (var image in gameObject.GetComponentsInChildren<MaskableGraphic>())
             {
-                image.color = image.color.SetAlpha(0f);
+                image.color = image.color.WithAlpha(0f);
             }
         }
 

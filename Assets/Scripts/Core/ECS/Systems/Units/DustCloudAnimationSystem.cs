@@ -22,7 +22,7 @@ namespace Core.ECS.Systems
             return prefab;
         }
 
-        public void Run()
+        void IEcsRunSystem.Run()
         {
             foreach (var i in _filter)
             {

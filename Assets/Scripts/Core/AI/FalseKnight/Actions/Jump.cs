@@ -22,7 +22,7 @@ namespace Core.AI.FalseKnight.Actions
             _rigidbody = BehaviorTreeRef.EntityReference.Entity.Get<RigidbodyComponent>().Value;
             float jumpHeight = BehaviorTreeRef.EntityReference.Entity.Get<JumpComponent>().JumpForceRange.y;
             _jumpForce = Utils.CalculateJumpForce(Physics2D.gravity.magnitude, jumpHeight);
-            _player = FindObjectsOfType<UnitScript>().Where(i => i.gameObject.layer == Constants.PlayerLayer).First().transform;
+            _player = FindObjectsOfType<UnitView>().Where(i => i.gameObject.layer == Constants.PlayerLayer).First().transform;
         }
         private bool PlayerIsLeft() => (_rigidbody.transform.position.x - _player.position.x ) > 0;
         

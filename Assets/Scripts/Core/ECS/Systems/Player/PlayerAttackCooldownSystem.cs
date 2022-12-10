@@ -1,13 +1,12 @@
 using UnityEngine;
 using Leopotam.Ecs;
 using Core.Input;
-using Core.ECS.Components;
 using Core.ECS.Components.Units;
 using Core.ECS.Components.Player;
 
 namespace Core.ECS.Systems.Player
 {
-    internal class PlayerAttackCooldownSystem : IEcsInitSystem, IEcsRunSystem, IEcsDestroySystem
+    public class PlayerAttackCooldownSystem : IEcsInitSystem, IEcsRunSystem, IEcsDestroySystem
     {
         private readonly EcsFilter<AttackCooldownComponent, PlayerTagComponent>.Exclude<DiedComponent> _filter = null;
 
@@ -24,15 +23,15 @@ namespace Core.ECS.Systems.Player
         {
             if (_canAttack) _canAttack = false;
         }
-        public void Init()
+        void IEcsInitSystem.Init()
         {
             _playerInput.Attack += OnAttack;
         }
-        public void Destroy()
+        void IEcsDestroySystem.Destroy()
         {
             _playerInput.Attack -= OnAttack;
         }
-        public void Run()
+        void IEcsRunSystem.Run()
         {
             if (_canAttack) return;
 
@@ -42,8 +41,7 @@ namespace Core.ECS.Systems.Player
          
                 if (entity.Has<CanAttackComponent>())
                 {
-                    ref var component = ref entity.Get<AttackCooldownComponent>();
-                    _timer = component.Value;
+                    _timer = entity.Get<AttackCooldownComponent>().Value;
                     entity.Del<CanAttackComponent>();
                 }
 

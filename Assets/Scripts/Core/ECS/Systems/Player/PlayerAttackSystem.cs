@@ -2,13 +2,12 @@ using UnityEngine;
 using Leopotam.Ecs;
 using Core.Input;
 using Core.ECS.Events;
-using Core.ECS.Components;
 using Core.ECS.Components.Units;
 using Core.ECS.Components.Player;
 
 namespace Core.ECS.Systems.Player
 {
-    internal class PlayerAttackSystem : IEcsInitSystem, IEcsDestroySystem
+    public class PlayerAttackSystem : IEcsInitSystem, IEcsDestroySystem
     {
         private enum AttackDirection : byte
         { 
@@ -39,16 +38,16 @@ namespace Core.ECS.Systems.Player
         private const string AttackUpPath = "Prefabs/Effects/Attack Up";
         private const string AttackDownPath = "Prefabs/Effects/Attack Down";
 
-        internal PlayerAttackSystem(IInputSystem playerInput)
+        public PlayerAttackSystem(IInputSystem playerInput)
         {
             _playerInput = playerInput;
         }
 
-        public void Init()
+        void IEcsInitSystem.Init()
         {
             _playerInput.Attack += OnAttack;
         }
-        public void Destroy()
+        void IEcsDestroySystem.Destroy()
         {
             _playerInput.Attack -= OnAttack;
         }

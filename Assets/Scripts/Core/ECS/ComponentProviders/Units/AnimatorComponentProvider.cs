@@ -3,5 +3,5 @@ using Voody.UniLeo;
 
 namespace Core.ECS.ComponentProviders
 {
-    internal sealed class AnimatorComponentProvider : MonoProvider<AnimatorComponent> { }
+    public sealed class AnimatorComponentProvider : MonoProvider<AnimatorComponent> { }
 }

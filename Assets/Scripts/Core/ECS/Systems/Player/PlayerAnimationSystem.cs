@@ -6,7 +6,7 @@ using Core.ECS.Components.Units;
 
 namespace Core.ECS.Systems.Player
 {
-    internal class PlayerAnimationSystem : IEcsRunSystem
+    public class PlayerAnimationSystem : IEcsRunSystem
     {
         private readonly EcsFilter<AnimatorComponent, PlayerTagComponent> _filter = null;
        
@@ -19,12 +19,12 @@ namespace Core.ECS.Systems.Player
         private const string GROUND_KEY = "On Ground";
         // ========================
 
-        internal PlayerAnimationSystem(IInputSystem playerInput) 
+        public PlayerAnimationSystem(IInputSystem playerInput) 
         { 
             _playerInput = playerInput; 
         }
 
-        public void Run()
+        void IEcsRunSystem.Run()
         {
             foreach (var i in _filter)
             {

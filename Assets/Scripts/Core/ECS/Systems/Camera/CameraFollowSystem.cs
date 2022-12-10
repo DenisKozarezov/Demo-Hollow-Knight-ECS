@@ -5,14 +5,14 @@ using Core.ECS.Components.Units;
 
 namespace Core.ECS.Systems.Camera
 {
-    internal class CameraFollowSystem : IEcsRunSystem
+    public class CameraFollowSystem : IEcsRunSystem
     {
         private readonly EcsFilter<SpriteRendererComponent, PlayerTagComponent> _filter = null;
         private readonly UnityEngine.Camera _camera;
         private Vector2 _velocity;
         private float _smoothTime = 0.2f;
 
-        internal CameraFollowSystem(UnityEngine.Camera camera)
+        public CameraFollowSystem(UnityEngine.Camera camera)
         {
             _camera = camera;
         }
@@ -24,7 +24,7 @@ namespace Core.ECS.Systems.Camera
             return result;
         }
 
-        public void Run()
+        void IEcsRunSystem.Run()
         {
             foreach (var i in _filter)
             {

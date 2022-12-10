@@ -59,9 +59,9 @@ namespace Core.UI
             image.gameObject.SetActive(true);
 
             var sequence = DOTween.Sequence();
-            sequence.Append(image.DOColor(image.color.SetAlpha(1f), FadeTime));
+            sequence.Append(image.DOColor(image.color.WithAlpha(1f), FadeTime));
             sequence.AppendInterval(AnnouncementDuration);
-            sequence.Append(image.DOColor(image.color.SetAlpha(0f), FadeTime));
+            sequence.Append(image.DOColor(image.color.WithAlpha(0f), FadeTime));
             sequence.OnComplete(() =>
             {
                 image.gameObject.SetActive(false);
@@ -70,13 +70,13 @@ namespace Core.UI
         
         private void ShowText(TextMeshProUGUI text)
         {
-            text.color = _gameEventText.color.SetAlpha(0f);
+            text.color = _gameEventText.color.WithAlpha(0f);
             text.gameObject.SetActive(true);
 
             var sequence = DOTween.Sequence();
-            sequence.Append(text.DOColor(text.color.SetAlpha(1f), FadeTime));
+            sequence.Append(text.DOColor(text.color.WithAlpha(1f), FadeTime));
             sequence.AppendInterval(AnnouncementDuration);
-            sequence.Append(text.DOColor(text.color.SetAlpha(0f), FadeTime));
+            sequence.Append(text.DOColor(text.color.WithAlpha(0f), FadeTime));
             sequence.OnComplete(() =>
             {
                 text.gameObject.SetActive(false);

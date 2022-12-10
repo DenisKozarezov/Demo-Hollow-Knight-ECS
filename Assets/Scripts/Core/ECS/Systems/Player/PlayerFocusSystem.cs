@@ -8,8 +8,9 @@ using Core.Models;
 
 namespace Core.ECS.Systems.Player
 {
-    internal class PlayerFocusSystem : IEcsInitSystem, IEcsDestroySystem, IEcsRunSystem
+    public class PlayerFocusSystem : IEcsInitSystem, IEcsDestroySystem, IEcsRunSystem
     {
+        private readonly EcsWorld _world = null;
         private readonly EcsFilter<AnimatorComponent, HealthComponent, PlayerTagComponent>
           .Exclude<DiedComponent> _filter = null;
         private readonly IInputSystem _playerInput;
@@ -19,18 +20,18 @@ namespace Core.ECS.Systems.Player
         private float _timer;
         private const string FOCUS_KEY = "Is Focusing";
 
-        internal PlayerFocusSystem(IInputSystem playerInput, PlayerModel playerModel)
+        public PlayerFocusSystem(IInputSystem playerInput, HealingFocusAbility focusAbility)
         {
             _playerInput = playerInput;
-            _focusAbility = playerModel.GetAbility<HealingFocusAbility>();
+            _focusAbility = focusAbility;
         }
 
-        public void Init()
+        void IEcsInitSystem.Init()
         {
             _playerInput.FocusStarted += OnFocusStarted;
             _playerInput.FocusCanceled += OnFocusCancelled;
         }
-        public void Destroy()
+        void IEcsDestroySystem.Destroy()
         {
             _playerInput.FocusStarted -= OnFocusStarted;
             _playerInput.FocusCanceled -= OnFocusCancelled;
@@ -54,9 +55,9 @@ namespace Core.ECS.Systems.Player
             _focusing = false;
             _timer = 0f;
             entity.Get<AnimatorComponent>().Value.SetBool(FOCUS_KEY, false);
-            if (entity.Has<ChannellingComponent>()) entity.Del<ChannellingComponent>();
+            entity.Del<ChannellingComponent>();
         }
-        public void Run()
+        void IEcsRunSystem.Run()
         {
             if (!_focusing || _timer > _focusAbility.HoldTime) return;
 
@@ -68,7 +69,7 @@ namespace Core.ECS.Systems.Player
                 // If full HP
                 if (health.Health >= health.MaxHealth) continue;
 
-                if (!entity.Has<ChannellingComponent>()) entity.Get<ChannellingComponent>();
+                entity.Get<ChannellingComponent>();
 
                 _timer += Time.deltaTime;
                 if (_timer >= _focusAbility.HoldTime)
@@ -76,10 +77,10 @@ namespace Core.ECS.Systems.Player
                     Reset(ref entity);
 
                     // Reduce energy
-                    entity.Get<EnergyReducedEvent>().Value = _focusAbility.EnergyCost;
+                    _world.NewEntity(new EnergyReducedEvent { Value = _focusAbility.EnergyCost });
 
                     // Heal
-                    entity.Get<PlayerHealedEvent>().Value = _focusAbility.HealthRestore;
+                    _world.NewEntity(new PlayerHealedEvent { Value = _focusAbility.HealthRestore });
                 }
             }
         }

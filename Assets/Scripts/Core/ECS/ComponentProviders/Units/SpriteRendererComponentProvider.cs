@@ -3,5 +3,5 @@ using Voody.UniLeo;
 
 namespace Core.ECS.ComponentProviders
 {
-    internal sealed class SpriteRendererComponentProvider : MonoProvider<SpriteRendererComponent> { }
+    public sealed class SpriteRendererComponentProvider : MonoProvider<SpriteRendererComponent> { }
 }
