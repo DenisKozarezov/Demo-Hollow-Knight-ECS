@@ -20,4 +20,4 @@ MonoBehaviour:
   <BaseDamage>k__BackingField: 1
   <AttackRange>k__BackingField: 4
   <MaxHealth>k__BackingField: 20
-  _jumpHeight: 15
+  <JumpHeight>k__BackingField: 15

@@ -132,6 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3631076}
+  - component: {fileID: 3631080}
   - component: {fileID: 3631079}
   - component: {fileID: 3631078}
   - component: {fileID: 3631077}
@@ -177,9 +178,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9d0b27f5f21cfc4ea84aa080d799222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _canvasGroup: {fileID: 3631080}
   _geoCurrentText: {fileID: 1016813166}
   _geoAddingText: {fileID: 357719196}
-  _image: {fileID: 1403267797}
 --- !u!114 &3631078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,6 +208,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   convertMode: 0
+--- !u!225 &3631080
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3631075}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &13708468
 GameObject:
   m_ObjectHideFlags: 0
@@ -5594,7 +5607,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 449672, guid: 5c44ffd6bd009b5478488ee0c5e53673, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 449672, guid: 5c44ffd6bd009b5478488ee0c5e53673, type: 3}
       propertyPath: m_LocalScale.z
