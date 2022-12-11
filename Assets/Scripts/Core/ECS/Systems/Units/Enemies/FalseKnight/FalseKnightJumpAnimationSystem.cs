@@ -5,7 +5,7 @@ using Leopotam.Ecs;
 
 namespace Core.ECS.Systems.FalseKnight
 {
-    internal class FalseKnightJumpAnimationSystem: IEcsRunSystem
+    public sealed class FalseKnightJumpAnimationSystem: IEcsRunSystem
     {
         private readonly EcsWorld _world = null;
         private readonly EcsFilter<AnimatorComponent, RigidbodyComponent, FalseKnightTagComponent>
@@ -16,15 +16,6 @@ namespace Core.ECS.Systems.FalseKnight
         private const string JUMPING_KEY = "IsJumping";
         private const string LAND_KEY = "Land";
         // ========================
-
-        private void CreateDust(ref Vector2 point)
-        {
-            _world.NewEntity(new AnimateDustEventComponent
-            {
-                Point = point,
-                Scale = Vector3.one
-            });
-        }
 
         public void Run()
         {
@@ -52,7 +43,11 @@ namespace Core.ECS.Systems.FalseKnight
                     animator.SetTrigger(LAND_KEY);
 
                     // Create dust effect 
-                    CreateDust(ref entity.Get<OnGroundComponent>().Point);
+                    _world.NewEntity(new CreateDustEventComponent 
+                    { 
+                        Point = entity.Get<OnGroundComponent>().Point,
+                        Scale = Vector3.one
+                    });
 
                     // Shake camera when landed
                     _world.NewEntity(new CameraShakeEventComponent { ShakeDuration = 0.3f, ShakeForce = 0.2f });

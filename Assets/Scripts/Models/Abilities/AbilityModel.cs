@@ -1,43 +1,31 @@
 using System;
 using UnityEngine;
-using Editor;
 
 namespace Core.Models
 {
     public abstract class AbilityModel : ScriptableObject, IEquatable<AbilityModel>
     {
-        [Header("Common Characteristics")]
-        [SerializeField]
-        private uint _id;
-        [SerializeField]
-        private string _displayName;
-        [SerializeField, TextArea]
-        private string _description;
+        [field: Header("Common Characteristics")]
+        [field: SerializeField] public uint ID { get; private set; }
+        [field: SerializeField] public string DisplayName { get; private set; }
+        [field: SerializeField, TextArea] public string Description { get; private set; }
+        [field: SerializeField] public Sprite Icon { get; private set; }
 
-        [Space, SerializeField]
-        private Sprite _icon;
-
-        [Header("Ability Characteristics")]
-        [SerializeField, Min(0f)]
-        private float _energyCost;
-
-        public uint ID => _id;
-        public string DisplayName => _displayName;
-        public string Description => _description;
-        public Sprite Icon => _icon;
-        public float EnergyCost => _energyCost;
+        [field: Header("Ability Characteristics")]
+        [field: SerializeField, Min(0f)] public float EnergyCost { get; private set; }
 
         protected virtual void OnValidate()
         {
-            if (string.IsNullOrEmpty(_displayName))
+            if (string.IsNullOrEmpty(DisplayName))
             {
-                _displayName = name;
+                DisplayName = name;
             }
         }
 
         public bool Equals(AbilityModel other)
         {
-            return _id == other._id;
+            if (other == null) return false;
+            return ID == other.ID;
         }
     }
 }

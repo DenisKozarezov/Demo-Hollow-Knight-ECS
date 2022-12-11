@@ -6,7 +6,7 @@ using DG.Tweening;
 
 namespace Core.UI
 {
-    public class GameView : MonoBehaviour
+    public class GameUIView : MonoBehaviour
     {
         public enum GameEventType : byte
         {

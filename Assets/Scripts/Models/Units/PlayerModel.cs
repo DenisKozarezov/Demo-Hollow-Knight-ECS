@@ -7,19 +7,13 @@ namespace Core.Models
     [CreateAssetMenu(menuName = "Configuration/Units/Create Player Model")]
     public sealed class PlayerModel : UnitModel
     {
-        [SerializeField, MinMaxSlider(0f, 25f)]
-        private Vector2 _jumpHeightRange;
-        [SerializeField, Min(0f)]
-        private float _attackCooldown;
-        [SerializeField, Min(0f)]
-        private float _hitEnergyRestore;
+        [field: SerializeField, MinMaxSlider(0f, 25f)] public Vector2 JumpHeightRange { get; private set; }
+        [field: SerializeField, Min(0f)] public float AttackCooldown { get; private set; }
+        [field: SerializeField, Min(0f)] public float HitEnergyRestore { get; private set; }
 
         [Space, SerializeField]
         private List<AbilityModel> _abilities;
-        
-        public Vector2 JumpHeightRange => _jumpHeightRange;
-        public float AttackCooldown => _attackCooldown;
-        public float HitEnergyRestore => _hitEnergyRestore;
+
         public float EnergyCapacity => 100f;
 
         public T GetAbility<T>() where T : AbilityModel

@@ -5,7 +5,7 @@ using Editor;
 
 namespace Core.UI
 {
-    public class HealthView : MonoBehaviour
+    public class HealthUIView : MonoBehaviour
     {
         [SerializeField]
         private Transform _healthTransform;
@@ -15,18 +15,17 @@ namespace Core.UI
         private Sprite _fullHealth;
         [SerializeField, ObjectPicker]
         private string _healthPrefab;
-        private string _additiveHealthPrefab;
 
         private int _currentHealth;
         private int Count => _healthTransform.childCount;
 
-        public void Init(int value, bool additiveHealth = false)
+        public void Init(int value)
         {
             if (value == 0) return;
 
             _currentHealth = value;
 
-            var asset = Resources.Load(additiveHealth ? _additiveHealthPrefab : _healthPrefab);
+            var asset = Resources.Load(_healthPrefab);
             for (int i = 0; i < value; i++) Instantiate(asset, _healthTransform);
         }
         public void RestoreHealth(int value)

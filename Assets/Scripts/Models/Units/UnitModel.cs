@@ -6,47 +6,30 @@ namespace Core.Models
 {
     public abstract class UnitModel : ScriptableObject, IEquatable<UnitModel>
     {
-        [Header("Common Characteristics")]
-        [SerializeField]
-        private uint _id;
-        [SerializeField]
-        private string _displayName;
-        [SerializeField, TextArea]
-        private string _description;
+        [field: Header("Common Characteristics")]
+        [field: SerializeField] public uint ID { get; private set; }
+        [field: SerializeField] public string DisplayName { get; private set; }
+        [field: SerializeField, TextArea] public string Description { get; private set; }
+        [field: Space, SerializeField, ObjectPicker] public string PrefabPath { get; private set; }
 
-        [Space, SerializeField, ObjectPicker]
-        private string _prefabPath;
-
-        [Header("Unit Characteristics")]
-        [SerializeField, Min(0f)]
-        private float _movementSpeed;
-        [SerializeField, Min(0)]
-        private int _baseDamage;
-        [SerializeField, Range(0f, 5f)]
-        private float _attackRadius;
-        [SerializeField, Min(0)]
-        private int _maxHealth;
-
-        public uint ID => _id;
-        public string DisplayName => _displayName;
-        public string Description => _description;
-        public string PrefabPath => _prefabPath;  
-        public float MovementSpeed => _movementSpeed;
-        public int BaseDamage => _baseDamage;
-        public float AttackRange => _attackRadius;
-        public int MaxHealth => _maxHealth;
+        [field: Header("Unit Characteristics")]
+        [field: SerializeField, Min(0f)] public float MovementSpeed { get; private set; }
+        [field: SerializeField, Min(0)] public int BaseDamage { get; private set; }
+        [field: SerializeField, Range(0f, 5f)] public float AttackRange { get; private set; }
+        [field: SerializeField, Min(0)] public int MaxHealth { get; private set; }
 
         protected virtual void OnValidate()
         {
-            if (string.IsNullOrEmpty(_displayName))
+            if (string.IsNullOrEmpty(DisplayName))
             {
-                _displayName = name;
+                DisplayName = name;
             }
         }
 
         public bool Equals(UnitModel other)
         {
-            return _id == other._id;
+            if (other is null) return false;
+            return ID == other.ID;
         }
     }
 }
