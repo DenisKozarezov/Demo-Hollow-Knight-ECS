@@ -26,7 +26,6 @@ namespace Core.ECS.Systems.Player
             Add(new PlayerAttackCooldownSystem(context.InputSystem));
             Add(new PlayerAnimationSystem(context.InputSystem));
             Add(new PlayerInteractSystem(context.InputSystem));
-            Add(new PlayerEnteredBossZoneSystem());
             Add(new PlayerObtainedGeoSystem());
         }
     }

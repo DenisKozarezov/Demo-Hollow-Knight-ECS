@@ -13473,8 +13473,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1400977983}
-  - component: {fileID: 1400977986}
-  - component: {fileID: 1400977985}
   - component: {fileID: 1400977984}
   m_Layer: 5
   m_Name: Game View
@@ -13522,33 +13520,6 @@ MonoBehaviour:
   _bossText: {fileID: 619396725}
   _locationText: {fileID: 1504134874}
   _gameEventText: {fileID: 238245829}
---- !u!114 &1400977985
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1400977982}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71614c6f44f13aa4d87a5fce08b95b64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  value:
-    View: {fileID: 1400977984}
---- !u!114 &1400977986
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1400977982}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 863c7f7460b2b49abb4fa9a7ff9cb180, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  convertMode: 0
 --- !u!1 &1403267795
 GameObject:
   m_ObjectHideFlags: 0
@@ -24253,6 +24224,7 @@ GameObject:
   - component: {fileID: 1873274548}
   - component: {fileID: 1873274550}
   - component: {fileID: 1873274551}
+  - component: {fileID: 1873274552}
   m_Layer: 0
   m_Name: SceneContext
   m_TagString: Untagged
@@ -24276,6 +24248,7 @@ MonoBehaviour:
   _monoInstallers:
   - {fileID: 1873274550}
   - {fileID: 1873274551}
+  - {fileID: 1873274552}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -24351,8 +24324,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _geoPrefab: {fileID: 4687797451061663696, guid: bbe0843d9cd119f4f919e4b35ca03f9c, type: 3}
+--- !u!114 &1873274552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1873274547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f83266cd70c07df409a48cd3a7dbb69f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   _healthUIView: {fileID: 1549262601}
   _geoUIView: {fileID: 3631077}
+  _gameUIView: {fileID: 1400977984}
 --- !u!1 &1874297646
 GameObject:
   m_ObjectHideFlags: 0
