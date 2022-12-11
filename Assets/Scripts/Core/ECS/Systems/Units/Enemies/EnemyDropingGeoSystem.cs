@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using Leopotam.Ecs;
 using Core.ECS.Components.Units;
+using Core.ECS.Events.Player;
 
 namespace Core.ECS.Systems.Units
 {
     public class EnemyDroppingGeoSystem : IEcsRunSystem, IEcsDestroySystem
     {
+        private readonly EcsWorld _world = null;
         private readonly EcsFilter<ColliderComponent, EnemyComponent, DiedComponent> _filter = null;
         private readonly GeoView.Factory _factory;
 
@@ -20,11 +22,14 @@ namespace Core.ECS.Systems.Units
             return Vector2.up.RotateVector(randomAngle).normalized * force;
         }
 
-        public void Destroy()
+        private void OnPlayerObtainedGeo(GeoView geo)
         {
-            _factory.Dispose();
+            geo.Obtained -= OnPlayerObtainedGeo;
+            geo.Dispose();           
+            _world.NewEntity(new PlayerObtainedGeoEvent { Value = 3 });
         }
-        public void Run()
+        void IEcsDestroySystem.Destroy() => _factory.Dispose();
+        void IEcsRunSystem.Run()
         {
             foreach (var i in _filter)
             {
@@ -33,9 +38,9 @@ namespace Core.ECS.Systems.Units
                 for (int j = 0; j < 30; j++)
                 {
                     GeoView geo = _factory.Create();
-                    Rigidbody2D rigidbody = geo.GetComponent<Rigidbody2D>();
-                    rigidbody.transform.position = collider.Value.transform.position;
-                    rigidbody.velocity = GetRandomForce(15f);
+                    geo.Obtained += OnPlayerObtainedGeo;
+                    geo.transform.position = collider.Value.transform.position;
+                    geo.SetVelocity(GetRandomForce(15f));
                 }
             }
         }

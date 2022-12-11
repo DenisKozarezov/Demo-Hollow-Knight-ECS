@@ -1,8 +1,9 @@
+using UnityEngine;
+using Zenject;
 using Core.ECS;
 using Core.Input;
 using Core.Models;
-using UnityEngine;
-using Zenject;
+using Core.UI;
 
 namespace Core.Infrastructure.Installers
 {
@@ -10,6 +11,10 @@ namespace Core.Infrastructure.Installers
     {
         [SerializeField]
         private Object _geoPrefab;
+        [SerializeField]
+        private HealthUIView _healthUIView;
+        [SerializeField]
+        private GeoUIView _geoUIView;
 
         public override void InstallBindings()
         {        
@@ -19,6 +24,7 @@ namespace Core.Infrastructure.Installers
             BindPools();
             BindPlayer();
             BindUnits();
+            BindUI();
         }
 
         private void BindUnits()
@@ -28,6 +34,11 @@ namespace Core.Infrastructure.Installers
         private void BindPlayer()
         {
             Container.BindInterfacesTo<StandaloneInput>().AsSingle();
+        }
+        private void BindUI()
+        {
+            Container.Bind<GeoUIView>().FromInstance(_geoUIView).AsSingle();
+            Container.Bind<HealthUIView>().FromInstance(_healthUIView).AsSingle();
         }
         private void BindPools()
         {

@@ -133,8 +133,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3631076}
   - component: {fileID: 3631080}
-  - component: {fileID: 3631079}
-  - component: {fileID: 3631078}
   - component: {fileID: 3631077}
   m_Layer: 5
   m_Name: Geo View
@@ -181,33 +179,6 @@ MonoBehaviour:
   _canvasGroup: {fileID: 3631080}
   _geoCurrentText: {fileID: 1016813166}
   _geoAddingText: {fileID: 357719196}
---- !u!114 &3631078
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3631075}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86ebe35ff0bfd5842a994a950c32f808, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  value:
-    View: {fileID: 3631077}
---- !u!114 &3631079
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3631075}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 863c7f7460b2b49abb4fa9a7ff9cb180, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  convertMode: 0
 --- !u!225 &3631080
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -14378,8 +14349,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1549262600}
-  - component: {fileID: 1549262603}
-  - component: {fileID: 1549262602}
   - component: {fileID: 1549262601}
   m_Layer: 5
   m_Name: Health View
@@ -14426,33 +14395,6 @@ MonoBehaviour:
   _emptyHealth: {fileID: 21300000, guid: f797be0000539df489ff998df09dbb48, type: 3}
   _fullHealth: {fileID: 21300000, guid: fed7ef8af8454f049a2fb5f5a80e8a61, type: 3}
   _healthPrefab: Prefabs/UI/Health Point
---- !u!114 &1549262602
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1549262599}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ff081a670125dc44a34dff3c766bcf5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  value:
-    View: {fileID: 1549262601}
---- !u!114 &1549262603
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1549262599}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 863c7f7460b2b49abb4fa9a7ff9cb180, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  convertMode: 0
 --- !u!1 &1556676929
 GameObject:
   m_ObjectHideFlags: 0
@@ -24657,6 +24599,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _geoPrefab: {fileID: 4687797451061663696, guid: bbe0843d9cd119f4f919e4b35ca03f9c, type: 3}
+  _healthUIView: {fileID: 1549262601}
+  _geoUIView: {fileID: 3631077}
 --- !u!1 &1874297646
 GameObject:
   m_ObjectHideFlags: 0
