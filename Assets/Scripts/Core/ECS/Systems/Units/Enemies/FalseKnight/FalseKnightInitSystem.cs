@@ -5,7 +5,7 @@ using Core.Models;
 
 namespace Core.ECS.Systems.FalseKnight
 {
-    internal class FalseKnightInitSystem : IEcsRunSystem 
+    public sealed class FalseKnightInitSystem : IEcsRunSystem 
     {
         private readonly EcsFilter<EntityInitComponent, FalseKnightTagComponent> _filter = null;
         private readonly FalseKnightModel _unitModel;

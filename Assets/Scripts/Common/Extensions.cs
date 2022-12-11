@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Rendering;
 using Leopotam.Ecs;
@@ -11,9 +12,7 @@ namespace Core
             var volume = camera.GetComponentInChildren<Volume>();
             if (!volume.profile.TryGet<T>(out var setting))
             {
-#if UNITY_EDITOR
-                Debug.LogWarning($"There is no override <b><color=yellow>{typeof(T).Name}</color></b> in camera Global Volume. ");
-#endif
+                throw new NullReferenceException($"There is no override <b><color=yellow>{typeof(T).Name}</color></b> in camera Global Volume.");
             }
             return setting;
         }

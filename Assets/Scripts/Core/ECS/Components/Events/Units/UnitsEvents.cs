@@ -22,9 +22,14 @@ namespace Core.ECS.Events
         public float Duration;
         public bool Damaged;
     }
-    public struct UnitCreateEventComponent
+    public struct CreateUnitEventComponent
     {
         public uint ID;
         public Vector2 Point;
+    }
+    public struct CreateDustEventComponent
+    {
+        public Vector2 Point;
+        public Vector3 Scale;
     }
 }

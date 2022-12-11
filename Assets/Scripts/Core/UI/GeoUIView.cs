@@ -4,7 +4,7 @@ using DG.Tweening;
 
 namespace Core.UI
 {
-    public class GeoUIView : MonoBehaviour
+    public class GeoUIView : UIBaseView
     {
         [SerializeField]
         private CanvasGroup _canvasGroup;
@@ -17,14 +17,12 @@ namespace Core.UI
         private int _addingValue;
         private Sequence _sequence;
         private const float Duration = 5f;
-        private const float AppearenceTime = 2f;
 
         private void Start()
         {
             _canvasGroup.alpha = 0f;
             SetActive(false);
         }
-        private void SetActive(bool isActive) => gameObject.SetActive(isActive);
         private void SetAddingValue(int signedValue)
         {
             _addingValue = signedValue;
@@ -34,19 +32,6 @@ namespace Core.UI
         {
             _currentValue = value;
             _geoCurrentText.text = value.ToString();
-        }
-        private Tweener Fade(FadeMode mode, float time)
-        {
-            if (mode == FadeMode.On) SetActive(true);
-
-            float alpha = mode == FadeMode.On ? 1f : 0f;
-            return DOTween.To(() => 1f - alpha, x => _canvasGroup.alpha = x, alpha, time)
-                .SetEase(Ease.Linear)
-                .SetLink(gameObject)
-                .OnComplete(() =>
-                {
-                    if (mode == FadeMode.Off) SetActive(false);
-                });
         }
         private Sequence GeoSequence()
         {
@@ -61,13 +46,13 @@ namespace Core.UI
         private void StartSequence()
         {
             if (!_sequence.IsActive()) 
-                Fade(FadeMode.On, AppearenceTime);         
+                Fade(_canvasGroup, FadeMode.On);         
             else  
                 _sequence.Kill();
             
             _sequence = GeoSequence();
-            _sequence.PrependInterval(AppearenceTime);
-            _sequence.Append(Fade(FadeMode.Off, AppearenceTime));
+            _sequence.PrependInterval(2f);
+            _sequence.Append(Fade(_canvasGroup, FadeMode.Off));
         }
         public void AddValue(int value)
         {

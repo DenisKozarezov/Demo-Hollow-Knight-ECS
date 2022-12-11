@@ -9,10 +9,4 @@ namespace Core
         Talk = 0x04,
         Trade = 0x08
     }
-    public enum ItemType : byte
-    {
-        None = 0x01,
-        Geo = 0x02,
-        Spell = 0x03
-    }
 }

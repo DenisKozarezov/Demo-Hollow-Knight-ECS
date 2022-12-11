@@ -10,7 +10,6 @@ namespace Core.ECS.Systems.UI
     {
         private readonly EcsFilter<InteractableTriggerEnterEvent> _enter = null;
         private readonly EcsFilter<InteractableTriggerExitEvent> _exit = null;
-        private const float FadeTime = 0.5f;
         private const string PromptPath = "Prefabs/UI/Interactable Prompt";
 
         private Sequence _sequence;
@@ -50,27 +49,24 @@ namespace Core.ECS.Systems.UI
                 entity.Destroy();
             }
         }
-        private void HideLabel()
-        {
-            Fade(FadeMode.Off);
-        }
+        private void HideLabel() => Fade(FadeMode.Off, 0.5f);
         private void ShowLabel(ref Vector2 position, ref string label)
         {
             if (!IsPlaying)
             {
                 CreatePrompt(position, label);
             }
-            Fade(FadeMode.On);
+            Fade(FadeMode.On, 0.5f);
         }
-        private void Fade(FadeMode mode)
+        private void Fade(FadeMode mode, float time)
         {
             if (IsPlaying) _sequence.Kill();
 
             float alpha = mode == FadeMode.On ? 1f : 0f;
 
             _sequence = DOTween.Sequence();
-            _sequence.Join(_renderer.DOColor(_renderer.color.WithAlpha(alpha), FadeTime));
-            _sequence.Join(_text.DOColor(_renderer.color.WithAlpha(alpha), FadeTime));
+            _sequence.Join(_renderer.DOColor(_renderer.color.WithAlpha(alpha), time));
+            _sequence.Join(_text.DOColor(_renderer.color.WithAlpha(alpha), time));
             _sequence.OnComplete(() =>
             {
                 if (mode == FadeMode.Off) GameObject.DestroyImmediate(_renderer.gameObject);

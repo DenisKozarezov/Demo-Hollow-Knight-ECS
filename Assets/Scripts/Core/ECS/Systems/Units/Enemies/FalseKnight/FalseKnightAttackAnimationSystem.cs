@@ -5,7 +5,7 @@ using Core.ECS.Events.FalseKnight;
 
 namespace Core.ECS.Systems.FalseKnight
 {
-    internal class FalseKnightAttackAnimationSystem : IEcsRunSystem
+    public sealed class FalseKnightAttackAnimationSystem : IEcsRunSystem
     {
         private readonly EcsWorld _world = null;
         private readonly EcsFilter<
