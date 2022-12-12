@@ -6,7 +6,7 @@ using Core.ECS.Components.Player;
 
 namespace Core.ECS.Systems.Player
 {
-    public class PlayerAttackCooldownSystem : IEcsInitSystem, IEcsRunSystem, IEcsDestroySystem
+    public sealed class PlayerAttackCooldownSystem : IEcsInitSystem, IEcsRunSystem, IEcsDestroySystem
     {
         private readonly EcsFilter<AttackCooldownComponent, PlayerTagComponent>.Exclude<DiedComponent> _filter = null;
 

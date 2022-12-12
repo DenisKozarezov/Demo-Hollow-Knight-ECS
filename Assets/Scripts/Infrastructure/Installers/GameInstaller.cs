@@ -1,8 +1,8 @@
+using UnityEngine;
+using Zenject;
 using Core.ECS;
 using Core.Input;
 using Core.Models;
-using UnityEngine;
-using Zenject;
 
 namespace Core.Infrastructure.Installers
 {

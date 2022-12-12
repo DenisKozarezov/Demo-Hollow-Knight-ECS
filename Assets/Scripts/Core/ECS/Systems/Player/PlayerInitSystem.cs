@@ -5,7 +5,7 @@ using Core.ECS.Components.Player;
 
 namespace Core.ECS.Systems.Player
 {
-    public class PlayerInitSystem : IEcsInitSystem 
+    public sealed class PlayerInitSystem : IEcsInitSystem 
     {
         private readonly EcsFilter<EntityInitComponent, PlayerTagComponent> _filter = null;
         private readonly PlayerModel _playerModel;

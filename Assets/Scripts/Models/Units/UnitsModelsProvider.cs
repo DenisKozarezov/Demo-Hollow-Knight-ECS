@@ -15,7 +15,7 @@ namespace Core.Models
         {
             UnitModel result = _models.Value.FirstOrDefault(x => x is T);
 
-            if (result == null) throw new NullReferenceException();
+            if (result is null) throw new NullReferenceException();
 
             return (T)result;
         }

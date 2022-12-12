@@ -23,11 +23,11 @@ namespace Core.ECS.Systems.Camera
         {
             foreach (var i in _filter)
             {
-                ref var health = ref _filter.Get1(i);
+                ref var healthComponent = ref _filter.Get1(i);
 
-                if (health.Health == 0 || health.Health == health.MaxHealth) continue;
+                if (healthComponent.Health == 0 || healthComponent.Health == healthComponent.MaxHealth) continue;
 
-                float factor = Mathf.Clamp(1f - (float)health.Health / health.MaxHealth, 0f, IntensityMax);
+                float factor = Mathf.Clamp(1f - (float)healthComponent.Health / healthComponent.MaxHealth, 0f, IntensityMax);
                 _vignette.intensity.value = Mathf.SmoothDamp(_vignette.intensity.value, factor, ref _currentVelocity, 0.3f);
             }
         }
