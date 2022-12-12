@@ -18,8 +18,8 @@ namespace Core.ECS.Components.Units
     public struct MovableComponent { public float Value; }
     public struct JumpComponent { public Vector2 JumpForceRange; }
     public struct OnGroundComponent { public Vector2 Point; }
+    public struct EnemyComponent { public EnemyModel EnemyModel; }
     public struct UnitComponent : IEcsIgnoreInFilter { }
-    public struct EnemyComponent : IEcsIgnoreInFilter { }
     public struct DiedComponent : IEcsIgnoreInFilter { }
     public struct HittableComponent : IEcsIgnoreInFilter { }
     public struct InvulnerableComponent : IEcsIgnoreInFilter { }   

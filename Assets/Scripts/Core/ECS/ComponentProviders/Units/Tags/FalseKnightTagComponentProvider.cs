@@ -3,5 +3,5 @@ using Voody.UniLeo;
 
 namespace Core.ECS.ComponentProviders
 {
-    internal sealed class FalseKnightTagComponentProvider : MonoProvider<FalseKnightTagComponent> { }
+    public sealed class FalseKnightTagComponentProvider : MonoProvider<FalseKnightTagComponent> { }
 }

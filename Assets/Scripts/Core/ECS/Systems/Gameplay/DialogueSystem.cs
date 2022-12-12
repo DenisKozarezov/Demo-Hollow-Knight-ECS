@@ -6,7 +6,7 @@ using Core.Models;
 
 namespace Core.ECS.Systems
 {
-    public sealed class DialogueSystem : IEcsRunSystem
+    public sealed class DialogueSystem : IEcsInitSystem, IEcsRunSystem, IEcsDestroySystem
     {
         private readonly EcsFilter<PlayerTalkingWithNPCEvent> _filter = null;
         private readonly DialogueUIView _view;
@@ -16,6 +16,14 @@ namespace Core.ECS.Systems
             _view = view;
         }
 
+        void IEcsInitSystem.Init()
+        {
+            _view.ConversationEnded += _view.CloseDialog;
+        }
+        void IEcsDestroySystem.Destroy()
+        {
+            _view.ConversationEnded -= _view.CloseDialog;
+        }
         void IEcsRunSystem.Run()
         {
             foreach (var i in _filter)
@@ -28,17 +36,11 @@ namespace Core.ECS.Systems
                     {
                         _view.SetConversationContext(conversation);
                         _view.OpenDialog();
-                        _view.ConversationEnded += OnConversationEnded;
                         npc.Conversations.RemoveAt(0);
                     }
                 }
                 _view.PlayNext();
             }
-        }
-        private void OnConversationEnded()
-        {
-            _view.ConversationEnded -= OnConversationEnded;
-            _view.CloseDialog();
         }
     }
 }

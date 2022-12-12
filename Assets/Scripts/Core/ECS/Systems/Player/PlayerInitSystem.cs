@@ -26,7 +26,9 @@ namespace Core.ECS.Systems.Player
                     .Replace(new JumpComponent { JumpForceRange = _playerModel.JumpHeightRange })
                     .Replace(new MovableComponent { Value = _playerModel.MovementSpeed })
                     .Replace(new AttackCooldownComponent { Value = _playerModel.AttackCooldown })
-                    .Replace(new EnergyComponent { Energy = _playerModel.EnergyCapacity, MaxEnergy = _playerModel.EnergyCapacity });
+                    .Replace(new EnergyComponent { Energy = _playerModel.EnergyCapacity, MaxEnergy = _playerModel.EnergyCapacity })
+                    .Replace(new GeoComponent { Value = 0 })
+                    .Replace(new CanAttackComponent { });
             }            
         }
     }

@@ -4,32 +4,32 @@ namespace Core.ECS.Systems
 {
     public abstract class Feature : IEcsSystem
     {
-        protected readonly GameContext GameContext;
+        private readonly GameContext _gameContext;
 
         public Feature(GameContext context)
         {
-            GameContext = context;
+            _gameContext = context;
         }
 
         protected void Add(IEcsSystem system)
         {
-            GameContext.EcsSystems.Add(system);
+            _gameContext.EcsSystems.Add(system);
         }
         protected void OneFrame<T>() where T : struct
         {
-            GameContext.EcsSystems.OneFrame<T>();
+            _gameContext.EcsSystems.OneFrame<T>();
         }
         public void Init()
         {
-            GameContext.EcsSystems.Init();
+            _gameContext.EcsSystems.Init();
         }
         public void Run()
         {
-            GameContext.EcsSystems?.Run();
+            _gameContext.EcsSystems?.Run();
         }
         public void Destroy()
         {
-            GameContext.EcsSystems.Destroy();
+            _gameContext.EcsSystems.Destroy();
         }
     }
 }
