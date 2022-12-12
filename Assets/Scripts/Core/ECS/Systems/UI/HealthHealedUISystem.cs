@@ -4,7 +4,7 @@ using Core.UI;
 
 namespace Core.ECS.Systems.UI
 {
-    public class HealthHealedUISystem : IEcsRunSystem
+    public sealed class HealthHealedUISystem : IEcsRunSystem
     {
         private readonly EcsFilter<PlayerHealedEvent> _event = null;
         private readonly HealthUIView _view;

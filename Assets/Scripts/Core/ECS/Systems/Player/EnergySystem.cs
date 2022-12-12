@@ -5,7 +5,7 @@ using Leopotam.Ecs;
 
 namespace Core.ECS.Systems
 {
-    public class EnergySystem : IEcsRunSystem
+    public sealed class EnergySystem : IEcsRunSystem
     {
         private readonly EcsFilter<EnergyReducedEvent> _event = null;
         private readonly EcsFilter<EnergyComponent> _filter = null;

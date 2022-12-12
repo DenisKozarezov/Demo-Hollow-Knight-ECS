@@ -1,4 +1,5 @@
-﻿using Core.UI;
+﻿using Core.ECS.Events;
+using Core.UI;
 
 namespace Core.ECS.Systems.UI
 {
@@ -16,6 +17,9 @@ namespace Core.ECS.Systems.UI
             Add(new InteractablePromptUISystem());
             Add(new BossAnnouncementUISystem(gameView));
             Add(new GeoObtainedUISystem(geoView));
+
+            OneFrame<InteractableTriggerEnterEvent>();
+            OneFrame<InteractableTriggerExitEvent>();
         }
     }
 }

@@ -6,7 +6,7 @@ using Core.ECS.Components.Units;
 
 namespace Core.ECS.Systems.Player
 {
-    public class PlayerAnimationSystem : IEcsRunSystem
+    public sealed class PlayerAnimationSystem : IEcsRunSystem
     {
         private readonly EcsFilter<AnimatorComponent, PlayerTagComponent> _filter = null;
        

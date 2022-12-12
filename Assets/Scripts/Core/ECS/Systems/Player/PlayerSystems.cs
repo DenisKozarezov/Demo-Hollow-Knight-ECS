@@ -7,12 +7,12 @@ namespace Core.ECS.Systems.Player
     {
         public PlayerSystems(GameContext context) : base(context)
         {
+            PlayerModel model = context.UnitsModelsProvider.Resolve<PlayerModel>();
+
             OneFrame<PlayerRecievedDamageEvent>();
             OneFrame<PlayerDiedEvent>();
             OneFrame<PlayerHealedEvent>();
             OneFrame<EnergyReducedEvent>();
-
-            PlayerModel model = context.UnitsModelsProvider.Resolve<PlayerModel>();
 
             Add(new PlayerInitSystem(model));
             Add(new PlayerRecievedDamageSystem());
@@ -25,7 +25,8 @@ namespace Core.ECS.Systems.Player
             Add(new PlayerAttackSystem(context.InputSystem));
             Add(new PlayerAttackCooldownSystem(context.InputSystem));
             Add(new PlayerAnimationSystem(context.InputSystem));
-            Add(new PlayerInteractSystem(context.InputSystem));
+            Add(new PlayerCanInteractSystem());
+            Add(new PlayerInteractingSystem(context.InputSystem));
             Add(new PlayerObtainedGeoSystem());
         }
     }

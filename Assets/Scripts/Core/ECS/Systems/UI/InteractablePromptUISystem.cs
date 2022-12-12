@@ -6,7 +6,7 @@ using DG.Tweening;
 
 namespace Core.ECS.Systems.UI
 {
-    public class InteractablePromptUISystem : IEcsRunSystem
+    public sealed class InteractablePromptUISystem : IEcsRunSystem
     {
         private readonly EcsFilter<InteractableTriggerEnterEvent> _enter = null;
         private readonly EcsFilter<InteractableTriggerExitEvent> _exit = null;
@@ -33,20 +33,14 @@ namespace Core.ECS.Systems.UI
         {
             foreach (var i in _enter)
             {
-                ref var entity = ref _enter.GetEntity(i);
-                ref var @event = ref _enter.Get1(i);
-
-                Vector2 position = @event.Position + Vector2.up * @event.InteractableComponent.OffsetY;
-                ref string label = ref @event.InteractableComponent.Label;
-
+                ref var entity = ref _enter.Get1(i);
+                Vector2 position = entity.Position + Vector2.up * entity.InteractableComponent.OffsetY;
+                ref string label = ref entity.InteractableComponent.Label;
                 ShowLabel(ref position, ref label);
-                entity.Destroy();
             }
             foreach (var i in _exit)
             {
-                ref var entity = ref _exit.GetEntity(i);
                 HideLabel();
-                entity.Destroy();
             }
         }
         private void HideLabel() => Fade(FadeMode.Off, 0.5f);

@@ -1,39 +1,44 @@
 ﻿using System.Linq;
 using Leopotam.Ecs;
-using Core.ECS.Components.UI;
 using Core.ECS.Events.Player;
+using Core.UI;
+using Core.Models;
 
 namespace Core.ECS.Systems
 {
     public sealed class DialogueSystem : IEcsRunSystem
     {
         private readonly EcsFilter<PlayerTalkingWithNPCEvent> _filter = null;
-        private readonly EcsFilter<DialogueViewComponent> _dialogue = null;
+        private readonly DialogueUIView _view;
+
+        public DialogueSystem(DialogueUIView view)
+        {
+            _view = view;
+        }
 
         void IEcsRunSystem.Run()
         {
             foreach (var i in _filter)
             {
-                foreach (var dialogue in _dialogue)
+                if (!_view.IsConversating)
                 {
-                    ref var entity = ref _filter.GetEntity(i);
                     ref var npc = ref _filter.Get1(i).NPC;
-                    ref var view = ref _dialogue.Get1(dialogue).View;
-
-                    if (!view.IsConversating)
+                    ConversationContext conversation = npc.Conversations.FirstOrDefault();
+                    if (conversation != null)
                     {
-                        var conversation = npc.Conversations.FirstOrDefault();
-                        if (conversation != null)
-                        {
-                            view.SetConversationContext(conversation);
-                            view.OpenDialog();
-                            npc.Conversations.RemoveAt(0);
-                        }
+                        _view.SetConversationContext(conversation);
+                        _view.OpenDialog();
+                        _view.ConversationEnded += OnConversationEnded;
+                        npc.Conversations.RemoveAt(0);
                     }
-                    view.PlayNext();
-                    entity.Destroy();
                 }
+                _view.PlayNext();
             }
+        }
+        private void OnConversationEnded()
+        {
+            _view.ConversationEnded -= OnConversationEnded;
+            _view.CloseDialog();
         }
     }
 }

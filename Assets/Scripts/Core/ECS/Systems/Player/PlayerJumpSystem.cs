@@ -6,7 +6,7 @@ using Core.ECS.Components.Units;
 
 namespace Core.ECS.Systems.Player
 {
-    public class PlayerJumpSystem : IEcsInitSystem, IEcsDestroySystem
+    public sealed class PlayerJumpSystem : IEcsInitSystem, IEcsDestroySystem
     {
         private readonly EcsFilter<
             RigidbodyComponent, 

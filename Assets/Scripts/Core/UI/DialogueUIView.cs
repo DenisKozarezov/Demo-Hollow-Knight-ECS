@@ -15,9 +15,9 @@ namespace Core.UI
 
         private ConversationContext _context;
         private Coroutine _coroutine;
-        private int _currentIndex;
+        private int _currentPhrase;
         private int _phrasesCount;
-        public bool IsConversating => _currentIndex < _phrasesCount;
+        public bool IsConversating => _currentPhrase < _phrasesCount;
 
         public event Action ConversationEnded;
 
@@ -36,22 +36,21 @@ namespace Core.UI
         public void SetConversationContext(ConversationContext context)
         {
             _context = context;
-            _currentIndex = 0;
+            _currentPhrase = 0;
             _phrasesCount = context.Conversation.Count;
         }
         public void PlayNext()
         {
             if (_context is null || !IsConversating)
             {
-                CloseDialog();
                 ConversationEnded?.Invoke();
                 return;
             }
 
-            _text.text = _context.Conversation[_currentIndex];
+            _text.text = _context.Conversation[_currentPhrase];
             if (_coroutine != null) StopCoroutine(_coroutine);
-            _coroutine = StartCoroutine(TextTypingCoroutine(_context.Conversation[_currentIndex]));
-            _currentIndex++;
+            _coroutine = StartCoroutine(TextTypingCoroutine(_context.Conversation[_currentPhrase]));
+            _currentPhrase++;
         }
         public void OpenDialog() => Fade(_canvasGroup, FadeMode.On);
         public void CloseDialog() => Fade(_canvasGroup, FadeMode.Off);

@@ -8,7 +8,7 @@ using Core.Models;
 
 namespace Core.ECS.Systems.Player
 {
-    public class PlayerFocusSystem : IEcsInitSystem, IEcsDestroySystem, IEcsRunSystem
+    public sealed class PlayerFocusSystem : IEcsInitSystem, IEcsDestroySystem, IEcsRunSystem
     {
         private readonly EcsWorld _world = null;
         private readonly EcsFilter<AnimatorComponent, HealthComponent, PlayerTagComponent>

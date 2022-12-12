@@ -7,7 +7,7 @@ using Core.ECS.Components.Player;
 
 namespace Core.ECS.Systems.Player
 {
-    public class PlayerAttackSystem : IEcsInitSystem, IEcsDestroySystem
+    public sealed class PlayerAttackSystem : IEcsInitSystem, IEcsDestroySystem
     {
         private enum AttackDirection : byte
         { 

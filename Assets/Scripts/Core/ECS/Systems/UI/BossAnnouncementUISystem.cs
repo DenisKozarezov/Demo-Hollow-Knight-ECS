@@ -4,7 +4,7 @@ using Core.UI;
 
 namespace Core.ECS.Systems.UI
 {
-    public class BossAnnouncementUISystem : IEcsRunSystem
+    public sealed class BossAnnouncementUISystem : IEcsRunSystem
     {
         private readonly EcsFilter<PlayerEnteredBossZoneEvent> _event = null;
         private readonly GameUIView _view;

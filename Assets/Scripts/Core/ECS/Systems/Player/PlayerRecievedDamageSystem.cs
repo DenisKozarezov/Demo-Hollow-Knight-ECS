@@ -7,7 +7,7 @@ using Core.ECS.Components.Units;
 
 namespace Core.ECS.Systems.Player
 {
-    public class PlayerRecievedDamageSystem : IEcsRunSystem
+    public sealed class PlayerRecievedDamageSystem : IEcsRunSystem
     {
         private readonly EcsWorld _world = null;
         private readonly EcsFilter<

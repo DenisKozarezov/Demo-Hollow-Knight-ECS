@@ -6,7 +6,7 @@ using Core.ECS.Components.Units;
 
 namespace Core.ECS.Systems.Player
 {
-    internal class PlayerMoveSystem : IEcsRunSystem
+    public sealed class PlayerMoveSystem : IEcsRunSystem
     {
         private readonly EcsFilter<
             RigidbodyComponent, 
@@ -17,8 +17,8 @@ namespace Core.ECS.Systems.Player
 
         private readonly IInputSystem _playerInput;
         private Vector2 _lastDirection;
-       
-        internal PlayerMoveSystem(IInputSystem playerInput)
+
+        public PlayerMoveSystem(IInputSystem playerInput)
         {
             _playerInput = playerInput;
         }

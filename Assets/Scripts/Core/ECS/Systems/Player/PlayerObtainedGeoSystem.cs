@@ -4,7 +4,7 @@ using Core.ECS.Events.Player;
 
 namespace Core.ECS.Systems.Player
 {
-    public class PlayerObtainedGeoSystem : IEcsRunSystem
+    public sealed class PlayerObtainedGeoSystem : IEcsRunSystem
     {
         private readonly EcsFilter<PlayerObtainedGeoEvent> _event = null;
         private readonly EcsFilter<GeoComponent> _player = null;

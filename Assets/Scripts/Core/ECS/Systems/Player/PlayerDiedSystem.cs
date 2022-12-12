@@ -7,7 +7,7 @@ using Core.ECS.Components.Units;
 
 namespace Core.ECS.Systems.Player
 {
-    public class PlayerDiedSystem : IEcsRunSystem
+    public sealed class PlayerDiedSystem : IEcsRunSystem
     {
         private readonly EcsWorld _world = null;
         private readonly EcsFilter<PlayerDiedEvent> _event = null;

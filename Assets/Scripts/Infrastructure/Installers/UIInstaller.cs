@@ -12,12 +12,15 @@ namespace Core.Infrastructure.Installers
         private GeoUIView _geoUIView;
         [SerializeField]
         private GameUIView _gameUIView;
+        [SerializeField]
+        private DialogueUIView _gialogueUIView;
 
         public override void InstallBindings()
         {
             Container.Bind<GeoUIView>().FromInstance(_geoUIView).AsSingle();
             Container.Bind<HealthUIView>().FromInstance(_healthUIView).AsSingle();
             Container.Bind<GameUIView>().FromInstance(_gameUIView).AsSingle();
+            Container.Bind<DialogueUIView>().FromInstance(_gialogueUIView).AsSingle();
         }
     }
 }
