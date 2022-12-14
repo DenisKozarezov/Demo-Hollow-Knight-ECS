@@ -9,7 +9,7 @@ namespace Core.Units
     public class BossTriggerZone : MonoBehaviour
     {
         [SerializeField]
-        private UnitModel _unitModel;
+        private EnemyModel _enemyModel;
         [SerializeField]
         private UnityEvent PlayerEnteredZone;
 
@@ -19,7 +19,7 @@ namespace Core.Units
             {
                 WorldHandler.GetWorld().NewEntity(new PlayerEnteredBossZoneEvent
                 {
-                    BossModel = _unitModel
+                    BossModel = _enemyModel
                 });
                 PlayerEnteredZone.Invoke();
                 Destroy(gameObject);

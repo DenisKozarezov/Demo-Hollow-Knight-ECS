@@ -17,11 +17,11 @@ namespace Core.ECS.Systems
             Add(new DamageSystem());
             Add(new PlayerSystems(context));
             Add(new HealthSystem());
-            Add(new CameraSystems(context, UnityEngine.Camera.main));
             Add(new DialogueSystem(context.DiContainer.Resolve<DialogueUIView>()));
             Add(new BehaviorTreeSystem());
-            Add(new EnemyDeathEffectSystem());
+            Add(new EnemyDiedSystem());
             Add(new EnemyDroppingGeoSystem(context.DiContainer.Resolve<GeoView.Factory>()));
+            Add(new CameraSystems(context, UnityEngine.Camera.main));
 
             OneFrame<DamageEventComponent>();
             OneFrame<HitEventComponent>();

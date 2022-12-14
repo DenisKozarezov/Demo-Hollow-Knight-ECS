@@ -42,12 +42,17 @@ namespace AI.BehaviorTree
         [NonSerialized] private Node _currentNode;
 
         public Action BehaviorTreeChanged; 
+        public EntityReference EntityReference => _entityReference;        
 
         private void OnDestroy() { BehaviorTreeChanged -= OnBehaviorTreeChanged; }
-
-        public void OnBehaviorTreeChanged() { SetCurrentNode(RootNode); }
-
-        public EntityReference EntityReference => _entityReference;        
+        private void OnBehaviorTreeChanged() { SetCurrentNode(RootNode); }
+        private BehaviorTree CloneNodes()
+        {
+            BehaviorTree clone = Instantiate(this);
+            clone.Nodes = Nodes.ConvertAll(child => child.Clone());
+            clone.RootNode = clone.Nodes.First(i => i is RootNode);
+            return clone;
+        }
         
         public void Init(EcsWorld ecsWorld, EntityReference entityReference)
         {
@@ -96,29 +101,10 @@ namespace AI.BehaviorTree
             return State.Running;
             //============================
         }
-
-        private State GetState(Node node)
-        {
-            switch (node.State)
-            {
-                case State.Success: return State.Success;
-                case State.Running: return _currentNode.Update();
-                default:
-                    SetCurrentNode(_currentNode.Parent);
-                    return State.Running;
-            }
-        }
         public BehaviorTree Clone()
         {
             BehaviorTree clone = CloneNodes();
             CloneEdges(this, clone);
-            return clone;
-        }
-        public BehaviorTree CloneNodes()
-        {
-            BehaviorTree clone = Instantiate(this);
-            clone.Nodes = Nodes.ConvertAll(child => child.Clone());
-            clone.RootNode = clone.Nodes.First(i => i is RootNode);
             return clone;
         }
         public void CloneEdges(BehaviorTree originalTree, BehaviorTree clone)
@@ -305,8 +291,6 @@ namespace AI.BehaviorTree
                 }
             }
         }
-        
-        #region Node Manipulations
         public Node CreateNode(Type type)
         {
             Node node = ScriptableObject.CreateInstance(type) as Node;
@@ -320,7 +304,6 @@ namespace AI.BehaviorTree
             Nodes.Add(node);
 
 #if UNITY_EDITOR
-            /************** ФИКСИРУЕМ ИЗМЕНЕНИЯ *************/
             AddNodeToTree(node);
 #endif
             return node;
@@ -333,7 +316,6 @@ namespace AI.BehaviorTree
             Nodes.Remove(node);
 
 #if UNITY_EDITOR
-            /************** ФИКСИРУЕМ ИЗМЕНЕНИЯ *************/
             RemoveNodeFromTree(node);
 #endif
         }
@@ -414,26 +396,19 @@ namespace AI.BehaviorTree
             }
 
 #if UNITY_EDITOR
-            /************** ФИКСИРУЕМ ИЗМЕНЕНИЯ *************/
             SaveNode(parentNode);
             SaveNode(childNode);
 #endif
         }
-
-        //Назначает узел текущим узлом для исполнения
         public void SetCurrentNode(Node node)
         {
-            if (_prevNode != null)
-                _prevNode.State = State.Running;
+            if (_prevNode != null) _prevNode.State = State.Running;
             _prevNode = _currentNode;
             _currentNode = node;
         }
-        #endregion
-
-        #region Group Manipulators
         public GroupSO CreateGroup(string title)
         {
-            GroupSO groupSo = ScriptableObject.CreateInstance(typeof(GroupSO)) as GroupSO;
+            GroupSO groupSo = ScriptableObject.CreateInstance<GroupSO>();
             groupSo.Title = title;
             groupSo.name = title;
 
@@ -444,7 +419,6 @@ namespace AI.BehaviorTree
             Groups.Add(groupSo);
 
 #if UNITY_EDITOR
-            /************** ФИКСИРУЕМ ИЗМЕНЕНИЯ *************/
             AddGroupToTree(groupSo);
 #endif
 
@@ -455,11 +429,9 @@ namespace AI.BehaviorTree
             Groups.Remove(groupSo);
 
 #if UNITY_EDITOR
-            /************** ФИКСИРУЕМ ИЗМЕНЕНИЯ *************/
             RemoveGroupFromTree(groupSo);
 #endif
         }
-        #endregion
 
 #if UNITY_EDITOR
         private void SaveAsset(UnityEngine.Object asset)

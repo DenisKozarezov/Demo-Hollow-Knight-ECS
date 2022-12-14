@@ -13,12 +13,11 @@ namespace AI.ECS.Systems
         private readonly EcsWorld _world = null;
         private readonly EcsFilter<BehaviorTreeComponent> _filter = null;
 
-        public void Run()
+        void IEcsRunSystem.Run()
         {
             foreach (var i in _filter)
             {
-                ref var entity = ref _filter.GetEntity(i);
-                ref var component = ref entity.Get<BehaviorTreeComponent>();
+                ref var component = ref _filter.Get1(i);
                 if (!component.Initialized) component.Init(_world);
                 component.BehaviorTree.Update();
             }

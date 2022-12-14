@@ -14,9 +14,9 @@ namespace Core.ECS.Systems.Camera
 
         private const float IntensityMax = 0.55f;
 
-        public CameraLowHealthVignetteSystem(UnityEngine.Camera camera)
+        public CameraLowHealthVignetteSystem(Vignette vignette)
         {
-            _vignette = camera.GetPostProcessSetting<Vignette>();
+            _vignette = vignette;
         }
 
         void IEcsRunSystem.Run()

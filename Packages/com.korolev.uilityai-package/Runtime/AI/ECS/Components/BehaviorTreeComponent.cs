@@ -13,7 +13,7 @@ namespace AI.ECS.Components
     {
         public EntityReference EntityReference;
         public BehaviorTree.BehaviorTree BehaviorTree;
-        public bool Initialized;
+        [NonSerialized] public bool Initialized;
     
         public void Init(EcsWorld ecsWorld) 
         {
