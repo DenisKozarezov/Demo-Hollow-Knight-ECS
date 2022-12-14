@@ -14,7 +14,7 @@ namespace Core.AI.FalseKnight.Actions
 
         protected override void OnInit()
         {
-            _spriteRenderer = BehaviorTreeRef.Agent.Get<SpriteRendererComponent>().Value;
+            _spriteRenderer = Agent.Get<SpriteRendererComponent>().Value;
             _player = FindObjectsOfType<UnitView>().Where(i => i.gameObject.layer == Constants.PlayerLayer).First().transform;
         }
         protected override State OnUpdate()

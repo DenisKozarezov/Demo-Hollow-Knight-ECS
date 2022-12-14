@@ -1,14 +1,9 @@
-/*******************************************
- * Created by Pavel Korolev
- * Last Modified 19.04.2022
- *******************************************/
-
 using Core.ECS.Components.Units;
 using Leopotam.Ecs;
 
 namespace Core.ECS.Systems
 {
-    public class BehaviourTreeSystem : IEcsRunSystem 
+    public sealed class BehaviourTreeSystem : IEcsRunSystem 
     {        
         private readonly EcsFilter<BehaviourTreeComponent> _filter = null;
 

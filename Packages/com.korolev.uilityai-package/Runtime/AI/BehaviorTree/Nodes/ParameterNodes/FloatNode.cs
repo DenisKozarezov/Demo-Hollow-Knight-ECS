@@ -1,8 +1,3 @@
-/*******************************************
- * Created by Pavel Korolev
- * Last Modified 19.04.2022
- *******************************************/
-
 namespace AI.BehaviourTree.Nodes.Parameters
 {
     public class FloatNode : ParameterNode

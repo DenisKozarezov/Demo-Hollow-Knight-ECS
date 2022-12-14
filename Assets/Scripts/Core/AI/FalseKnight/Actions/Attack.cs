@@ -12,11 +12,11 @@ namespace Core.AI.FalseKnight.Actions
 
         protected override void OnInit()
         {
-            _fatigue = BehaviorTreeRef.Nodes.Where(n=> n is Fatigue).FirstOrDefault() as Fatigue;
+            _fatigue = BehaviourTreeRef.Nodes.Where(n=> n is Fatigue).FirstOrDefault() as Fatigue;
         }
         protected override State OnUpdate()
         {
-            BehaviorTreeRef.Agent.Get<FalseKnightAttackEventComponent>();
+            Agent.Get<FalseKnightAttackEventComponent>();
             _fatigue.Value += 0.4f;
             return State.Success;
         }

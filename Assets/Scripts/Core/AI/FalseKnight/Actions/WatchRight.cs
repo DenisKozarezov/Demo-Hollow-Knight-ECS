@@ -10,7 +10,7 @@ namespace Core.AI.FalseKnight.Actions
         private SpriteRenderer _spriteRenderer;
         protected override void OnInit()
         {
-            _spriteRenderer = BehaviorTreeRef.Agent.Get<SpriteRendererComponent>().Value;
+            _spriteRenderer = Agent.Get<SpriteRendererComponent>().Value;
         }
         protected override State OnUpdate()
         {

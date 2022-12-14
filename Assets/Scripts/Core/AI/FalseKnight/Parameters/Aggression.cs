@@ -9,7 +9,7 @@ namespace Core.AI.FalseKnight.Parameters
     {
         protected override State OnUpdate()
         {
-            if (BehaviorTreeRef.Agent.Has<DamageEventComponent>())
+            if (Agent.Has<DamageEventComponent>())
             {
                 Value += 0.7f;
             }            

@@ -1,8 +1,3 @@
-/*******************************************
- * Created by Pavel Korolev
- * Last Modified 19.04.2022
- *******************************************/
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,9 +24,8 @@ namespace AI.BehaviourTree
     public class BehaviorTree : ScriptableObject
     {
         [SerializeField, HideInInspector]
-        private EcsEntity _agent;
+        public EcsEntity Agent;
 
-        [NonSerialized] public State TreeState;
         [SerializeField, HideInInspector] public Node RootNode;
         [SerializeField, HideInInspector] public List<Node> Nodes = new List<Node>();
         [SerializeField, HideInInspector] public List<GroupSO> Groups = new List<GroupSO>();
@@ -40,8 +34,7 @@ namespace AI.BehaviourTree
         [NonSerialized] private Node _prevNode;
         [NonSerialized] private Node _currentNode;
 
-        public Action BehaviourTreeChanged; 
-        public EcsEntity Agent => _agent;        
+        public Action BehaviourTreeChanged;      
 
         private void OnDestroy() { BehaviourTreeChanged -= OnBehaviourTreeChanged; }
         private void OnBehaviourTreeChanged() { SetCurrentNode(RootNode); }
@@ -56,54 +49,42 @@ namespace AI.BehaviourTree
         public void Init(ref EcsEntity agent)
         {
             _currentNode = RootNode;
-            _agent = agent;
+            Agent = agent;
             BehaviourTreeChanged += OnBehaviourTreeChanged;
             
             foreach (var node in Nodes) node.Init(this);
         }
         public State Update()
         {
-            //проход по всем узлам - параметрам
             IEnumerable<ParameterNode> parameterNodes = Nodes.OfType<ParameterNode>();
             foreach (var node in parameterNodes)
             {
                 node.Update();
             }
 
-            //проход по всем узлам - условиям
             IEnumerable<ConditionNode> conditionNodes = Nodes.OfType<ConditionNode>();
             foreach (var node in conditionNodes)
             {
                 node.Update();
             }
 
-            //проверки текущего состояния
             if (RootNode.State == State.Success || RootNode.State == State.Failure)
                 return RootNode.State;
 
             // TODO: replace by GetState(_prevNode)
-            //============================
             if (_currentNode == null && _prevNode.State == State.Success)
                 return State.Success;
             else if (_currentNode == null)
                 return State.Failure;
 
-            //обновление текущего узла
             if (_currentNode.State == State.Running)
                 return _currentNode.Update();
             else
                 SetCurrentNode(_currentNode.Parent);
 
             return State.Running;
-            //============================
         }
-        public BehaviorTree Clone()
-        {
-            BehaviorTree clone = CloneNodes();
-            CloneEdges(this, clone);
-            return clone;
-        }
-        
+
         // TODO something with this...
         public void CloneEdges(BehaviorTree source, BehaviorTree destination)
         {
@@ -294,6 +275,12 @@ namespace AI.BehaviourTree
             if (_prevNode != null) _prevNode.State = State.Running;
             _prevNode = _currentNode;
             _currentNode = node;
+        }
+        public BehaviorTree Clone()
+        {
+            BehaviorTree clone = CloneNodes();
+            CloneEdges(this, clone);
+            return clone;
         }
 
 #if UNITY_EDITOR

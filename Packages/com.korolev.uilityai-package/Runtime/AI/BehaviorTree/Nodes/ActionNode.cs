@@ -1,8 +1,3 @@
-/*******************************************
- * Created by Pavel Korolev
- * Last Modified 19.04.2022
- *******************************************/
-
 using System.Collections.Generic;
 
 namespace AI.BehaviourTree.Nodes

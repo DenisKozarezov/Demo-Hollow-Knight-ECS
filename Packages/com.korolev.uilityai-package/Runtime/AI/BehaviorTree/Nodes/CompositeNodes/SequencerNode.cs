@@ -1,8 +1,3 @@
-/*******************************************
- * Created by Pavel Korolev
- * Last Modified 19.04.2022
- *******************************************/
-
 namespace AI.BehaviourTree.Nodes.Composites
 {
     public class SequencerNode : CompositeNode
@@ -22,7 +17,7 @@ namespace AI.BehaviourTree.Nodes.Composites
                 if (ChildNodes[_currentIndex].State == State.Failure)
                     return State.Failure;
 
-                BehaviorTreeRef.SetCurrentNode(ChildNodes[_currentIndex]);
+                BehaviourTreeRef.SetCurrentNode(ChildNodes[_currentIndex]);
                 _currentIndex++;
                 return State.Running;
             }

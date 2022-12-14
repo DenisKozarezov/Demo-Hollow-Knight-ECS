@@ -1,12 +1,8 @@
-/*******************************************
- * Created by Pavel Korolev
- * Last Modified 19.04.2022
- *******************************************/
-
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Leopotam.Ecs;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -27,14 +23,15 @@ namespace AI.BehaviourTree.Nodes
         
         [NonSerialized] public State  State = State.Running;
         [NonSerialized] public bool   Started = false;
-
-        protected BehaviorTree BehaviorTreeRef;
         [HideInInspector] public Node Parent;
         [HideInInspector] public GroupSO GroupSo = null;
+
+        protected BehaviorTree BehaviourTreeRef;
+        protected ref EcsEntity Agent => ref BehaviourTreeRef.Agent;
         
         public void Init(BehaviorTree tree)
         {
-            BehaviorTreeRef = tree;
+            BehaviourTreeRef = tree;
             OnInit();
         }
         public State Update() 

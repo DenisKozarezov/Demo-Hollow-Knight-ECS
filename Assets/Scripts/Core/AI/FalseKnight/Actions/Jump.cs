@@ -18,9 +18,9 @@ namespace Core.AI.FalseKnight.Actions
 
         protected override void OnInit()
         {
-            _fatigue = BehaviorTreeRef.Nodes.Where(n=> n is Fatigue).FirstOrDefault() as Fatigue;
-            _rigidbody = BehaviorTreeRef.Agent.Get<RigidbodyComponent>().Value;
-            float jumpHeight = BehaviorTreeRef.Agent.Get<JumpComponent>().JumpForceRange.y;
+            _fatigue = BehaviourTreeRef.Nodes.Where(n=> n is Fatigue).FirstOrDefault() as Fatigue;
+            _rigidbody = Agent.Get<RigidbodyComponent>().Value;
+            float jumpHeight = Agent.Get<JumpComponent>().JumpForceRange.y;
             _jumpForce = Utils.CalculateJumpForce(Physics2D.gravity.magnitude, jumpHeight);
             _player = FindObjectsOfType<UnitView>().Where(i => i.gameObject.layer == Constants.PlayerLayer).First().transform;
         }
@@ -28,8 +28,6 @@ namespace Core.AI.FalseKnight.Actions
         
         protected override State OnUpdate()
         {           
-            if (BehaviorTreeRef == null) return State.Failure;
-
             float distance = Math.Abs(_rigidbody.transform.position.x - _player.position.x);
             float distanceToPlayer = distance > 1 ? 1 : distance;
             Vector2 jumpForce = new Vector2(_jumpForce * distanceToPlayer, _jumpForce);

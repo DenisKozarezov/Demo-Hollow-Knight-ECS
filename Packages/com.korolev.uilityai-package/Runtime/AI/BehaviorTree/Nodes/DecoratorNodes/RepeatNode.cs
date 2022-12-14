@@ -1,8 +1,3 @@
-/*******************************************
- * Created by Pavel Korolev
- * Last Modified 19.04.2022
- *******************************************/
-
 using UnityEngine;
 
 namespace AI.BehaviourTree.Nodes.Decorators
@@ -15,7 +10,7 @@ namespace AI.BehaviourTree.Nodes.Decorators
         {
             if (ConditionNode == null || ConditionNode.Condition())
             {
-                BehaviorTreeRef.SetCurrentNode(Child);
+                BehaviourTreeRef.SetCurrentNode(Child);
                 return State.Running; 
             }
             return State.Success;

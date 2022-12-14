@@ -1,7 +1,3 @@
-/*******************************************
- * Created by Pavel Korolev
- * Last Modified 19.04.2022
- *******************************************/
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -50,7 +46,7 @@ namespace AI.BehaviourTree.Nodes.Composites
                 
                 if(actualNode != null)
                 {
-                    BehaviorTreeRef.SetCurrentNode(actualNode);
+                    BehaviourTreeRef.SetCurrentNode(actualNode);
                     return State.Success;
                 }
             }

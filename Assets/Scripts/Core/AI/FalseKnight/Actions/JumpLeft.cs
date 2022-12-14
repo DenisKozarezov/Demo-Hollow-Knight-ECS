@@ -11,13 +11,13 @@ namespace Core.AI.FalseKnight.Actions
         private Rigidbody2D _rigidbody;
         private float _jumpForce;
 
-        private bool OnGround => BehaviorTreeRef.Agent.Has<OnGroundComponent>();
+        private bool OnGround => Agent.Has<OnGroundComponent>();
 
         protected override void OnInit()
         {
-            _spriteRenderer = BehaviorTreeRef.Agent.Get<SpriteRendererComponent>().Value;
-            _rigidbody = BehaviorTreeRef.Agent.Get<RigidbodyComponent>().Value;
-            _jumpForce = BehaviorTreeRef.Agent.Get<JumpComponent>().JumpForceRange.x;
+            _spriteRenderer = Agent.Get<SpriteRendererComponent>().Value;
+            _rigidbody = Agent.Get<RigidbodyComponent>().Value;
+            _jumpForce = Agent.Get<JumpComponent>().JumpForceRange.x;
         }
         protected override void OnStart()
         {
@@ -25,8 +25,6 @@ namespace Core.AI.FalseKnight.Actions
         }
         protected override State OnUpdate()
         {
-            if (!BehaviorTreeRef.Agent.IsNullOrEmpty()) return State.Failure;
-
             if (OnGround)
             {
                 _rigidbody.velocity = new Vector2(-3, _jumpForce);                
