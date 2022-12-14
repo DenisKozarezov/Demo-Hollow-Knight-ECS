@@ -9,13 +9,13 @@ namespace Core.ECS.Systems.Camera
     {
         private readonly EcsFilter<CameraShakeEventComponent> _filter = null;
         private readonly ICoroutineRunner _coroutineRunner;
-        private readonly UnityEngine.Camera _camera;
+        private readonly Transform _transform;
         private bool _shaking;
 
         public CameraShakeSystem(ICoroutineRunner coroutineRunner, UnityEngine.Camera camera)
         {
             _coroutineRunner = coroutineRunner;
-            _camera = camera;
+            _transform = camera.transform;
         }
 
         void IEcsRunSystem.Run()
@@ -25,8 +25,8 @@ namespace Core.ECS.Systems.Camera
             foreach (var i in _filter)
             {
                 ref var entity = ref _filter.GetEntity(i);
-                ref var component = ref _filter.Get1(i);
-                _coroutineRunner.StartCoroutine(ShakeCoroutine(component.ShakeDuration, component.ShakeForce));
+                ref var @event = ref _filter.Get1(i);
+                _coroutineRunner.StartCoroutine(ShakeCoroutine(@event.ShakeDuration, @event.ShakeForce));
                 entity.Destroy();
             }
         }
@@ -35,15 +35,15 @@ namespace Core.ECS.Systems.Camera
         {
             _shaking = true;
             float elapsedTime = 0f;
-            Vector3 startPosition = _camera.transform.localPosition;
+            Vector3 startPosition = _transform.localPosition;
             while (elapsedTime < duration)
             {
-                _camera.transform.localPosition = startPosition + Random.insideUnitSphere * magnitude;
+                _transform.localPosition = startPosition + Random.insideUnitSphere * magnitude;
                 elapsedTime += Time.deltaTime;
                 yield return null;
             }
             _shaking = false;
-            _camera.transform.localPosition = startPosition;
+            _transform.localPosition = startPosition;
         }
     }
 }

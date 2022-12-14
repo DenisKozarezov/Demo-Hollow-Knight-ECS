@@ -4,21 +4,21 @@
  *******************************************/
 
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace AI.BehaviorTree.Nodes
 {
     public abstract class ActionNode : Node
     {
-        public AnimationCurve Curve;
-
         protected override void OnInit() { }
         protected override void OnStart() { }
         protected override void OnStop() { }
-
         public override IEnumerable<Node> GetChildren()
         {
             return null;
+        }
+        public override void RemoveChild(Node child)
+        {
+            return;
         }
         public override Node Clone()
         {

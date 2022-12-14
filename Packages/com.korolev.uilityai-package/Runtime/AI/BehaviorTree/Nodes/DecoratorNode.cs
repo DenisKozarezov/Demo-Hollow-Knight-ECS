@@ -10,7 +10,6 @@ namespace AI.BehaviorTree.Nodes
 {
     public abstract class DecoratorNode : Node
     {
-        public AnimationCurve Curve; 
         [HideInInspector] public Node Child;
 
         protected override void OnInit() { }
@@ -19,6 +18,13 @@ namespace AI.BehaviorTree.Nodes
         public override IEnumerable<Node> GetChildren()
         {
             yield return Child;
+        }
+        public override void RemoveChild(Node child)
+        {
+            if (!child.Equals(Child)) return;
+
+            Child.Parent = null;
+            Child = null;
         }
         public override Node Clone()
         {

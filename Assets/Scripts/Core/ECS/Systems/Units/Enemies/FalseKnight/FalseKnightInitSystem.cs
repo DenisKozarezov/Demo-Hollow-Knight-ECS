@@ -28,7 +28,8 @@ namespace Core.ECS.Systems.FalseKnight
                     })
                     .Replace(new DamageComponent { Damage = _unitModel.BaseDamage, AttackRange = _unitModel.AttackRange })
                     .Replace(new JumpComponent { JumpForceRange = new Vector2(_unitModel.JumpHeight, _unitModel.JumpHeight) })
-                    .Replace(new MovableComponent { Value = _unitModel.MovementSpeed });
+                    .Replace(new MovableComponent { Value = _unitModel.MovementSpeed })
+                    .Replace(new EnemyComponent { EnemyModel = _unitModel });
             }            
         }
     }

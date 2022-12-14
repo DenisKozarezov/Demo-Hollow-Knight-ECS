@@ -15,6 +15,13 @@ namespace AI.BehaviorTree.Nodes
         {
             yield return ChildNode;
         }
+        public override void RemoveChild(Node child)
+        {
+            if (!child.Equals(ChildNode)) return;
+
+            child.Parent = null;
+            ChildNode = null;
+        }
         public override Node Clone()
         {
             ConditionNode clone = Instantiate(this);

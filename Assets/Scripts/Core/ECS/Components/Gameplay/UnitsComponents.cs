@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Leopotam.Ecs;
-using AI.ECS;
+using AI.BehaviorTree;
 using Core.Models;
 
 namespace Core.ECS.Components.Units
@@ -13,13 +13,18 @@ namespace Core.ECS.Components.Units
     [Serializable] public struct AnimatorComponent { public Animator Value; }
     [Serializable] public struct SpriteRendererComponent { public SpriteRenderer Value; }
     [Serializable] public struct NPCComponent { public List<ConversationContext> Conversations; }
+    [Serializable] public struct BehaviorTreeComponent
+    {
+        public BehaviorTree BehaviorTree;
+        [NonSerialized] public bool Initialized;
+    }
     public struct HealthComponent { public int Health; public int MaxHealth; }  
     public struct DamageComponent { public int Damage; public float AttackRange; }
     public struct MovableComponent { public float Value; }
     public struct JumpComponent { public Vector2 JumpForceRange; }
     public struct OnGroundComponent { public Vector2 Point; }
+    public struct EnemyComponent { public EnemyModel EnemyModel; }
     public struct UnitComponent : IEcsIgnoreInFilter { }
-    public struct EnemyComponent : IEcsIgnoreInFilter { }
     public struct DiedComponent : IEcsIgnoreInFilter { }
     public struct HittableComponent : IEcsIgnoreInFilter { }
     public struct InvulnerableComponent : IEcsIgnoreInFilter { }   

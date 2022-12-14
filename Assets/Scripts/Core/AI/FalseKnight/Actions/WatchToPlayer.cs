@@ -1,29 +1,27 @@
 using System.Linq;
 using UnityEngine;
 using Leopotam.Ecs;
+using AI.BehaviorTree.Nodes;
 using Core.Units;
 using Core.ECS.Components.Units;
-using AI.BehaviorTree.Nodes;
 
 namespace Core.AI.FalseKnight.Actions
 {
     public class WatchToPlayer : ActionNode
     {
         private Transform _player;
-        private GameObject _gameObject;
+        private SpriteRenderer _spriteRenderer;
 
         protected override void OnInit()
         {
-            _gameObject = BehaviorTreeRef.EntityReference.gameObject;
+            _spriteRenderer = BehaviorTreeRef.Agent.Get<SpriteRendererComponent>().Value;
             _player = FindObjectsOfType<UnitView>().Where(i => i.gameObject.layer == Constants.PlayerLayer).First().transform;
         }
         protected override State OnUpdate()
         {
-            float directionWatch = (_player.position - _gameObject.transform.position).x;
-           
-            Vector3 scale = _gameObject.transform.localScale;
-            scale.x = directionWatch < -0.1f ? -1f : 1f;
-            _gameObject.transform.localScale = scale;
+            float directionWatch = (_player.position - _spriteRenderer.transform.position).x;
+            bool isLeft = directionWatch < -0.1f ? true : false;
+            _spriteRenderer.flipX = isLeft;
             return State.Success;
         }
     }

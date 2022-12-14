@@ -8,7 +8,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Leopotam.Ecs;
-using AI.ECS;
 using AI.BehaviorTree.Nodes;
 using AI.BehaviorTree.Nodes.CompositeNodes;
 using AI.BehaviorTree.Nodes.DecoratorNodes;
@@ -30,7 +29,7 @@ namespace AI.BehaviorTree
     public class BehaviorTree : ScriptableObject
     {
         [SerializeField, HideInInspector]
-        private EntityReference _entityReference;
+        private EcsEntity _agent;
 
         [NonSerialized] public State TreeState;
         [SerializeField, HideInInspector] public Node RootNode;
@@ -42,23 +41,25 @@ namespace AI.BehaviorTree
         [NonSerialized] private Node _currentNode;
 
         public Action BehaviorTreeChanged; 
+        public EcsEntity Agent => _agent;        
 
         private void OnDestroy() { BehaviorTreeChanged -= OnBehaviorTreeChanged; }
-
-        public void OnBehaviorTreeChanged() { SetCurrentNode(RootNode); }
-
-        public EntityReference EntityReference => _entityReference;        
+        private void OnBehaviorTreeChanged() { SetCurrentNode(RootNode); }
+        private BehaviorTree CloneNodes()
+        {
+            BehaviorTree clone = Instantiate(this);
+            clone.Nodes = Nodes.ConvertAll(child => child.Clone());
+            clone.RootNode = clone.Nodes.First(i => i is RootNode);
+            return clone;
+        }
         
-        public void Init(EcsWorld ecsWorld, EntityReference entityReference)
+        public void Init(ref EcsEntity agent)
         {
             _currentNode = RootNode;
-            _entityReference = entityReference;
+            _agent = agent;
             BehaviorTreeChanged += OnBehaviorTreeChanged;
             
-            foreach (var node in Nodes)
-            {
-                node.Init(this, ecsWorld);
-            }
+            foreach (var node in Nodes) node.Init(this);
         }
         public State Update()
         {
@@ -96,43 +97,26 @@ namespace AI.BehaviorTree
             return State.Running;
             //============================
         }
-
-        private State GetState(Node node)
-        {
-            switch (node.State)
-            {
-                case State.Success: return State.Success;
-                case State.Running: return _currentNode.Update();
-                default:
-                    SetCurrentNode(_currentNode.Parent);
-                    return State.Running;
-            }
-        }
         public BehaviorTree Clone()
         {
             BehaviorTree clone = CloneNodes();
             CloneEdges(this, clone);
             return clone;
         }
-        public BehaviorTree CloneNodes()
+        
+        // TODO something with this...
+        public void CloneEdges(BehaviorTree source, BehaviorTree destination)
         {
-            BehaviorTree clone = Instantiate(this);
-            clone.Nodes = Nodes.ConvertAll(child => child.Clone());
-            clone.RootNode = clone.Nodes.First(i => i is RootNode);
-            return clone;
-        }
-        public void CloneEdges(BehaviorTree originalTree, BehaviorTree clone)
-        {
-            foreach (var node in clone.Nodes)
+            foreach (var node in destination.Nodes)
             {
-                var originalNode = originalTree.Nodes.Find(i => i.Equals(node));
+                var originalNode = source.Nodes.Find(i => i.Equals(node));
                 switch (originalNode)
                 {
                     case ActionNode:
-                        var cloneActionNode = clone.Nodes.FirstOrDefault(i => i.Equals(originalNode)) as ActionNode;
+                        var cloneActionNode = destination.Nodes.FirstOrDefault(i => i.Equals(originalNode)) as ActionNode;
                         if (((ActionNode) originalNode).Parent != null)
                         {
-                            var cloneParentActionNode = clone.Nodes.FirstOrDefault(i => i.Equals(originalNode.Parent));
+                            var cloneParentActionNode = destination.Nodes.FirstOrDefault(i => i.Equals(originalNode.Parent));
                             cloneActionNode.Parent = cloneParentActionNode;
                         }
                         else 
@@ -142,23 +126,23 @@ namespace AI.BehaviorTree
                         ChoiceNode choiceNode = originalNode as ChoiceNode;
                         if (choiceNode)
                         {
-                            var cloneChoiceNode = clone.Nodes.FirstOrDefault(i => i.Equals(choiceNode)) as ChoiceNode;
+                            var cloneChoiceNode = destination.Nodes.FirstOrDefault(i => i.Equals(choiceNode)) as ChoiceNode;
                             foreach (var parameterNode in choiceNode.ParametersList)
                             {
-                                var cloneParameter = clone.Nodes.FirstOrDefault(i => i.Equals(parameterNode)) as ParameterNode;
+                                var cloneParameter = destination.Nodes.FirstOrDefault(i => i.Equals(parameterNode)) as ParameterNode;
                                 cloneParameter.ChildNode = cloneChoiceNode;
                                 cloneChoiceNode.ParametersList.Add(cloneParameter);
                             }
 
                             foreach (var child in choiceNode.ChildNodes)
                             {
-                                var cloneChild = clone.Nodes.FirstOrDefault(i => i.Equals(child));
+                                var cloneChild = destination.Nodes.FirstOrDefault(i => i.Equals(child));
                                 cloneChoiceNode.ChildNodes.Add(cloneChild);
                             }
 
                             if (choiceNode.Parent != null)
                             {
-                                var cloneParent = clone.Nodes.FirstOrDefault(i => i.Equals(choiceNode.Parent));
+                                var cloneParent = destination.Nodes.FirstOrDefault(i => i.Equals(choiceNode.Parent));
                                 cloneChoiceNode.Parent = cloneParent;
                             }
                             else 
@@ -169,16 +153,16 @@ namespace AI.BehaviorTree
                         SequencerNode sequencerNode = originalNode as SequencerNode;
                         if (sequencerNode)
                         {
-                            var cloneSequencerNode = clone.Nodes.FirstOrDefault(i => i.Equals(sequencerNode)) as SequencerNode;
+                            var cloneSequencerNode = destination.Nodes.FirstOrDefault(i => i.Equals(sequencerNode)) as SequencerNode;
                             foreach (var child in sequencerNode.ChildNodes)
                             {
-                                var cloneChild = clone.Nodes.FirstOrDefault(i => i.Equals(child));
+                                var cloneChild = destination.Nodes.FirstOrDefault(i => i.Equals(child));
                                 cloneSequencerNode.ChildNodes.Add(cloneChild);
                             }
 
                             if (sequencerNode.Parent != null)
                             {
-                                var cloneParent = clone.Nodes.FirstOrDefault(i => i.Equals(sequencerNode.Parent));
+                                var cloneParent = destination.Nodes.FirstOrDefault(i => i.Equals(sequencerNode.Parent));
                                 cloneSequencerNode.Parent = cloneParent;
                             }
                             else
@@ -187,16 +171,16 @@ namespace AI.BehaviorTree
                             break;
                         }
                         
-                        var cloneCompositeNode = clone.Nodes.FirstOrDefault(i => i.Equals(originalNode)) as CompositeNode;
+                        var cloneCompositeNode = destination.Nodes.FirstOrDefault(i => i.Equals(originalNode)) as CompositeNode;
                         foreach (var child in ((CompositeNode)originalNode).ChildNodes)
                         {
-                            var cloneChild = clone.Nodes.FirstOrDefault(i => i.Equals(child));
+                            var cloneChild = destination.Nodes.FirstOrDefault(i => i.Equals(child));
                             cloneCompositeNode.ChildNodes.Add(cloneChild);
                         }
 
                         if (((CompositeNode) originalNode).Parent)
                         {
-                            var cloneParentCompositeNode = clone.Nodes.FirstOrDefault(i => i.Equals(originalNode.Parent));
+                            var cloneParentCompositeNode = destination.Nodes.FirstOrDefault(i => i.Equals(originalNode.Parent));
                             cloneCompositeNode.Parent = cloneParentCompositeNode;
                         }
                         else 
@@ -208,11 +192,11 @@ namespace AI.BehaviorTree
                         RepeatNode repeatNode = originalNode as RepeatNode;
                         if (repeatNode)
                         {
-                            var cloneRepeatNode = clone.Nodes.FirstOrDefault(i => i.Equals(repeatNode)) as RepeatNode;
+                            var cloneRepeatNode = destination.Nodes.FirstOrDefault(i => i.Equals(repeatNode)) as RepeatNode;
 
                             if (repeatNode.Parent != null)
                             {
-                                var cloneParent = clone.Nodes.FirstOrDefault(i => i.Equals(repeatNode.Parent));
+                                var cloneParent = destination.Nodes.FirstOrDefault(i => i.Equals(repeatNode.Parent));
                                 cloneRepeatNode.Parent = cloneParent;  
                             }
                             else
@@ -220,7 +204,7 @@ namespace AI.BehaviorTree
                             
                             if (repeatNode.Child != null)
                             {
-                                var cloneChild = clone.Nodes.FirstOrDefault(i => i.Equals(repeatNode.Child));
+                                var cloneChild = destination.Nodes.FirstOrDefault(i => i.Equals(repeatNode.Child));
                                 cloneRepeatNode.Child = cloneChild;
                             }
                             else
@@ -228,7 +212,7 @@ namespace AI.BehaviorTree
 
                             if (repeatNode.ConditionNode != null)
                             {
-                                var cloneConditionNode = clone.Nodes.FirstOrDefault(i => i.Equals(repeatNode.ConditionNode)) as ConditionNode;
+                                var cloneConditionNode = destination.Nodes.FirstOrDefault(i => i.Equals(repeatNode.ConditionNode)) as ConditionNode;
                                 cloneRepeatNode.ConditionNode = cloneConditionNode;
                             }
                             else
@@ -239,10 +223,10 @@ namespace AI.BehaviorTree
                         RootNode rootNode = originalNode as RootNode;
                         if (rootNode)
                         {
-                            var cloneRootNode = clone.Nodes.FirstOrDefault(i => i.Equals(rootNode)) as RootNode;
+                            var cloneRootNode = destination.Nodes.FirstOrDefault(i => i.Equals(rootNode)) as RootNode;
                             if (rootNode.Child != null)
                             {
-                                var cloneChild = clone.Nodes.FirstOrDefault(i => i.Equals(rootNode.Child));
+                                var cloneChild = destination.Nodes.FirstOrDefault(i => i.Equals(rootNode.Child));
                                 cloneRootNode.Child = cloneChild;
                             }
                             else 
@@ -251,11 +235,11 @@ namespace AI.BehaviorTree
                             break;
                         }
                         
-                        var cloneDecoratorNode = clone.Nodes.FirstOrDefault(i => i.Equals(originalNode)) as DecoratorNode;
+                        var cloneDecoratorNode = destination.Nodes.FirstOrDefault(i => i.Equals(originalNode)) as DecoratorNode;
 
                         if (((DecoratorNode) originalNode).Child != null)
                         {
-                            var cloneChidDecoratorNode = clone.Nodes.FirstOrDefault(i =>
+                            var cloneChidDecoratorNode = destination.Nodes.FirstOrDefault(i =>
                                 i.Equals((originalNode as DecoratorNode).Child));
                             cloneDecoratorNode.Child = cloneChidDecoratorNode;
                         }
@@ -264,7 +248,7 @@ namespace AI.BehaviorTree
 
                         if (((DecoratorNode) originalNode).Parent != null)
                         {
-                            var cloneParentDecoratorNode = clone.Nodes.FirstOrDefault(i => i.Equals((originalNode as DecoratorNode).Parent));
+                            var cloneParentDecoratorNode = destination.Nodes.FirstOrDefault(i => i.Equals((originalNode as DecoratorNode).Parent));
                             cloneDecoratorNode.Parent = cloneParentDecoratorNode;
                         }
                         else
@@ -272,19 +256,19 @@ namespace AI.BehaviorTree
 
                         break;
                     case ParameterNode:
-                        var cloneParameterNode = clone.Nodes.FirstOrDefault(i => i.Equals(originalNode)) as ParameterNode;
+                        var cloneParameterNode = destination.Nodes.FirstOrDefault(i => i.Equals(originalNode)) as ParameterNode;
                         if (((ParameterNode) originalNode).ChildNode != null)
                         {
-                            var cloneChildParameterNode = clone.Nodes.FirstOrDefault(i => i.Equals((originalNode as ParameterNode).ChildNode));
+                            var cloneChildParameterNode = destination.Nodes.FirstOrDefault(i => i.Equals((originalNode as ParameterNode).ChildNode));
                             cloneParameterNode.ChildNode = cloneChildParameterNode;
                         }
                         else cloneParameterNode.ChildNode = null;
                         break;
                     case ConditionNode:
-                        var cloneCondition = clone.Nodes.FirstOrDefault(i => i.Equals(originalNode)) as ConditionNode;
+                        var cloneCondition = destination.Nodes.FirstOrDefault(i => i.Equals(originalNode)) as ConditionNode;
                         if (((ConditionNode) originalNode).ChildNode == null)
                         {
-                            var cloneChildConditionNode = clone.Nodes.FirstOrDefault(i => i.Equals(((ConditionNode) originalNode).ChildNode));
+                            var cloneChildConditionNode = destination.Nodes.FirstOrDefault(i => i.Equals(((ConditionNode) originalNode).ChildNode));
                             cloneCondition.ChildNode = cloneChildConditionNode;
                         }
                         else
@@ -292,10 +276,10 @@ namespace AI.BehaviorTree
                         
                         break;
                     case Node:
-                        var cloneNode = clone.Nodes.FirstOrDefault(i => i.Equals(originalNode));
+                        var cloneNode = destination.Nodes.FirstOrDefault(i => i.Equals(originalNode));
                         if (originalNode.Parent != null)
                         {
-                            var cloneParentNode = clone.Nodes.FirstOrDefault(i => i.Equals(originalNode.Parent));
+                            var cloneParentNode = destination.Nodes.FirstOrDefault(i => i.Equals(originalNode.Parent));
                             cloneNode.Parent = cloneParentNode;
                         }
                         else
@@ -304,38 +288,40 @@ namespace AI.BehaviorTree
                         break;
                 }
             }
-        }
-        
-        #region Node Manipulations
-        public Node CreateNode(Type type)
+        }        
+        public void SetCurrentNode(Node node)
         {
-            Node node = ScriptableObject.CreateInstance(type) as Node;
-            node.State = State.Running;
-            node.name = type.Name;
-
-#if UNITY_EDITOR
-            node.GUID = GUID.Generate().ToString();
-#endif
-
-            Nodes.Add(node);
-
-#if UNITY_EDITOR
-            /************** ФИКСИРУЕМ ИЗМЕНЕНИЯ *************/
-            AddNodeToTree(node);
-#endif
-            return node;
+            if (_prevNode != null) _prevNode.State = State.Running;
+            _prevNode = _currentNode;
+            _currentNode = node;
         }
-        public void RemoveNode(Node node)
-        {
-            if (node is RootNode)
-                this.RootNode = null;
-
-            Nodes.Remove(node);
 
 #if UNITY_EDITOR
-            /************** ФИКСИРУЕМ ИЗМЕНЕНИЯ *************/
-            RemoveNodeFromTree(node);
-#endif
+        private void SaveAsset(UnityEngine.Object asset)
+        {
+            AssetDatabase.SaveAssetIfDirty(asset);
+            EditorUtility.SetDirty(asset);
+        }
+        private void AddNodeToTree(Node node)
+        {
+            AssetDatabase.AddObjectToAsset(node, this);
+            SaveAsset(this);
+        }
+        private void RemoveNodeFromTree(Node node)
+        {
+            AssetDatabase.RemoveObjectFromAsset(node);
+            SaveAsset(this);
+        }
+        private void SaveNode(Node parentNode) => SaveAsset(parentNode);
+        private void AddGroupToTree(GroupSO group)
+        {
+            AssetDatabase.AddObjectToAsset(group, this);
+            SaveAsset(this);
+        }
+        private void RemoveGroupFromTree(GroupSO group)
+        {
+            AssetDatabase.RemoveObjectFromAsset(group);
+            SaveAsset(this);
         }
         public void AddChild(Node parentNode, Node childNode)
         {
@@ -379,114 +365,47 @@ namespace AI.BehaviorTree
         }
         public void RemoveChild(Node parentNode, Node childNode)
         {
-            DecoratorNode decoratorNode = parentNode as DecoratorNode;
-            if (decoratorNode)
-            {
-                decoratorNode.Child.Parent = null;
-                decoratorNode.Child = null;
-            }
-
-            CompositeNode compositeNode = parentNode as CompositeNode;
-            if (compositeNode)
-            {
-                childNode.Parent = null;
-                compositeNode.ChildNodes.Remove(childNode);
-            }
-
-            ParameterNode parameterNode = parentNode as ParameterNode;
-            if (parameterNode)
-            {
-                parameterNode.ChildNode = null;
-
-                ChoiceNode choiceNode = childNode as ChoiceNode;
-                if (choiceNode)
-                    choiceNode.ParametersList.Remove(parameterNode);
-            }
-
-            ConditionNode conditionNode = parentNode as ConditionNode;
-            if (conditionNode)
-            {
-                conditionNode.ChildNode = null;
-
-                RepeatNode repeatNode = childNode as RepeatNode;
-                if (repeatNode)
-                    repeatNode.ConditionNode = null;
-            }
-
-#if UNITY_EDITOR
-            /************** ФИКСИРУЕМ ИЗМЕНЕНИЯ *************/
+            parentNode.RemoveChild(childNode);
             SaveNode(parentNode);
             SaveNode(childNode);
-#endif
         }
-
-        //Назначает узел текущим узлом для исполнения
-        public void SetCurrentNode(Node node)
+        public Node CreateNode(Type type)
         {
-            if (_prevNode != null)
-                _prevNode.State = State.Running;
-            _prevNode = _currentNode;
-            _currentNode = node;
-        }
-        #endregion
+            Node node = ScriptableObject.CreateInstance(type) as Node;
+            node.State = State.Running;
+            node.name = type.Name;
 
-        #region Group Manipulators
+#if UNITY_EDITOR
+            node.GUID = GUID.Generate().ToString();
+#endif
+
+            Nodes.Add(node);
+
+#if UNITY_EDITOR
+            AddNodeToTree(node);
+#endif
+            return node;
+        }
+        public void RemoveNode(Node node)
+        {
+            if (node is RootNode) this.RootNode = null;
+            Nodes.Remove(node);
+            RemoveNodeFromTree(node);
+        }
         public GroupSO CreateGroup(string title)
         {
-            GroupSO groupSo = ScriptableObject.CreateInstance(typeof(GroupSO)) as GroupSO;
+            GroupSO groupSo = ScriptableObject.CreateInstance<GroupSO>();
             groupSo.Title = title;
             groupSo.name = title;
-
-#if UNITY_EDITOR
             groupSo.GUID = GUID.Generate().ToString();
-#endif
-
             Groups.Add(groupSo);
-
-#if UNITY_EDITOR
-            /************** ФИКСИРУЕМ ИЗМЕНЕНИЯ *************/
             AddGroupToTree(groupSo);
-#endif
-
             return groupSo;
         }
         public void RemoveGroup(GroupSO groupSo)
         {
             Groups.Remove(groupSo);
-
-#if UNITY_EDITOR
-            /************** ФИКСИРУЕМ ИЗМЕНЕНИЯ *************/
             RemoveGroupFromTree(groupSo);
-#endif
-        }
-        #endregion
-
-#if UNITY_EDITOR
-        private void SaveAsset(UnityEngine.Object asset)
-        {
-            AssetDatabase.SaveAssetIfDirty(asset);
-            EditorUtility.SetDirty(asset);
-        }
-        private void AddNodeToTree(Node node)
-        {
-            AssetDatabase.AddObjectToAsset(node, this);
-            SaveAsset(this);
-        }
-        private void RemoveNodeFromTree(Node node)
-        {
-            AssetDatabase.RemoveObjectFromAsset(node);
-            SaveAsset(this);
-        }
-        private void SaveNode(Node parentNode) => SaveAsset(parentNode);
-        private void AddGroupToTree(GroupSO group)
-        {
-            AssetDatabase.AddObjectToAsset(group, this);
-            SaveAsset(this);
-        }
-        private void RemoveGroupFromTree(GroupSO group)
-        {
-            AssetDatabase.RemoveObjectFromAsset(group);
-            SaveAsset(this);
         }
 #endif
     }

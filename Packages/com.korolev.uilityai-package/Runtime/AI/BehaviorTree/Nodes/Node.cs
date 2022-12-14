@@ -5,7 +5,6 @@
 
 using System;
 using System.Collections.Generic;
-using Leopotam.Ecs;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -15,9 +14,15 @@ using UnityEditor;
 
 namespace AI.BehaviorTree.Nodes
 {
-    public abstract class Node : ScriptableObject, IEquatable<Node>
+    public enum State : byte
     {
-        protected EcsWorld _world = null;        
+        Running,
+        Success,
+        Failure
+    }
+
+    public abstract class Node : ScriptableObject, IEquatable<Node>
+    {     
         public IManipulator UnGroupManipulator = null;
         
         [NonSerialized] public State  State = State.Running;
@@ -27,10 +32,9 @@ namespace AI.BehaviorTree.Nodes
         [HideInInspector] public Node Parent;
         [HideInInspector] public GroupSO GroupSo = null;
         
-        public void Init(BehaviorTree tree, EcsWorld ecsWorld)
+        public void Init(BehaviorTree tree)
         {
             BehaviorTreeRef = tree;
-            _world = ecsWorld;
             OnInit();
         }
         public State Update() 
@@ -57,17 +61,17 @@ namespace AI.BehaviorTree.Nodes
         public virtual float Cost() { return 1; }
 
         public abstract IEnumerable<Node> GetChildren();
+        public abstract void RemoveChild(Node child);
         public abstract Node Clone();
         public bool Equals(Node other)
         {
+            if (other == null) return false;
             return other.GUID.Equals(GUID);
         }
 
-        /************ ПОЛЯ ДЛЯ ХРАНЕНИЯ ДАННЫХ ОТОБРАЖЕНИЯ ***************************/
 #if UNITY_EDITOR
         [SerializeField] [HideInInspector]
         private Vector2 _position;
-
         public Vector2 Position
         {
             get => _position;

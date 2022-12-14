@@ -4,7 +4,7 @@ using AI.BehaviorTree.Nodes;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-namespace Editor.BehaviorTreeEditor.VisualElements.Nodes.ParameterNodes
+namespace Editor.BehaviorTreeEditor.VisualElements.Nodes.Parameters
 {
     public class BooleanNodeView: NodeView
     {

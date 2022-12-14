@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
@@ -24,7 +23,6 @@ namespace Core
                 Obtained?.Invoke(this);
             }
         }
-
         void IPoolable<IMemoryPool>.OnDespawned()
         {
             _pool = null;
@@ -34,28 +32,6 @@ namespace Core
             _pool = pool;
         }
 
-        public class Factory : PlaceholderFactory<GeoView> 
-        {
-            private LinkedList<GeoView> _geos = new LinkedList<GeoView>();
-            public override GeoView Create()
-            {
-                GeoView geo = base.Create();
-                geo.Obtained += OnGeoObtained;
-                _geos.AddLast(geo);
-                return geo;
-            }
-            private void OnGeoObtained(GeoView geo)
-            {
-                _geos.Remove(geo);
-                geo.Obtained -= OnGeoObtained;
-            }
-            public void Dispose()
-            {
-                while (_geos.Count > 0)
-                {
-                    _geos.First.Value.Dispose();
-                }
-            }
-        }
+        public class Factory : PlaceholderFactory<GeoView> { }
     }
 }

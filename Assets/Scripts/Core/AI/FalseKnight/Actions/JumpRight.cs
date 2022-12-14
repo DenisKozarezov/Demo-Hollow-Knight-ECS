@@ -10,25 +10,24 @@ namespace Core.AI.FalseKnight.Actions
         private SpriteRenderer _spriteRenderer;
         private Rigidbody2D _rigidbody;
         private float _jumpForce;
-
-        private bool OnGround => BehaviorTreeRef.EntityReference.Entity.Has<OnGroundComponent>();
+        private bool OnGround => BehaviorTreeRef.Agent.Has<OnGroundComponent>();
 
         protected override void OnInit()
         {
-            _spriteRenderer = BehaviorTreeRef.EntityReference.Entity.Get<SpriteRendererComponent>().Value;
-            _rigidbody = BehaviorTreeRef.EntityReference.Entity.Get<RigidbodyComponent>().Value;
-            _jumpForce = BehaviorTreeRef.EntityReference.Entity.Get<JumpComponent>().JumpForceRange.x;
+            _spriteRenderer = BehaviorTreeRef.Agent.Get<SpriteRendererComponent>().Value;
+            _rigidbody = BehaviorTreeRef.Agent.Get<RigidbodyComponent>().Value;
+            _jumpForce = BehaviorTreeRef.Agent.Get<JumpComponent>().JumpForceRange.x;
+        }
+        protected override void OnStart()
+        {
+            _spriteRenderer.flipX = false;
         }
         protected override State OnUpdate()
         {
-            if (!BehaviorTreeRef.EntityReference) return State.Failure;
-
-            bool lookRight = !_spriteRenderer.flipX;
+            if (!BehaviorTreeRef.Agent.IsNullOrEmpty()) return State.Failure;
 
             if (OnGround)
             {
-                if (!lookRight) _spriteRenderer.flipX = false;
-
                 _rigidbody.velocity = new Vector2(-3, _jumpForce);
                 return State.Success;
             }

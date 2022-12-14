@@ -37,7 +37,7 @@ namespace Core.ECS.Systems.Player
                 ref float speed = ref _filter.Get3(i).Value;
 
                 // Set velocity
-                Vector2 velocity = Vector2.right * _playerInput.Direction.x * speed * Time.deltaTime;
+                Vector2 velocity = Vector2.right * _playerInput.Direction.x * speed * Time.fixedDeltaTime;
 
                 // Move character
                 rigidbody.velocity = new Vector2(velocity.x, rigidbody.velocity.y);

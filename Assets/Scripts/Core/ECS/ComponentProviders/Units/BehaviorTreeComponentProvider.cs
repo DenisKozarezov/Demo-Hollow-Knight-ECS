@@ -1,9 +1,4 @@
-/*******************************************
- * Created by Pavel Korolev
- * Last Modified 19.04.2022
- *******************************************/
-
-using AI.ECS.Components;
+using Core.ECS.Components.Units;
 using Voody.UniLeo;
 
 namespace Core.ECS.ComponentProviders

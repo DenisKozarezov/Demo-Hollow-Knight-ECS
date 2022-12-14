@@ -16,7 +16,7 @@ namespace Core.Models
         [field: SerializeField, Min(0f)] public float MovementSpeed { get; private set; }
         [field: SerializeField, Min(0)] public int BaseDamage { get; private set; }
         [field: SerializeField, Range(0f, 5f)] public float AttackRange { get; private set; }
-        [field: SerializeField, Min(0)] public int MaxHealth { get; private set; }
+        [field: SerializeField, Min(1)] public int MaxHealth { get; private set; }
 
         protected virtual void OnValidate()
         {

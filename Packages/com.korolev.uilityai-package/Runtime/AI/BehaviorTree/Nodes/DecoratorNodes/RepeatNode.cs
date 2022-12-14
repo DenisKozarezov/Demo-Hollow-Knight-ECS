@@ -13,7 +13,6 @@ namespace AI.BehaviorTree.Nodes.DecoratorNodes
 
         protected override State OnUpdate()
         {
-            //если заданное условие выполняется
             if (ConditionNode == null || ConditionNode.Condition())
             {
                 BehaviorTreeRef.SetCurrentNode(Child);
@@ -21,13 +20,15 @@ namespace AI.BehaviorTree.Nodes.DecoratorNodes
             }
             return State.Success;
         }
+        public override void RemoveChild(Node child)
+        {
+            base.RemoveChild(child);
+            ConditionNode = null;
+        }
         public override Node Clone()
         {
-            RepeatNode clone = Instantiate(this);
-            clone.Parent = null;
-            clone.Child = null;
+            RepeatNode clone = base.Clone() as RepeatNode;
             clone.ConditionNode = null;
-            clone.GUID = GUID;
             return clone;
         }
     }

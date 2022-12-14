@@ -56,14 +56,18 @@ namespace AI.BehaviorTree.Nodes.CompositeNodes
             }
             return State.Success;
         }
-        
+        public override void RemoveChild(Node child)
+        {
+            base.RemoveChild(child);
+            if (child is ParameterNode parameter)
+            {
+                ParametersList.Remove(parameter);
+            }
+        }
         public override Node Clone()
         {
-            ChoiceNode clone = Instantiate(this);
-            clone.Parent = null;
+            ChoiceNode clone = base.Clone() as ChoiceNode;
             clone.ParametersList = new List<ParameterNode>();
-            clone.ChildNodes = new List<Node>();
-            clone.GUID = GUID;
             return clone;
         }
     }   

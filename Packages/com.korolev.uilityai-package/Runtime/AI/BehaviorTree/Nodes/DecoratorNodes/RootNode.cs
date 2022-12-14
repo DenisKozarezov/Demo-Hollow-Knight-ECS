@@ -9,8 +9,7 @@ namespace AI.BehaviorTree.Nodes.DecoratorNodes
     {
         protected override State OnUpdate()
         {
-            if (Child.State != State.Running)
-                return Child.State;
+            if (Child.State != State.Running) return Child.State;
             
             BehaviorTreeRef.SetCurrentNode(Child);
             

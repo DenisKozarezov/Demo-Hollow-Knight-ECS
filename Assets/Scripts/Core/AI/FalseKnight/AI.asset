@@ -16,12 +16,6 @@ MonoBehaviour:
   GroupSo: {fileID: -1002988855477588090}
   _position: {x: 690, y: -228}
   GUID: b36a6a499a85848a7ae31c8379e8df32
-  Curve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!114 &-5818478633785936904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38,12 +32,6 @@ MonoBehaviour:
   GroupSo: {fileID: 0}
   _position: {x: -281, y: -250}
   GUID: 0478207da39ae44a0b280b2905c08b33
-  Curve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
   ChildNodes:
   - {fileID: -5268062689480218467}
   - {fileID: -5464456801852873391}
@@ -89,12 +77,6 @@ MonoBehaviour:
   GroupSo: {fileID: 1027363895931364201}
   _position: {x: -36.49997, y: -64}
   GUID: 71b3a0fb44ca74ffab84e4b54737fe3c
-  Curve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!114 &-5437982386082551897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,12 +110,6 @@ MonoBehaviour:
   GroupSo: {fileID: -1002988855477588090}
   _position: {x: 195, y: -229}
   GUID: 1ba9f6b69f60442d39bf2624238d63f3
-  Curve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
   ChildNodes:
   - {fileID: -4445214288975828384}
 --- !u!114 &-4841863254726358398
@@ -152,12 +128,6 @@ MonoBehaviour:
   GroupSo: {fileID: -1002988855477588090}
   _position: {x: 658, y: -156}
   GUID: 047a493d02a274c49a4bde567dd2da22
-  Curve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
   TimeWait: 0.4
 --- !u!114 &-4622023020786220131
 MonoBehaviour:
@@ -175,12 +145,6 @@ MonoBehaviour:
   GroupSo: {fileID: -1002988855477588090}
   _position: {x: 551, y: -337}
   GUID: bc0c1151165be477186e8233448d1083
-  Curve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!114 &-4620815090318103733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,12 +161,6 @@ MonoBehaviour:
   GroupSo: {fileID: 0}
   _position: {x: -648, y: -251}
   GUID: a538c95f73b114d93b4f993a9eeab681
-  Curve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
   Child: {fileID: 2722886564823990091}
 --- !u!114 &-4445214288975828384
 MonoBehaviour:
@@ -220,12 +178,6 @@ MonoBehaviour:
   GroupSo: {fileID: -1002988855477588090}
   _position: {x: 308, y: -227}
   GUID: ca0858ae79f0a480eac4c1a72f2a8cfa
-  Curve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
   Child: {fileID: 7525741962513757872}
   ConditionNode: {fileID: 3472139531113122511}
 --- !u!114 &-4245075091455033926
@@ -262,12 +214,6 @@ MonoBehaviour:
   GroupSo: {fileID: -1002988855477588090}
   _position: {x: 657, y: -318}
   GUID: 84a4787672c9c4895b2394f22076ad31
-  Curve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
   TimeWait: 0.4
 --- !u!114 &-2139619316797429196
 MonoBehaviour:
@@ -285,12 +231,6 @@ MonoBehaviour:
   GroupSo: {fileID: -1002988855477588090}
   _position: {x: 559, y: -126}
   GUID: 3a56a005340d9469297e71eb4073a89d
-  Curve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!114 &-1621986230422085957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -347,7 +287,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e079b22fc2924114b8b38ab9616f5d12, type: 3}
   m_Name: AI
   m_EditorClassIdentifier: 
-  _entityReference: {fileID: 0}
   RootNode: {fileID: -4620815090318103733}
   Nodes:
   - {fileID: -4620815090318103733}
@@ -428,12 +367,6 @@ MonoBehaviour:
   GroupSo: {fileID: 0}
   _position: {x: -442, y: -250}
   GUID: eba64a07179174e1fab1417c53bc7227
-  Curve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
   ChildNodes:
   - {fileID: 9108708165869451457}
   - {fileID: -5818478633785936904}
@@ -453,12 +386,6 @@ MonoBehaviour:
   GroupSo: {fileID: 0}
   _position: {x: -568, y: -244}
   GUID: 72d0f559b70fd49f1b67c3a637a379cd
-  Curve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
   Child: {fileID: 1058190741223281512}
   ConditionNode: {fileID: 0}
 --- !u!114 &3413210538346670998
@@ -477,12 +404,6 @@ MonoBehaviour:
   GroupSo: {fileID: 558800295767579824}
   _position: {x: -35.720097, y: 95.159195}
   GUID: 25612f9ad0e32444ea373888504b2a20
-  Curve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!114 &3472139531113122511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -517,12 +438,6 @@ MonoBehaviour:
   GroupSo: {fileID: -1002988855477588090}
   _position: {x: 717, y: -297}
   GUID: cce1a14da1d914cc1ad147f451317ac5
-  Curve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!114 &4079170083738136383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -577,12 +492,6 @@ MonoBehaviour:
   GroupSo: {fileID: -1002988855477588090}
   _position: {x: 431, y: -227}
   GUID: 891550a95d47c48e78d6930dd65f99a1
-  Curve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
   ChildNodes:
   - {fileID: -4622023020786220131}
   - {fileID: 3878798768866490655}
@@ -606,9 +515,3 @@ MonoBehaviour:
   GroupSo: {fileID: 6518784542748760188}
   _position: {x: -154, y: -347}
   GUID: 12f7bf0a54c0142ff815fbfb5b6e9446
-  Curve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4

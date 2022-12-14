@@ -9,6 +9,6 @@ namespace Core.ECS.Events.Player
     public struct PlayerRecievedDamageEvent { public int Value;  }
     public struct PlayerHealedEvent { public int Value; }
     public struct EnergyReducedEvent { public float Value; }
-    public struct PlayerEnteredBossZoneEvent { public UnitModel BossModel; }
+    public struct PlayerEnteredBossZoneEvent { public EnemyModel BossModel; }
     public struct PlayerTalkingWithNPCEvent { public NPCComponent NPC; }
 }

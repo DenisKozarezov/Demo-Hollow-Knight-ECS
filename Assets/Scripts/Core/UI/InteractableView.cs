@@ -1,8 +1,8 @@
 using UnityEngine;
+using Core.ECS;
 using Core.ECS.Events;
 using Core.ECS.Components;
 using Voody.UniLeo;
-using AI.ECS;
 using Leopotam.Ecs;
 
 namespace Core.UI

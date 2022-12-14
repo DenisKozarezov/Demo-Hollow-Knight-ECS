@@ -10,7 +10,7 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using Node = AI.BehaviorTree.Nodes.Node;
 
-namespace Editor.BehaviorTreeEditor.VisualElements.Nodes.ChoiseNodes
+namespace Editor.BehaviorTreeEditor.VisualElements.Nodes.Choices
 {
     public class ChoiceNodeView: NodeView
     {

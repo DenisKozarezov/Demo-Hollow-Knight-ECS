@@ -13,15 +13,15 @@ namespace AI.BehaviorTree.Nodes.ActionNodes
 
         protected override State OnUpdate() 
         {
+#if UNITY_EDITOR
             Debug.Log($"DebugLogNode: '{Message}'");
+#endif
             return State.Success;
         }
         public override Node Clone()
         {
-            DebugLogNode clone = Instantiate(this);
-            clone.Parent = null;
-            clone.Message = clone.Message.Clone().ToString();
-            clone.GUID = GUID;
+            DebugLogNode clone = base.Clone() as DebugLogNode;
+            clone.Message = Message.Clone().ToString();
             return clone;
         }
     }

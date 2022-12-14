@@ -9,7 +9,7 @@ namespace Core.AI.FalseKnight.Parameters
     {
         protected override State OnUpdate()
         {
-            Value = BehaviorTreeRef.EntityReference.Entity.Has<OnGroundComponent>();
+            Value = BehaviorTreeRef.Agent.Has<OnGroundComponent>();
             return State.Success;
         }
         public override float Cost()
