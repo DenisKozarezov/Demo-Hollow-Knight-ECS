@@ -3,11 +3,11 @@ using Leopotam.Ecs;
 
 namespace Core.ECS.Systems
 {
-    public sealed class BehaviourTreeSystem : IEcsRunSystem 
+    public sealed class BehaviourTreeSystem : IEcsRunSystem
     {        
         private readonly EcsFilter<BehaviourTreeComponent> _filter = null;
 
-        void IEcsRunSystem.Run()
+        public void Run()
         {
             foreach (var i in _filter)
             {

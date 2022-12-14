@@ -1,0 +1,25 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <Style src="project://database/Assets/Scripts/Core/AI/Behaviour%20Tree/Editor/Styles/HorizontalNodeViewStyle.uss?fileID=7433441132597879392&amp;guid=d6e41fa9fa0c6e248ae44e6ac2f6fa88&amp;type=3#NodeViewStyle" />
+    <Style src="project://database/Assets/Scripts/Core/AI/Behaviour%20Tree/Editor/Styles/VerticalNodeViewStyle.uss?fileID=7433441132597879392&amp;guid=e7dc7a680a9aac24dae209610d783c14&amp;type=3#VerticalNodeViewStyle" />
+    <ui:VisualElement name="node-border">
+        <ui:VisualElement name="contents">
+            <ui:VisualElement name="top">
+                <ui:VisualElement name="input" style="align-items: stretch; flex-direction: row; justify-content: space-around;" />
+                <ui:VisualElement name="divider" class="vertical" />
+                <ui:VisualElement name="title" style="align-items: center;">
+                    <ui:Label name="title-label" text="Repeat" class="unity-text-element unity-label" />
+                    <ui:VisualElement name="title-button-container">
+                        <ui:VisualElement name="collapse-button">
+                            <ui:VisualElement name="icon" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="divider" class="vertical" />
+                <ui:VisualElement name="output" style="align-items: stretch; justify-content: space-around; flex-direction: row;" />
+                <ui:VisualElement name="divider" class="horizontal" style="border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="selection-border" picking-mode="Ignore" style="position: absolute;" />
+        <ui:VisualElement name="node-state" picking-mode="Ignore" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; border-top-left-radius: 5px; border-bottom-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-left-width: 2px; border-right-width: 2px; border-top-width: 2px; border-bottom-width: 2px; transition-property: border-color; transition-timing-function: ease-in; transition-duration: 0.3s;" />
+    </ui:VisualElement>
+</ui:UXML>

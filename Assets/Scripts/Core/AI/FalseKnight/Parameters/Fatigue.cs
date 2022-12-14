@@ -1,20 +1,20 @@
-using AI.BehaviourTree.Nodes;
-using AI.BehaviourTree.Nodes.Parameters;
+//using AI.BehaviourTree.Nodes;
+//using AI.BehaviourTree.Nodes.Parameters;
 
 namespace Core.AI.FalseKnight.Parameters
 {
-    public class Fatigue : FloatNode
-    {
-        protected override State OnUpdate() 
-        {
-            if (Value == 0 || Value < 0.001f)
-            {
-                Value = 0;
-                return State.Success;
-            }
+    //public class Fatigue : FloatNode
+    //{
+    //    protected override State OnUpdate() 
+    //    {
+    //        if (Value == 0 || Value < 0.001f)
+    //        {
+    //            Value = 0;
+    //            return State.Success;
+    //        }
 
-            Value -= 0.005f;
-            return State.Running; 
-        }
-    }
+    //        Value -= 0.005f;
+    //        return State.Running; 
+    //    }
+    //}
 }
