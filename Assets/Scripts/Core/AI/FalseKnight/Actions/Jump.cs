@@ -19,8 +19,8 @@ namespace Core.AI.FalseKnight.Actions
         protected override void OnInit()
         {
             _fatigue = BehaviorTreeRef.Nodes.Where(n=> n is Fatigue).FirstOrDefault() as Fatigue;
-            _rigidbody = BehaviorTreeRef.EntityReference.Entity.Get<RigidbodyComponent>().Value;
-            float jumpHeight = BehaviorTreeRef.EntityReference.Entity.Get<JumpComponent>().JumpForceRange.y;
+            _rigidbody = BehaviorTreeRef.Agent.Get<RigidbodyComponent>().Value;
+            float jumpHeight = BehaviorTreeRef.Agent.Get<JumpComponent>().JumpForceRange.y;
             _jumpForce = Utils.CalculateJumpForce(Physics2D.gravity.magnitude, jumpHeight);
             _player = FindObjectsOfType<UnitView>().Where(i => i.gameObject.layer == Constants.PlayerLayer).First().transform;
         }
@@ -59,8 +59,7 @@ namespace Core.AI.FalseKnight.Actions
             if (grounded)
             {
                 return grounded.Cost();
-            }
-            
+            }            
             return base.Cost();
         }
     }

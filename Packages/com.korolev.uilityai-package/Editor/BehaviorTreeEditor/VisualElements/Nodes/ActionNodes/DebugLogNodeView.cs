@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using Node = AI.BehaviorTree.Nodes.Node;
 
-namespace Editor.BehaviorTreeEditor.VisualElements.Nodes.ActionNodes
+namespace Editor.BehaviorTreeEditor.VisualElements.Nodes.Actions
 {
     public class DebugLogNodeView : NodeView
     {

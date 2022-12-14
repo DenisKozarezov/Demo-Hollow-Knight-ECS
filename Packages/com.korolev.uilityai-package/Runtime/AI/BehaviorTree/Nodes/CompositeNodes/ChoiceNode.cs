@@ -66,11 +66,8 @@ namespace AI.BehaviorTree.Nodes.CompositeNodes
         }
         public override Node Clone()
         {
-            ChoiceNode clone = Instantiate(this);
-            clone.Parent = null;
+            ChoiceNode clone = base.Clone() as ChoiceNode;
             clone.ParametersList = new List<ParameterNode>();
-            clone.ChildNodes = new List<Node>();
-            clone.GUID = GUID;
             return clone;
         }
     }   

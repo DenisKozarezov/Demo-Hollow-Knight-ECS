@@ -4838,6 +4838,7 @@ GameObject:
   - component: {fileID: 531462200619060055}
   - component: {fileID: 5585804993521836967}
   - component: {fileID: 1636109213743678524}
+  - component: {fileID: 167632265975647835}
   m_Layer: 0
   m_Name: Bench
   m_TagString: Interactable
@@ -4961,7 +4962,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7589666601377239132}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c51965847953ea0458fda3e5c4558c7c, type: 3}
+  m_Script: {fileID: 11500000, guid: 374ddb3bc6f6f8c428425cc1c7ef663a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &3243181736014815103
@@ -5022,3 +5023,15 @@ MonoBehaviour:
     Label: Rest
     OffsetY: 2
     InteractType: 2
+--- !u!114 &167632265975647835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7589666601377239132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 374ddb3bc6f6f8c428425cc1c7ef663a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -7,7 +7,7 @@ using System;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using Node = AI.BehaviorTree.Nodes.Node;
-namespace Editor.BehaviorTreeEditor.VisualElements.Nodes.ActionNodes
+namespace Editor.BehaviorTreeEditor.VisualElements.Nodes.Actions
 {
     public class WaitNodeView : NodeView
     {

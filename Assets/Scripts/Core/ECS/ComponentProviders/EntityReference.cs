@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Leopotam.Ecs;
 
-namespace AI.ECS
+namespace Core.ECS
 {
     public sealed class EntityReference : MonoBehaviour
     {

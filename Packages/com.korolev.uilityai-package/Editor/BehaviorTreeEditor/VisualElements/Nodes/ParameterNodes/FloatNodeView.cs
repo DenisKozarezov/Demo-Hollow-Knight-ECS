@@ -5,7 +5,7 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using Node = AI.BehaviorTree.Nodes.Node;
 
-namespace Editor.BehaviorTreeEditor.VisualElements.Nodes.ParameterNodes
+namespace Editor.BehaviorTreeEditor.VisualElements.Nodes.Parameters
 {
     public class FloatNodeView: NodeView
     {

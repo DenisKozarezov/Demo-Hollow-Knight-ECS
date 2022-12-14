@@ -8,7 +8,7 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using Node = AI.BehaviorTree.Nodes.Node;
 
-namespace Editor.BehaviorTreeEditor.VisualElements.Nodes.DecoratorNodes
+namespace Editor.BehaviorTreeEditor.VisualElements.Nodes.Decorators
 {
     public class RootNodeView : NodeView
     {

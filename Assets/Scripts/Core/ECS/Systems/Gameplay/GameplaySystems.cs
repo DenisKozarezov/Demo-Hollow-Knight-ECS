@@ -1,5 +1,4 @@
-﻿using AI.ECS.Systems;
-using Core.ECS.Events;
+﻿using Core.ECS.Events;
 using Core.ECS.Events.Player;
 using Core.ECS.Systems.Camera;
 using Core.ECS.Systems.Player;

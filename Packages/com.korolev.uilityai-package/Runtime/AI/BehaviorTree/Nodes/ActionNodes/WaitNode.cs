@@ -9,26 +9,23 @@ namespace AI.BehaviorTree.Nodes.ActionNodes
 {
     public class WaitNode : ActionNode
     {
-        [HideInInspector] private float _currentTimeWait = 0;
+        private float _currentTime = 0f;
         public float TimeWait;
 
         protected override State OnUpdate()
         {
-            if (_currentTimeWait >= TimeWait)
+            if (_currentTime >= TimeWait)
             {
-                _currentTimeWait = 0;
+                _currentTime = 0f;
                 return State.Success;
             }
-            _currentTimeWait += Time.deltaTime;
+            _currentTime += Time.deltaTime;
             return State.Running;
-        }
-        
+        }        
         public override Node Clone()
         {
-            WaitNode clone = Instantiate(this);
-            clone.Parent = null;
+            WaitNode clone = base.Clone() as WaitNode;
             clone.TimeWait = TimeWait;
-            clone.GUID = GUID;
             return clone;
         }
     }

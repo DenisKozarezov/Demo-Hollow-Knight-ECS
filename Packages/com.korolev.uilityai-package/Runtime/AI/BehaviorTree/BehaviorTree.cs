@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using AI.ECS;
+using Leopotam.Ecs;
 using AI.BehaviorTree.Nodes;
 using AI.BehaviorTree.Nodes.CompositeNodes;
 using AI.BehaviorTree.Nodes.DecoratorNodes;
@@ -29,7 +29,7 @@ namespace AI.BehaviorTree
     public class BehaviorTree : ScriptableObject
     {
         [SerializeField, HideInInspector]
-        private EntityReference _entityReference;
+        private EcsEntity _agent;
 
         [NonSerialized] public State TreeState;
         [SerializeField, HideInInspector] public Node RootNode;
@@ -41,7 +41,7 @@ namespace AI.BehaviorTree
         [NonSerialized] private Node _currentNode;
 
         public Action BehaviorTreeChanged; 
-        public EntityReference EntityReference => _entityReference;        
+        public EcsEntity Agent => _agent;        
 
         private void OnDestroy() { BehaviorTreeChanged -= OnBehaviorTreeChanged; }
         private void OnBehaviorTreeChanged() { SetCurrentNode(RootNode); }
@@ -53,10 +53,10 @@ namespace AI.BehaviorTree
             return clone;
         }
         
-        public void Init(EntityReference entityReference)
+        public void Init(ref EcsEntity agent)
         {
             _currentNode = RootNode;
-            _entityReference = entityReference;
+            _agent = agent;
             BehaviorTreeChanged += OnBehaviorTreeChanged;
             
             foreach (var node in Nodes) node.Init(this);

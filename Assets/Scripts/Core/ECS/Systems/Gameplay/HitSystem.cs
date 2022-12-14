@@ -2,7 +2,6 @@
 using UnityEngine;
 using Core.ECS.Events;
 using Leopotam.Ecs;
-using AI.ECS;
 
 namespace Core.ECS.Systems
 {

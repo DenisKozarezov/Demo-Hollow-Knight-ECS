@@ -8,7 +8,7 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using Node = AI.BehaviorTree.Nodes.Node;
 
-namespace Editor.BehaviorTreeEditor.VisualElements.Nodes.CompositeNodes
+namespace Editor.BehaviorTreeEditor.VisualElements.Nodes.Composites
 {
     public class SequencerNodeView : NodeView
     {

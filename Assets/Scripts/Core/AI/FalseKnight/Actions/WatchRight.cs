@@ -1,20 +1,20 @@
 using UnityEngine;
 using AI.BehaviorTree.Nodes;
+using Core.ECS.Components.Units;
+using Leopotam.Ecs;
 
 namespace Core.AI.FalseKnight.Actions
 {
     public class WatchRight: ActionNode
     {
-        private GameObject _gameObject;
+        private SpriteRenderer _spriteRenderer;
         protected override void OnInit()
         {
-            _gameObject = BehaviorTreeRef.EntityReference.gameObject;
+            _spriteRenderer = BehaviorTreeRef.Agent.Get<SpriteRendererComponent>().Value;
         }
         protected override State OnUpdate()
         {
-            Vector3 scale = _gameObject.transform.localScale;
-            scale.x = -1f;
-            _gameObject.transform.localScale = scale;
+            _spriteRenderer.flipX = false;
             return State.Success;
         }
     }

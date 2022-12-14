@@ -5,12 +5,12 @@
 
 using System;
 using AI.BehaviorTree;
-using Editor.BehaviorTreeEditor.VisualElements.Nodes.ConditionNodes;
+using Editor.BehaviorTreeEditor.VisualElements.Nodes.Conditions;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using Node = AI.BehaviorTree.Nodes.Node;
 
-namespace Editor.BehaviorTreeEditor.VisualElements.Nodes.DecoratorNodes
+namespace Editor.BehaviorTreeEditor.VisualElements.Nodes.Decorators
 {
     public class RepeatNodeView : NodeView
     {

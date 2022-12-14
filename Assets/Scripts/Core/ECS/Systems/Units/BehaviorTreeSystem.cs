@@ -3,10 +3,10 @@
  * Last Modified 19.04.2022
  *******************************************/
 
-using AI.ECS.Components;
+using Core.ECS.Components.Units;
 using Leopotam.Ecs;
 
-namespace AI.ECS.Systems
+namespace Core.ECS.Systems
 {
     public class BehaviorTreeSystem : IEcsRunSystem 
     {        
@@ -17,7 +17,13 @@ namespace AI.ECS.Systems
             foreach (var i in _filter)
             {
                 ref var component = ref _filter.Get1(i);
-                if (!component.Initialized) component.Init();
+                if (!component.Initialized)
+                {
+                    ref EcsEntity entity = ref _filter.GetEntity(i);
+                    component.BehaviorTree = component.BehaviorTree.Clone();
+                    component.BehaviorTree.Init(ref entity);
+                    component.Initialized = true;
+                }
                 component.BehaviorTree.Update();
             }
         }

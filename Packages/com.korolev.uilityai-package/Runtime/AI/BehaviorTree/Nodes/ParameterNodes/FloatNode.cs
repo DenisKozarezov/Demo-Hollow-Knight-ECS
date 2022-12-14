@@ -8,18 +8,14 @@ namespace AI.BehaviorTree.Nodes.ParameterNodes
     public class FloatNode : ParameterNode
     { 
         public float Value = 0f;
-
         protected override State OnUpdate() 
         {
             return State.Success;
-        }
-        
+        }        
         public override Node Clone()
         {
-            FloatNode clone = Instantiate(this);
-            clone.ChildNode = null;
+            FloatNode clone = base.Clone() as FloatNode;
             clone.Value = Value;
-            clone.GUID = GUID;
             return clone;
         }
     }

@@ -3,7 +3,7 @@ using AI.BehaviorTree;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-namespace Editor.BehaviorTreeEditor.VisualElements.Nodes.ConditionNodes
+namespace Editor.BehaviorTreeEditor.VisualElements.Nodes.Conditions
 {
     public class ConditionNodeView : NodeView
     {

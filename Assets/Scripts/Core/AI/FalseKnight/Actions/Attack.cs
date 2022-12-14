@@ -16,8 +16,8 @@ namespace Core.AI.FalseKnight.Actions
         }
         protected override State OnUpdate()
         {
-            BehaviorTreeRef.EntityReference.Entity.Get<FalseKnightAttackEventComponent>();
-           _fatigue.Value += 0.4f;
+            BehaviorTreeRef.Agent.Get<FalseKnightAttackEventComponent>();
+            _fatigue.Value += 0.4f;
             return State.Success;
         }
 

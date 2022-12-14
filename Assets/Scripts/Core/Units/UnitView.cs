@@ -1,6 +1,6 @@
 using UnityEngine;
 using Leopotam.Ecs;
-using AI.ECS;
+using Core.ECS;
 using Core.ECS.Components.Units;
 
 namespace Core.Units

@@ -3,6 +3,8 @@ using UnityEngine;
 using AI.BehaviorTree.Nodes;
 using AI.BehaviorTree.Nodes.ParameterNodes;
 using Core.Units;
+using Core.ECS.Components.Units;
+using Leopotam.Ecs;
 
 namespace Core.AI.FalseKnight.Parameters
 {
@@ -13,7 +15,7 @@ namespace Core.AI.FalseKnight.Parameters
 
         protected override void OnInit()
         {
-            _transform = BehaviorTreeRef.EntityReference.transform;
+            _transform = BehaviorTreeRef.Agent.Get<SpriteRendererComponent>().Value.transform;
             _player = FindObjectsOfType<UnitView>().Where(i => i.gameObject.layer == Constants.PlayerLayer).First().transform;
         }
         protected override State OnUpdate() 
