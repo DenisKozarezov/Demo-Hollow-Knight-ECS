@@ -10,7 +10,6 @@ namespace AI.ECS.Systems
 {
     public class BehaviorTreeSystem : IEcsRunSystem 
     {        
-        private readonly EcsWorld _world = null;
         private readonly EcsFilter<BehaviorTreeComponent> _filter = null;
 
         void IEcsRunSystem.Run()
@@ -18,7 +17,7 @@ namespace AI.ECS.Systems
             foreach (var i in _filter)
             {
                 ref var component = ref _filter.Get1(i);
-                if (!component.Initialized) component.Init(_world);
+                if (!component.Initialized) component.Init();
                 component.BehaviorTree.Update();
             }
         }

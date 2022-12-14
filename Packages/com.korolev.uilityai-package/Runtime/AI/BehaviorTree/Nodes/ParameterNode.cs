@@ -4,7 +4,6 @@
  *******************************************/
 
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace AI.BehaviorTree.Nodes
@@ -19,6 +18,13 @@ namespace AI.BehaviorTree.Nodes
         public override IEnumerable<Node> GetChildren()
         {
             yield return ChildNode;
+        }
+        public override void RemoveChild(Node child)
+        {
+            if (!child.Equals(ChildNode)) return;
+
+            child.Parent = null;
+            ChildNode = null;
         }
         public override Node Clone()
         {

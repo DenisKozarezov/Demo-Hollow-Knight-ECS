@@ -56,7 +56,14 @@ namespace AI.BehaviorTree.Nodes.CompositeNodes
             }
             return State.Success;
         }
-        
+        public override void RemoveChild(Node child)
+        {
+            base.RemoveChild(child);
+            if (child is ParameterNode parameter)
+            {
+                ParametersList.Remove(parameter);
+            }
+        }
         public override Node Clone()
         {
             ChoiceNode clone = Instantiate(this);

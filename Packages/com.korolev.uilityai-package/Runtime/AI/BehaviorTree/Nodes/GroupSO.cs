@@ -22,7 +22,6 @@ namespace AI.BehaviorTree.Nodes
             return other.GUID.Equals(GUID);
         }
 
-        /************ ПОЛЯ ДЛЯ ХРАНЕНИЯ ДАННЫХ ОТОБРАЖЕНИЯ ***************************/
 #if UNITY_EDITOR
         [SerializeField, HideInInspector]
         private Vector2 _position;

@@ -13,13 +13,17 @@ namespace AI.BehaviorTree.Nodes.DecoratorNodes
 
         protected override State OnUpdate()
         {
-            //если заданное условие выполняется
             if (ConditionNode == null || ConditionNode.Condition())
             {
                 BehaviorTreeRef.SetCurrentNode(Child);
                 return State.Running; 
             }
             return State.Success;
+        }
+        public override void RemoveChild(Node child)
+        {
+            base.RemoveChild(child);
+            ConditionNode = null;
         }
         public override Node Clone()
         {

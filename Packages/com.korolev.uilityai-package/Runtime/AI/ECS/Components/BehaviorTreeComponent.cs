@@ -15,10 +15,10 @@ namespace AI.ECS.Components
         public BehaviorTree.BehaviorTree BehaviorTree;
         [NonSerialized] public bool Initialized;
     
-        public void Init(EcsWorld ecsWorld) 
+        public void Init() 
         {
             BehaviorTree = BehaviorTree.Clone();
-            BehaviorTree.Init(ecsWorld, EntityReference);
+            BehaviorTree.Init(EntityReference);
             Initialized = true;
         }
     }
