@@ -12,7 +12,7 @@ using UnityEngine.UIElements;
 using UnityEditor;
 #endif
 
-namespace AI.BehaviorTree.Nodes
+namespace AI.BehaviourTree.Nodes
 {
     public enum State : byte
     {

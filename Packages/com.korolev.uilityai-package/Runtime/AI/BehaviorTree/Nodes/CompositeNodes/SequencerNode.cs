@@ -3,7 +3,7 @@
  * Last Modified 19.04.2022
  *******************************************/
 
-namespace AI.BehaviorTree.Nodes.CompositeNodes
+namespace AI.BehaviourTree.Nodes.Composites
 {
     public class SequencerNode : CompositeNode
     {

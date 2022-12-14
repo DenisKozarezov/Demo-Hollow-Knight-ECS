@@ -1,5 +1,5 @@
-using AI.BehaviorTree.Nodes;
-using AI.BehaviorTree.Nodes.ParameterNodes;
+using AI.BehaviourTree.Nodes;
+using AI.BehaviourTree.Nodes.Parameters;
 using Core.ECS.Events;
 using Leopotam.Ecs;
 

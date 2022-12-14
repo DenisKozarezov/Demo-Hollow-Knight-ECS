@@ -1,18 +1,13 @@
 using Editor.BehaviorTreeEditor.VisualElements.Nodes;
 using UnityEngine.UIElements;
-using UnityEditor;
 
 namespace Editor.BehaviorTreeEditor.VisualElements
 {
     public class InspectorView : VisualElement
     {
-        //нужно для использования UXML 
-        public new class UXMLFactory : UxmlFactory<InspectorView, VisualElement.UxmlTraits> { }
-
         private UnityEditor.Editor _editor;
-        
-        public InspectorView() { }
-
+        public new class UXMLFactory : UxmlFactory<InspectorView, VisualElement.UxmlTraits> { }
+                
         public void UpdateSelection(NodeView nodeView)
         {
             Clear();
@@ -23,14 +18,12 @@ namespace Editor.BehaviorTreeEditor.VisualElements
                 IMGUIContainer imguiContainer = new IMGUIContainer(() => { _editor.OnInspectorGUI(); });
                 Add(imguiContainer);
             }
-        }
-        
+        }        
         public void SetDarkTheme()
         {
             this.ClearClassList();
             this.AddToClassList("dark-theme");
         }
-
         public void SetLightTheme()
         {
             this.ClearClassList();

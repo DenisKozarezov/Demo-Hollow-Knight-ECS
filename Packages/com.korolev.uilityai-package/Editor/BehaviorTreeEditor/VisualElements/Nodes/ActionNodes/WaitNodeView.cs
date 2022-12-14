@@ -4,22 +4,21 @@
  *******************************************/
 
 using System;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using Node = AI.BehaviorTree.Nodes.Node;
+using Node = AI.BehaviourTree.Nodes.Node;
+
 namespace Editor.BehaviorTreeEditor.VisualElements.Nodes.Actions
 {
     public class WaitNodeView : NodeView
     {
-        public override void Initialize(AI.BehaviorTree.Nodes.Node node, BehaviorTreeView behaviorTreeView, Vector2 position, Action<NodeView> onNodeSelected, Action onNodeUnselected) {
+        public override void Initialize(Node node, BehaviorTreeView behaviorTreeView, Vector2 position, Action<NodeView> onNodeSelected, Action onNodeUnselected)
+        {
             base.Initialize(node, behaviorTreeView, position, onNodeSelected, onNodeUnselected);
         }
-
-        public override void Draw() {
-            /*TITLE CONTAINER*/
+        public override void Draw() 
+        {
             this.title = "Wait";
 
-            /*TITLE EXTENSION*/
             CreateInputPorts();
             RefreshPorts();
             RefreshExpandedState();

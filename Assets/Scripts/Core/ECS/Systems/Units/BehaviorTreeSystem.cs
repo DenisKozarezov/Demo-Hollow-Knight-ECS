@@ -8,9 +8,9 @@ using Leopotam.Ecs;
 
 namespace Core.ECS.Systems
 {
-    public class BehaviorTreeSystem : IEcsRunSystem 
+    public class BehaviourTreeSystem : IEcsRunSystem 
     {        
-        private readonly EcsFilter<BehaviorTreeComponent> _filter = null;
+        private readonly EcsFilter<BehaviourTreeComponent> _filter = null;
 
         void IEcsRunSystem.Run()
         {
@@ -20,11 +20,11 @@ namespace Core.ECS.Systems
                 if (!component.Initialized)
                 {
                     ref EcsEntity entity = ref _filter.GetEntity(i);
-                    component.BehaviorTree = component.BehaviorTree.Clone();
-                    component.BehaviorTree.Init(ref entity);
+                    component.BehaviourTree = component.BehaviourTree.Clone();
+                    component.BehaviourTree.Init(ref entity);
                     component.Initialized = true;
                 }
-                component.BehaviorTree.Update();
+                component.BehaviourTree.Update();
             }
         }
     }

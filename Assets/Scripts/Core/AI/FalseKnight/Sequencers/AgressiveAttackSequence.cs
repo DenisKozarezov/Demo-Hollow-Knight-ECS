@@ -1,5 +1,5 @@
-using AI.BehaviorTree.Nodes;
-using AI.BehaviorTree.Nodes.CompositeNodes;
+using AI.BehaviourTree.Nodes;
+using AI.BehaviourTree.Nodes.Composites;
 using Core.AI.FalseKnight.Parameters;
 
 namespace Core.AI.FalseKnight.Sequencers

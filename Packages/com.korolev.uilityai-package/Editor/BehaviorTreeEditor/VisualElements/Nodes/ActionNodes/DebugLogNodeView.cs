@@ -5,21 +5,18 @@
 
 using System;
 using UnityEngine;
-using UnityEngine.UIElements;
-using Node = AI.BehaviorTree.Nodes.Node;
+using Node = AI.BehaviourTree.Nodes.Node;
 
 namespace Editor.BehaviorTreeEditor.VisualElements.Nodes.Actions
 {
     public class DebugLogNodeView : NodeView
-    {
-        private TextField textFieldMessage = new TextField();
-        
-        public override void Initialize(AI.BehaviorTree.Nodes.Node node, BehaviorTreeView behaviorTreeView, Vector2 position, Action<NodeView> onNodeSelected, Action onNodeUnselected) {
+    {        
+        public override void Initialize(Node node, BehaviorTreeView behaviorTreeView, Vector2 position, Action<NodeView> onNodeSelected, Action onNodeUnselected) 
+        {
             base.Initialize(node, behaviorTreeView, position, onNodeSelected, onNodeUnselected);
         }
-
-        public override void Draw() {
-            /*TITLE CONTAINER*/
+        public override void Draw() 
+        {
             this.title = "DebugLog";
 
             CreateInputPorts();

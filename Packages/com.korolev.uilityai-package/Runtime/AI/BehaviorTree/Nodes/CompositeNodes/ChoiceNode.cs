@@ -5,7 +5,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace AI.BehaviorTree.Nodes.CompositeNodes
+namespace AI.BehaviourTree.Nodes.Composites
 {
     public class ChoiceNode : CompositeNode
     {

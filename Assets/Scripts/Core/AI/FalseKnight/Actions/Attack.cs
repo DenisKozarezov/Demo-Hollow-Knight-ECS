@@ -1,6 +1,6 @@
 using System.Linq;
 using Leopotam.Ecs;
-using AI.BehaviorTree.Nodes;
+using AI.BehaviourTree.Nodes;
 using Core.ECS.Events.FalseKnight;
 using Core.AI.FalseKnight.Parameters;
 

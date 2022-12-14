@@ -3,7 +3,7 @@
  * Last Modified 19.04.2022
  *******************************************/
 
-namespace AI.BehaviorTree.Nodes.DecoratorNodes
+namespace AI.BehaviourTree.Nodes.Decorators
 {
     public class RootNode : DecoratorNode
     {

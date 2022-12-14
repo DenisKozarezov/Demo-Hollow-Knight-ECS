@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using UnityEngine;
 using Leopotam.Ecs;
-using AI.BehaviorTree.Nodes;
+using AI.BehaviourTree.Nodes;
 using Core.ECS.Components.Units;
 using Core.AI.FalseKnight.Parameters;
 using Core.Units;

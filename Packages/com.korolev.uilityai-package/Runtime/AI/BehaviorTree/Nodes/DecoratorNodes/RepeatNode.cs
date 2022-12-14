@@ -5,7 +5,7 @@
 
 using UnityEngine;
 
-namespace AI.BehaviorTree.Nodes.DecoratorNodes
+namespace AI.BehaviourTree.Nodes.Decorators
 {
     public class RepeatNode : DecoratorNode
     {

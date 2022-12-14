@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace AI.BehaviorTree.Nodes
+namespace AI.BehaviourTree.Nodes
 {
     public class GroupSO : ScriptableObject, IEquatable<GroupSO>
     {

@@ -4,26 +4,17 @@
  *******************************************/
 
 using System;
-using AI.BehaviorTree;
-using Editor.BehaviorTreeEditor.VisualElements.Nodes.Conditions;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using Node = AI.BehaviorTree.Nodes.Node;
+using UnityEditor.Experimental.GraphView;
+using Editor.BehaviorTreeEditor.VisualElements.Nodes.Conditions;
+using AI.BehaviourTree;
+using Node = AI.BehaviourTree.Nodes.Node;
 
 namespace Editor.BehaviorTreeEditor.VisualElements.Nodes.Decorators
 {
     public class RepeatNodeView : NodeView
     {
-        public override void Initialize(AI.BehaviorTree.Nodes.Node node, BehaviorTreeView behaviorTreeView, Vector2 position, Action<NodeView> onNodeSelected, Action onNodeUnselected) {
-            base.Initialize(node, behaviorTreeView, position, onNodeSelected, onNodeUnselected);
-        }
-
-        public override void Draw() {
-            /*TITLE CONTAINER*/
-            this.title = "Loop";
-            CreateInputPorts();
-            CreateOutputPorts();
-        }
+        public Port InputConpitionPort { get; private set; }
 
         protected override void CreateInputPorts()
         {
@@ -38,7 +29,6 @@ namespace Editor.BehaviorTreeEditor.VisualElements.Nodes.Decorators
             InputConpitionPort.portName = "Condition";
             inputContainer.Add(InputConpitionPort);
         }
-
         protected override void CreateOutputPorts()
         {
             if(_behaviorTreeView.OrientationTree == TreeOrientation.Horizontal)
@@ -50,8 +40,17 @@ namespace Editor.BehaviorTreeEditor.VisualElements.Nodes.Decorators
             OutputPort.portName = "";
             outputContainer.Add(OutputPort);
         }
+        public override void Initialize(Node node, BehaviorTreeView behaviorTreeView, Vector2 position, Action<NodeView> onNodeSelected, Action onNodeUnselected)
+        {
+            base.Initialize(node, behaviorTreeView, position, onNodeSelected, onNodeUnselected);
+        }
+        public override void Draw() 
+        {
+            this.title = "Loop";
 
-        public Port InputConpitionPort { get; set; }
+            CreateInputPorts();
+            CreateOutputPorts();
+        }
 
         public RepeatNodeView(string pathUxml) : base(pathUxml) { }
     }

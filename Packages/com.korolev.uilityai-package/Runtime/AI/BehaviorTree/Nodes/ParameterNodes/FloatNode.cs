@@ -3,7 +3,7 @@
  * Last Modified 19.04.2022
  *******************************************/
 
-namespace AI.BehaviorTree.Nodes.ParameterNodes
+namespace AI.BehaviourTree.Nodes.Parameters
 {
     public class FloatNode : ParameterNode
     { 

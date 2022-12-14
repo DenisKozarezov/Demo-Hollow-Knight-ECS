@@ -1,4 +1,4 @@
-using AI.BehaviorTree.Nodes;
+using AI.BehaviourTree.Nodes;
 
 namespace Core.AI.FalseKnight.Conditions
 {

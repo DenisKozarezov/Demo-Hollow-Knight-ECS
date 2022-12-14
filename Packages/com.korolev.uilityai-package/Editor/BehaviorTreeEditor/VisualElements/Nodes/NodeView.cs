@@ -4,54 +4,38 @@
  *******************************************/
 
 using System;
-using System.Linq;
-using AI.BehaviorTree;
-using AI.BehaviorTree.Nodes;
+using AI.BehaviourTree;
+using AI.BehaviourTree.Nodes;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using UnityEngine.UIElements;
 using Node = UnityEditor.Experimental.GraphView.Node;
 
 namespace Editor.BehaviorTreeEditor.VisualElements.Nodes
 {
     public class NodeView : Node
     {
-        public Action<NodeView> OnNodeSelected;
-        public Action OnNodeUnselected;
-        public string NodeName { get; set; }
+        private string _name;
         protected BehaviorTreeView _behaviorTreeView;
-        public AI.BehaviorTree.Nodes.Node Node { get; set; }
+        public AI.BehaviourTree.Nodes.Node Node { get; set; }
         public Port InputPort { get; set; }
         public Port OutputPort { get; set; }
 
+        public Action<NodeView> OnNodeSelected;
+        public Action OnNodeUnselected;
+
         public NodeView(string pathUxml) : base(pathUxml) { }
 
-        public virtual void Initialize(AI.BehaviorTree.Nodes.Node node, BehaviorTreeView behaviorTreeView, Vector2 position, Action<NodeView> onNodeSelected, Action onNodeUnselected)
+        protected virtual void CreateInputPorts()
         {
-            Node = node;
-            _behaviorTreeView = behaviorTreeView;
-            viewDataKey = Node.GUID;
-            NodeName = Node.name;
-            SetPosition(new Rect(position, Vector2.zero));
-            OnNodeSelected = onNodeSelected;
-            OnNodeUnselected = onNodeUnselected;
-        }
+            if (_behaviorTreeView.OrientationTree == TreeOrientation.Horizontal)
+                InputPort = InstantiatePort(Orientation.Horizontal, Direction.Input, Port.Capacity.Single, typeof(bool));
+            if (_behaviorTreeView.OrientationTree == TreeOrientation.Vertical)
+                InputPort = InstantiatePort(Orientation.Vertical, Direction.Input, Port.Capacity.Single, typeof(bool));
 
-        public override void SetPosition(Rect newPos)
-        {
-            base.SetPosition(newPos);
-            Node.Position = new Vector2(newPos.xMin, newPos.yMin);
-        }
-
-        public virtual void Draw()
-        {
-            /*TITLE CONTAINER*/
-            this.title = NodeName;
-
-            CreateInputPorts();
-            CreateOutputPorts();
-        }
-
+            InputPort.name = "";
+            InputPort.portName = "";
+            inputContainer.Add(InputPort);
+        }           
         protected virtual void CreateOutputPorts()
         {
             if (_behaviorTreeView.OrientationTree == TreeOrientation.Horizontal)
@@ -63,64 +47,37 @@ namespace Editor.BehaviorTreeEditor.VisualElements.Nodes
             OutputPort.portName = "";
             outputContainer.Add(OutputPort);
         }
-        protected virtual void CreateInputPorts()
+        public virtual void Initialize(AI.BehaviourTree.Nodes.Node node, BehaviorTreeView behaviorTreeView, Vector2 position, Action<NodeView> onNodeSelected, Action onNodeUnselected)
         {
-            if (_behaviorTreeView.OrientationTree == TreeOrientation.Horizontal)
-                InputPort = InstantiatePort(Orientation.Horizontal, Direction.Input, Port.Capacity.Single, typeof(bool));
-            if (_behaviorTreeView.OrientationTree == TreeOrientation.Vertical)
-                InputPort = InstantiatePort(Orientation.Vertical, Direction.Input, Port.Capacity.Single, typeof(bool));
-
-            InputPort.name = "";
-            InputPort.portName = "";
-            inputContainer.Add(InputPort);
+            Node = node;
+            _behaviorTreeView = behaviorTreeView;
+            viewDataKey = Node.GUID;
+            _name = Node.name;
+            SetPosition(new Rect(position, Vector2.zero));
+            OnNodeSelected = onNodeSelected;
+            OnNodeUnselected = onNodeUnselected;
         }
-
-        public void DisconnectAllPorts()
+        public virtual void Draw()
         {
-            DisconnectInputPorts();
-            DisconnectOutputPorts();
+            this.title = _name;
+            CreateInputPorts();
+            CreateOutputPorts();
         }
-
-        private void DisconnectInputPorts()
+        public override void SetPosition(Rect newPos)
         {
-            DisconnectPorts(inputContainer);
+            base.SetPosition(newPos);
+            Node.Position = new Vector2(newPos.xMin, newPos.yMin);
         }
-
-        private void DisconnectOutputPorts()
-        {
-            DisconnectPorts(outputContainer);
-        }
-
-        private void DisconnectPorts(VisualElement container)
-        {
-            foreach (Port port in container.Children())
-            {
-                if (!port.connected)
-                {
-                    continue;
-                }
-                _behaviorTreeView.DeleteElements(port.connections);
-            }
-        }
-
-        public bool IsStartingNode()
-        {
-            Port inputPort = (Port)inputContainer.Children().First();
-            return !inputPort.connected;
-        }
-
         public override void OnSelected()
         {
             base.OnSelected();
             OnNodeSelected?.Invoke(this);
         }
-
         public override void OnUnselected()
         {
             base.OnUnselected();
             OnNodeUnselected?.Invoke();
         }
-
         public void UpdateState()
         {
             RemoveFromClassList("running");

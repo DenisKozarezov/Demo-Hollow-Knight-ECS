@@ -1,5 +1,5 @@
 using UnityEngine;
-using AI.BehaviorTree.Nodes;
+using AI.BehaviourTree.Nodes;
 using Core.ECS.Components.Units;
 using Leopotam.Ecs;
 

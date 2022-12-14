@@ -1,24 +1,15 @@
 using System;
-using AI.BehaviorTree;
-using AI.BehaviorTree.Nodes;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEditor.Experimental.GraphView;
+using AI.BehaviourTree;
+using AI.BehaviourTree.Nodes;
+using Node = AI.BehaviourTree.Nodes.Node;
 
 namespace Editor.BehaviorTreeEditor.VisualElements.Nodes.Parameters
 {
     public class BooleanNodeView: NodeView
     {
-        public override void Initialize(AI.BehaviorTree.Nodes.Node node, BehaviorTreeView behaviorTreeView, Vector2 position, Action<NodeView> onNodeSelected, Action onNodeUnselected) {
-            base.Initialize(node, behaviorTreeView, position, onNodeSelected, onNodeUnselected);
-        }
-
-        public override void Draw() {
-            /*TITLE CONTAINER*/
-            this.title = Node.name;
-            CreateOutputPorts();
-        }
-
-        protected virtual void CreateOutputPorts()
+        protected override void CreateOutputPorts()
         {
             if(_behaviorTreeView.OrientationTree == TreeOrientation.Horizontal)
                 OutputPort = InstantiatePort(Orientation.Horizontal, Direction.Output, Port.Capacity.Multi, typeof(ParameterNode));
@@ -28,6 +19,15 @@ namespace Editor.BehaviorTreeEditor.VisualElements.Nodes.Parameters
             OutputPort.name = "";
             OutputPort.portName = "Parameter";
             outputContainer.Add(OutputPort);
+        }
+        public override void Initialize(Node node, BehaviorTreeView behaviorTreeView, Vector2 position, Action<NodeView> onNodeSelected, Action onNodeUnselected) 
+        {
+            base.Initialize(node, behaviorTreeView, position, onNodeSelected, onNodeUnselected);
+        }
+        public override void Draw() 
+        {
+            this.title = Node.name;
+            CreateOutputPorts();
         }
         
         public BooleanNodeView(string pathUxml) : base(pathUxml) { }

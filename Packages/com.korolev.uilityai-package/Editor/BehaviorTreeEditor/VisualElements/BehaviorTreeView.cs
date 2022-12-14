@@ -6,12 +6,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using AI.BehaviorTree;
-using AI.BehaviorTree.Nodes;
-using AI.BehaviorTree.Nodes.ActionNodes;
-using AI.BehaviorTree.Nodes.CompositeNodes;
-using AI.BehaviorTree.Nodes.DecoratorNodes;
-using AI.BehaviorTree.Nodes.ParameterNodes;
+using AI.BehaviourTree;
+using AI.BehaviourTree.Nodes;
+using AI.BehaviourTree.Nodes.Actions;
+using AI.BehaviourTree.Nodes.Composites;
+using AI.BehaviourTree.Nodes.Decorators;
+using AI.BehaviourTree.Nodes.Parameters;
 using Editor.BehaviorTreeEditor.VisualElements.Nodes;
 using Editor.BehaviorTreeEditor.VisualElements.Nodes.Actions;
 using Editor.BehaviorTreeEditor.VisualElements.Nodes.Choices;
@@ -24,7 +24,7 @@ using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
-using Node = AI.BehaviorTree.Nodes.Node;
+using Node = AI.BehaviourTree.Nodes.Node;
 
 namespace Editor.BehaviorTreeEditor.VisualElements
 {
@@ -191,7 +191,7 @@ namespace Editor.BehaviorTreeEditor.VisualElements
                         if (elem is NodeView nodeView) _behaviorTree.RemoveNode(nodeView.Node);
                         if (elem is GroupView group) _behaviorTree.RemoveGroup(FindGroupSO(group.viewDataKey));
                     });
-                    _behaviorTree.BehaviorTreeChanged?.Invoke();
+                    _behaviorTree.BehaviourTreeChanged?.Invoke();
                 }
                 // New edges to create
                 if (graphviewchange.edgesToCreate != null)
@@ -202,7 +202,7 @@ namespace Editor.BehaviorTreeEditor.VisualElements
                         NodeView childNode = edge.input.node as NodeView;
                         _behaviorTree.AddChild(parentNode.Node, childNode.Node);
                     });
-                    _behaviorTree.BehaviorTreeChanged?.Invoke();
+                    _behaviorTree.BehaviourTreeChanged?.Invoke();
                 }
             }
             return graphviewchange;

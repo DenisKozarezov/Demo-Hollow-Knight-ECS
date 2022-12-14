@@ -318,8 +318,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value:
-    EntityReference: {fileID: 3682251816190187952}
-    BehaviorTree: {fileID: 11400000, guid: 6f18207472b7349ae9cb02870954e442, type: 2}
+    BehaviourTree: {fileID: 11400000, guid: 6f18207472b7349ae9cb02870954e442, type: 2}
 --- !u!114 &2704286264739879150
 MonoBehaviour:
   m_ObjectHideFlags: 0

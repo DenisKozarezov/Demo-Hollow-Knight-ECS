@@ -8,16 +8,16 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Leopotam.Ecs;
-using AI.BehaviorTree.Nodes;
-using AI.BehaviorTree.Nodes.CompositeNodes;
-using AI.BehaviorTree.Nodes.DecoratorNodes;
-using Node = AI.BehaviorTree.Nodes.Node;
+using AI.BehaviourTree.Nodes;
+using AI.BehaviourTree.Nodes.Composites;
+using AI.BehaviourTree.Nodes.Decorators;
+using Node = AI.BehaviourTree.Nodes.Node;
 
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
-namespace AI.BehaviorTree
+namespace AI.BehaviourTree
 {
     public enum TreeOrientation
     {
@@ -40,11 +40,11 @@ namespace AI.BehaviorTree
         [NonSerialized] private Node _prevNode;
         [NonSerialized] private Node _currentNode;
 
-        public Action BehaviorTreeChanged; 
+        public Action BehaviourTreeChanged; 
         public EcsEntity Agent => _agent;        
 
-        private void OnDestroy() { BehaviorTreeChanged -= OnBehaviorTreeChanged; }
-        private void OnBehaviorTreeChanged() { SetCurrentNode(RootNode); }
+        private void OnDestroy() { BehaviourTreeChanged -= OnBehaviourTreeChanged; }
+        private void OnBehaviourTreeChanged() { SetCurrentNode(RootNode); }
         private BehaviorTree CloneNodes()
         {
             BehaviorTree clone = Instantiate(this);
@@ -57,7 +57,7 @@ namespace AI.BehaviorTree
         {
             _currentNode = RootNode;
             _agent = agent;
-            BehaviorTreeChanged += OnBehaviorTreeChanged;
+            BehaviourTreeChanged += OnBehaviourTreeChanged;
             
             foreach (var node in Nodes) node.Init(this);
         }

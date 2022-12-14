@@ -1,7 +1,7 @@
 using UnityEngine;
 using Leopotam.Ecs;
 using Core.ECS.Components.Units;
-using AI.BehaviorTree.Nodes;
+using AI.BehaviourTree.Nodes;
 
 namespace Core.AI.FalseKnight.Actions
 {

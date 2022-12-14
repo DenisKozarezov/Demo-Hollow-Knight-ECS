@@ -1,7 +1,7 @@
 using System.Linq;
 using UnityEngine;
-using AI.BehaviorTree.Nodes;
-using AI.BehaviorTree.Nodes.ParameterNodes;
+using AI.BehaviourTree.Nodes;
+using AI.BehaviourTree.Nodes.Parameters;
 using Core.Units;
 using Core.ECS.Components.Units;
 using Leopotam.Ecs;

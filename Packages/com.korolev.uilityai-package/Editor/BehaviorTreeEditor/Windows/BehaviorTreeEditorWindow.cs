@@ -3,7 +3,7 @@
  * Last Modified 19.04.2022
  *******************************************/
 
-using AI.BehaviorTree;
+using AI.BehaviourTree;
 using Editor.BehaviorTreeEditor.Config;
 using Editor.BehaviorTreeEditor.VisualElements;
 using Editor.BehaviorTreeEditor.VisualElements.Nodes;
@@ -11,7 +11,6 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor.Callbacks;
-
 
 public class BehaviorTreeEditorWindow : EditorWindow
 {

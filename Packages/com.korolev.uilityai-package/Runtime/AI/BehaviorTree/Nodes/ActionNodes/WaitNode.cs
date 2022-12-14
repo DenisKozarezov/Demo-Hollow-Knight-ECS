@@ -5,7 +5,7 @@
 
 using UnityEngine;
 
-namespace AI.BehaviorTree.Nodes.ActionNodes
+namespace AI.BehaviourTree.Nodes.Actions
 {
     public class WaitNode : ActionNode
     {

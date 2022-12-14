@@ -4,38 +4,20 @@
  *******************************************/
 
 using System;
-using AI.BehaviorTree;
-using AI.BehaviorTree.Nodes;
+using AI.BehaviourTree;
+using AI.BehaviourTree.Nodes;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using Node = AI.BehaviorTree.Nodes.Node;
+using Node = AI.BehaviourTree.Nodes.Node;
 
 namespace Editor.BehaviorTreeEditor.VisualElements.Nodes.Choices
 {
     public class ChoiceNodeView: NodeView
     {
-        public override void Initialize(AI.BehaviorTree.Nodes.Node node, BehaviorTreeView behaviorTreeView, Vector2 position, Action<NodeView> onNodeSelected, Action onNodeUnselected) {
-            base.Initialize(node, behaviorTreeView, position, onNodeSelected, onNodeUnselected);
-        }
+        public Port InputParameterPort { get; private set; }
 
-        public Port InputParameterPort;
-        public override void Draw() {
-            /*TITLE CONTAINER*/
-            this.title = "Choice";
-            
-            /*INPUT CONTAINER*/
-            CreateInputPorts();
-            
-            /*OUTPUT CONTAINER*/
-            CreateOutputPorts();
-
-            /*EXTENSION CONTAINER*/
-            
-            RefreshPorts();
-            RefreshExpandedState();
-        }
-        
-        protected override void CreateInputPorts() {
+        protected override void CreateInputPorts() 
+        {
             base.CreateInputPorts();
             
             if(_behaviorTreeView.OrientationTree == TreeOrientation.Horizontal)
@@ -47,6 +29,19 @@ namespace Editor.BehaviorTreeEditor.VisualElements.Nodes.Choices
             InputParameterPort.portName = "Parameter";
             inputContainer.Add(InputParameterPort);
         }
+        public override void Initialize(Node node, BehaviorTreeView behaviorTreeView, Vector2 position, Action<NodeView> onNodeSelected, Action onNodeUnselected)
+        {
+            base.Initialize(node, behaviorTreeView, position, onNodeSelected, onNodeUnselected);
+        }      
+        public override void Draw() 
+        {
+            this.title = "Choice";
+            
+            CreateInputPorts();           
+            CreateOutputPorts();            
+            RefreshPorts();
+            RefreshExpandedState();
+        }        
 
         public ChoiceNodeView(string pathUxml) : base(pathUxml) { }
     }

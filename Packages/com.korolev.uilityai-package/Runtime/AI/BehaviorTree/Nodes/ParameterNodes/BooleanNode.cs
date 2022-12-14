@@ -1,6 +1,6 @@
 using System;
 
-namespace AI.BehaviorTree.Nodes.ParameterNodes
+namespace AI.BehaviourTree.Nodes.Parameters
 {
     public class BooleanNode: ParameterNode
     {

@@ -5,7 +5,7 @@
 
 using System.Collections.Generic;
 
-namespace AI.BehaviorTree.Nodes
+namespace AI.BehaviourTree.Nodes
 {
     public abstract class ActionNode : Node
     {
