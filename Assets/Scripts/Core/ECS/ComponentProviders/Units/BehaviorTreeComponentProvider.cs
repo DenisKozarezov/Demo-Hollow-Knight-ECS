@@ -3,5 +3,5 @@ using Voody.UniLeo;
 
 namespace Core.ECS.ComponentProviders
 {
-    public sealed class BehaviorTreeComponentProvider : MonoProvider<BehaviorTreeComponent> { }
+    public sealed class BehaviorTreeComponentProvider : MonoProvider<BehaviourTreeComponent> { }
 }

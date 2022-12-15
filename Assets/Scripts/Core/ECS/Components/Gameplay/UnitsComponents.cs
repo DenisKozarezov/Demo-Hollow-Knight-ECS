@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Leopotam.Ecs;
-using AI.BehaviorTree;
 using Core.Models;
 
 namespace Core.ECS.Components.Units
@@ -13,9 +12,9 @@ namespace Core.ECS.Components.Units
     [Serializable] public struct AnimatorComponent { public Animator Value; }
     [Serializable] public struct SpriteRendererComponent { public SpriteRenderer Value; }
     [Serializable] public struct NPCComponent { public List<ConversationContext> Conversations; }
-    [Serializable] public struct BehaviorTreeComponent
+    [Serializable] public struct BehaviourTreeComponent
     {
-        public BehaviorTree BehaviorTree;
+        public BehaviourTree.Runtime.BehaviourTree BehaviourTree;
         [NonSerialized] public bool Initialized;
     }
     public struct HealthComponent { public int Health; public int MaxHealth; }  
