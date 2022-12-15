@@ -50,22 +50,23 @@ namespace BehaviourTree.Editor.VisualElements
         public override List<Port> GetCompatiblePorts(Port startPort, NodeAdapter nodeAdapter)
         {
             return ports.Where(endPort =>
-                endPort.direction != startPort.direction &&
-                !endPort.node.Equals(startPort.node) &&
+                endPort.direction != startPort.direction    &&
+                !endPort.node.Equals(startPort.node)        &&
                 endPort.portType.Equals(startPort.portType)).ToList();
         }
         public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
         {
-            BuildNodesCategory<ActionNode>(evt, "Actions");
-            BuildNodesCategory<ConditionNode>(evt, "Conditions");
+            BuildNodesCategory<Runtime.Nodes.Action>(evt, "Actions");
+            BuildNodesCategory<Condition>(evt, "Conditions");
             BuildNodesCategory<CompositeNode>(evt, "Composites");
-            BuildNodesCategory<DecoratorNode>(evt, "Decorators");
+            BuildNodesCategory<Decorator>(evt, "Decorators");
         }
         private void BuildNodesCategory<T>(ContextualMenuPopulateEvent evt, string categoryName) where T : Node
         {
-            foreach (var type in TypeCache.GetTypesDerivedFrom<T>())
+            IEnumerable<Type> types = TypeCache.GetTypesDerivedFrom<T>().Where(type => !type.IsAbstract);            
+            foreach (Type type in types)
             {
-                evt.menu.AppendAction($"[{categoryName}]/{ParseTypeToDisplayName(type)}", (action) =>
+                evt.menu.AppendAction($"{categoryName}/{ParseTypeToDisplayName(type)}", (action) =>
                 {
                     Vector2 mouseScreenPosition = evt.localMousePosition;
                     CreateNode(type, ref mouseScreenPosition);
@@ -100,14 +101,12 @@ namespace BehaviourTree.Editor.VisualElements
         {
             graphViewChange.elementsToRemove.ForEach(element =>
             {
-                NodeView view = element as NodeView;
-                if (view != null)
+                if (element is NodeView view)
                 {
                     _tree.RemoveNode(view.Node);
                 }
 
-                Edge edge = element as Edge;
-                if (edge != null)
+                if (element is Edge edge)
                 {
                     NodeView parentView = edge.output.node as NodeView;
                     NodeView childView = edge.input.node as NodeView;
@@ -139,10 +138,9 @@ namespace BehaviourTree.Editor.VisualElements
         }
         private string ParseTypeToDisplayName(Type type)
         {
-            string name = type.Name.Substring(0, type.Name.IndexOf("Node"));
-            int length = name.Length;
+            string name = type.Name;
             int i = 0;
-            while (i < length - 1)
+            while (i < name.Length - 1)
             {
                 if (char.IsUpper(name[i + 1]))
                 {
@@ -221,7 +219,7 @@ namespace BehaviourTree.Editor.VisualElements
 
             if (_tree.RootNode == null)
             {
-                _tree.RootNode = _tree.CreateNode(typeof(RootNode), ParseTypeToDisplayName(typeof(RootNode)));
+                _tree.RootNode = _tree.CreateNode(typeof(Root), ParseTypeToDisplayName(typeof(Root)));
                 SaveTree(_tree);
             }
 

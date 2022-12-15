@@ -1,6 +1,6 @@
 namespace BehaviourTree.Runtime.Nodes.Decorators
 {
-    public class RepeatNode : DecoratorNode
+    public class Repeat : Decorator
     {
         protected override State OnUpdate()
         {

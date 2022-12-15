@@ -1,6 +1,6 @@
 namespace BehaviourTree.Runtime.Nodes.Decorators
 {
-    public abstract class ConditionNode : DecoratorNode
+    public abstract class Condition : Decorator
     {
         protected override State OnUpdate()
         {

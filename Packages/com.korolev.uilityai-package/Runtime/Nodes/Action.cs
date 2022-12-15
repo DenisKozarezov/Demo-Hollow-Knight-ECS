@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace BehaviourTree.Runtime.Nodes
 {
-    public abstract class ActionNode : Node
+    public abstract class Action : Node
     {
         protected override void OnInit() { }
         protected override void OnStart() { }

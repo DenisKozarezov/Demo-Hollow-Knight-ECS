@@ -1,10 +1,10 @@
 namespace BehaviourTree.Runtime.Nodes.Decorators
 {
-    public class SuccessNode : DecoratorNode
+    public class Inverter : Decorator
     {
         protected override State OnUpdate()
         {
-            return State.Success;
+            return Child.State == State.Success ? State.Failure : State.Success;
         }
     }
 }

@@ -22,13 +22,23 @@ namespace BehaviourTree.Runtime
         public Node RootNode;
         [SerializeField, HideInInspector]
         private List<Node> _nodes = new List<Node>();
+        
         public IReadOnlyCollection<Node> Nodes => _nodes;
-        public EcsEntity Agent;
 
-        public void Init(ref EcsEntity agent)
+        private void TraverseTree(Node node, Action<Node> visiter)
         {
-            Agent = agent;            
-            foreach (var node in Nodes) node.Init(this);
+            if (node)
+            {
+                visiter.Invoke(node);
+                foreach (Node child in node.GetChildren())
+                {
+                    TraverseTree(child, visiter);
+                }
+            }
+        }
+        public void Init(ref EcsEntity agent, EcsWorld world)
+        {
+            foreach (Node node in _nodes) node.Init(ref agent, world);
         }
         public State Update()
         {
@@ -40,9 +50,11 @@ namespace BehaviourTree.Runtime
         }
         public BehaviourTree Clone()
         {
-            BehaviourTree tree = Instantiate(this);
-            tree.RootNode = tree.RootNode.Clone();
-            return tree;
+            BehaviourTree clone = Instantiate(this);
+            clone.RootNode = clone.RootNode.Clone();
+            clone._nodes = new List<Node>();
+            TraverseTree(clone.RootNode, (node) => clone._nodes.Add(node));
+            return clone;
         }
 
 #if UNITY_EDITOR
@@ -86,7 +98,7 @@ namespace BehaviourTree.Runtime
             _nodes.Remove(node);
             RemoveObjectFromAsset(node);
 
-            if (node is RootNode) RootNode = null;
+            if (node is Root) RootNode = null;
         }
 #endif
     }

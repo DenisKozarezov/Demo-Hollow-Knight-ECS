@@ -1,6 +1,6 @@
 namespace BehaviourTree.Runtime.Nodes.Decorators
 {
-    public class RootNode : DecoratorNode
+    public class Root : Decorator
     {
         protected override State OnUpdate()
         {

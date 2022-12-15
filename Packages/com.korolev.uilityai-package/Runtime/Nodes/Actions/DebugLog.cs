@@ -2,21 +2,22 @@ using UnityEngine;
 
 namespace BehaviourTree.Runtime.Nodes.Actions
 {
-    public class DebugLogNode : ActionNode
+    public class DebugLog : Action
     {
-        public string Message;            
+        [SerializeField]
+        private string _message;
 
         protected override State OnUpdate() 
         {
 #if UNITY_EDITOR
-            Debug.Log($"DebugLogNode: '{Message}'");
+            Debug.Log(_message);
 #endif
             return State.Success;
         }
         public override Node Clone()
         {
-            DebugLogNode clone = base.Clone() as DebugLogNode;
-            clone.Message = Message.Clone().ToString();
+            DebugLog clone = base.Clone() as DebugLog;
+            clone._message = _message.Clone().ToString();
             return clone;
         }
     }

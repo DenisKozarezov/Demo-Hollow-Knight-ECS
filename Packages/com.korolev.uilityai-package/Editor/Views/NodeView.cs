@@ -55,18 +55,18 @@ namespace BehaviourTree.Editor.VisualElements.Nodes
 
         private void SetupClasses()
         {
-            if (Node is ActionNode) AddToClassList("action");
-            if (Node is ConditionNode) AddToClassList("condition");
+            if (Node is Runtime.Nodes.Action) AddToClassList("action");
+            if (Node is Condition) AddToClassList("condition");
             if (Node is CompositeNode) AddToClassList("composite");
-            if (Node is DecoratorNode)
+            if (Node is Decorator)
             {
-                if (Node is RootNode) AddToClassList("root");
+                if (Node is Root) AddToClassList("root");
                 else AddToClassList("decorator");
             }
         }
         private void CreateInputPorts()
         {
-            if (Node is not RootNode)
+            if (Node is not Root)
             {
                 _dymamicInputPorts = CreateDynamicInputPorts();
                 _inputPort = InstantiatePort(_orientation, Direction.Input, Port.Capacity.Single, typeof(Node));
@@ -84,10 +84,10 @@ namespace BehaviourTree.Editor.VisualElements.Nodes
                 capacity = Port.Capacity.Multi;
 
             // Action Nodes don't have children (output ports)
-            if (Node is not ActionNode)
+            if (Node is not Runtime.Nodes.Action)
             {
                 _dymamicOutputPorts = CreateDynamicOutputPorts();
-                _outputPort = InstantiatePort(_orientation, Direction.Output, capacity, typeof(Node));
+                _outputPort = base.InstantiatePort(_orientation, Direction.Output, capacity, typeof(Node));
             }
 
             if (_outputPort == null) return;

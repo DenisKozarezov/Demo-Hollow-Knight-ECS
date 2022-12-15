@@ -4,7 +4,8 @@ using Leopotam.Ecs;
 namespace Core.ECS.Systems
 {
     public sealed class BehaviourTreeSystem : IEcsRunSystem
-    {        
+    {
+        private readonly EcsWorld _world = null;
         private readonly EcsFilter<BehaviourTreeComponent> _filter = null;
 
         public void Run()
@@ -16,7 +17,7 @@ namespace Core.ECS.Systems
                 {
                     ref EcsEntity entity = ref _filter.GetEntity(i);
                     component.BehaviourTree = component.BehaviourTree.Clone();
-                    component.BehaviourTree.Init(ref entity);
+                    component.BehaviourTree.Init(ref entity, _world);
                     component.Initialized = true;
                 }
                 component.BehaviourTree.Update();

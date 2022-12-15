@@ -18,12 +18,13 @@ namespace BehaviourTree.Runtime.Nodes
         [HideInInspector] public bool Started = false;
         [SerializeField, HideInInspector] public string GUID;
 
-        protected BehaviourTree BehaviourTreeRef;
-        protected ref EcsEntity Agent => ref BehaviourTreeRef.Agent;
+        protected EcsEntity Agent;
+        protected EcsWorld World;
         
-        public void Init(BehaviourTree tree)
+        public void Init(ref EcsEntity agent, EcsWorld world)
         {
-            BehaviourTreeRef = tree;
+            Agent = agent;
+            World = world;
             OnInit();
         }
         public State Update() 

@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace BehaviourTree.Runtime.Nodes.Actions
 {
-    public class WaitForSecondsNode : ActionNode
+    public class WaitForSeconds : Action
     {
         [SerializeField, Min(0f)]
         private float _duration;

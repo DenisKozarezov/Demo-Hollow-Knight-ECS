@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace BehaviourTree.Runtime.Nodes
 {
-    public abstract class DecoratorNode : Node
+    public abstract class Decorator : Node
     {
         [SerializeField, HideInInspector] public Node Child;
 
@@ -12,7 +12,7 @@ namespace BehaviourTree.Runtime.Nodes
         protected override void OnStop() { }
         public override Node Clone()
         {
-            DecoratorNode clone = Instantiate(this);
+            Decorator clone = Instantiate(this);
             if (Child != null) clone.Child = Child.Clone();
             return clone;
         }
