@@ -4,7 +4,7 @@ namespace BehaviourTree.Runtime.Nodes.Decorators
     {
         protected override State OnUpdate()
         {
-            return Child.State == State.Success ? State.Failure : State.Success;
+            return Child.Update() == State.Success ? State.Failure : State.Success;
         }
     }
 }

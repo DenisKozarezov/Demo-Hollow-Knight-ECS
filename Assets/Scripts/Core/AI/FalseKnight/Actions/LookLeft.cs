@@ -5,7 +5,7 @@ using Core.ECS.Components.Units;
 
 namespace Core.AI.FalseKnight.Actions
 {
-    [Category("False Knight")]
+    [Category("False Knight/Actions")]
     public class LookLeft : Action
     {
         private SpriteRenderer _spriteRenderer;

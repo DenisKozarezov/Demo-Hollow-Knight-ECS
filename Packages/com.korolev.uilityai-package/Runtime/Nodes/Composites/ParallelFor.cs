@@ -1,6 +1,6 @@
 namespace BehaviourTree.Runtime.Nodes.Composites
 {
-    public class ParallelFor : CompositeNode
+    public class ParallelFor : Composite
     {
         private int _successCount;
         protected override void OnStart()

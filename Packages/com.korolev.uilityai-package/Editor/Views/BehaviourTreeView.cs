@@ -59,7 +59,7 @@ namespace BehaviourTree.Editor.VisualElements
         {
             BuildNodesCategory<Runtime.Nodes.Action>(evt, "Actions");
             BuildNodesCategory<Condition>(evt, "Conditions");
-            BuildNodesCategory<CompositeNode>(evt, "Composites");
+            BuildNodesCategory<Composite>(evt, "Composites");
             BuildNodesCategory<Decorator>(evt, "Decorators");
             evt.menu.AppendSeparator();
             BuildNodeCustomCategories(evt);

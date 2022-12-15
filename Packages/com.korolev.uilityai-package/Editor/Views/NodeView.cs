@@ -43,7 +43,7 @@ namespace BehaviourTree.Editor.VisualElements.Nodes
         {
             if (Node is Runtime.Nodes.Action) AddToClassList("action");
             if (Node is Condition) AddToClassList("condition");
-            if (Node is CompositeNode) AddToClassList("composite");
+            if (Node is Composite) AddToClassList("composite");
             if (Node is Decorator)
             {
                 if (Node is Root) AddToClassList("root");
@@ -66,7 +66,7 @@ namespace BehaviourTree.Editor.VisualElements.Nodes
         private void CreateOutputPorts()
         {
             Port.Capacity capacity = Port.Capacity.Single;
-            if (Node is CompositeNode)
+            if (Node is Composite)
                 capacity = Port.Capacity.Multi;
 
             // Action Nodes don't have children (output ports)
@@ -156,7 +156,7 @@ namespace BehaviourTree.Editor.VisualElements.Nodes
         }
         internal void SortChildren()
         {
-            if (Node as CompositeNode is var node)
+            if (Node as Composite is var node)
             {
                 node?.SortChildren(
                     _orientation == Orientation.Horizontal

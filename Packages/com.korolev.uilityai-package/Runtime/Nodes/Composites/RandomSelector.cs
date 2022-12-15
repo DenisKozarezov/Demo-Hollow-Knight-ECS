@@ -1,6 +1,6 @@
 namespace BehaviourTree.Runtime.Nodes.Composites
 {
-    public class RandomSelector : CompositeNode
+    public class RandomSelector : Composite
     {
         protected override State OnUpdate()
         {

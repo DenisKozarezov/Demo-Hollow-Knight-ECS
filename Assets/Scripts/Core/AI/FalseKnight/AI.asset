@@ -16,7 +16,7 @@ MonoBehaviour:
   Started: 0
   GUID: 0d0845114886d3b489ee35b0734ec9c2
   Name: Grounded
-  Position: {x: 538, y: -7}
+  Position: {x: 93.40756, y: -12.902469}
   Child: {fileID: 357412605313624877}
 --- !u!114 &-7886264964608460944
 MonoBehaviour:
@@ -34,7 +34,7 @@ MonoBehaviour:
   Started: 0
   GUID: a70af51fb0758b7409196df264b3f710
   Name: Sequencer
-  Position: {x: 927.0001, y: 183.00002}
+  Position: {x: 474.4075, y: 182.09755}
   Children:
   - {fileID: -6506932760303296567}
   - {fileID: -1312355234281675992}
@@ -54,7 +54,7 @@ MonoBehaviour:
   Started: 0
   GUID: d0d0620b0f1293a49a8ab9b6e7bd3883
   Name: Look Right
-  Position: {x: 1617.9999, y: 350.60007}
+  Position: {x: 1165.4076, y: 350.0975}
 --- !u!114 &-7253072461539262943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,7 +71,7 @@ MonoBehaviour:
   Started: 0
   GUID: 79b92ca9a72f3e946bfb8891acd276cd
   Name: Wait For Seconds
-  Position: {x: 1619, y: 272.60007}
+  Position: {x: 1166.4076, y: 272.09753}
   _duration: 0.4
 --- !u!114 &-7148899733302744791
 MonoBehaviour:
@@ -89,7 +89,7 @@ MonoBehaviour:
   Started: 0
   GUID: a6e5977ced7004e4e9dbba35453e6a40
   Name: Sequencer
-  Position: {x: 1357.9999, y: 264.60004}
+  Position: {x: 905.4075, y: 264.09756}
   Children:
   - {fileID: 5740870417055000749}
   - {fileID: 4849030961809546379}
@@ -113,7 +113,7 @@ MonoBehaviour:
   Started: 0
   GUID: 8004a67eae5760a43bd35ae4ffa22414
   Name: Look At Player
-  Position: {x: 994.40015, y: -48.199997}
+  Position: {x: 541.4075, y: -48.902496}
 --- !u!114 &-6506932760303296567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,8 +130,44 @@ MonoBehaviour:
   Started: 0
   GUID: 3539fd389baf71f46b6e0760e2d9f675
   Name: Wait For Seconds
-  Position: {x: 1150.0002, y: 175.00002}
+  Position: {x: 697.4076, y: 174.09749}
   _duration: 2
+--- !u!114 &-4678959542861324870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef4a6abe49f54d4487bbf3078273d0ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  State: 0
+  Started: 0
+  GUID: f106a780c5726d240938f6cb1765be71
+  Name: Success
+  Position: {x: 299.00012, y: -173}
+  Child: {fileID: 0}
+--- !u!114 &-4197232153662942912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f94aa28c51bca146b4ac82fb66379b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  State: 0
+  Started: 0
+  GUID: 5bc9607e96da3ac40a682403fae2aa14
+  Name: Is Dead
+  Position: {x: 86.51755, y: -172.99995}
+  Child: {fileID: -4678959542861324870}
 --- !u!114 &-3735879649533021234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,7 +184,7 @@ MonoBehaviour:
   Started: 0
   GUID: 81f8cb289822ea84996df2fc5955facf
   Name: Root
-  Position: {x: 0, y: 0}
+  Position: {x: -352.7, y: -9.000023}
   Child: {fileID: 5871144731607866393}
 --- !u!114 &-3114244453460800106
 MonoBehaviour:
@@ -166,7 +202,7 @@ MonoBehaviour:
   Started: 0
   GUID: 9b0b8cf016976204f9e13091bc140a03
   Name: Wait For Seconds
-  Position: {x: 991.8501, y: -123.5}
+  Position: {x: 539.4076, y: -124.90249}
   _duration: 1
 --- !u!114 &-1312355234281675992
 MonoBehaviour:
@@ -184,7 +220,7 @@ MonoBehaviour:
   Started: 0
   GUID: 2e94dad34d7125e40933ddf99cccffa1
   Name: Grounded
-  Position: {x: 1152.9999, y: 264.60004}
+  Position: {x: 700.4076, y: 264.09756}
   Child: {fileID: -7148899733302744791}
 --- !u!114 &11400000
 MonoBehaviour:
@@ -206,7 +242,6 @@ MonoBehaviour:
   - {fileID: -6878923256470693386}
   - {fileID: 1946058746734530145}
   - {fileID: -9189365924272478898}
-  - {fileID: 1187659370194552701}
   - {fileID: 4849030961809546379}
   - {fileID: 5740870417055000749}
   - {fileID: 2230458207199986374}
@@ -218,6 +253,9 @@ MonoBehaviour:
   - {fileID: -1312355234281675992}
   - {fileID: -7886264964608460944}
   - {fileID: -6506932760303296567}
+  - {fileID: 4126669669690024285}
+  - {fileID: -4197232153662942912}
+  - {fileID: -4678959542861324870}
   _orientation: 0
   _enableRuntimeEdit: 0
 --- !u!114 &357412605313624877
@@ -236,31 +274,12 @@ MonoBehaviour:
   Started: 0
   GUID: e22cc0a67f8210541929c96c81290d5d
   Name: Sequencer
-  Position: {x: 744, y: -15}
+  Position: {x: 291.40756, y: -15.902471}
   Children:
   - {fileID: -3114244453460800106}
   - {fileID: -6878923256470693386}
   - {fileID: 1946058746734530145}
   - {fileID: -7886264964608460944}
---- !u!114 &1187659370194552701
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6a8667b21444b49ba30de5bf8ba3cbe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  State: 0
-  Started: 0
-  GUID: b4b1f6cceccfe1b4c9f904b683fa34c8
-  Name: Sequencer
-  Position: {x: 340, y: 1}
-  Children:
-  - {fileID: -9189365924272478898}
 --- !u!114 &1946058746734530145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -277,7 +296,7 @@ MonoBehaviour:
   Started: 0
   GUID: 45e71f44d6f6a694b8cbee04677079bc
   Name: Jump To Player
-  Position: {x: 994.40015, y: 35.799995}
+  Position: {x: 541.4075, y: 35.097523}
 --- !u!114 &2230458207199986374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -294,7 +313,27 @@ MonoBehaviour:
   Started: 0
   GUID: feb00f43f031c724f9b6740cc94ceef3
   Name: Attack
-  Position: {x: 1610, y: 200.60005}
+  Position: {x: 1157.4075, y: 200.09756}
+--- !u!114 &4126669669690024285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88b6ac6c789c446b94af87985e2f4f4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  State: 0
+  Started: 0
+  GUID: cbc9d7650a41952449533b9e4faa4c1b
+  Name: Selector
+  Position: {x: -86.59248, y: -12.902469}
+  Children:
+  - {fileID: -9189365924272478898}
+  - {fileID: -4197232153662942912}
 --- !u!114 &4849030961809546379
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -311,7 +350,7 @@ MonoBehaviour:
   Started: 0
   GUID: 844f675869d161b4c9eeec7364cdbb1a
   Name: Look Left
-  Position: {x: 1610, y: 138.60004}
+  Position: {x: 1157.4075, y: 138.09755}
 --- !u!114 &5740870417055000749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -328,7 +367,7 @@ MonoBehaviour:
   Started: 0
   GUID: 126a4900a52ebd44d907c9bfdb338a3d
   Name: Wait For Seconds
-  Position: {x: 1604, y: 70.60003}
+  Position: {x: 1151.4075, y: 70.09753}
   _duration: 0.3
 --- !u!114 &5871144731607866393
 MonoBehaviour:
@@ -346,8 +385,8 @@ MonoBehaviour:
   Started: 0
   GUID: 57a41bec77e64e04480b232b7fd9ccb7
   Name: Repeat
-  Position: {x: 126.299995, y: 1.0000076}
-  Child: {fileID: 1187659370194552701}
+  Position: {x: -267.44998, y: -9.000023}
+  Child: {fileID: 4126669669690024285}
 --- !u!114 &7019092945903240992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,4 +403,4 @@ MonoBehaviour:
   Started: 0
   GUID: 012f3b2c5f11e304abc6e42eadf58725
   Name: Attack
-  Position: {x: 1617.9999, y: 428.60004}
+  Position: {x: 1165.4076, y: 428.09756}

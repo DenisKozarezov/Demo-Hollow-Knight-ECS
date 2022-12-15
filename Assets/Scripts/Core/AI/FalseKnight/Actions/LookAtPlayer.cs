@@ -6,7 +6,7 @@ using Core.ECS.Components.Player;
 
 namespace Core.AI.FalseKnight.Actions
 {
-    [Category("False Knight")]
+    [Category("False Knight/Actions")]
     public class LookAtPlayer : Action
     {
         private SpriteRenderer _spriteRenderer;
