@@ -63,7 +63,7 @@ namespace BehaviourTree.Editor.VisualElements
         }
         private void BuildNodesCategory<T>(ContextualMenuPopulateEvent evt, string categoryName) where T : Node
         {
-            IEnumerable<Type> types = TypeCache.GetTypesDerivedFrom<T>().Where(type => !type.IsAbstract);            
+            var types = TypeCache.GetTypesDerivedFrom<T>().Where(type => !type.IsAbstract && type.BaseType == typeof(T));            
             foreach (Type type in types)
             {
                 evt.menu.AppendAction($"{categoryName}/{ParseTypeToDisplayName(type)}", (action) =>

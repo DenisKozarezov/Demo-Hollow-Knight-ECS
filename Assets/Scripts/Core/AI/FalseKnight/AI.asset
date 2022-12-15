@@ -1,5 +1,76 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9189365924272478898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 488ba0897dbd45f7b22dfb5ed114a0bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  State: 0
+  Started: 0
+  GUID: 0d0845114886d3b489ee35b0734ec9c2
+  Name: Grounded
+  Position: {x: 538, y: -7}
+  Child: {fileID: 357412605313624877}
+--- !u!114 &-6878923256470693386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7a17ab96a4b429394753927f63c1474, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  State: 0
+  Started: 0
+  GUID: 8004a67eae5760a43bd35ae4ffa22414
+  Name: Look At Player
+  Position: {x: 964, y: -33}
+--- !u!114 &-6360784857230588318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc8b69d7e31c4d65b5049032eb2c2c93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  State: 0
+  Started: 0
+  GUID: 3fca70f624cf2214c8fd94529e965c00
+  Name: Wait For Seconds
+  Position: {x: 962, y: -123}
+  _duration: 2
+--- !u!114 &-5174095679340521845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc8b69d7e31c4d65b5049032eb2c2c93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  State: 0
+  Started: 0
+  GUID: af80e222d4eb97f42b9559e4738e4895
+  Name: Wait For Seconds
+  Position: {x: 546, y: 207}
+  _duration: 1
 --- !u!114 &-3735879649533021234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34,9 +105,75 @@ MonoBehaviour:
   _nodes:
   - {fileID: -3735879649533021234}
   - {fileID: 5871144731607866393}
-  - {fileID: 6245764284246982303}
+  - {fileID: 357412605313624877}
+  - {fileID: -6878923256470693386}
+  - {fileID: 1946058746734530145}
+  - {fileID: -9189365924272478898}
+  - {fileID: -6360784857230588318}
+  - {fileID: 1187659370194552701}
+  - {fileID: -5174095679340521845}
+  - {fileID: 6289522955088586109}
   _orientation: 0
   _enableRuntimeEdit: 0
+--- !u!114 &357412605313624877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6a8667b21444b49ba30de5bf8ba3cbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  State: 0
+  Started: 0
+  GUID: e22cc0a67f8210541929c96c81290d5d
+  Name: Sequencer
+  Position: {x: 744, y: -15}
+  Children:
+  - {fileID: -6360784857230588318}
+  - {fileID: -6878923256470693386}
+  - {fileID: 1946058746734530145}
+--- !u!114 &1187659370194552701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6a8667b21444b49ba30de5bf8ba3cbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  State: 0
+  Started: 0
+  GUID: b4b1f6cceccfe1b4c9f904b683fa34c8
+  Name: Sequencer
+  Position: {x: 340, y: 1}
+  Children:
+  - {fileID: -9189365924272478898}
+  - {fileID: -5174095679340521845}
+  - {fileID: 6289522955088586109}
+--- !u!114 &1946058746734530145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3b09c4fa548486c8804ea1530216498, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  State: 0
+  Started: 0
+  GUID: 45e71f44d6f6a694b8cbee04677079bc
+  Name: Jump To Player
+  Position: {x: 964, y: 51}
 --- !u!114 &5871144731607866393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54,8 +191,8 @@ MonoBehaviour:
   GUID: 57a41bec77e64e04480b232b7fd9ccb7
   Name: Repeat
   Position: {x: 139, y: -1}
-  Child: {fileID: 6245764284246982303}
---- !u!114 &6245764284246982303
+  Child: {fileID: 1187659370194552701}
+--- !u!114 &6289522955088586109
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -64,11 +201,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7a17ab96a4b429394753927f63c1474, type: 3}
+  m_Script: {fileID: 11500000, guid: 283c64a2e07e4fffa7b31a78c4e60f98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   State: 0
   Started: 0
-  GUID: 7d4a7c5cea084ca4a8be0d92dac36dfb
-  Name: Look At Player
-  Position: {x: 372, y: -5}
+  GUID: c1646892e2e319a44ad1bd28a83edda9
+  Name: Attack
+  Position: {x: 546, y: 281}

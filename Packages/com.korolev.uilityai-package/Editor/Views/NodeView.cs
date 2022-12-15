@@ -115,7 +115,7 @@ namespace BehaviourTree.Editor.VisualElements.Nodes
         {
             var fields = GetBackingFields<OutputAttribute>();
             if (fields.Count() == 0) return null;
-            foreach (var field in fields)
+            foreach (FieldInfo field in fields)
             {
                 OutputAttribute attr = field.GetCustomAttribute<OutputAttribute>();
                 Port.Capacity capacity = attr.ConnectionType == PortConnection.Single ? Port.Capacity.Single : Port.Capacity.Multi;
