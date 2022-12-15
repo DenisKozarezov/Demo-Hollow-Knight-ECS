@@ -10,6 +10,8 @@ namespace BehaviourTree.Editor.VisualElements
 
         internal void UpdateSelection(NodeView nodeView)
         {
+            if (nodeView == null) return;
+
             Clear();
 
             UnityEngine.Object.DestroyImmediate(_editor);

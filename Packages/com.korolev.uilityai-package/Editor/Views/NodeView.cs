@@ -8,7 +8,6 @@ using UnityEngine;
 using BehaviourTree.Runtime;
 using BehaviourTree.Runtime.Nodes;
 using BehaviourTree.Runtime.Nodes.Decorators;
-using BehaviourTree.Runtime.Attributes;
 using Node = BehaviourTree.Runtime.Nodes.Node;
 
 namespace BehaviourTree.Editor.VisualElements.Nodes
@@ -26,19 +25,6 @@ namespace BehaviourTree.Editor.VisualElements.Nodes
 
         internal event Action<NodeView> OnNodeSelected;
 
-        internal NodeView(Node node, Orientation orientation)
-        {
-            Node = node;
-            _orientation = orientation;
-            title = node.Name;
-            viewDataKey = node.GUID;
-            style.left = node.Position.x;
-            style.top = node.Position.y;
-
-            SetupClasses();
-            CreateInputPorts();
-            CreateOutputPorts();
-        }
         internal NodeView(Node node, Orientation orientation, string stylePath) : base(stylePath)
         {
             Node = node;
@@ -148,22 +134,22 @@ namespace BehaviourTree.Editor.VisualElements.Nodes
         }
         internal void UpdateState()
         {
-            if (Application.isPlaying)
-            {
-                Array values = Enum.GetValues(typeof(State));
-                for (int i = 0; i < values.Length; i++)
-                {
-                    RemoveFromClassList(values.GetValue(i).ToString().ToLower());
-                }
+            RemoveFromClassList("running");
+            RemoveFromClassList("success");
+            RemoveFromClassList("failure");
 
-                string state = Node.State.ToString().ToLower();
+            if (EditorApplication.isPlaying)
+            {
                 switch (Node.State)
                 {
                     case State.Running:
-                        if (Node.Started) AddToClassList(state);
+                        if (Node.Started) AddToClassList("running");
                         break;
-                    default:
-                        AddToClassList(state);
+                    case State.Failure:
+                        AddToClassList("failure");
+                        break;
+                    case State.Success:
+                        AddToClassList("success");
                         break;
                 }
             }

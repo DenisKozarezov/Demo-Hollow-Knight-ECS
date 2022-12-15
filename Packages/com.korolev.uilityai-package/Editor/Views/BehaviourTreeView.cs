@@ -1,4 +1,5 @@
 using System;
+using System.Reflection;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
@@ -60,10 +61,27 @@ namespace BehaviourTree.Editor.VisualElements
             BuildNodesCategory<Condition>(evt, "Conditions");
             BuildNodesCategory<CompositeNode>(evt, "Composites");
             BuildNodesCategory<Decorator>(evt, "Decorators");
+            evt.menu.AppendSeparator();
+            BuildNodeCustomCategories(evt);
+        }
+        private void BuildNodeCustomCategories(ContextualMenuPopulateEvent evt)
+        {
+            var types = TypeCache.GetTypesDerivedFrom<Node>().Where(type => !type.IsAbstract);
+            foreach (Type type in types)
+            {
+                foreach (var attr in type.GetCustomAttributes<CategoryAttribute>(false))
+                {
+                    evt.menu.AppendAction($"{attr.Category}/{ParseTypeToDisplayName(type)}", (action) =>
+                    {
+                        Vector2 mouseScreenPosition = evt.localMousePosition;
+                        CreateNode(type, ref mouseScreenPosition);
+                    });
+                }
+            }
         }
         private void BuildNodesCategory<T>(ContextualMenuPopulateEvent evt, string categoryName) where T : Node
         {
-            var types = TypeCache.GetTypesDerivedFrom<T>().Where(type => !type.IsAbstract && type.BaseType == typeof(T));            
+            var types = TypeCache.GetTypesDerivedFrom<T>().Where(type => !type.IsAbstract && type.BaseType == typeof(T) && type.GetCustomAttribute<CategoryAttribute>() == null);            
             foreach (Type type in types)
             {
                 evt.menu.AppendAction($"{categoryName}/{ParseTypeToDisplayName(type)}", (action) =>

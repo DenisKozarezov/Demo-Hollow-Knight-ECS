@@ -1,16 +1,13 @@
-using Leopotam.Ecs;
 using BehaviourTree.Runtime.Nodes;
-using Core.ECS.Events.FalseKnight;
 
 namespace Core.AI.FalseKnight.Actions
 {
     [Category("False Knight")]
-    public class Attack : Action
+    public class AgressiveAttack : Action
     {
         protected override State OnUpdate()
         {
-            Agent.Get<FalseKnightAttackEventComponent>();
-            return State.Success;
+            throw new System.NotImplementedException();
         }
     }
 }

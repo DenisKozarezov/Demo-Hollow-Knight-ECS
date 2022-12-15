@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Linq;
 using UnityEngine;
 
-namespace BehaviourTree.Runtime.Attributes
+namespace BehaviourTree.Runtime.Nodes
 {
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
     public class NodeWidthAttribute : Attribute
@@ -53,6 +52,16 @@ namespace BehaviourTree.Runtime.Attributes
         public OutputAttribute(PortConnection connectionType = PortConnection.Single)
         {
             ConnectionType = connectionType;
+        }
+    }
+
+    [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
+    public class CategoryAttribute : Attribute
+    {
+        public readonly string Category;
+        public CategoryAttribute(string category)
+        {
+            Category = category;
         }
     }
 }

@@ -6,6 +6,7 @@ using Core.ECS.Components.Player;
 
 namespace Core.AI.FalseKnight.Actions
 {
+    [Category("False Knight")]
     public class JumpToPlayer : Action
     {
         private EcsFilter _filter;

@@ -6,7 +6,7 @@ namespace BehaviourTree.Runtime.Nodes.Decorators
         {
             if (Child == null) return State.Failure;
 
-            return Check() ? Child.Update() : State.Failure;
+            return Check() ? Child.Update() : State.Running;
         }
         protected abstract bool Check();
     }

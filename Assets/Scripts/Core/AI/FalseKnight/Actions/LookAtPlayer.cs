@@ -6,6 +6,7 @@ using Core.ECS.Components.Player;
 
 namespace Core.AI.FalseKnight.Actions
 {
+    [Category("False Knight")]
     public class LookAtPlayer : Action
     {
         private SpriteRenderer _spriteRenderer;
@@ -27,8 +28,11 @@ namespace Core.AI.FalseKnight.Actions
 
             Transform transform = _player.Get<SpriteRendererComponent>().Value.transform;
             float directionWatch = (transform.position - _spriteRenderer.transform.position).x;
-            bool isLeft = directionWatch < -0.1f ? true : false;
-            _spriteRenderer.flipX = isLeft;
+            float isLeft = directionWatch < -0.1f ? -1f : 1f;
+
+            Vector3 localScale = _spriteRenderer.transform.localScale;
+            localScale.x *= isLeft;
+            _spriteRenderer.transform.localScale = localScale;
             return State.Success;
         }
     }

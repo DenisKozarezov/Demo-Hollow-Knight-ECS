@@ -2,8 +2,10 @@ using UnityEditor;
 using UnityEditor.Callbacks;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Leopotam.Ecs;
 using BehaviourTree.Editor.VisualElements;
 using BehaviourTree.Editor.VisualElements.Nodes;
+using Core.ECS.Components.Units;
 
 namespace BehaviourTree.Editor
 {
@@ -57,10 +59,24 @@ namespace BehaviourTree.Editor
         }
         private void OnSelectionChange()
         {
+            // If double-click on scriptable object
             Runtime.BehaviourTree tree = Selection.activeObject as Runtime.BehaviourTree;
             if (tree && AssetDatabase.CanOpenAssetInEditor(tree.GetInstanceID()))
             {
-                _behaviourView.PopulateView(tree);
+                _behaviourView?.PopulateView(tree);
+            }
+
+            // If click on some behaviour agent GO in playmode
+            if (!EditorApplication.isPlaying) return;
+            
+            GameObject go = Selection.activeGameObject;
+            if (go != null && go.TryGetComponent(out Core.ECS.EntityReference entityRef))
+            {
+                if (entityRef.Entity.Has<BehaviourTreeComponent>())
+                {
+                    ref var component = ref entityRef.Entity.Get<BehaviourTreeComponent>();
+                    _behaviourView?.PopulateView(component.BehaviourTree);
+                }
             }
         }
         private void OnInspectorUpdate()
@@ -71,11 +87,16 @@ namespace BehaviourTree.Editor
         {
             switch (state)
             {
+                case PlayModeStateChange.EnteredEditMode:
+                    OnSelectionChange();
+                    _behaviourView?.SetEnabled(true);
+                    break;
                 case PlayModeStateChange.EnteredPlayMode:
+                    OnSelectionChange();
                     _behaviourView?.SetEnabled(false);
                     break;
                 case PlayModeStateChange.ExitingPlayMode:
-                    _behaviourView?.SetEnabled(true);
+                    _behaviourView?.Clear();
                     break;
             }
         }
