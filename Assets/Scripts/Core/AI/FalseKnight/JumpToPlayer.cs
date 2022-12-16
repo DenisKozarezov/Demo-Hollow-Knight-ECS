@@ -31,13 +31,10 @@ namespace Core.AI.FalseKnight.Actions
 
             // Calculate distance
             float playerX = _player.Get<SpriteRendererComponent>().Value.transform.position.x;
-            float distanceToPlayer = (playerX - _rigidbody.transform.position.x) * 0.8f;
-
-            // Too close to player
-            if (Mathf.Abs(distanceToPlayer) < 3f) return State.Failure;
+            float distanceToPlayer = playerX - _rigidbody.transform.position.x;
 
             // Jump
-            Vector2 velocity = new Vector2(distanceToPlayer, _jumpForce);
+            Vector2 velocity = new Vector2(distanceToPlayer * 0.8f, _jumpForce);
             _rigidbody.velocity = velocity;
             return State.Success;
         }

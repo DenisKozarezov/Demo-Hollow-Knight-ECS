@@ -73,7 +73,7 @@ namespace BehaviourTree.Editor.VisualElements.Nodes
             if (Node is not Runtime.Nodes.Action)
             {
                 _dymamicOutputPorts = CreateDynamicOutputPorts();
-                _outputPort = base.InstantiatePort(_orientation, Direction.Output, capacity, typeof(Node));
+                _outputPort = InstantiatePort(_orientation, Direction.Output, capacity, typeof(Node));
             }
 
             if (_outputPort == null) return;
@@ -85,7 +85,7 @@ namespace BehaviourTree.Editor.VisualElements.Nodes
         {
             var fields = GetBackingFields<InputAttribute>();
             if (fields.Count() == 0) return null;
-            foreach (var field in fields)
+            foreach (FieldInfo field in fields)
             {
                 InputAttribute attr = field.GetCustomAttribute<InputAttribute>();
                 Port.Capacity capacity = attr.ConnectionType == PortConnection.Single ? Port.Capacity.Single : Port.Capacity.Multi;

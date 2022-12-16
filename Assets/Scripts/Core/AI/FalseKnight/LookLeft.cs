@@ -8,16 +8,18 @@ namespace Core.AI.FalseKnight.Actions
     [Category("False Knight/Actions")]
     public class LookLeft : Action
     {
-        private SpriteRenderer _spriteRenderer;
+        private Transform _agent;
+        private float _startLocalX;
         protected override void OnInit()
         {
-            _spriteRenderer = Agent.Get<SpriteRendererComponent>().Value;
+            _agent = Agent.Get<SpriteRendererComponent>().Value.transform;
+            _startLocalX = _agent.transform.localScale.x;
         }
         protected override State OnUpdate()
         {
-            Vector3 localScale = _spriteRenderer.transform.localScale;
-            if (localScale.x > 0f) localScale.x *= -1f;
-            _spriteRenderer.transform.localScale = localScale;
+            Vector3 localScale = _agent.transform.localScale;
+            localScale.x = -_startLocalX;
+            _agent.transform.localScale = localScale;
             return State.Success;
         }
     }

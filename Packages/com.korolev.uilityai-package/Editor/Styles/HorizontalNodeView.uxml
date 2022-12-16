@@ -1,5 +1,5 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
-    <Style src="project://database/Assets/Scripts/Core/AI/Behaviour%20Tree/Editor/Styles/HorizontalNodeViewStyle.uss?fileID=7433441132597879392&amp;guid=d6e41fa9fa0c6e248ae44e6ac2f6fa88&amp;type=3#HorizontalNodeViewStyle" />
+    <Style src="project://database/Packages/com.korolev.uilityai-package/Editor/Styles/HorizontalNodeViewStyle.uss?fileID=7433441132597879392&amp;guid=d6e41fa9fa0c6e248ae44e6ac2f6fa88&amp;type=3#HorizontalNodeViewStyle" />
     <ui:VisualElement name="node-border">
         <ui:VisualElement name="contents">
             <ui:VisualElement name="top">

@@ -117,3 +117,26 @@
     transition-timing-function: ease-out;
     transition-duration: 0.3s;
 }
+
+.condition #node-border {
+    border-top-left-radius: 35px;
+    border-bottom-left-radius: 35px;
+    border-top-right-radius: 35px;
+    border-bottom-right-radius: 35px;
+}
+
+.condition #selection-border {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    border-top-left-radius: 35px;
+    border-bottom-left-radius: 35px;
+    border-top-right-radius: 35px;
+    border-bottom-right-radius: 35px;
+    border-left-color: rgb(0, 167, 255);
+    border-right-color: rgb(0, 167, 255);
+    border-top-color: rgb(0, 167, 255);
+    border-bottom-color: rgb(0, 167, 255);
+}

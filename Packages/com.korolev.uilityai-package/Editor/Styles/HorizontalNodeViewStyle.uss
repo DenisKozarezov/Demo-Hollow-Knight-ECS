@@ -121,5 +121,28 @@
 }
 
 .edge {
-    background-color: rgba(255, 35, 35, 255);
+    background-color: rgb(255, 35, 35);
+}
+
+.condition #selection-border {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-left-color: rgb(0, 167, 255);
+    border-right-color: rgb(0, 167, 255);
+    border-top-color: rgb(0, 167, 255);
+    border-bottom-color: rgb(0, 167, 255);
+}
+
+.condition #node-border {
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
 }

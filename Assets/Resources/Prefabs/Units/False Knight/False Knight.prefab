@@ -318,7 +318,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value:
-    BehaviourTree: {fileID: 11400000, guid: e7f9ae15684ea5a4d88c00bf748a3916, type: 2}
+    BehaviourTree: {fileID: 11400000, guid: b2ab2da4a8b0e1e4d897e0687cac03c3, type: 2}
 --- !u!114 &2704286264739879150
 MonoBehaviour:
   m_ObjectHideFlags: 0

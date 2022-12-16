@@ -4,9 +4,9 @@ using BehaviourTree.Runtime.Nodes.Decorators;
 using Core.ECS.Components.Units;
 using Core.ECS.Components.Player;
 
-namespace Core.AI.Units.Conditions
+namespace Core.AI.Conditions
 {
-    [Category("Units/Conditions")]
+    [Category("Agent/Conditions")]
     public class PlayerDead : Condition
     {
         private EcsFilter _filter;
