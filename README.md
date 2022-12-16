@@ -22,3 +22,5 @@ The prototype uses the following architectural patterns:
 ## Screenshots
 
 ## Project Status
+
+At the moment, the project is under development and is regularly being updated.
