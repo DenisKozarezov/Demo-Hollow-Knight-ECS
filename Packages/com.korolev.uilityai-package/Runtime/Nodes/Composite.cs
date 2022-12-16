@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace BehaviourTree.Runtime.Nodes
 {
-    public abstract class CompositeNode : Node
+    public abstract class Composite : Node
     {
         protected int _currentIndex;
         [SerializeField, HideInInspector] 
@@ -19,7 +19,7 @@ namespace BehaviourTree.Runtime.Nodes
         protected override void OnStop() { }
         public override Node Clone()
         {
-            CompositeNode clone = Instantiate(this);
+            Composite clone = Instantiate(this);
             clone.Children = Children.ConvertAll(c => c.Clone());
             return clone;
         }

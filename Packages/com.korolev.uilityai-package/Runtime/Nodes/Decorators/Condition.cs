@@ -4,9 +4,11 @@ namespace BehaviourTree.Runtime.Nodes.Decorators
     {
         protected override State OnUpdate()
         {
-            if (Child == null) return State.Failure;
+            bool check = Check();
 
-            return Check() ? Child.Update() : State.Running;
+            if (Child == null) return check ? State.Success : State.Failure;
+
+            return check ? Child.Update() : State.Failure;
         }
         protected abstract bool Check();
     }

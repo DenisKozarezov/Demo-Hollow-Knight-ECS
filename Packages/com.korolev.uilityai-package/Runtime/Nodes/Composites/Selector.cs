@@ -1,15 +1,17 @@
 namespace BehaviourTree.Runtime.Nodes.Composites
 {
-    public class Selector : CompositeNode
+    public class Selector : Composite
     {
         protected override State OnUpdate()
         {
-            for (int i = _currentIndex; i < Children.Count; i++)
+            for (int i = 0; i < Children.Count; i++)
             {
-                Node child = Children[_currentIndex];
-                State state = child.Update();
-                if (state != State.Failure) return state;
-                _currentIndex++;
+                State state = Children[i].Update();
+                switch (state)
+                {
+                    case State.Failure: continue;
+                    default: return state;
+                }
             }
             return State.Failure;
         }

@@ -1,6 +1,6 @@
 namespace BehaviourTree.Runtime.Nodes.Composites
 {
-    public class Sequencer : CompositeNode
+    public class Sequencer : Composite
     {
         protected override State OnUpdate() 
         {

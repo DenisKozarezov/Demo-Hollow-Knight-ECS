@@ -43,7 +43,7 @@ namespace BehaviourTree.Editor.VisualElements.Nodes
         {
             if (Node is Runtime.Nodes.Action) AddToClassList("action");
             if (Node is Condition) AddToClassList("condition");
-            if (Node is CompositeNode) AddToClassList("composite");
+            if (Node is Composite) AddToClassList("composite");
             if (Node is Decorator)
             {
                 if (Node is Root) AddToClassList("root");
@@ -66,14 +66,14 @@ namespace BehaviourTree.Editor.VisualElements.Nodes
         private void CreateOutputPorts()
         {
             Port.Capacity capacity = Port.Capacity.Single;
-            if (Node is CompositeNode)
+            if (Node is Composite)
                 capacity = Port.Capacity.Multi;
 
             // Action Nodes don't have children (output ports)
             if (Node is not Runtime.Nodes.Action)
             {
                 _dymamicOutputPorts = CreateDynamicOutputPorts();
-                _outputPort = base.InstantiatePort(_orientation, Direction.Output, capacity, typeof(Node));
+                _outputPort = InstantiatePort(_orientation, Direction.Output, capacity, typeof(Node));
             }
 
             if (_outputPort == null) return;
@@ -85,7 +85,7 @@ namespace BehaviourTree.Editor.VisualElements.Nodes
         {
             var fields = GetBackingFields<InputAttribute>();
             if (fields.Count() == 0) return null;
-            foreach (var field in fields)
+            foreach (FieldInfo field in fields)
             {
                 InputAttribute attr = field.GetCustomAttribute<InputAttribute>();
                 Port.Capacity capacity = attr.ConnectionType == PortConnection.Single ? Port.Capacity.Single : Port.Capacity.Multi;
@@ -156,7 +156,7 @@ namespace BehaviourTree.Editor.VisualElements.Nodes
         }
         internal void SortChildren()
         {
-            if (Node as CompositeNode is var node)
+            if (Node as Composite is var node)
             {
                 node?.SortChildren(
                     _orientation == Orientation.Horizontal
