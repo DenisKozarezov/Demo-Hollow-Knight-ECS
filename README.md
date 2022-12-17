@@ -18,6 +18,9 @@ This prototype is a collaboration of students of Moscow State Technical universi
 The prototype uses the following architectural patterns:
 1. ```ECS``` — we use a convenient lightweight framework called [LeoECS](https://github.com/Leopotam/ecs?ysclid=lbqlvnm2pp728702370), which provides a minimal API for fast work.
 2. ```Behaviour Tree``` — custom framework with an editor to provide a simple AI. You can see our implementation in this [folder](https://github.com/DenisKozarezov/Demo-Hollow-Knight-ECS/tree/main/Packages/com.korolev.uilityai-package).
+
+![image](https://user-images.githubusercontent.com/52127090/208237091-08a57f97-ff56-4975-8533-5818179b0f2c.png)
+
 3. ```Dependency Injection (Zenject)```.
 
 ## Screenshots
