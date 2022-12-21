@@ -11,7 +11,7 @@
 
 ## About Prototype
 
-This prototype is a collaboration of students of Moscow State Technical universities. The purpose of the prototype is to work out the ***ECS*** architectural pattern on the example of the ```Hollow Knight``` metroidvania. All assets were downloaded from free sources, all rights belong to Team Cherry.
+The purpose of the prototype is to work out the ***ECS*** architectural pattern on the example of the ```Hollow Knight``` metroidvania. All assets were downloaded from free sources, all rights belong to Team Cherry.
 
 ## Programming Patterns
 
