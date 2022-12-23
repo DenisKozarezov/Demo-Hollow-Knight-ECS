@@ -5,7 +5,7 @@ using Core.ECS.Components.Units;
 
 namespace Core.ECS.Systems.Camera
 {
-    public class CameraFollowSystem : IEcsRunSystem
+    public sealed class CameraFollowSystem : IEcsRunSystem
     {
         private readonly EcsFilter<SpriteRendererComponent, PlayerTagComponent> _filter = null;
         private readonly UnityEngine.Camera _camera;

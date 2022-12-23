@@ -14,6 +14,8 @@ namespace Core.Infrastructure.Installers
         private GameUIView _gameUIView;
         [SerializeField]
         private DialogueUIView _gialogueUIView;
+        [SerializeField]
+        private Fader _fade;
 
         public override void InstallBindings()
         {
@@ -21,6 +23,7 @@ namespace Core.Infrastructure.Installers
             Container.Bind<HealthUIView>().FromInstance(_healthUIView).AsSingle();
             Container.Bind<GameUIView>().FromInstance(_gameUIView).AsSingle();
             Container.Bind<DialogueUIView>().FromInstance(_gialogueUIView).AsSingle();
+            Container.Bind<Fader>().FromInstance(_fade).AsSingle();
         }
     }
 }

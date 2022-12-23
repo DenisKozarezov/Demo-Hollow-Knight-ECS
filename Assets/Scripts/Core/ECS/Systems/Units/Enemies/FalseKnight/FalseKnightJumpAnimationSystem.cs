@@ -21,13 +21,9 @@ namespace Core.ECS.Systems.FalseKnight
         {
             foreach (var i in _filter)
             {
-                ref var entity = ref _filter.GetEntity(i);
-                ref var animatorComponent = ref _filter.Get1(i);
-                ref var rigidbodyComponent = ref _filter.Get2(i);
-
+                ref EcsEntity entity = ref _filter.GetEntity(i);
+                Animator animator = _filter.Get1(i).Value;
                 bool onGround = entity.Has<OnGroundComponent>();
-
-                Animator animator = animatorComponent.Value;
 
                 if (!onGround)
                 {

@@ -23,10 +23,13 @@ namespace Core.ECS.Systems
         {
             foreach (var i in _filter)
             {
+                ref EcsEntity entity = ref _filter.GetEntity(i);
                 Vector2 position = _filter.Get1(i).Value.bounds.center;
 
                 // Death Effect
                 CreateDeathEffect(position);
+
+                entity.Del<BehaviourTreeComponent>();
 
                 // Camera Shake
                 _world.NewEntity(new CameraShakeEventComponent { ShakeDuration = 5f, ShakeForce = 0.2f });

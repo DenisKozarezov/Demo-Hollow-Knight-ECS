@@ -1,27 +1,31 @@
-﻿using Core.ECS.Events;
-using Leopotam.Ecs;
-using UnityEngine.UI;
-using DG.Tweening;
+﻿using Leopotam.Ecs;
+using Core.UI;
+using Core.ECS.Events;
 
 namespace Core.ECS.Systems.Camera
 {
-    public class CameraFadeSystem : IEcsRunSystem
+    public sealed class CameraFadeSystem : IEcsInitSystem, IEcsRunSystem
     {
         private readonly EcsFilter<CameraFadeEventComponent> _event = null;
-        private readonly RawImage _fade;
+        private readonly Fader _fade;
 
-        public CameraFadeSystem(RawImage fadeImage)
+        public CameraFadeSystem(Fader fade)
         {
-            _fade = fadeImage;
+            _fade = fade;
         }
 
+        void IEcsInitSystem.Init()
+        {
+            _fade.Fade(FadeMode.On, 0f);
+            _fade.Fade(FadeMode.Off, 3f);
+        }
         void IEcsRunSystem.Run()
         {
             foreach (var i in _event)
             {
+                ref FadeMode mode = ref _event.Get1(i).FadeMode;
                 ref float fadeTime = ref _event.Get1(i).FadeTime;
-                float alpha = _event.Get1(i).FadeMode == FadeMode.On ? 1f : 0f;
-                _fade.DOFade(alpha, fadeTime);
+                _fade.Fade(mode, fadeTime);
             }
         }
     }

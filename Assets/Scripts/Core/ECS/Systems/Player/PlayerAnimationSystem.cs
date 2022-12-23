@@ -28,7 +28,7 @@ namespace Core.ECS.Systems.Player
         {
             foreach (var i in _filter)
             {
-                var entity = _filter.GetEntity(i);
+                ref var entity = ref _filter.GetEntity(i);
                 Animator animator = _filter.Get1(i).Value;
                 bool onGround = entity.Has<OnGroundComponent>();
                 bool channelling = entity.Has<ChannellingComponent>();

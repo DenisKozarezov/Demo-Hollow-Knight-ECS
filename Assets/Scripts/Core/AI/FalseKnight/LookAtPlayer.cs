@@ -15,21 +15,21 @@ namespace Core.AI.FalseKnight.Actions
 
         protected override void OnInit()
         {
-            _agent = Agent.Get<SpriteRendererComponent>().Value.transform;
+            _agent = Agent.Get<TransformComponent>().Value;
             _filter = World.GetFilter(typeof(EcsFilter<PlayerTagComponent>.Exclude<DiedComponent>));
-            _startLocalX = _agent.transform.localScale.x;
+            _startLocalX = _agent.localScale.x;
         }
         protected override State OnUpdate()
         {
             ref EcsEntity player = ref _filter.GetEntity(0);
             if (player.IsNullOrEmpty()) return State.Failure;
 
-            float playerX = player.Get<SpriteRendererComponent>().Value.transform.position.x;
-            float direction = playerX - _agent.transform.position.x;
+            float playerX = player.Get<TransformComponent>().Value.position.x;
+            float direction = playerX - _agent.position.x;
 
-            Vector3 localScale = _agent.transform.localScale;
+            Vector3 localScale = _agent.localScale;
             localScale.x = _startLocalX * (direction < 0f ? -1f : 1f);
-            _agent.transform.localScale = localScale;
+            _agent.localScale = localScale;
             return State.Success;
         }
     }

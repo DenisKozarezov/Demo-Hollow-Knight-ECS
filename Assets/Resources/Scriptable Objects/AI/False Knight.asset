@@ -367,7 +367,7 @@ MonoBehaviour:
   Name: Close To Player
   Position: {x: 1267.7, y: 61.800007}
   Child: {fileID: 1893564476779586288}
-  _distance: 4
+  _distance: 4.5
 --- !u!114 &8461443385739595136
 MonoBehaviour:
   m_ObjectHideFlags: 0

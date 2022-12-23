@@ -8,7 +8,7 @@ namespace Core.ECS.Systems.Units
     public class EnemyDroppingGeoSystem : IEcsRunSystem
     {
         private readonly EcsWorld _world = null;
-        private readonly EcsFilter<ColliderComponent, EnemyComponent, DiedComponent> _enemies = null;
+        private readonly EcsFilter<TransformComponent, EnemyComponent, DiedComponent> _enemies = null;
         private readonly GeoView.Factory _factory;
 
         public EnemyDroppingGeoSystem(GeoView.Factory factory)
@@ -32,7 +32,7 @@ namespace Core.ECS.Systems.Units
         {
             foreach (var i in _enemies)
             {
-                Vector2 position = _enemies.Get1(i).Value.transform.position;
+                Vector2 position = _enemies.Get1(i).Value.position;
                 ushort geoReward = _enemies.Get2(i).EnemyModel.GeoReward;
 
                 for (int j = 0; j < geoReward / 2; j++)

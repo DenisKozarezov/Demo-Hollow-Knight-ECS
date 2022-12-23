@@ -10,6 +10,7 @@ namespace Core.ECS.Components.Units
     [Serializable] public struct RigidbodyComponent { public Rigidbody2D Value; }
     [Serializable] public struct ColliderComponent { public Collider2D Value; }
     [Serializable] public struct AnimatorComponent { public Animator Value; }
+    [Serializable] public struct TransformComponent { public Transform Value; }
     [Serializable] public struct SpriteRendererComponent { public SpriteRenderer Value; }
     [Serializable] public struct NPCComponent { public List<ConversationContext> Conversations; }
     [Serializable] public struct BehaviourTreeComponent

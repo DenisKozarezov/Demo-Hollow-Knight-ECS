@@ -18,7 +18,7 @@ namespace Core.AI.Agent.Conditions
         private Transform _transform;
         protected override void OnInit()
         {
-            _transform = Agent.Get<SpriteRendererComponent>().Value.transform;
+            _transform = Agent.Get<TransformComponent>().Value;
             _filter = World.GetFilter(typeof(EcsFilter<PlayerTagComponent>.Exclude<DiedComponent>));
         }
         protected override void OnStart()
@@ -29,7 +29,7 @@ namespace Core.AI.Agent.Conditions
         {
             if (_player.IsNullOrEmpty()) return false;
 
-            Vector3 playerPos = _player.Get<SpriteRendererComponent>().Value.transform.position;
+            Vector3 playerPos = _player.Get<TransformComponent>().Value.position;
             return (playerPos - _transform.position).sqrMagnitude < _distance * _distance;
         }
     }

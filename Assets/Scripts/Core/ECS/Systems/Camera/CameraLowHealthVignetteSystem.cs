@@ -6,7 +6,7 @@ using Core.ECS.Components.Player;
 
 namespace Core.ECS.Systems.Camera
 {
-    public class CameraLowHealthVignetteSystem : IEcsRunSystem
+    public sealed class CameraLowHealthVignetteSystem : IEcsRunSystem
     {
         private readonly EcsFilter<HealthComponent, PlayerTagComponent> _filter = null;
         private readonly Vignette _vignette;

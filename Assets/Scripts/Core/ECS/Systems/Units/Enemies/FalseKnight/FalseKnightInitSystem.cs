@@ -19,7 +19,7 @@ namespace Core.ECS.Systems.FalseKnight
         {
             foreach (var i in _filter)
             {
-                ref var entity = ref _filter.GetEntity(i);
+                ref EcsEntity entity = ref _filter.GetEntity(i);
                 entity
                     .Replace(new HealthComponent
                     {
