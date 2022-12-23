@@ -1,11 +1,11 @@
-using Leopotam.Ecs;
 using UnityEngine;
+using Leopotam.Ecs;
 using BehaviourTree.Runtime.Nodes;
 using BehaviourTree.Runtime.Nodes.Decorators;
 using Core.ECS.Components.Player;
 using Core.ECS.Components.Units;
 
-namespace Core.AI.FalseKnight.Actions
+namespace Core.AI.Agent.Conditions
 {
     [Category("Agent/Conditions")]
     public class CloseToPlayer : Condition
