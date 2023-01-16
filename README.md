@@ -13,6 +13,13 @@
 
 The purpose of the prototype is to work out the ***ECS*** architectural pattern on the example of the ```Hollow Knight``` metroidvania. All assets were downloaded from free sources, all rights belong to Team Cherry.
 
+Controls:
+1) Movement - ```WASD```.
+2) Jump - ```Space```.
+3) Attack - ```Left Mouse```.
+4) Interact/Look/Talk - ```W```.
+5) Healing - holding ```B```.
+
 ## Programming Patterns
 
 The prototype uses the following architectural patterns:
