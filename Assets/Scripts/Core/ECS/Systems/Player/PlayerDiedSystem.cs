@@ -13,8 +13,8 @@ namespace Core.ECS.Systems.Player
         private readonly EcsFilter<PlayerDiedEvent> _event = null;
         private readonly EcsFilter<ColliderComponent, PlayerTagComponent> _player = null;
 
-        private const string DeathBlow = "Prefabs/Effects/Player Death/Low Health Hit";
-        private const string DeathParticle = "Prefabs/Effects/Player Death/Death Effect";
+        private const string DeathBlow = "Prefabs/VFX/Player Death/Low Health Hit";
+        private const string DeathParticle = "Prefabs/VFX/Player Death/Death Effect";
 
         private GameObject CreateDeathEffect(Vector2 position)
         {

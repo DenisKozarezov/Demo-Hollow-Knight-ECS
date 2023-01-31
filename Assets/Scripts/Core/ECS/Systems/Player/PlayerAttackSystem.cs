@@ -34,9 +34,9 @@ namespace Core.ECS.Systems.Player
         private const string ATTACK_DOWN_KEY = "Attack Down";
         // ========================
 
-        private const string DefaultAttackEffectPath = "Prefabs/Effects/Default Attack";
-        private const string AttackUpPath = "Prefabs/Effects/Attack Up";
-        private const string AttackDownPath = "Prefabs/Effects/Attack Down";
+        private const string DefaultAttackEffectPath = "Prefabs/VFX/Default Attack";
+        private const string AttackUpPath = "Prefabs/VFX/Attack Up";
+        private const string AttackDownPath = "Prefabs/VFX/Attack Down";
 
         public PlayerAttackSystem(IInputSystem playerInput)
         {

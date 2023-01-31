@@ -46,6 +46,7 @@ namespace BehaviourTree.Runtime.Nodes
         protected abstract void OnStart();
         protected abstract void OnStop();
         protected abstract State OnUpdate();        
+        public abstract IEnumerable<Node> GetChildren();
         public virtual Node Clone()
         {
             return Instantiate(this);
@@ -58,8 +59,7 @@ namespace BehaviourTree.Runtime.Nodes
 
 #if UNITY_EDITOR
         [SerializeField, HideInInspector] public string Name;
-        [SerializeField, HideInInspector] public Vector2 Position;
-        public abstract IEnumerable<Node> GetChildren();
+        [SerializeField, HideInInspector] public Vector2 Position;    
         public abstract void AddChild(Node node);
         public abstract void RemoveChild(Node node);
 #endif
