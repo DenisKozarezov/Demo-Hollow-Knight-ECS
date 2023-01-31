@@ -8,12 +8,12 @@ namespace BehaviourTree.Runtime.Nodes
         protected override void OnInit() { }
         protected override void OnStart() { }
         protected override void OnStop() { }
-
-#if UNITY_EDITOR
         public sealed override IEnumerable<Node> GetChildren()
         {
             return Enumerable.Empty<Node>();
         }
+
+#if UNITY_EDITOR
         public sealed override void AddChild(Node node) { }
         public sealed override void RemoveChild(Node node) { }
 #endif

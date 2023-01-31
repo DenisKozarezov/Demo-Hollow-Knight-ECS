@@ -17,6 +17,10 @@ namespace BehaviourTree.Runtime.Nodes
         }
         protected override void OnInit() { }
         protected override void OnStop() { }
+        public sealed override IEnumerable<Node> GetChildren()
+        {
+            return Children;
+        }
         public override Node Clone()
         {
             Composite clone = Instantiate(this);
@@ -25,10 +29,6 @@ namespace BehaviourTree.Runtime.Nodes
         }
 
 #if UNITY_EDITOR
-        public sealed override IEnumerable<Node> GetChildren()
-        {
-            return Children;
-        }
         public sealed override void AddChild(Node node)
         {
             if (node == null) return;
