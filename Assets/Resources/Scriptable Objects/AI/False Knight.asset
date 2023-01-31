@@ -16,7 +16,46 @@ MonoBehaviour:
   Started: 0
   GUID: c95d8e4f072791f4199d586cca1f293c
   Name: Attack
-  Position: {x: 1651.7001, y: 262.8}
+  Position: {x: 1519.875, y: 541.70996}
+--- !u!114 &-7474627065298985039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d815fda636144a343b963650c8c2d35b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  State: 0
+  Started: 0
+  GUID: 84a7090be2944134487550d8cfe04dbe
+  Name: Random Selector
+  Position: {x: 674.95, y: 60.149994}
+  Children:
+  - {fileID: 2161418326737842495}
+  - {fileID: 1054935807264503106}
+--- !u!114 &-4403375478584279539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f865089859aa3141b577e903c23d8fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  State: 0
+  Started: 0
+  GUID: 2f6ddf1487bf75347896bd5a5cd7a7db
+  Name: Camera Shake
+  Position: {x: 1517.5, y: 353.85}
+  _duration: 0.3
+  _shakeForce: 0.2
 --- !u!114 &-2433696561197242141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33,7 +72,7 @@ MonoBehaviour:
   Started: 0
   GUID: 51caaae0fc3e3ac4c8d37f399a35a449
   Name: Look At Player
-  Position: {x: 904.10004, y: 61.800007}
+  Position: {x: 1121.6001, y: 61.249992}
 --- !u!114 &-1669325898513423054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50,7 +89,7 @@ MonoBehaviour:
   Started: 0
   GUID: c0f8209ebf0e15a4eb9f8fd62a398dbd
   Name: Wait For Seconds
-  Position: {x: 905.10004, y: -8.200005}
+  Position: {x: 1122.6, y: -8.750019}
   _duration: 2
 --- !u!114 &-1102636969404856715
 MonoBehaviour:
@@ -68,8 +107,8 @@ MonoBehaviour:
   Started: 0
   GUID: 6632a7e52266f114b946eade5e7848e7
   Name: Wait For Seconds
-  Position: {x: 1657.7001, y: 132.80002}
-  _duration: 0.3
+  Position: {x: 1519.875, y: 420.70996}
+  _duration: 0.4
 --- !u!114 &-985400804645231012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104,7 +143,7 @@ MonoBehaviour:
   Started: 0
   GUID: b1911a44b753428469c90b211ce66b99
   Name: Look Right
-  Position: {x: 1656.7001, y: 198.80002}
+  Position: {x: 1518.8751, y: 481.71005}
 --- !u!114 &-558174403200883573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,7 +160,7 @@ MonoBehaviour:
   Started: 0
   GUID: 02e1761e944806a469d5377d6518d089
   Name: Jump To Player
-  Position: {x: 905.10004, y: 125.8}
+  Position: {x: 1122.6, y: 125.249985}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,9 +192,11 @@ MonoBehaviour:
   - {fileID: -1102636969404856715}
   - {fileID: -727889551021610538}
   - {fileID: -8647737097933515638}
-  - {fileID: 4514333321589213371}
   - {fileID: 1054935807264503106}
   - {fileID: 7407004996091909170}
+  - {fileID: -4403375478584279539}
+  - {fileID: 1770380106063055849}
+  - {fileID: -7474627065298985039}
   _orientation: 0
   _enableRuntimeEdit: 0
 --- !u!114 &1054935807264503106
@@ -174,7 +215,7 @@ MonoBehaviour:
   Started: 0
   GUID: 645c87fc9cb79ed4e856d49251e9602c
   Name: Repeat Until Failure
-  Position: {x: 1084.85, y: 61.54999}
+  Position: {x: 906.4001, y: 133.00006}
   Child: {fileID: 7407004996091909170}
 --- !u!114 &1327688977457702060
 MonoBehaviour:
@@ -196,6 +237,25 @@ MonoBehaviour:
   Children:
   - {fileID: 6753008102116462859}
   - {fileID: 1958959461501438863}
+--- !u!114 &1770380106063055849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f865089859aa3141b577e903c23d8fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  State: 0
+  Started: 0
+  GUID: 0218efc11b577274285f0c5a2223293d
+  Name: Camera Shake
+  Position: {x: 1516.875, y: 604.7101}
+  _duration: 0.3
+  _shakeForce: 0.2
 --- !u!114 &1893564476779586288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,14 +272,16 @@ MonoBehaviour:
   Started: 0
   GUID: fcb3c32662989e84f98331be4c9eea83
   Name: Sequencer
-  Position: {x: 1440.7001, y: 61.800007}
+  Position: {x: 1313.5, y: 360.85004}
   Children:
   - {fileID: 8461443385739595136}
   - {fileID: 6199646316055891876}
   - {fileID: 9072899299317402011}
+  - {fileID: -4403375478584279539}
   - {fileID: -1102636969404856715}
   - {fileID: -727889551021610538}
   - {fileID: -8647737097933515638}
+  - {fileID: 1770380106063055849}
 --- !u!114 &1958959461501438863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,7 +299,7 @@ MonoBehaviour:
   GUID: 083441b17ae1221489ad993aef165ad4
   Name: Grounded
   Position: {x: 495, y: 61}
-  Child: {fileID: 2161418326737842495}
+  Child: {fileID: -7474627065298985039}
 --- !u!114 &2161418326737842495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,12 +316,11 @@ MonoBehaviour:
   Started: 0
   GUID: 0ad1d38ace653014d86f9217ac1f284b
   Name: Sequencer
-  Position: {x: 690, y: 61}
+  Position: {x: 907.6001, y: 60.249985}
   Children:
   - {fileID: -1669325898513423054}
   - {fileID: -2433696561197242141}
   - {fileID: -558174403200883573}
-  - {fileID: 4514333321589213371}
 --- !u!114 &2280427725628289165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -296,24 +357,6 @@ MonoBehaviour:
   Name: Repeat
   Position: {x: 132.90002, y: -11.900012}
   Child: {fileID: 1327688977457702060}
---- !u!114 &4514333321589213371
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 488ba0897dbd45f7b22dfb5ed114a0bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  State: 0
-  Started: 0
-  GUID: 8df38816b515aa24388f21f28e87cd25
-  Name: Grounded
-  Position: {x: 902, y: 212}
-  Child: {fileID: 1054935807264503106}
 --- !u!114 &6199646316055891876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -330,7 +373,7 @@ MonoBehaviour:
   Started: 0
   GUID: 0d5ddc7d449506e468c258e13ec22ecc
   Name: Look Left
-  Position: {x: 1660.7001, y: -12.200012}
+  Position: {x: 1517.5, y: 215.85}
 --- !u!114 &6753008102116462859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -365,7 +408,7 @@ MonoBehaviour:
   Started: 0
   GUID: ea4bdd327260e1841bb6cbbb7057bf31
   Name: Close To Player
-  Position: {x: 1267.7, y: 61.800007}
+  Position: {x: 1134.05, y: 360.95004}
   Child: {fileID: 1893564476779586288}
   _distance: 4.5
 --- !u!114 &8461443385739595136
@@ -384,7 +427,7 @@ MonoBehaviour:
   Started: 0
   GUID: 36de4462772ba2e48bc83c9365b76edb
   Name: Wait For Seconds
-  Position: {x: 1659.7, y: -82.20003}
+  Position: {x: 1517.5, y: 152.85002}
   _duration: 2
 --- !u!114 &9072899299317402011
 MonoBehaviour:
@@ -402,4 +445,4 @@ MonoBehaviour:
   Started: 0
   GUID: f820b42d6b8854a4684085bcd9ba599e
   Name: Attack
-  Position: {x: 1659.7, y: 61.800007}
+  Position: {x: 1516.5001, y: 289.85004}

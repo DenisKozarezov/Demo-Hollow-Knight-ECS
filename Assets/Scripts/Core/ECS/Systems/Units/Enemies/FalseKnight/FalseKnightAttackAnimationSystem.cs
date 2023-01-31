@@ -32,10 +32,7 @@ namespace Core.ECS.Systems.FalseKnight
                     TargetLayer = Constants.PlayerLayer,
                     Damage = damage.Damage,
                     Source = animator.gameObject
-                });
-
-                // Camera Shake
-                _world.NewEntity(new CameraShakeEventComponent { ShakeDuration = 0.3f, ShakeForce = 0.2f });
+                });             
             }
         }
     }

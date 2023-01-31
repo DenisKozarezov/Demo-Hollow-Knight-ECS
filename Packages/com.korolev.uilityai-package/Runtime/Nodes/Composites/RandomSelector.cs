@@ -6,7 +6,8 @@ namespace BehaviourTree.Runtime.Nodes.Composites
         {
             System.Random random = new System.Random();
             int rand = random.Next(Children.Count);
-            return Children[rand].Update();
+
+            return Children[rand].Update() == State.Success ? State.Success : State.Running;
         }
     }   
 }
