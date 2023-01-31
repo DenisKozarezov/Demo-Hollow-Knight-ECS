@@ -7,7 +7,7 @@ namespace Core.ECS.Systems
     public sealed class CreateDustCloudSystem : IEcsRunSystem
     {
         private readonly EcsFilter<CreateDustEventComponent> _filter = null;
-        private const string PrefabPath = "Prefabs/Effects/Smoke/Dust";
+        private const string PrefabPath = "Prefabs/VFX/Smoke/Dust";
 
         private GameObject InstantiatePrefab(ref Vector2 point, ref Vector3 scale)
         {

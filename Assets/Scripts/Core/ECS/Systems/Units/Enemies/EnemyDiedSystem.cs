@@ -10,7 +10,7 @@ namespace Core.ECS.Systems
         private readonly EcsWorld _world = null;
         private readonly EcsFilter<ColliderComponent, EnemyComponent, DiedComponent> _filter = null;
 
-        private const string DeathParticle = "Prefabs/Effects/Player Death/Death Effect";
+        private const string DeathParticle = "Prefabs/VFX/Player Death/Death Effect";
 
         private GameObject CreateDeathEffect(Vector2 position)
         {

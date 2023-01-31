@@ -16,7 +16,7 @@ namespace Core.ECS.Systems.Player
             ColliderComponent,
             PlayerTagComponent> _filter = null;
 
-        private const string HitEffectPath = "Prefabs/Effects/Impact/Hit Crack Impact";
+        private const string HitEffectPath = "Prefabs/VFX/Impact/Hit Crack Impact";
 
         private GameObject CreateEffect(Vector2 position)
         {
