@@ -1,11 +1,11 @@
-using Leopotam.Ecs;
 using UnityEngine;
+using Leopotam.Ecs;
 using BehaviourTree.Runtime.Nodes;
 using BehaviourTree.Runtime.Nodes.Decorators;
 using Core.ECS.Components.Player;
 using Core.ECS.Components.Units;
 
-namespace Core.AI.FalseKnight.Actions
+namespace Core.AI.Agent.Conditions
 {
     [Category("Agent/Conditions")]
     public class CloseToPlayer : Condition
@@ -18,7 +18,7 @@ namespace Core.AI.FalseKnight.Actions
         private Transform _transform;
         protected override void OnInit()
         {
-            _transform = Agent.Get<SpriteRendererComponent>().Value.transform;
+            _transform = Agent.Get<TransformComponent>().Value;
             _filter = World.GetFilter(typeof(EcsFilter<PlayerTagComponent>.Exclude<DiedComponent>));
         }
         protected override void OnStart()
@@ -29,7 +29,7 @@ namespace Core.AI.FalseKnight.Actions
         {
             if (_player.IsNullOrEmpty()) return false;
 
-            Vector3 playerPos = _player.Get<SpriteRendererComponent>().Value.transform.position;
+            Vector3 playerPos = _player.Get<TransformComponent>().Value.position;
             return (playerPos - _transform.position).sqrMagnitude < _distance * _distance;
         }
     }

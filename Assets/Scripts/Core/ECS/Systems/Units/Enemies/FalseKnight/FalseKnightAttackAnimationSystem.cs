@@ -17,12 +17,12 @@ namespace Core.ECS.Systems.FalseKnight
         {
             foreach (var i in _filter)
             {
-                ref var ecsEntity = ref _filter.GetEntity(i);
-                ref var animator = ref _filter.Get1(i).Value;
+                ref EcsEntity entity = ref _filter.GetEntity(i);
                 ref var damage = ref _filter.Get2(i);
+                var animator = _filter.Get1(i).Value;
 
                 animator.SetTrigger("Attack");
-                ecsEntity.Del<FalseKnightAttackEventComponent>();
+                entity.Del<FalseKnightAttackEventComponent>();
 
                 // Hit enemies
                 _world.NewEntity(new HitEventComponent
@@ -32,10 +32,7 @@ namespace Core.ECS.Systems.FalseKnight
                     TargetLayer = Constants.PlayerLayer,
                     Damage = damage.Damage,
                     Source = animator.gameObject
-                });
-
-                // Camera Shake
-                _world.NewEntity(new CameraShakeEventComponent { ShakeDuration = 0.3f, ShakeForce = 0.2f });
+                });             
             }
         }
     }

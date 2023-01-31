@@ -15,10 +15,10 @@ GameObject:
   - component: {fileID: -274068683025750250}
   - component: {fileID: -8508400842242721570}
   - component: {fileID: 3679317781255835431}
+  - component: {fileID: -8817705793943286415}
   - component: {fileID: -1028390621050233941}
   - component: {fileID: 2560238241253341815}
   - component: {fileID: 2428046805276098539}
-  - component: {fileID: 8582780401766899964}
   m_Layer: 0
   m_Name: Elderbug
   m_TagString: Interactable
@@ -172,6 +172,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value:
     Value: {fileID: 417439987548578997}
+--- !u!114 &-8817705793943286415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5392100171666890834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b33ac0ae7cdd4c642b08a2e36bd5f352, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value:
+    Value: {fileID: 9079753910168074199}
 --- !u!114 &-1028390621050233941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -217,15 +231,3 @@ MonoBehaviour:
     Label: Talk
     OffsetY: 2
     InteractType: 4
---- !u!114 &8582780401766899964
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5392100171666890834}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 374ddb3bc6f6f8c428425cc1c7ef663a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

@@ -39,6 +39,9 @@ namespace Core.ECS.Systems.Player
 
                     // Camera Shake
                     _world.NewEntity(new CameraShakeEventComponent { ShakeDuration = 5f, ShakeForce = 0.2f });
+
+                    // Camera Fade
+                    _world.NewEntity(new CameraFadeEventComponent { FadeMode = FadeMode.On, FadeTime = 5f });
                 }
             }
         }

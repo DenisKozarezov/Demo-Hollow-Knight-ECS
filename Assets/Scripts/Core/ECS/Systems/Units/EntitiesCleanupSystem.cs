@@ -11,7 +11,6 @@ namespace Core.ECS.Systems
 
         private void DisableCollision(Collider2D collider)
         {
-            collider.attachedRigidbody.simulated = false;
             collider.attachedRigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
             collider.enabled = false;
             collider.gameObject.layer = Constants.IgnoreRaycastLayer;

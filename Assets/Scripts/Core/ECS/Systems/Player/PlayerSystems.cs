@@ -19,6 +19,7 @@ namespace Core.ECS.Systems.Player
             Add(new PlayerFocusSystem(context.InputSystem, model.GetAbility<HealingFocusAbility>()));
             Add(new EnergySystem());
             Add(new PlayerDiedSystem());
+            //Add(new PlayerRespawnSystem());
             Add(new PlayerHealingSystem());
             Add(new PlayerMoveSystem(context.InputSystem));
             Add(new PlayerJumpSystem(context.InputSystem));

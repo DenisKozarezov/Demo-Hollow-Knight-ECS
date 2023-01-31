@@ -4,7 +4,7 @@ using BehaviourTree.Runtime.Nodes.Decorators;
 using Core.ECS.Components.Units;
 using Core.ECS.Components.Player;
 
-namespace Core.AI.Conditions
+namespace Core.AI.Agent.Conditions
 {
     [Category("Agent/Conditions")]
     public class PlayerDead : Condition

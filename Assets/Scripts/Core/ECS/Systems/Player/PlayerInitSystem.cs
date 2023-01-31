@@ -29,7 +29,7 @@ namespace Core.ECS.Systems.Player
                     .Replace(new EnergyComponent { Energy = _playerModel.EnergyCapacity, MaxEnergy = _playerModel.EnergyCapacity })
                     .Replace(new GeoComponent { Value = 0 })
                     .Replace(new CanAttackComponent { });
-            }            
+            }
         }
     }
 }

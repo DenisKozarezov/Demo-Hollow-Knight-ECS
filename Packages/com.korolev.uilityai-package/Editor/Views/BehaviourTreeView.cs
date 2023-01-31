@@ -62,10 +62,11 @@ namespace BehaviourTree.Editor.VisualElements
             BuildNodesCategory<Composite>(evt, "Composites");
             BuildNodesCategory<Decorator>(evt, "Decorators");
             evt.menu.AppendSeparator();
-            BuildNodeCustomCategories(evt);
+            BuildNodesCustomCategories(evt);
         }
-        private void BuildNodeCustomCategories(ContextualMenuPopulateEvent evt)
+        private void BuildNodesCustomCategories(ContextualMenuPopulateEvent evt)
         {
+            Vector2 mousePos = evt.localMousePosition;
             var types = TypeCache.GetTypesDerivedFrom<Node>().Where(type => !type.IsAbstract);
             foreach (Type type in types)
             {
@@ -73,21 +74,20 @@ namespace BehaviourTree.Editor.VisualElements
                 {
                     evt.menu.AppendAction($"{attr.Category}/{ParseTypeToDisplayName(type)}", (action) =>
                     {
-                        Vector2 mouseScreenPosition = evt.localMousePosition;
-                        CreateNode(type, ref mouseScreenPosition);
+                        CreateNode(type, ref mousePos);
                     });
                 }
             }
         }
         private void BuildNodesCategory<T>(ContextualMenuPopulateEvent evt, string categoryName) where T : Node
         {
-            var types = TypeCache.GetTypesDerivedFrom<T>().Where(type => !type.IsAbstract && type.BaseType == typeof(T) && type.GetCustomAttribute<CategoryAttribute>() == null);            
+            Vector2 mousePos = evt.localMousePosition;
+            var types = TypeCache.GetTypesDerivedFrom<T>().Where(type => !type.IsAbstract && type.BaseType == typeof(T) && type.GetCustomAttribute<CategoryAttribute>() == null);
             foreach (Type type in types)
             {
                 evt.menu.AppendAction($"{categoryName}/{ParseTypeToDisplayName(type)}", (action) =>
                 {
-                    Vector2 mouseScreenPosition = evt.localMousePosition;
-                    CreateNode(type, ref mouseScreenPosition);
+                    CreateNode(type, ref mousePos);
                 });
             }
         }

@@ -12,14 +12,14 @@ namespace Core.AI.FalseKnight.Actions
         private float _startLocalX;
         protected override void OnInit()
         {
-            _agent = Agent.Get<SpriteRendererComponent>().Value.transform;
+            _agent = Agent.Get<TransformComponent>().Value;
             _startLocalX = _agent.transform.localScale.x;
         }
         protected override State OnUpdate()
         {
-            Vector3 localScale = _agent.transform.localScale;
+            Vector3 localScale = _agent.localScale;
             localScale.x = -_startLocalX;
-            _agent.transform.localScale = localScale;
+            _agent.localScale = localScale;
             return State.Success;
         }
     }

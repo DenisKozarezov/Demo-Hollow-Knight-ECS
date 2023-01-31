@@ -30,7 +30,7 @@ namespace Core.AI.FalseKnight.Actions
             if (_rigidbody == null || _player.IsNullOrEmpty()) return State.Failure;
 
             // Calculate distance
-            float playerX = _player.Get<SpriteRendererComponent>().Value.transform.position.x;
+            float playerX = _player.Get<TransformComponent>().Value.position.x;
             float distanceToPlayer = playerX - _rigidbody.transform.position.x;
 
             // Jump
