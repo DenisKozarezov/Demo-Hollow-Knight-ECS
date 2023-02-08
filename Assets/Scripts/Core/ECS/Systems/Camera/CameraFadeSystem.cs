@@ -7,17 +7,17 @@ namespace Core.ECS.Systems.Camera
     public sealed class CameraFadeSystem : IEcsInitSystem, IEcsRunSystem
     {
         private readonly EcsFilter<CameraFadeEventComponent> _event = null;
-        private readonly Fader _fade;
+        private readonly Fader _fader;
 
-        public CameraFadeSystem(Fader fade)
+        public CameraFadeSystem(Fader fader)
         {
-            _fade = fade;
+            _fader = fader;
         }
 
         void IEcsInitSystem.Init()
         {
-            _fade.Fade(FadeMode.On, 0f);
-            _fade.Fade(FadeMode.Off, 3f);
+            _fader.Fade(FadeMode.On, 0f);
+            _fader.Fade(FadeMode.Off, 3f);
         }
         void IEcsRunSystem.Run()
         {
@@ -25,7 +25,7 @@ namespace Core.ECS.Systems.Camera
             {
                 ref FadeMode mode = ref _event.Get1(i).FadeMode;
                 ref float fadeTime = ref _event.Get1(i).FadeTime;
-                _fade.Fade(mode, fadeTime);
+                _fader.Fade(mode, fadeTime);
             }
         }
     }
