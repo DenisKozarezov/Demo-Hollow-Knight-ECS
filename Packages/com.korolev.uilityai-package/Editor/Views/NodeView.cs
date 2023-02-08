@@ -83,11 +83,11 @@ namespace BehaviourTree.Editor.VisualElements.Nodes
         }
         private LinkedList<Port> CreateDynamicInputPorts()
         {
-            var fields = GetBackingFields<InputAttribute>();
+            var fields = GetBackingFields<Runtime.Nodes.InputAttribute>();
             if (fields.Count() == 0) return null;
             foreach (FieldInfo field in fields)
             {
-                InputAttribute attr = field.GetCustomAttribute<InputAttribute>();
+                Runtime.Nodes.InputAttribute attr = field.GetCustomAttribute<Runtime.Nodes.InputAttribute>();
                 Port.Capacity capacity = attr.ConnectionType == PortConnection.Single ? Port.Capacity.Single : Port.Capacity.Multi;
                 Port port = InstantiatePort(_orientation, Direction.Input, capacity, field.FieldType);
                 port.name = "port";
