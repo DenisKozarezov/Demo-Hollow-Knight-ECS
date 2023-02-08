@@ -12,7 +12,7 @@ using Zenject;
 
 namespace Core.ECS
 {
-    public class ECSStartup : IInitializable, IFixedTickable, ILateDisposable
+    public sealed class ECSStartup : IInitializable, IFixedTickable, ILateDisposable
     {
         private EcsWorld _world;
         private EcsSystems _systems;

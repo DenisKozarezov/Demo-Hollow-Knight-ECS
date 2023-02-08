@@ -277,7 +277,7 @@ MonoBehaviour:
   Started: 0
   GUID: 083441b17ae1221489ad993aef165ad4
   Name: Grounded
-  Position: {x: 522, y: 55}
+  Position: {x: 496, y: 54}
   Child: {fileID: 2161418326737842495}
 --- !u!114 &2161418326737842495
 MonoBehaviour:
@@ -295,7 +295,7 @@ MonoBehaviour:
   Started: 0
   GUID: 0ad1d38ace653014d86f9217ac1f284b
   Name: Sequencer
-  Position: {x: 773, y: 55}
+  Position: {x: 691, y: 55}
   Children:
   - {fileID: -1669325898513423054}
   - {fileID: -2433696561197242141}
