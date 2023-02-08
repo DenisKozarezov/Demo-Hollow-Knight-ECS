@@ -9,16 +9,16 @@ namespace Core.ECS.Systems
     {
         public GameplaySystems(Contexts contexts) : base(nameof(GameplaySystems))
         {
-            Add(new UnitsSystems(context));
-            Add(new HitSystem());
-            Add(new DamageSystem());
-            Add(new PlayerSystems(context));
-            Add(new HealthSystem());
-            Add(new DialogueSystem(context.DiContainer.Resolve<DialogueUIView>()));
-            Add(new BehaviourTreeSystem());
-            Add(new EnemyDiedSystem());
-            Add(new EnemyDroppingGeoSystem(context.DiContainer.Resolve<GeoView.Factory>()));
-            Add(new CameraSystems(context, UnityEngine.Camera.main));
+            //Add(new UnitsSystems(contexts));
+            //Add(new HitSystem());
+            //Add(new DamageSystem());
+            Add(new PlayerSystems(contexts));
+            //Add(new HealthSystem());
+            //Add(new DialogueSystem(context.DiContainer.Resolve<DialogueUIView>()));
+            //Add(new BehaviourTreeSystem());
+            //Add(new EnemyDiedSystem());
+            //Add(new EnemyDroppingGeoSystem(context.DiContainer.Resolve<GeoView.Factory>()));
+            //Add(new CameraSystems(contexts, UnityEngine.Camera.main));
         }
     }
 }

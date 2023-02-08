@@ -72,11 +72,11 @@ namespace BehaviourTree.Editor
             GameObject go = Selection.activeGameObject;
             if (go != null && go.TryGetComponent(out Core.ECS.EntityReference entityRef))
             {
-                if (entityRef.Entity.IsAlive() && entityRef.Entity.Has<BehaviourTreeComponent>())
-                {
-                    ref var component = ref entityRef.Entity.Get<BehaviourTreeComponent>();
-                    _behaviourView?.PopulateView(component.BehaviourTree);
-                }
+                //if (entityRef.Entity.IsAlive() && entityRef.Entity.Has<BehaviourTreeComponent>())
+                //{
+                //    ref var component = ref entityRef.Entity.Get<BehaviourTreeComponent>();
+                //    _behaviourView?.PopulateView(component.BehaviourTree);
+                //}
             }
         }
         private void OnInspectorUpdate()

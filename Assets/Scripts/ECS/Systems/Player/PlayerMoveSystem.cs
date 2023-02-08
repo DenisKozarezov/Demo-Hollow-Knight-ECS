@@ -1,26 +1,20 @@
 using UnityEngine;
-using Leopotam.Ecs;
 using Core.Input;
-using Core.ECS.Components.Player;
-using Core.ECS.Components.Units;
+using Entitas;
 
 namespace Core.ECS.Systems.Player
 {
-    public sealed class PlayerMoveSystem : IEcsRunSystem
+    public sealed class PlayerMoveSystem : IExecuteSystem
     {
-        private readonly EcsFilter<
-            RigidbodyComponent, 
-            SpriteRendererComponent,
-            MovableComponent,
-            PlayerTagComponent>
-            .Exclude<DiedComponent, ChannellingComponent> _filter = null;
+        private readonly IGroup<GameEntity> _heroes;
+        private readonly IGroup<InputEntity> _inputs;
 
-        private readonly IInputSystem _playerInput;
         private Vector2 _lastDirection;
 
-        public PlayerMoveSystem(IInputSystem playerInput)
+        public PlayerMoveSystem(GameContext game, InputContext input)
         {
-            _playerInput = playerInput;
+            _heroes = game.GetGroup(GameMatcher.Player);
+            _inputs = input.GetGroup(InputMatcher.Horizontal);
         }
 
         private bool FlipSrite(Vector2 direction)
@@ -28,24 +22,24 @@ namespace Core.ECS.Systems.Player
             return direction.sqrMagnitude == 0f ? _lastDirection.x < 0f : direction.x < 0f;
         }
 
-        void IEcsRunSystem.Run()
+        public void Execute()
         {
-            foreach (var i in _filter)
-            {
-                Rigidbody2D rigidbody = _filter.Get1(i).Value;
-                SpriteRenderer spriteRenderer = _filter.Get2(i).Value;
-                ref float speed = ref _filter.Get3(i).Value;
+            //foreach (var i in _filter)
+            //{
+            //    Rigidbody2D rigidbody = _filter.Get1(i).Value;
+            //    SpriteRenderer spriteRenderer = _filter.Get2(i).Value;
+            //    ref float speed = ref _filter.Get3(i).Value;
 
-                // Set velocity
-                Vector2 velocity = Vector2.right * _playerInput.Direction.x * speed * Time.fixedDeltaTime;
+            //    // Set velocity
+            //    Vector2 velocity = Vector2.right * _playerInput.Direction.x * speed * Time.fixedDeltaTime;
 
-                // Move character
-                rigidbody.velocity = new Vector2(velocity.x, rigidbody.velocity.y);
+            //    // Move character
+            //    rigidbody.velocity = new Vector2(velocity.x, rigidbody.velocity.y);
 
-                // Rotate character depending on his direction
-                if (_playerInput.Direction.sqrMagnitude != 0f) _lastDirection = _playerInput.Direction;
-                spriteRenderer.flipX = FlipSrite(_playerInput.Direction);
-            }
+            //    // Rotate character depending on his direction
+            //    if (_playerInput.Direction.sqrMagnitude != 0f) _lastDirection = _playerInput.Direction;
+            //    spriteRenderer.flipX = FlipSrite(_playerInput.Direction);
+            //}
         }                 
     }
 }

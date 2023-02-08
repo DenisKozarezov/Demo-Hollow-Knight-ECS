@@ -3,46 +3,37 @@
  * Last Modified 19.04.2022
  *******************************************/
 
-using Leopotam.Ecs;
-using Core.Input;
+using Zenject;
 using Core.Models;
 using Core.ECS.Systems;
-using Zenject;
+using Core.Services;
 
 namespace Core.ECS
 {
-    public class ECSStartup : IInitializable, IFixedTickable, ILateDisposable
+    public sealed class ECSStartup : IInitializable, IFixedTickable
     {
-        private EcsWorld _world;
-        private EcsSystems _systems;
-        private AllSystems _allSystems;          
-        private readonly IInputSystem _inputSystem;
-        private readonly ICoroutineRunner _coroutineRunner;
-        private readonly UnitsModelsProvider _modelsProvider;
-        private readonly DiContainer _container;
+        private readonly AllSystems _allSystems;
 
-        public ECSStartup(IInputSystem inputSystem, ICoroutineRunner coroutineRunner, UnitsModelsProvider modelsProvider, DiContainer container)
+        public ECSStartup(IInputService inputSystem, ICoroutineRunnerService coroutineRunner, UnitsModelsProvider modelsProvider, DiContainer container)
         {
-            _world = new EcsWorld();
-            _inputSystem = inputSystem;
-            _coroutineRunner = coroutineRunner;
-            _modelsProvider = modelsProvider;
-            _container = container;
-        }
-
-        void IInitializable.Initialize()
-        {      
             Contexts contexts = Contexts.sharedInstance;
 
-            _allSystems = new AllSystems(contexts);            
+            Services.Services allServices = new Services.Services
+            {
+                InputService = inputSystem,
+                CoroutineRunner = coroutineRunner,
+            };
+
+            _allSystems = new AllSystems(contexts, allServices);
+        }
+
+        public void Initialize()
+        {            
             _allSystems.Initialize();
         }
-        void IFixedTickable.FixedTick() 
+        public void FixedTick() 
         {
             _allSystems.Execute();
-        }
-        void ILateDisposable.LateDispose() 
-        {
             _allSystems.Cleanup();
         }
     }

@@ -6,14 +6,14 @@ using Core.ECS.Components.Player;
 
 namespace Core.AI.Agent.Conditions
 {
-    [Category("Agent/Conditions")]
-    public class PlayerDead : Condition
-    {
-        private EcsFilter _filter;
-        protected override void OnInit()
-        {
-            _filter = World.GetFilter(typeof(EcsFilter<PlayerTagComponent, DiedComponent>));
-        }
-        protected override bool Check() => _filter.GetEntitiesCount() == 0;
-    }
+    //[Category("Agent/Conditions")]
+    //public class PlayerDead : Condition
+    //{
+    //    private EcsFilter _filter;
+    //    protected override void OnInit()
+    //    {
+    //        _filter = World.GetFilter(typeof(EcsFilter<PlayerTagComponent, DiedComponent>));
+    //    }
+    //    protected override bool Check() => _filter.GetEntitiesCount() == 0;
+    //}
 }

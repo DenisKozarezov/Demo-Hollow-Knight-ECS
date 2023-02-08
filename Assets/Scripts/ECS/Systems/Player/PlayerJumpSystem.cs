@@ -1,44 +1,43 @@
+using System.Collections.Generic;
 using UnityEngine;
-using Leopotam.Ecs;
-using Core.Input;
-using Core.ECS.Components.Player;
-using Core.ECS.Components.Units;
+using Entitas;
 
 namespace Core.ECS.Systems.Player
 {
-    public sealed class PlayerJumpSystem : IEcsInitSystem, IEcsDestroySystem
+    public sealed class PlayerJumpSystem : ReactiveSystem<InputEntity>
     {
-        private readonly EcsFilter<
-            RigidbodyComponent, 
-            JumpComponent, 
-            OnGroundComponent,
-            PlayerTagComponent>
-            .Exclude<DiedComponent, ChannellingComponent> _filter = null;
+        private readonly IGroup<GameEntity> _heroes;
 
-        private readonly IInputSystem _playerInput;
-              
-        public PlayerJumpSystem(IInputSystem playerInput) 
+        public PlayerJumpSystem(GameContext game, InputContext input) : base(input)
         {
-            _playerInput = playerInput;
+            _heroes = game.GetGroup(
+                GameMatcher.AllOf(
+                    GameMatcher.Player, 
+                    GameMatcher.Rigidbody, 
+                    GameMatcher.Jump, 
+                    GameMatcher.OnGround).
+                NoneOf(GameMatcher.Died));
         }
 
-        void IEcsInitSystem.Init()
+        protected override bool Filter(InputEntity entity)
         {
-            _playerInput.Jump += OnJump;
+            return entity.isJump;
         }
-        void IEcsDestroySystem.Destroy()
+        protected override ICollector<InputEntity> GetTrigger(IContext<InputEntity> context)
         {
-            _playerInput.Jump -= OnJump;
-        }        
-        private void OnJump()
+            return context.CreateCollector(InputMatcher.Jump.Added());
+        }
+        protected override void Execute(List<InputEntity> entities)
         {
-            foreach (var i in _filter)
+            foreach (InputEntity _ in entities)
             {
-                Rigidbody2D rigidbody = _filter.Get1(i).Value;
-                ref float jumpHeight = ref _filter.Get2(i).JumpForceRange.x;
-                float jumpForce = Utils.CalculateJumpForce(Physics2D.gravity.magnitude, jumpHeight);
-                rigidbody.velocity += Vector2.up * jumpForce;
+                foreach (GameEntity hero in _heroes.GetEntities())
+                {
+                    float jumpHeight = hero.jump.JumpForceRange.x;
+                    float jumpForce = Utils.CalculateJumpForce(Physics2D.gravity.magnitude, jumpHeight);
+                    hero.rigidbody.Value.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+                }
             }
-        }
+        }       
     }
 }

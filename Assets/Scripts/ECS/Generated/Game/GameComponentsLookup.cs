@@ -8,15 +8,231 @@
 //------------------------------------------------------------------------------
 public static class GameComponentsLookup {
 
+    public const int AnimateDamageEventListener = 0;
+    public const int CameraFadeEventListener = 1;
+    public const int CameraShakeEventListener = 2;
+    public const int CollidingViewRegister = 3;
+    public const int CoroutineRunner = 4;
+    public const int Identifiers = 5;
+    public const int Logger = 6;
+    public const int Physics = 7;
+    public const int AttackCooldown = 8;
+    public const int CanAttack = 9;
+    public const int CanInteract = 10;
+    public const int Energy = 11;
+    public const int Geo = 12;
+    public const int Player = 13;
+    public const int Time = 14;
+    public const int Animator = 15;
+    public const int BehaviourTree = 16;
+    public const int Channelling = 17;
+    public const int Collider = 18;
+    public const int Damage = 19;
+    public const int Died = 20;
+    public const int Enemy = 21;
+    public const int EntityInit = 22;
+    public const int FalseKnightTag = 23;
+    public const int Health = 24;
+    public const int Hittable = 25;
+    public const int Invulnerable = 26;
+    public const int Jump = 27;
+    public const int Movable = 28;
+    public const int NPC = 29;
+    public const int OnGround = 30;
+    public const int Rigidbody = 31;
+    public const int SpriteRenderer = 32;
+    public const int Transform = 33;
+    public const int Unit = 34;
+    public const int ViewCreator = 35;
+    public const int AnimateDamageEvent = 36;
+    public const int CameraFadeEvent = 37;
+    public const int CameraShakeEvent = 38;
+    public const int CreateDustEvent = 39;
+    public const int CreateUnitEvent = 40;
+    public const int DamageEvent = 41;
+    public const int FalseKnightAttackEvent = 42;
+    public const int FalseKnightJumpEvent = 43;
+    public const int FalseKnightRollEvent = 44;
+    public const int FalseKnightStrongAttackEvent = 45;
+    public const int HitEvent = 46;
+    public const int InteractableTriggerEnterEvent = 47;
+    public const int InteractableTriggerExitEvent = 48;
+    public const int EnergyReducedEvent = 49;
+    public const int PlayerDiedEvent = 50;
+    public const int PlayerEnteredBossZoneEvent = 51;
+    public const int PlayerHealedEvent = 52;
+    public const int PlayerObtainedGeoEvent = 53;
+    public const int PlayerRecievedDamageEvent = 54;
+    public const int PlayerTalkingWithNPCEvent = 55;
+    public const int CreateDustEventListener = 56;
+    public const int CreateUnitEventListener = 57;
+    public const int DamageEventListener = 58;
+    public const int EnergyReducedEventListener = 59;
+    public const int FalseKnightAttackEventListener = 60;
+    public const int FalseKnightJumpEventListener = 61;
+    public const int FalseKnightRollEventListener = 62;
+    public const int FalseKnightStrongAttackEventListener = 63;
+    public const int HitEventListener = 64;
+    public const int InteractableTriggerEnterEventListener = 65;
+    public const int InteractableTriggerExitEventListener = 66;
+    public const int PlayerDiedEventListener = 67;
+    public const int PlayerEnteredBossZoneEventListener = 68;
+    public const int PlayerHealedEventListener = 69;
+    public const int PlayerObtainedGeoEventListener = 70;
+    public const int PlayerRecievedDamageEventListener = 71;
+    public const int PlayerTalkingWithNPCEventListener = 72;
 
-
-    public const int TotalComponents = 0;
+    public const int TotalComponents = 73;
 
     public static readonly string[] componentNames = {
-
+        "AnimateDamageEventListener",
+        "CameraFadeEventListener",
+        "CameraShakeEventListener",
+        "CollidingViewRegister",
+        "CoroutineRunner",
+        "Identifiers",
+        "Logger",
+        "Physics",
+        "AttackCooldown",
+        "CanAttack",
+        "CanInteract",
+        "Energy",
+        "Geo",
+        "Player",
+        "Time",
+        "Animator",
+        "BehaviourTree",
+        "Channelling",
+        "Collider",
+        "Damage",
+        "Died",
+        "Enemy",
+        "EntityInit",
+        "FalseKnightTag",
+        "Health",
+        "Hittable",
+        "Invulnerable",
+        "Jump",
+        "Movable",
+        "NPC",
+        "OnGround",
+        "Rigidbody",
+        "SpriteRenderer",
+        "Transform",
+        "Unit",
+        "ViewCreator",
+        "AnimateDamageEvent",
+        "CameraFadeEvent",
+        "CameraShakeEvent",
+        "CreateDustEvent",
+        "CreateUnitEvent",
+        "DamageEvent",
+        "FalseKnightAttackEvent",
+        "FalseKnightJumpEvent",
+        "FalseKnightRollEvent",
+        "FalseKnightStrongAttackEvent",
+        "HitEvent",
+        "InteractableTriggerEnterEvent",
+        "InteractableTriggerExitEvent",
+        "EnergyReducedEvent",
+        "PlayerDiedEvent",
+        "PlayerEnteredBossZoneEvent",
+        "PlayerHealedEvent",
+        "PlayerObtainedGeoEvent",
+        "PlayerRecievedDamageEvent",
+        "PlayerTalkingWithNPCEvent",
+        "CreateDustEventListener",
+        "CreateUnitEventListener",
+        "DamageEventListener",
+        "EnergyReducedEventListener",
+        "FalseKnightAttackEventListener",
+        "FalseKnightJumpEventListener",
+        "FalseKnightRollEventListener",
+        "FalseKnightStrongAttackEventListener",
+        "HitEventListener",
+        "InteractableTriggerEnterEventListener",
+        "InteractableTriggerExitEventListener",
+        "PlayerDiedEventListener",
+        "PlayerEnteredBossZoneEventListener",
+        "PlayerHealedEventListener",
+        "PlayerObtainedGeoEventListener",
+        "PlayerRecievedDamageEventListener",
+        "PlayerTalkingWithNPCEventListener"
     };
 
     public static readonly System.Type[] componentTypes = {
-
+        typeof(AnimateDamageEventListenerComponent),
+        typeof(CameraFadeEventListenerComponent),
+        typeof(CameraShakeEventListenerComponent),
+        typeof(Core.ECS.Components.CollidingViewRegister),
+        typeof(Core.ECS.Components.CoroutineRunner),
+        typeof(Core.ECS.Components.Identifiers),
+        typeof(Core.ECS.Components.Logger),
+        typeof(Core.ECS.Components.Physics),
+        typeof(Core.ECS.Components.Player.AttackCooldownComponent),
+        typeof(Core.ECS.Components.Player.CanAttackComponent),
+        typeof(Core.ECS.Components.Player.CanInteractComponent),
+        typeof(Core.ECS.Components.Player.EnergyComponent),
+        typeof(Core.ECS.Components.Player.GeoComponent),
+        typeof(Core.ECS.Components.Player.PlayerComponent),
+        typeof(Core.ECS.Components.Time),
+        typeof(Core.ECS.Components.Units.AnimatorComponent),
+        typeof(Core.ECS.Components.Units.BehaviourTreeComponent),
+        typeof(Core.ECS.Components.Units.ChannellingComponent),
+        typeof(Core.ECS.Components.Units.ColliderComponent),
+        typeof(Core.ECS.Components.Units.DamageComponent),
+        typeof(Core.ECS.Components.Units.DiedComponent),
+        typeof(Core.ECS.Components.Units.EnemyComponent),
+        typeof(Core.ECS.Components.Units.EntityInitComponent),
+        typeof(Core.ECS.Components.Units.FalseKnightTagComponent),
+        typeof(Core.ECS.Components.Units.HealthComponent),
+        typeof(Core.ECS.Components.Units.HittableComponent),
+        typeof(Core.ECS.Components.Units.InvulnerableComponent),
+        typeof(Core.ECS.Components.Units.JumpComponent),
+        typeof(Core.ECS.Components.Units.MovableComponent),
+        typeof(Core.ECS.Components.Units.NPCComponent),
+        typeof(Core.ECS.Components.Units.OnGroundComponent),
+        typeof(Core.ECS.Components.Units.RigidbodyComponent),
+        typeof(Core.ECS.Components.Units.SpriteRendererComponent),
+        typeof(Core.ECS.Components.Units.TransformComponent),
+        typeof(Core.ECS.Components.Units.UnitComponent),
+        typeof(Core.ECS.Components.ViewCreator),
+        typeof(Core.ECS.Events.AnimateDamageEventComponent),
+        typeof(Core.ECS.Events.CameraFadeEventComponent),
+        typeof(Core.ECS.Events.CameraShakeEventComponent),
+        typeof(Core.ECS.Events.CreateDustEventComponent),
+        typeof(Core.ECS.Events.CreateUnitEventComponent),
+        typeof(Core.ECS.Events.DamageEventComponent),
+        typeof(Core.ECS.Events.FalseKnight.FalseKnightAttackEventComponent),
+        typeof(Core.ECS.Events.FalseKnight.FalseKnightJumpEvent),
+        typeof(Core.ECS.Events.FalseKnight.FalseKnightRollEvent),
+        typeof(Core.ECS.Events.FalseKnight.FalseKnightStrongAttackEvent),
+        typeof(Core.ECS.Events.HitEventComponent),
+        typeof(Core.ECS.Events.InteractableTriggerEnterEvent),
+        typeof(Core.ECS.Events.InteractableTriggerExitEvent),
+        typeof(Core.ECS.Events.Player.EnergyReducedEvent),
+        typeof(Core.ECS.Events.Player.PlayerDiedEvent),
+        typeof(Core.ECS.Events.Player.PlayerEnteredBossZoneEvent),
+        typeof(Core.ECS.Events.Player.PlayerHealedEvent),
+        typeof(Core.ECS.Events.Player.PlayerObtainedGeoEvent),
+        typeof(Core.ECS.Events.Player.PlayerRecievedDamageEvent),
+        typeof(Core.ECS.Events.Player.PlayerTalkingWithNPCEvent),
+        typeof(CreateDustEventListenerComponent),
+        typeof(CreateUnitEventListenerComponent),
+        typeof(DamageEventListenerComponent),
+        typeof(EnergyReducedEventListenerComponent),
+        typeof(FalseKnightAttackEventListenerComponent),
+        typeof(FalseKnightJumpEventListenerComponent),
+        typeof(FalseKnightRollEventListenerComponent),
+        typeof(FalseKnightStrongAttackEventListenerComponent),
+        typeof(HitEventListenerComponent),
+        typeof(InteractableTriggerEnterEventListenerComponent),
+        typeof(InteractableTriggerExitEventListenerComponent),
+        typeof(PlayerDiedEventListenerComponent),
+        typeof(PlayerEnteredBossZoneEventListenerComponent),
+        typeof(PlayerHealedEventListenerComponent),
+        typeof(PlayerObtainedGeoEventListenerComponent),
+        typeof(PlayerRecievedDamageEventListenerComponent),
+        typeof(PlayerTalkingWithNPCEventListenerComponent)
     };
 }

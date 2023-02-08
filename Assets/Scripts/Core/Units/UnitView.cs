@@ -24,7 +24,7 @@ namespace Core.Units
                 {
                     float dx = collision.otherCollider.bounds.size.x * 0.5f;
                     Vector2 point = contact.point + Vector2.right * dx;
-                    _entityReference.Entity.Get<OnGroundComponent>().Point = point;
+                    //_entityReference.Entity.Get<OnGroundComponent>().Point = point;
                     break;
                 }
             }
@@ -35,7 +35,7 @@ namespace Core.Units
 
             if (collision.collider.gameObject.layer == Constants.GroundLayer)
             {
-                _entityReference.Entity.Del<OnGroundComponent>();
+                //_entityReference.Entity.Del<OnGroundComponent>();
             }
         }
     }
