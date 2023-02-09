@@ -8,7 +8,7 @@
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Core.ECS.Components.Player.CanAttackComponent canAttackComponent = new Core.ECS.Components.Player.CanAttackComponent();
+    static readonly Core.ECS.Components.Units.CanAttack canAttackComponent = new Core.ECS.Components.Units.CanAttack();
 
     public bool isCanAttack {
         get { return HasComponent(GameComponentsLookup.CanAttack); }

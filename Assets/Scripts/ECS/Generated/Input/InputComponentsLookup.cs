@@ -38,15 +38,15 @@ public static class InputComponentsLookup {
 
     public static readonly System.Type[] componentTypes = {
         typeof(Core.ECS.Components.Input),
-        typeof(Core.ECS.Events.Player.Horizontal),
-        typeof(Core.ECS.Events.Player.Jump),
-        typeof(Core.ECS.Events.Player.Keyboard),
-        typeof(Core.ECS.Events.Player.LeftMouse),
-        typeof(Core.ECS.Events.Player.Mouse),
-        typeof(Core.ECS.Events.Player.MouseDown),
-        typeof(Core.ECS.Events.Player.MouseScreenPosition),
-        typeof(Core.ECS.Events.Player.MouseUp),
-        typeof(Core.ECS.Events.Player.MouseWorldPosition),
-        typeof(Core.ECS.Events.Player.RightMouse)
+        typeof(Core.ECS.Components.Player.Horizontal),
+        typeof(Core.ECS.Components.Player.Jump),
+        typeof(Core.ECS.Components.Player.Keyboard),
+        typeof(Core.ECS.Components.Player.LeftMouse),
+        typeof(Core.ECS.Components.Player.Mouse),
+        typeof(Core.ECS.Components.Player.MouseDown),
+        typeof(Core.ECS.Components.Player.MouseScreenPosition),
+        typeof(Core.ECS.Components.Player.MouseUp),
+        typeof(Core.ECS.Components.Player.MouseWorldPosition),
+        typeof(Core.ECS.Components.Player.RightMouse)
     };
 }

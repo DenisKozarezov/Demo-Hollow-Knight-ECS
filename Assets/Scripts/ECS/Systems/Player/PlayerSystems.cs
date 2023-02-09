@@ -1,5 +1,4 @@
-﻿using Core.ECS.Events.Player;
-using Core.Models;
+﻿using Core.Models;
 
 namespace Core.ECS.Systems.Player
 {

@@ -7,5 +7,5 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 public interface IPlayerTalkingWithNPCEventListener {
-    void OnPlayerTalkingWithNPCEvent(GameEntity entity, Core.ECS.Components.Units.NPCComponent nPC);
+    void OnPlayerTalkingWithNPCEvent(GameEntity entity, Core.ECS.Components.Units.NPC nPC);
 }

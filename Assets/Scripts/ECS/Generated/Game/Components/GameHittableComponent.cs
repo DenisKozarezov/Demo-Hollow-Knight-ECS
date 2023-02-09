@@ -8,7 +8,7 @@
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Core.ECS.Components.Units.HittableComponent hittableComponent = new Core.ECS.Components.Units.HittableComponent();
+    static readonly Core.ECS.Components.Units.Hittable hittableComponent = new Core.ECS.Components.Units.Hittable();
 
     public bool isHittable {
         get { return HasComponent(GameComponentsLookup.Hittable); }

@@ -8,7 +8,7 @@
 //------------------------------------------------------------------------------
 public partial class InputEntity {
 
-    static readonly Core.ECS.Events.Player.Jump jumpComponent = new Core.ECS.Events.Player.Jump();
+    static readonly Core.ECS.Components.Player.Jump jumpComponent = new Core.ECS.Components.Player.Jump();
 
     public bool isJump {
         get { return HasComponent(InputComponentsLookup.Jump); }

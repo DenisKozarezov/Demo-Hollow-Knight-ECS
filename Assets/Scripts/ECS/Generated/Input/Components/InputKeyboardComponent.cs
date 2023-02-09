@@ -35,7 +35,7 @@ public partial class InputContext {
 //------------------------------------------------------------------------------
 public partial class InputEntity {
 
-    static readonly Core.ECS.Events.Player.Keyboard keyboardComponent = new Core.ECS.Events.Player.Keyboard();
+    static readonly Core.ECS.Components.Player.Keyboard keyboardComponent = new Core.ECS.Components.Player.Keyboard();
 
     public bool isKeyboard {
         get { return HasComponent(InputComponentsLookup.Keyboard); }

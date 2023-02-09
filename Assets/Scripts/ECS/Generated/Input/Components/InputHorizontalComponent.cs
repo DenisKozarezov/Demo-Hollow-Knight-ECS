@@ -8,19 +8,19 @@
 //------------------------------------------------------------------------------
 public partial class InputEntity {
 
-    public Core.ECS.Events.Player.Horizontal horizontal { get { return (Core.ECS.Events.Player.Horizontal)GetComponent(InputComponentsLookup.Horizontal); } }
+    public Core.ECS.Components.Player.Horizontal horizontal { get { return (Core.ECS.Components.Player.Horizontal)GetComponent(InputComponentsLookup.Horizontal); } }
     public bool hasHorizontal { get { return HasComponent(InputComponentsLookup.Horizontal); } }
 
     public void AddHorizontal(float newValue) {
         var index = InputComponentsLookup.Horizontal;
-        var component = (Core.ECS.Events.Player.Horizontal)CreateComponent(index, typeof(Core.ECS.Events.Player.Horizontal));
+        var component = (Core.ECS.Components.Player.Horizontal)CreateComponent(index, typeof(Core.ECS.Components.Player.Horizontal));
         component.Value = newValue;
         AddComponent(index, component);
     }
 
     public void ReplaceHorizontal(float newValue) {
         var index = InputComponentsLookup.Horizontal;
-        var component = (Core.ECS.Events.Player.Horizontal)CreateComponent(index, typeof(Core.ECS.Events.Player.Horizontal));
+        var component = (Core.ECS.Components.Player.Horizontal)CreateComponent(index, typeof(Core.ECS.Components.Player.Horizontal));
         component.Value = newValue;
         ReplaceComponent(index, component);
     }

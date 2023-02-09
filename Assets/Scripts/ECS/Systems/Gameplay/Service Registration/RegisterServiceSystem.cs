@@ -1,6 +1,5 @@
 ﻿using System;
 using Entitas;
-using Core.Services;
 
 namespace Core.ECS.Systems
 {

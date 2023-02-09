@@ -1,7 +1,4 @@
-﻿using Core.ECS.Systems.Camera;
-using Core.ECS.Systems.Player;
-using Core.ECS.Systems.Units;
-using Core.UI;
+﻿using Core.ECS.Systems.Player;
 
 namespace Core.ECS.Systems
 {
@@ -9,6 +6,8 @@ namespace Core.ECS.Systems
     {
         public GameplaySystems(Contexts contexts) : base(nameof(GameplaySystems))
         {
+            Add(new EmitInputSystem(contexts.input));
+
             //Add(new UnitsSystems(contexts));
             //Add(new HitSystem());
             //Add(new DamageSystem());

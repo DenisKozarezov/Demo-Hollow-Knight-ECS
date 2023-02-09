@@ -7,14 +7,21 @@ using Zenject;
 using Core.Models;
 using Core.ECS.Systems;
 using Core.Services;
+using Core.ECS.ViewListeners;
 
 namespace Core.ECS
 {
-    public sealed class ECSStartup : IInitializable, IFixedTickable
+    public sealed class ECSStartup : ITickable
     {
         private readonly AllSystems _allSystems;
 
-        public ECSStartup(IInputService inputSystem, ICoroutineRunnerService coroutineRunner, UnitsModelsProvider modelsProvider, DiContainer container)
+        public ECSStartup(
+            IInputService inputSystem, 
+            ICoroutineRunnerService coroutineRunner, 
+            ILogService logger,
+            IRegisterService<IViewController> collisionRegistry,
+            UnitsModelsProvider modelsProvider, 
+            DiContainer container)
         {
             Contexts contexts = Contexts.sharedInstance;
 
@@ -22,16 +29,15 @@ namespace Core.ECS
             {
                 InputService = inputSystem,
                 CoroutineRunner = coroutineRunner,
+                Logger = logger,
+                CollisionRegistry = collisionRegistry
             };
 
             _allSystems = new AllSystems(contexts, allServices);
-        }
-
-        public void Initialize()
-        {            
             _allSystems.Initialize();
         }
-        public void FixedTick() 
+
+        public void Tick() 
         {
             _allSystems.Execute();
             _allSystems.Cleanup();

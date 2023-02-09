@@ -1,4 +1,5 @@
-﻿using Core.Services;
+﻿using Core.ECS.ViewListeners;
+using Core.Services;
 
 namespace Core.ECS.Systems
 {
@@ -11,13 +12,13 @@ namespace Core.ECS.Systems
             InputContext input = contexts.input;
 
             Add(new RegisterServiceSystem<ILogService>(services.Logger, game.ReplaceLogger));
-            Add(new RegisterServiceSystem<IViewService>(services.ViewService, game.ReplaceViewCreator));
+            //Add(new RegisterServiceSystem<IViewService>(services.ViewService, game.ReplaceViewCreator));
             Add(new RegisterServiceSystem<ITimeService>(services.Time, game.ReplaceTime));
             Add(new RegisterServiceSystem<IInputService>(services.InputService, input.ReplaceInput));
             Add(new RegisterServiceSystem<IPhysicsService>(services.Physics, game.ReplacePhysics));
-            Add(new RegisterServiceSystem<ICoroutineRunnerService>(services.CoroutineDirector, game.ReplaceCoroutineRunner));
-            Add(new RegisterServiceSystem<IRegisterService<IViewController>>(services.CollidingViewRegister, game.ReplaceCollidingViewRegister));
-            Add(new RegisterServiceSystem<IIdentifierService>(services.Identifiers, game.ReplaceIdentifiers));
+            Add(new RegisterServiceSystem<ICoroutineRunnerService>(services.CoroutineRunner, game.ReplaceCoroutineRunner));
+            Add(new RegisterServiceSystem<IRegisterService<IViewController>>(services.CollisionRegistry, game.ReplaceCollisionRegistry));
+            //Add(new RegisterServiceSystem<IIdentifierService>(services.Identifiers, game.ReplaceIdentifiers));
         }
     }
 }

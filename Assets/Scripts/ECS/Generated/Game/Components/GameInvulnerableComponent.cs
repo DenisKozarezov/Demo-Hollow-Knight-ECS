@@ -8,7 +8,7 @@
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Core.ECS.Components.Units.InvulnerableComponent invulnerableComponent = new Core.ECS.Components.Units.InvulnerableComponent();
+    static readonly Core.ECS.Components.Units.Invulnerable invulnerableComponent = new Core.ECS.Components.Units.Invulnerable();
 
     public bool isInvulnerable {
         get { return HasComponent(GameComponentsLookup.Invulnerable); }

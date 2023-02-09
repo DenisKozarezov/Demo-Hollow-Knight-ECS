@@ -15,7 +15,7 @@ namespace Core.ECS.Systems.Player
                     GameMatcher.Player, 
                     GameMatcher.Rigidbody, 
                     GameMatcher.Jump, 
-                    GameMatcher.OnGround).
+                    GameMatcher.Grounded).
                 NoneOf(GameMatcher.Died));
         }
 

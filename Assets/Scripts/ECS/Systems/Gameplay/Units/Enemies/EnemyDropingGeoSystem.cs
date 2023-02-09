@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using Leopotam.Ecs;
 using Core.ECS.Components.Units;
-using Core.ECS.Events.Player;
 
 namespace Core.ECS.Systems.Units
 {

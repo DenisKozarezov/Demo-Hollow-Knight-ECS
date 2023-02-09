@@ -8,19 +8,19 @@
 //------------------------------------------------------------------------------
 public partial class InputEntity {
 
-    public Core.ECS.Events.Player.MouseWorldPosition mouseWorldPosition { get { return (Core.ECS.Events.Player.MouseWorldPosition)GetComponent(InputComponentsLookup.MouseWorldPosition); } }
+    public Core.ECS.Components.Player.MouseWorldPosition mouseWorldPosition { get { return (Core.ECS.Components.Player.MouseWorldPosition)GetComponent(InputComponentsLookup.MouseWorldPosition); } }
     public bool hasMouseWorldPosition { get { return HasComponent(InputComponentsLookup.MouseWorldPosition); } }
 
     public void AddMouseWorldPosition(UnityEngine.Vector2 newValue) {
         var index = InputComponentsLookup.MouseWorldPosition;
-        var component = (Core.ECS.Events.Player.MouseWorldPosition)CreateComponent(index, typeof(Core.ECS.Events.Player.MouseWorldPosition));
+        var component = (Core.ECS.Components.Player.MouseWorldPosition)CreateComponent(index, typeof(Core.ECS.Components.Player.MouseWorldPosition));
         component.Value = newValue;
         AddComponent(index, component);
     }
 
     public void ReplaceMouseWorldPosition(UnityEngine.Vector2 newValue) {
         var index = InputComponentsLookup.MouseWorldPosition;
-        var component = (Core.ECS.Events.Player.MouseWorldPosition)CreateComponent(index, typeof(Core.ECS.Events.Player.MouseWorldPosition));
+        var component = (Core.ECS.Components.Player.MouseWorldPosition)CreateComponent(index, typeof(Core.ECS.Components.Player.MouseWorldPosition));
         component.Value = newValue;
         ReplaceComponent(index, component);
     }

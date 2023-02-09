@@ -8,7 +8,7 @@
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Core.ECS.Components.Units.ChannellingComponent channellingComponent = new Core.ECS.Components.Units.ChannellingComponent();
+    static readonly Core.ECS.Components.Units.Channelling channellingComponent = new Core.ECS.Components.Units.Channelling();
 
     public bool isChannelling {
         get { return HasComponent(GameComponentsLookup.Channelling); }

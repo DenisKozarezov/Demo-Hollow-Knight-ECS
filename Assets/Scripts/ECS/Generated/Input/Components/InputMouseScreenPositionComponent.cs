@@ -8,19 +8,19 @@
 //------------------------------------------------------------------------------
 public partial class InputEntity {
 
-    public Core.ECS.Events.Player.MouseScreenPosition mouseScreenPosition { get { return (Core.ECS.Events.Player.MouseScreenPosition)GetComponent(InputComponentsLookup.MouseScreenPosition); } }
+    public Core.ECS.Components.Player.MouseScreenPosition mouseScreenPosition { get { return (Core.ECS.Components.Player.MouseScreenPosition)GetComponent(InputComponentsLookup.MouseScreenPosition); } }
     public bool hasMouseScreenPosition { get { return HasComponent(InputComponentsLookup.MouseScreenPosition); } }
 
     public void AddMouseScreenPosition(UnityEngine.Vector2 newValue) {
         var index = InputComponentsLookup.MouseScreenPosition;
-        var component = (Core.ECS.Events.Player.MouseScreenPosition)CreateComponent(index, typeof(Core.ECS.Events.Player.MouseScreenPosition));
+        var component = (Core.ECS.Components.Player.MouseScreenPosition)CreateComponent(index, typeof(Core.ECS.Components.Player.MouseScreenPosition));
         component.Value = newValue;
         AddComponent(index, component);
     }
 
     public void ReplaceMouseScreenPosition(UnityEngine.Vector2 newValue) {
         var index = InputComponentsLookup.MouseScreenPosition;
-        var component = (Core.ECS.Events.Player.MouseScreenPosition)CreateComponent(index, typeof(Core.ECS.Events.Player.MouseScreenPosition));
+        var component = (Core.ECS.Components.Player.MouseScreenPosition)CreateComponent(index, typeof(Core.ECS.Components.Player.MouseScreenPosition));
         component.Value = newValue;
         ReplaceComponent(index, component);
     }

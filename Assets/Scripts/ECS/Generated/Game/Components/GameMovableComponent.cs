@@ -8,19 +8,19 @@
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public Core.ECS.Components.Units.MovableComponent movable { get { return (Core.ECS.Components.Units.MovableComponent)GetComponent(GameComponentsLookup.Movable); } }
+    public Core.ECS.Components.Units.Movable movable { get { return (Core.ECS.Components.Units.Movable)GetComponent(GameComponentsLookup.Movable); } }
     public bool hasMovable { get { return HasComponent(GameComponentsLookup.Movable); } }
 
     public void AddMovable(float newValue) {
         var index = GameComponentsLookup.Movable;
-        var component = (Core.ECS.Components.Units.MovableComponent)CreateComponent(index, typeof(Core.ECS.Components.Units.MovableComponent));
+        var component = (Core.ECS.Components.Units.Movable)CreateComponent(index, typeof(Core.ECS.Components.Units.Movable));
         component.Value = newValue;
         AddComponent(index, component);
     }
 
     public void ReplaceMovable(float newValue) {
         var index = GameComponentsLookup.Movable;
-        var component = (Core.ECS.Components.Units.MovableComponent)CreateComponent(index, typeof(Core.ECS.Components.Units.MovableComponent));
+        var component = (Core.ECS.Components.Units.Movable)CreateComponent(index, typeof(Core.ECS.Components.Units.Movable));
         component.Value = newValue;
         ReplaceComponent(index, component);
     }

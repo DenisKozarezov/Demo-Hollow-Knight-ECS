@@ -8,19 +8,19 @@
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public Core.ECS.Components.Units.NPCComponent nPC { get { return (Core.ECS.Components.Units.NPCComponent)GetComponent(GameComponentsLookup.NPC); } }
+    public Core.ECS.Components.Units.NPC nPC { get { return (Core.ECS.Components.Units.NPC)GetComponent(GameComponentsLookup.NPC); } }
     public bool hasNPC { get { return HasComponent(GameComponentsLookup.NPC); } }
 
     public void AddNPC(System.Collections.Generic.List<Core.Models.ConversationContext> newConversations) {
         var index = GameComponentsLookup.NPC;
-        var component = (Core.ECS.Components.Units.NPCComponent)CreateComponent(index, typeof(Core.ECS.Components.Units.NPCComponent));
+        var component = (Core.ECS.Components.Units.NPC)CreateComponent(index, typeof(Core.ECS.Components.Units.NPC));
         component.Conversations = newConversations;
         AddComponent(index, component);
     }
 
     public void ReplaceNPC(System.Collections.Generic.List<Core.Models.ConversationContext> newConversations) {
         var index = GameComponentsLookup.NPC;
-        var component = (Core.ECS.Components.Units.NPCComponent)CreateComponent(index, typeof(Core.ECS.Components.Units.NPCComponent));
+        var component = (Core.ECS.Components.Units.NPC)CreateComponent(index, typeof(Core.ECS.Components.Units.NPC));
         component.Conversations = newConversations;
         ReplaceComponent(index, component);
     }

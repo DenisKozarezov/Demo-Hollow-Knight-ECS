@@ -1,8 +1,8 @@
 using UnityEngine;
 using Zenject;
 using Core.ECS;
-using Core.Input;
 using Core.Models;
+using Core.Services;
 
 namespace Core.Infrastructure.Installers
 {
@@ -13,8 +13,7 @@ namespace Core.Infrastructure.Installers
 
         public override void InstallBindings()
         {        
-            Container.Bind<ICoroutineRunner>().To<AsyncProcessor>().FromNewComponentOnNewGameObject().AsSingle();
-            Container.BindInterfacesTo<ECSStartup>().AsSingle();
+            Container.BindInterfacesTo<ECSStartup>().AsSingle().NonLazy();
 
             BindPools();
             BindPlayer();

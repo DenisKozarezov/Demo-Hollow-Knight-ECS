@@ -8,22 +8,20 @@
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public Core.ECS.Components.Units.DamageComponent damage { get { return (Core.ECS.Components.Units.DamageComponent)GetComponent(GameComponentsLookup.Damage); } }
+    public Core.ECS.Components.Units.Damage damage { get { return (Core.ECS.Components.Units.Damage)GetComponent(GameComponentsLookup.Damage); } }
     public bool hasDamage { get { return HasComponent(GameComponentsLookup.Damage); } }
 
-    public void AddDamage(int newDamage, float newAttackRange) {
+    public void AddDamage(float newValue) {
         var index = GameComponentsLookup.Damage;
-        var component = (Core.ECS.Components.Units.DamageComponent)CreateComponent(index, typeof(Core.ECS.Components.Units.DamageComponent));
-        component.Damage = newDamage;
-        component.AttackRange = newAttackRange;
+        var component = (Core.ECS.Components.Units.Damage)CreateComponent(index, typeof(Core.ECS.Components.Units.Damage));
+        component.Value = newValue;
         AddComponent(index, component);
     }
 
-    public void ReplaceDamage(int newDamage, float newAttackRange) {
+    public void ReplaceDamage(float newValue) {
         var index = GameComponentsLookup.Damage;
-        var component = (Core.ECS.Components.Units.DamageComponent)CreateComponent(index, typeof(Core.ECS.Components.Units.DamageComponent));
-        component.Damage = newDamage;
-        component.AttackRange = newAttackRange;
+        var component = (Core.ECS.Components.Units.Damage)CreateComponent(index, typeof(Core.ECS.Components.Units.Damage));
+        component.Value = newValue;
         ReplaceComponent(index, component);
     }
 

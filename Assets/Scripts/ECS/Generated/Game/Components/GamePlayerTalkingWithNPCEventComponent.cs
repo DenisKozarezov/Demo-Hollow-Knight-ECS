@@ -8,19 +8,19 @@
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public Core.ECS.Events.Player.PlayerTalkingWithNPCEvent playerTalkingWithNPCEvent { get { return (Core.ECS.Events.Player.PlayerTalkingWithNPCEvent)GetComponent(GameComponentsLookup.PlayerTalkingWithNPCEvent); } }
+    public Core.ECS.Components.Player.PlayerTalkingWithNPCEvent playerTalkingWithNPCEvent { get { return (Core.ECS.Components.Player.PlayerTalkingWithNPCEvent)GetComponent(GameComponentsLookup.PlayerTalkingWithNPCEvent); } }
     public bool hasPlayerTalkingWithNPCEvent { get { return HasComponent(GameComponentsLookup.PlayerTalkingWithNPCEvent); } }
 
-    public void AddPlayerTalkingWithNPCEvent(Core.ECS.Components.Units.NPCComponent newNPC) {
+    public void AddPlayerTalkingWithNPCEvent(Core.ECS.Components.Units.NPC newNPC) {
         var index = GameComponentsLookup.PlayerTalkingWithNPCEvent;
-        var component = (Core.ECS.Events.Player.PlayerTalkingWithNPCEvent)CreateComponent(index, typeof(Core.ECS.Events.Player.PlayerTalkingWithNPCEvent));
+        var component = (Core.ECS.Components.Player.PlayerTalkingWithNPCEvent)CreateComponent(index, typeof(Core.ECS.Components.Player.PlayerTalkingWithNPCEvent));
         component.NPC = newNPC;
         AddComponent(index, component);
     }
 
-    public void ReplacePlayerTalkingWithNPCEvent(Core.ECS.Components.Units.NPCComponent newNPC) {
+    public void ReplacePlayerTalkingWithNPCEvent(Core.ECS.Components.Units.NPC newNPC) {
         var index = GameComponentsLookup.PlayerTalkingWithNPCEvent;
-        var component = (Core.ECS.Events.Player.PlayerTalkingWithNPCEvent)CreateComponent(index, typeof(Core.ECS.Events.Player.PlayerTalkingWithNPCEvent));
+        var component = (Core.ECS.Components.Player.PlayerTalkingWithNPCEvent)CreateComponent(index, typeof(Core.ECS.Components.Player.PlayerTalkingWithNPCEvent));
         component.NPC = newNPC;
         ReplaceComponent(index, component);
     }

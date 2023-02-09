@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
 using Core.Models;
-using Core.ECS.Events.Player;
 using Voody.UniLeo;
 
 namespace Core.Units

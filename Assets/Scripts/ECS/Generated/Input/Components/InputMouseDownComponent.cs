@@ -8,7 +8,7 @@
 //------------------------------------------------------------------------------
 public partial class InputEntity {
 
-    static readonly Core.ECS.Events.Player.MouseDown mouseDownComponent = new Core.ECS.Events.Player.MouseDown();
+    static readonly Core.ECS.Components.Player.MouseDown mouseDownComponent = new Core.ECS.Components.Player.MouseDown();
 
     public bool isMouseDown {
         get { return HasComponent(InputComponentsLookup.MouseDown); }

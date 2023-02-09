@@ -11,42 +11,46 @@ namespace Core.Services
 
         public IEnumerable<GameEntity> RaycastThroughScreenPoint(Vector2 position, int layerMask)
         {
-            Vector3 worldPos = Camera.main.ScreenToWorldPoint(position);
-            int hitCount = Raycast(worldPos, Hits, layerMask);
+            yield return null;
 
-            for (int i = 0; i < hitCount; i++)
-            {
-                RaycastHit2D hit = Hits[i];
-                if (hit.collider == null) continue;
+            //Vector3 worldPos = Camera.main.ScreenToWorldPoint(position);
+            //int hitCount = Raycast(worldPos, Hits, layerMask);
 
-                IViewController controller = TakeViewController(hit.collider.GetInstanceID());
-                if (controller == null) continue;
+            //for (int i = 0; i < hitCount; i++)
+            //{
+            //    RaycastHit2D hit = Hits[i];
+            //    if (hit.collider == null) continue;
 
-                yield return controller.Entity;
-            }
+            //    IViewController controller = TakeViewController(hit.collider.GetInstanceID());
+            //    if (controller == null) continue;
+
+            //    yield return controller.Entity;
+            //}
         }
 
         public IEnumerable<GameEntity> RaycastCircle(Vector3 position, float radius, int layerMask)
         {
-            int hitCount = Overlap(position, radius, CircleCastHits, layerMask);
+            yield return null;
 
-            for (int i = 0; i < hitCount; i++)
-            {
-                IViewController controller = TakeViewController(CircleCastHits[i].GetInstanceID());
-                if (controller == null) continue;
+            //int hitCount = Overlap(position, radius, CircleCastHits, layerMask);
 
-                yield return controller.Entity;
-            }
+            //for (int i = 0; i < hitCount; i++)
+            //{
+            //    IViewController controller = TakeViewController(CircleCastHits[i].GetInstanceID());
+            //    if (controller == null) continue;
+
+            //    yield return controller.Entity;
+            //}
         }
 
-        private static IViewController TakeViewController(int instanceId)
-        {
-            IViewController viewController =
-              Game()
-                .CollidingViewRegister
-                .Take(instanceId);
-            return viewController;
-        }
+        //private static IViewController TakeViewController(int instanceId)
+        //{
+        //    IViewController viewController =
+        //      Game()
+        //        .CollidingViewRegister
+        //        .Take(instanceId);
+        //    return viewController;
+        //}
 
         private static int Raycast(Vector2 worldPos, RaycastHit2D[] hits, int layerMask) =>
           Physics2D.LinecastNonAlloc(worldPos, worldPos, hits, layerMask);
