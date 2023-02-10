@@ -17,7 +17,7 @@ namespace Core.ECS.ViewListeners
 
             OnGrounded(_entity);
         }
-        public void UnregisterListeners(IEntity with) => _entity.RemoveGroundedListener();
+        public void UnregisterListeners() => _entity.RemoveGroundedListener();
         public void OnGrounded(GameEntity entity)
         {
             if (entity.isGrounded) _animator.SetBool("OnGround", true);

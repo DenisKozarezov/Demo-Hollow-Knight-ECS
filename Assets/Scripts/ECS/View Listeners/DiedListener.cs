@@ -15,7 +15,7 @@ namespace Core.ECS.ViewListeners
 
             _animator = GetComponent<Animator>();
         }
-        public void UnregisterListeners(IEntity with) => _entity.RemoveDiedListener();
+        public void UnregisterListeners() => _entity.RemoveDiedListener();
         public void OnDied(GameEntity entity) => _animator.SetTrigger("Death");
     }
 }

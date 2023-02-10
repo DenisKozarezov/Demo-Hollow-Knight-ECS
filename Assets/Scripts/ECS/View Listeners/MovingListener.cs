@@ -16,7 +16,7 @@ namespace Core.ECS.ViewListeners
 
             _animator = GetComponent<Animator>();
         }
-        public void UnregisterListeners(IEntity with)
+        public void UnregisterListeners()
         {
             _entity.RemoveMovingListener();
             _entity.RemoveStoppedMovingListener();

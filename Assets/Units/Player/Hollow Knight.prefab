@@ -15,13 +15,14 @@ GameObject:
   - component: {fileID: 339477802832129856}
   - component: {fileID: 153767733}
   - component: {fileID: 1613676012003623090}
-  - component: {fileID: 7267287850463270687}
+  - component: {fileID: -8293775520197583309}
   - component: {fileID: 4494509838194868046}
   - component: {fileID: -92748591047205707}
   - component: {fileID: -3996495478625468333}
   - component: {fileID: 8434034826383381070}
   - component: {fileID: -1655669454153687919}
   - component: {fileID: -7531990146596059660}
+  - component: {fileID: -4829130409686639569}
   - component: {fileID: -3931304891480881340}
   m_Layer: 8
   m_Name: Hollow Knight
@@ -292,7 +293,7 @@ MonoBehaviour:
   m_ShapePathHash: -1639614098
   m_Mesh: {fileID: 0}
   m_InstanceId: 30644
---- !u!114 &7267287850463270687
+--- !u!114 &-8293775520197583309
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -301,9 +302,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 339477802832129857}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73df85ad203b2c543b653fd3e6a4c251, type: 3}
+  m_Script: {fileID: 11500000, guid: bfe08c27e079bc6409635de72b78ee62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerModel: {fileID: 11400000, guid: 6e0309b48a7b8744781be1332167abb1, type: 2}
 --- !u!114 &4494509838194868046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -374,6 +376,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 439ce8731671aed4d8e71a4658cb4025, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-4829130409686639569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 339477802832129857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8406539559e97f14daac7d02290a06d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &-3931304891480881340

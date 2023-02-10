@@ -14,7 +14,7 @@ namespace Core.ECS.ViewListeners
 
             UpdateCurrentDirection();
         }
-        public void UnregisterListeners(IEntity with) => _entity.RemoveDirectionListener();
+        public void UnregisterListeners() => _entity.RemoveDirectionListener();
         public void OnDirection(GameEntity entity, float direction)
         {
             Vector3 localScale = transform.localScale;

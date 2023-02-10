@@ -6,17 +6,17 @@ namespace Core.ECS.Systems.Player
 {
     public sealed class PlayerJumpSystem : ReactiveSystem<InputEntity>
     {
-        private readonly IGroup<GameEntity> _heroes;
+        private readonly IGroup<GameEntity> _players;
 
         public PlayerJumpSystem(GameContext game, InputContext input) : base(input)
         {
-            _heroes = game.GetGroup(
+            _players = game.GetGroup(
                 GameMatcher.AllOf(
                     GameMatcher.Player, 
                     GameMatcher.Rigidbody, 
                     GameMatcher.Jump, 
                     GameMatcher.Grounded).
-                NoneOf(GameMatcher.Died));
+                NoneOf(GameMatcher.Jumping, GameMatcher.Died));
         }
 
         protected override bool Filter(InputEntity entity)
@@ -31,11 +31,11 @@ namespace Core.ECS.Systems.Player
         {
             foreach (InputEntity _ in entities)
             {
-                foreach (GameEntity hero in _heroes.GetEntities())
+                foreach (GameEntity player in _players)
                 {
-                    float jumpHeight = hero.jump.JumpForceRange.x;
+                    float jumpHeight = player.jump.JumpForceRange.x;
                     float jumpForce = Utils.CalculateJumpForce(Physics2D.gravity.magnitude, jumpHeight);
-                    hero.rigidbody.Value.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+                    player.rigidbody.Value.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
                 }
             }
         }       

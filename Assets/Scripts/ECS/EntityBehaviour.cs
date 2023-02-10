@@ -5,17 +5,25 @@ namespace Core.ECS
 {
     public class EntityBehaviour : MonoBehaviour
     {
-        private void Awake()
+        protected GameEntity Entity { get; private set; }
+        protected GameContext Game { get; private set; }
+
+        protected virtual void Awake()
         {
-            var entity = Contexts.sharedInstance.game.CreateEntity();
+            Game = Contexts.sharedInstance.game;
+            Entity = Game.CreateEntity();
 
             var viewController = gameObject.AddComponent<UnityViewController>();
-            viewController.InitializeView(Contexts.sharedInstance.game, entity);
+            viewController.InitializeView(Contexts.sharedInstance.game, Entity);
 
             foreach (var listener in GetComponents<IEventListener>())
             {
-                listener.RegisterListeners(entity);
+                listener.RegisterListeners(Entity);
             }
         }
+        protected virtual void Start() { }
+        protected virtual void OnDestroy() { }
+        protected virtual void OnEnable() { }
+        protected virtual void OnDisable() { }
     }
 }

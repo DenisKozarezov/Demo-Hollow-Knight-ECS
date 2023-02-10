@@ -14,7 +14,7 @@ namespace Core.ECS.ViewListeners
 
             OnDestroyed(_entity);
         }
-        public void UnregisterListeners(IEntity with) => _entity.RemoveDestroyedListener();
+        public void UnregisterListeners() => _entity.RemoveDestroyedListener();
         public void OnDestroyed(GameEntity entity)
         {
             if (entity.isDestroyed)

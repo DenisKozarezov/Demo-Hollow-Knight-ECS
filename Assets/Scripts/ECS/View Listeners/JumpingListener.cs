@@ -13,7 +13,7 @@ namespace Core.ECS.ViewListeners
             _entity = (GameEntity)entity;
             _entity.AddJumpingListener(this);
         }
-        public void UnregisterListeners(IEntity with)
+        public void UnregisterListeners()
         {
             _entity.RemoveMovingListener();
             _entity.RemoveStoppedMovingListener();

@@ -4,10 +4,9 @@
  *******************************************/
 
 using Zenject;
-using Core.Models;
 using Core.ECS.Systems;
-using Core.Services;
 using Core.ECS.ViewListeners;
+using Core.Services;
 
 namespace Core.ECS
 {
@@ -20,8 +19,8 @@ namespace Core.ECS
             ICoroutineRunnerService coroutineRunner, 
             ILogService logger,
             IRegisterService<IViewController> collisionRegistry,
-            UnitsModelsProvider modelsProvider, 
-            DiContainer container)
+            ITimeService time,
+            IPhysicsService physics)
         {
             Contexts contexts = Contexts.sharedInstance;
 
@@ -30,6 +29,8 @@ namespace Core.ECS
                 InputService = inputSystem,
                 CoroutineRunner = coroutineRunner,
                 Logger = logger,
+                Time = time,
+                Physics = physics,
                 CollisionRegistry = collisionRegistry
             };
 

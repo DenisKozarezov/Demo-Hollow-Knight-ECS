@@ -27,7 +27,7 @@ namespace Core.ECS.ViewListeners
         public void Destroy()
         {
             UnregisterCollisions();
-            UnregisterListeners(Entity);
+            UnregisterListeners();
             gameObject.DestroyGameObject();
         }
 
@@ -45,10 +45,10 @@ namespace Core.ECS.ViewListeners
             var spriteRenderer = GetComponent<SpriteRenderer>();
             if (spriteRenderer != null) Entity.AddSpriteRenderer(spriteRenderer);
         }
-        private void UnregisterListeners(IEntity entity)
+        private void UnregisterListeners()
         {
             foreach (IEventListener listener in GetComponents<IEventListener>())
-                listener.UnregisterListeners(entity);
+                listener.UnregisterListeners();
         }
         private void AddDestroyedListener()
         {

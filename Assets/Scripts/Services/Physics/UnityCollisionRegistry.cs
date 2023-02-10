@@ -17,9 +17,13 @@ namespace Core.Services
             if (_allControllersById.ContainsKey(instanceId))
                 _allControllersById.Remove(instanceId);
         }
-        public IViewController Take(int key) =>
-          _allControllersById.TryGetValue(key, out IViewController behaviour)
-            ? behaviour
-            : null;
+        public IViewController Take(int key)
+        {
+            if (_allControllersById.TryGetValue(key, out IViewController behaviour))
+            {
+                return behaviour;
+            }
+            return null;
+        }
     }
 }

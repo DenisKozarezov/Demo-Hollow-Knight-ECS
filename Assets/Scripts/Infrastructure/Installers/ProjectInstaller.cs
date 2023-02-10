@@ -11,6 +11,8 @@ namespace Core.Infrastructure.Installers
             Container.Bind<ICoroutineRunnerService>().To<UnityCoroutineRunner>().FromNewComponentOnNewGameObject().AsSingle().NonLazy();
             Container.Bind<ILogService>().To<UnityDebugLogService>().AsSingle().NonLazy();
             Container.Bind<IRegisterService<IViewController>>().To<UnityCollisionRegistry>().AsSingle().NonLazy();
+            Container.Bind<ITimeService>().To<UnityTimeService>().AsSingle().NonLazy();
+            Container.Bind<IPhysicsService>().To<UnityPhysicsService>().AsSingle().NonLazy();
         }
     }
 }

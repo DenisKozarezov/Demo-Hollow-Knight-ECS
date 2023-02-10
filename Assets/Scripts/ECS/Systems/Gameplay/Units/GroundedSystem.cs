@@ -4,15 +4,14 @@ namespace Core
 {
     public sealed class GroundedSystem : IExecuteSystem
     {
-        private readonly IGroup<GameEntity> _heroes;
+        private readonly IGroup<GameEntity> _entities;
         public GroundedSystem(GameContext game)
         {
-            _heroes = game.GetGroup(GameMatcher.AllOf(GameMatcher.Grounded, GameMatcher.Jumping));
+            _entities = game.GetGroup(GameMatcher.AllOf(GameMatcher.Grounded, GameMatcher.Jumping));
         }
         public void Execute()
         {
-            foreach (GameEntity hero in _heroes.GetEntities())
-                hero.isJumping = false;
+            foreach (GameEntity entity in _entities) entity.isJumping = false;
         }
     }
 }
