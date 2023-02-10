@@ -12,20 +12,19 @@ namespace Core.ECS.Systems.Player
         public PlayerMoveSystem(GameContext game, InputContext input)
         {
             _game = game;
-            _players = game.GetGroup(GameMatcher.Player);
+            _players = game.GetGroup(GameMatcher
+                .AllOf(GameMatcher.Player)
+                .NoneOf(GameMatcher.Dead));
             _inputs = input.GetGroup(InputMatcher.Horizontal);
         }
 
         private void Move(GameEntity player, float horizontal, float speed)
         {
-            player.isMoving = true;
             player.isStoppedMoving = false;
 
             Vector2 newPosition = player.position.Value + Vector2.right * horizontal * speed * _game.time.Value.DeltaTime;
             newPosition.y = player.rigidbody.Value.position.y;
-            player.ReplacePosition(newPosition);
-
-            UpdateDirection(player, horizontal);
+            player.ReplacePosition(newPosition);   
         }
         private void UpdateDirection(GameEntity player, float horizontal)
         {
@@ -45,8 +44,15 @@ namespace Core.ECS.Systems.Player
                     float direction = input.horizontal.Value;
                     float speed = player.movable.Value;
 
-                    if (Mathf.Abs(direction) > 0)
-                        Move(player, Mathf.Sign(direction), speed);
+                    player.isMoving = Mathf.Abs(direction) > 0f;
+                    player.isStoppedMoving = !player.isMoving;
+
+                    if (player.isMoving)
+                    {
+                        int sign = System.Math.Sign(direction);
+                        Move(player, horizontal: sign, speed);
+                        UpdateDirection(player, horizontal: sign);
+                    }
                 }
             }
         }                 

@@ -1,4 +1,5 @@
 ﻿using Core.ECS.Systems.Player;
+using Core.ECS.Systems.Units;
 
 namespace Core.ECS.Systems
 {
@@ -8,10 +9,10 @@ namespace Core.ECS.Systems
         {
             Add(new EmitInputSystem(contexts.input));
 
-            //Add(new UnitsSystems(contexts));
             //Add(new HitSystem());
             //Add(new DamageSystem());
-            Add(new HealthSystem(contexts));
+            Add(new HealthSystem(contexts.game));
+            Add(new UnitsSystems(contexts));
             Add(new PlayerSystems(contexts));
             //Add(new DialogueSystem(context.DiContainer.Resolve<DialogueUIView>()));
             //Add(new BehaviourTreeSystem());

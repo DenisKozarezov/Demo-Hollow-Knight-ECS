@@ -22,9 +22,9 @@ namespace Core.ECS.Components.Units
     public sealed class NPC : IComponent { public List<ConversationContext> Conversations; }
 
     // Characteristics
-    public sealed class CurrentHp : IComponent { public float Value; }
-    public sealed class MaxHp : IComponent { public float Value; }
-    public sealed class Damage : IComponent { public float Value; }
+    public sealed class CurrentHp : IComponent { public int Value; }
+    public sealed class MaxHp : IComponent { public int Value; }
+    public sealed class Damage : IComponent { public int Value; }
     public sealed class AttackRange : IComponent { public float Value; }
     public sealed class Movable : IComponent { public float Value; }
     public sealed class JumpComponent : IComponent { public Vector2 JumpForceRange; }

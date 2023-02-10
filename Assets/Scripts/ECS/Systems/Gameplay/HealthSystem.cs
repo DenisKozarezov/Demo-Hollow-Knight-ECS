@@ -5,7 +5,7 @@ namespace Core.ECS.Systems
 {
     public sealed class HealthSystem : ReactiveSystem<GameEntity>
     {
-        public HealthSystem(Contexts contexts) : base(contexts.game) { }
+        public HealthSystem(GameContext game) : base(game) { }
 
         protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
         {

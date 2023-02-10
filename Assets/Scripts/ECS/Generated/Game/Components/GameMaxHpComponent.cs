@@ -11,14 +11,14 @@ public partial class GameEntity {
     public Core.ECS.Components.Units.MaxHp maxHp { get { return (Core.ECS.Components.Units.MaxHp)GetComponent(GameComponentsLookup.MaxHp); } }
     public bool hasMaxHp { get { return HasComponent(GameComponentsLookup.MaxHp); } }
 
-    public void AddMaxHp(float newValue) {
+    public void AddMaxHp(int newValue) {
         var index = GameComponentsLookup.MaxHp;
         var component = (Core.ECS.Components.Units.MaxHp)CreateComponent(index, typeof(Core.ECS.Components.Units.MaxHp));
         component.Value = newValue;
         AddComponent(index, component);
     }
 
-    public void ReplaceMaxHp(float newValue) {
+    public void ReplaceMaxHp(int newValue) {
         var index = GameComponentsLookup.MaxHp;
         var component = (Core.ECS.Components.Units.MaxHp)CreateComponent(index, typeof(Core.ECS.Components.Units.MaxHp));
         component.Value = newValue;

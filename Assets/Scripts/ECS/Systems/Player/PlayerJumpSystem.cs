@@ -10,13 +10,13 @@ namespace Core.ECS.Systems.Player
 
         public PlayerJumpSystem(GameContext game, InputContext input) : base(input)
         {
-            _players = game.GetGroup(
-                GameMatcher.AllOf(
+            _players = game.GetGroup(GameMatcher
+                .AllOf(
                     GameMatcher.Player, 
                     GameMatcher.Rigidbody, 
                     GameMatcher.Jump, 
-                    GameMatcher.Grounded).
-                NoneOf(GameMatcher.Jumping, GameMatcher.Died));
+                    GameMatcher.Grounded)
+                .NoneOf(GameMatcher.Jumping, GameMatcher.Dead));
         }
 
         protected override bool Filter(InputEntity entity)
@@ -31,8 +31,10 @@ namespace Core.ECS.Systems.Player
         {
             foreach (InputEntity _ in entities)
             {
-                foreach (GameEntity player in _players)
+                foreach (GameEntity player in _players.GetEntities())
                 {
+                    player.isJumping = true;
+
                     float jumpHeight = player.jump.JumpForceRange.x;
                     float jumpForce = Utils.CalculateJumpForce(Physics2D.gravity.magnitude, jumpHeight);
                     player.rigidbody.Value.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);

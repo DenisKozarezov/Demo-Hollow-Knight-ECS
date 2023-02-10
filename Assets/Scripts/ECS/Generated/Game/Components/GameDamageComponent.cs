@@ -11,14 +11,14 @@ public partial class GameEntity {
     public Core.ECS.Components.Units.Damage damage { get { return (Core.ECS.Components.Units.Damage)GetComponent(GameComponentsLookup.Damage); } }
     public bool hasDamage { get { return HasComponent(GameComponentsLookup.Damage); } }
 
-    public void AddDamage(float newValue) {
+    public void AddDamage(int newValue) {
         var index = GameComponentsLookup.Damage;
         var component = (Core.ECS.Components.Units.Damage)CreateComponent(index, typeof(Core.ECS.Components.Units.Damage));
         component.Value = newValue;
         AddComponent(index, component);
     }
 
-    public void ReplaceDamage(float newValue) {
+    public void ReplaceDamage(int newValue) {
         var index = GameComponentsLookup.Damage;
         var component = (Core.ECS.Components.Units.Damage)CreateComponent(index, typeof(Core.ECS.Components.Units.Damage));
         component.Value = newValue;

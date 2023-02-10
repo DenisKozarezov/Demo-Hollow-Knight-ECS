@@ -10,6 +10,7 @@
             //Add(new FalseKnightAttackAnimationSystem());
             //Add(new CreateDustCloudSystem());
             //Add(new DamageAnimationSystem());
+            Add(new FallingSystem(contexts.game));
             Add(new GroundedSystem(contexts.game));
         }
     }

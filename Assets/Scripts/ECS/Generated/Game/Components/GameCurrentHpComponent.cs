@@ -11,14 +11,14 @@ public partial class GameEntity {
     public Core.ECS.Components.Units.CurrentHp currentHp { get { return (Core.ECS.Components.Units.CurrentHp)GetComponent(GameComponentsLookup.CurrentHp); } }
     public bool hasCurrentHp { get { return HasComponent(GameComponentsLookup.CurrentHp); } }
 
-    public void AddCurrentHp(float newValue) {
+    public void AddCurrentHp(int newValue) {
         var index = GameComponentsLookup.CurrentHp;
         var component = (Core.ECS.Components.Units.CurrentHp)CreateComponent(index, typeof(Core.ECS.Components.Units.CurrentHp));
         component.Value = newValue;
         AddComponent(index, component);
     }
 
-    public void ReplaceCurrentHp(float newValue) {
+    public void ReplaceCurrentHp(int newValue) {
         var index = GameComponentsLookup.CurrentHp;
         var component = (Core.ECS.Components.Units.CurrentHp)CreateComponent(index, typeof(Core.ECS.Components.Units.CurrentHp));
         component.Value = newValue;
