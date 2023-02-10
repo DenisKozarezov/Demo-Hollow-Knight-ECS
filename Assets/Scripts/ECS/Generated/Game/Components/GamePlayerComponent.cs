@@ -8,7 +8,7 @@
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Core.ECS.Components.Player.PlayerComponent playerComponent = new Core.ECS.Components.Player.PlayerComponent();
+    static readonly Core.ECS.Components.Player.Player playerComponent = new Core.ECS.Components.Player.Player();
 
     public bool isPlayer {
         get { return HasComponent(GameComponentsLookup.Player); }

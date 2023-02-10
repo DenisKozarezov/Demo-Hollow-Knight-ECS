@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Entitas;
@@ -9,31 +8,30 @@ using static Entitas.CodeGeneration.Attributes.EventTarget;
 
 namespace Core.ECS.Components.Units
 {  
+    // Unity Components
     public sealed class RigidbodyComponent : IComponent { public Rigidbody2D Value; }
     public sealed class ColliderComponent : IComponent { public Collider2D Value; }
     public sealed class AnimatorComponent : IComponent { public Animator Value; }
     public sealed class TransformComponent : IComponent { public Transform Value; }
     public sealed class SpriteRendererComponent : IComponent { public SpriteRenderer Value; }
-    public sealed class NPC : IComponent { public List<ConversationContext> Conversations; }
-    public sealed class BehaviourTreeComponent : IComponent
-    {
-        public BehaviourTree.Runtime.BehaviourTree BehaviourTree;
-        [NonSerialized] public bool Initialized;
-    }
+    public sealed class BehaviourTreeComponent : IComponent { public BehaviourTree.Runtime.BehaviourTree BehaviourTree; }
 
+    // Tags
+    public sealed class Unit : IComponent { }
+    public sealed class Enemy : IComponent { }
+    public sealed class NPC : IComponent { public List<ConversationContext> Conversations; }
+
+    // Characteristics
     public sealed class CurrentHp : IComponent { public float Value; }
     public sealed class MaxHp : IComponent { public float Value; }
     public sealed class Damage : IComponent { public float Value; }
     public sealed class AttackRange : IComponent { public float Value; }
     public sealed class Movable : IComponent { public float Value; }
     public sealed class JumpComponent : IComponent { public Vector2 JumpForceRange; }
-    public sealed class EnemyComponent : IComponent { public EnemyModel EnemyModel; }
     public sealed class CanAttack : IComponent { }
-    public sealed class UnitComponent : IComponent { }
     public sealed class Dead : IComponent { }
     public sealed class Invulnerable : IComponent { }   
     public sealed class Channelling : IComponent { }
-    public sealed class FalseKnight : IComponent { }
 
     public sealed class Hittable : IComponent { }
     public sealed class Collided : IComponent { }

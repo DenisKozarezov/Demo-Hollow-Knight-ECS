@@ -8,7 +8,7 @@
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Core.ECS.Components.Units.UnitComponent unitComponent = new Core.ECS.Components.Units.UnitComponent();
+    static readonly Core.ECS.Components.Units.Unit unitComponent = new Core.ECS.Components.Units.Unit();
 
     public bool isUnit {
         get { return HasComponent(GameComponentsLookup.Unit); }

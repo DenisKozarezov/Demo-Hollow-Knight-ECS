@@ -1,36 +1,28 @@
-﻿using UnityEngine;
-using Leopotam.Ecs;
-using Core.ECS.Components.Units;
+﻿using System.Collections.Generic;
+using Entitas;
 
 namespace Core.ECS.Systems
 {
-    public sealed class HealthSystem /*: IEcsRunSystem*/
+    public sealed class HealthSystem : ReactiveSystem<GameEntity>
     {
-//        private readonly EcsFilter<HealthComponent, AnimatorComponent>.Exclude<DiedComponent> _filter = null;
+        public HealthSystem(Contexts contexts) : base(contexts.game) { }
 
-//        private const string DEATH_KEY = "Death";
-
-//        void IEcsRunSystem.Run()
-//        {
-//            foreach (var i in _filter)
-//            {
-//                ref var entity = ref _filter.GetEntity(i);
-//                ref var healthComponent = ref _filter.Get1(i);
-//                ref var animatorComponent = ref _filter.Get2(i);
-
-//                if (healthComponent.Health <= 0)
-//                {
-//                    // Play dead
-//                    animatorComponent.Value.SetTrigger(DEATH_KEY);
-
-//#if UNITY_EDITOR
-//                    Debug.Log($"Unit <b><color=yellow>{animatorComponent.Value.name}</color></b> <b><color=red>died</color></b>.");
-//#endif
-
-//                    // Add died component
-//                    entity.Get<DiedComponent>();
-//                }
-//            }
-//        }
+        protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
+        {
+            return context.CreateCollector(GameMatcher
+                .AllOf(GameMatcher.CurrentHp)
+                .NoneOf(GameMatcher.Dead));
+        }
+        protected override bool Filter(GameEntity entity)
+        {
+            return entity.hasCurrentHp;
+        }
+        protected override void Execute(List<GameEntity> entities)
+        {
+            foreach (var entity in entities)
+            {
+                if (entity.currentHp.Value <= 0f) entity.isDead = true;
+            }
+        } 
     }
 }

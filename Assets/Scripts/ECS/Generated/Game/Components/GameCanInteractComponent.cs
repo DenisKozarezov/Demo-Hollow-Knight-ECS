@@ -8,27 +8,25 @@
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public Core.ECS.Components.Player.CanInteractComponent canInteract { get { return (Core.ECS.Components.Player.CanInteractComponent)GetComponent(GameComponentsLookup.CanInteract); } }
-    public bool hasCanInteract { get { return HasComponent(GameComponentsLookup.CanInteract); } }
+    static readonly Core.ECS.Components.Player.CanInteract canInteractComponent = new Core.ECS.Components.Player.CanInteract();
 
-    public void AddCanInteract(Leopotam.Ecs.EcsEntity newInteractableEntity, Core.ECS.Components.InteractableComponent newInteractableComponent) {
-        var index = GameComponentsLookup.CanInteract;
-        var component = (Core.ECS.Components.Player.CanInteractComponent)CreateComponent(index, typeof(Core.ECS.Components.Player.CanInteractComponent));
-        component.InteractableEntity = newInteractableEntity;
-        component.InteractableComponent = newInteractableComponent;
-        AddComponent(index, component);
-    }
+    public bool isCanInteract {
+        get { return HasComponent(GameComponentsLookup.CanInteract); }
+        set {
+            if (value != isCanInteract) {
+                var index = GameComponentsLookup.CanInteract;
+                if (value) {
+                    var componentPool = GetComponentPool(index);
+                    var component = componentPool.Count > 0
+                            ? componentPool.Pop()
+                            : canInteractComponent;
 
-    public void ReplaceCanInteract(Leopotam.Ecs.EcsEntity newInteractableEntity, Core.ECS.Components.InteractableComponent newInteractableComponent) {
-        var index = GameComponentsLookup.CanInteract;
-        var component = (Core.ECS.Components.Player.CanInteractComponent)CreateComponent(index, typeof(Core.ECS.Components.Player.CanInteractComponent));
-        component.InteractableEntity = newInteractableEntity;
-        component.InteractableComponent = newInteractableComponent;
-        ReplaceComponent(index, component);
-    }
-
-    public void RemoveCanInteract() {
-        RemoveComponent(GameComponentsLookup.CanInteract);
+                    AddComponent(index, component);
+                } else {
+                    RemoveComponent(index);
+                }
+            }
+        }
     }
 }
 

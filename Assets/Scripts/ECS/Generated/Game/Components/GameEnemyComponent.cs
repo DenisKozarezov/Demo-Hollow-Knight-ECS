@@ -8,25 +8,25 @@
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public Core.ECS.Components.Units.EnemyComponent enemy { get { return (Core.ECS.Components.Units.EnemyComponent)GetComponent(GameComponentsLookup.Enemy); } }
-    public bool hasEnemy { get { return HasComponent(GameComponentsLookup.Enemy); } }
+    static readonly Core.ECS.Components.Units.Enemy enemyComponent = new Core.ECS.Components.Units.Enemy();
 
-    public void AddEnemy(Core.Models.EnemyModel newEnemyModel) {
-        var index = GameComponentsLookup.Enemy;
-        var component = (Core.ECS.Components.Units.EnemyComponent)CreateComponent(index, typeof(Core.ECS.Components.Units.EnemyComponent));
-        component.EnemyModel = newEnemyModel;
-        AddComponent(index, component);
-    }
+    public bool isEnemy {
+        get { return HasComponent(GameComponentsLookup.Enemy); }
+        set {
+            if (value != isEnemy) {
+                var index = GameComponentsLookup.Enemy;
+                if (value) {
+                    var componentPool = GetComponentPool(index);
+                    var component = componentPool.Count > 0
+                            ? componentPool.Pop()
+                            : enemyComponent;
 
-    public void ReplaceEnemy(Core.Models.EnemyModel newEnemyModel) {
-        var index = GameComponentsLookup.Enemy;
-        var component = (Core.ECS.Components.Units.EnemyComponent)CreateComponent(index, typeof(Core.ECS.Components.Units.EnemyComponent));
-        component.EnemyModel = newEnemyModel;
-        ReplaceComponent(index, component);
-    }
-
-    public void RemoveEnemy() {
-        RemoveComponent(GameComponentsLookup.Enemy);
+                    AddComponent(index, component);
+                } else {
+                    RemoveComponent(index);
+                }
+            }
+        }
     }
 }
 

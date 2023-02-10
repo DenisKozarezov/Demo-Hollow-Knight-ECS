@@ -8,25 +8,25 @@
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public Core.ECS.Components.Player.GeoComponent geo { get { return (Core.ECS.Components.Player.GeoComponent)GetComponent(GameComponentsLookup.Geo); } }
-    public bool hasGeo { get { return HasComponent(GameComponentsLookup.Geo); } }
+    public Core.ECS.Components.Player.MaxEnergy maxEnergy { get { return (Core.ECS.Components.Player.MaxEnergy)GetComponent(GameComponentsLookup.MaxEnergy); } }
+    public bool hasMaxEnergy { get { return HasComponent(GameComponentsLookup.MaxEnergy); } }
 
-    public void AddGeo(int newValue) {
-        var index = GameComponentsLookup.Geo;
-        var component = (Core.ECS.Components.Player.GeoComponent)CreateComponent(index, typeof(Core.ECS.Components.Player.GeoComponent));
+    public void AddMaxEnergy(float newValue) {
+        var index = GameComponentsLookup.MaxEnergy;
+        var component = (Core.ECS.Components.Player.MaxEnergy)CreateComponent(index, typeof(Core.ECS.Components.Player.MaxEnergy));
         component.Value = newValue;
         AddComponent(index, component);
     }
 
-    public void ReplaceGeo(int newValue) {
-        var index = GameComponentsLookup.Geo;
-        var component = (Core.ECS.Components.Player.GeoComponent)CreateComponent(index, typeof(Core.ECS.Components.Player.GeoComponent));
+    public void ReplaceMaxEnergy(float newValue) {
+        var index = GameComponentsLookup.MaxEnergy;
+        var component = (Core.ECS.Components.Player.MaxEnergy)CreateComponent(index, typeof(Core.ECS.Components.Player.MaxEnergy));
         component.Value = newValue;
         ReplaceComponent(index, component);
     }
 
-    public void RemoveGeo() {
-        RemoveComponent(GameComponentsLookup.Geo);
+    public void RemoveMaxEnergy() {
+        RemoveComponent(GameComponentsLookup.MaxEnergy);
     }
 }
 
@@ -40,17 +40,17 @@ public partial class GameEntity {
 //------------------------------------------------------------------------------
 public sealed partial class GameMatcher {
 
-    static Entitas.IMatcher<GameEntity> _matcherGeo;
+    static Entitas.IMatcher<GameEntity> _matcherMaxEnergy;
 
-    public static Entitas.IMatcher<GameEntity> Geo {
+    public static Entitas.IMatcher<GameEntity> MaxEnergy {
         get {
-            if (_matcherGeo == null) {
-                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.Geo);
+            if (_matcherMaxEnergy == null) {
+                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.MaxEnergy);
                 matcher.componentNames = GameComponentsLookup.componentNames;
-                _matcherGeo = matcher;
+                _matcherMaxEnergy = matcher;
             }
 
-            return _matcherGeo;
+            return _matcherMaxEnergy;
         }
     }
 }
