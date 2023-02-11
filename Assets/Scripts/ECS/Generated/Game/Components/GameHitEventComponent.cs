@@ -8,12 +8,12 @@
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public Core.ECS.Events.HitEventComponent hitEvent { get { return (Core.ECS.Events.HitEventComponent)GetComponent(GameComponentsLookup.HitEvent); } }
+    public Core.ECS.Components.Units.HitEventComponent hitEvent { get { return (Core.ECS.Components.Units.HitEventComponent)GetComponent(GameComponentsLookup.HitEvent); } }
     public bool hasHitEvent { get { return HasComponent(GameComponentsLookup.HitEvent); } }
 
     public void AddHitEvent(int newDamage, UnityEngine.Vector2 newHitPosition, float newHitRadius, int newTargetLayer, UnityEngine.GameObject newSource) {
         var index = GameComponentsLookup.HitEvent;
-        var component = (Core.ECS.Events.HitEventComponent)CreateComponent(index, typeof(Core.ECS.Events.HitEventComponent));
+        var component = (Core.ECS.Components.Units.HitEventComponent)CreateComponent(index, typeof(Core.ECS.Components.Units.HitEventComponent));
         component.Damage = newDamage;
         component.HitPosition = newHitPosition;
         component.HitRadius = newHitRadius;
@@ -24,7 +24,7 @@ public partial class GameEntity {
 
     public void ReplaceHitEvent(int newDamage, UnityEngine.Vector2 newHitPosition, float newHitRadius, int newTargetLayer, UnityEngine.GameObject newSource) {
         var index = GameComponentsLookup.HitEvent;
-        var component = (Core.ECS.Events.HitEventComponent)CreateComponent(index, typeof(Core.ECS.Events.HitEventComponent));
+        var component = (Core.ECS.Components.Units.HitEventComponent)CreateComponent(index, typeof(Core.ECS.Components.Units.HitEventComponent));
         component.Damage = newDamage;
         component.HitPosition = newHitPosition;
         component.HitRadius = newHitRadius;

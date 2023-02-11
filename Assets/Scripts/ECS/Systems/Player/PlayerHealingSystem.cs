@@ -26,8 +26,8 @@ namespace Core.ECS.Systems
 
                 if (restoredHealth == 0) continue;
 
-                int maxHp = entity.maxHp.Value;
-                entity.currentHp.Value = Math.Min(entity.currentHp.Value + restoredHealth, maxHp);
+                int newHealth = Math.Min(entity.currentHp.Value + restoredHealth, entity.maxHp.Value);
+                entity.ReplaceCurrentHp(newHealth);
             }
         }
     }

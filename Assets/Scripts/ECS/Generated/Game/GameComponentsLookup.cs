@@ -8,46 +8,46 @@
 //------------------------------------------------------------------------------
 public static class GameComponentsLookup {
 
-    public const int AnimateDamageEventListener = 0;
-    public const int AttackingListener = 1;
-    public const int CameraFadeEventListener = 2;
-    public const int CameraShakeEventListener = 3;
-    public const int CollisionRegistry = 4;
-    public const int CoroutineRunner = 5;
-    public const int Logger = 6;
-    public const int Physics = 7;
-    public const int AttackCooldown = 8;
-    public const int CanInteract = 9;
-    public const int CurrentEnergy = 10;
-    public const int CurrentGeo = 11;
-    public const int EnergyReduced = 12;
-    public const int EnteredBossZone = 13;
-    public const int MaxEnergy = 14;
-    public const int ObtainedGeo = 15;
-    public const int Player = 16;
-    public const int PlayerTalkingWithNPCEvent = 17;
-    public const int RestoredHealth = 18;
-    public const int Time = 19;
-    public const int HealthUI = 20;
-    public const int Vignette = 21;
-    public const int Animator = 22;
-    public const int Attacking = 23;
-    public const int AttackRange = 24;
-    public const int BehaviourTree = 25;
-    public const int Boss = 26;
-    public const int CanAttack = 27;
-    public const int Channelling = 28;
-    public const int Collided = 29;
-    public const int Collider = 30;
-    public const int CurrentHp = 31;
-    public const int Damage = 32;
-    public const int DamageTaken = 33;
-    public const int Dead = 34;
-    public const int Destroyed = 35;
-    public const int Died = 36;
-    public const int Direction = 37;
-    public const int Enemy = 38;
-    public const int Grounded = 39;
+    public const int AttackingListener = 0;
+    public const int CameraFadeEventListener = 1;
+    public const int CameraShakeEventListener = 2;
+    public const int CollisionRegistry = 3;
+    public const int CoroutineRunner = 4;
+    public const int Logger = 5;
+    public const int Physics = 6;
+    public const int AttackCooldown = 7;
+    public const int CanInteract = 8;
+    public const int CurrentEnergy = 9;
+    public const int CurrentGeo = 10;
+    public const int EnergyReduced = 11;
+    public const int EnteredBossZone = 12;
+    public const int MaxEnergy = 13;
+    public const int ObtainedGeo = 14;
+    public const int Player = 15;
+    public const int PlayerTalkingWithNPCEvent = 16;
+    public const int RestoredHealth = 17;
+    public const int Time = 18;
+    public const int HealthUI = 19;
+    public const int Vignette = 20;
+    public const int Animator = 21;
+    public const int Attacking = 22;
+    public const int AttackRange = 23;
+    public const int BehaviourTree = 24;
+    public const int Boss = 25;
+    public const int CanAttack = 26;
+    public const int Channelling = 27;
+    public const int Collided = 28;
+    public const int Collider = 29;
+    public const int CurrentHp = 30;
+    public const int Damage = 31;
+    public const int DamageTaken = 32;
+    public const int Dead = 33;
+    public const int Destroyed = 34;
+    public const int Died = 35;
+    public const int Direction = 36;
+    public const int Enemy = 37;
+    public const int Grounded = 38;
+    public const int HitEvent = 39;
     public const int Hittable = 40;
     public const int Invulnerable = 41;
     public const int Jump = 42;
@@ -63,40 +63,35 @@ public static class GameComponentsLookup {
     public const int Transform = 52;
     public const int Unit = 53;
     public const int ViewController = 54;
-    public const int AnimateDamageEvent = 55;
-    public const int CameraFadeEvent = 56;
-    public const int CameraShakeEvent = 57;
-    public const int CreateDustEvent = 58;
-    public const int FalseKnightAttackEvent = 59;
-    public const int FalseKnightJumpEvent = 60;
-    public const int FalseKnightRollEvent = 61;
-    public const int FalseKnightStrongAttackEvent = 62;
-    public const int HitEvent = 63;
-    public const int CreateDustEventListener = 64;
-    public const int DamageTakenListener = 65;
-    public const int DestroyedListener = 66;
-    public const int DiedListener = 67;
-    public const int DirectionListener = 68;
-    public const int EnergyReducedListener = 69;
-    public const int EnteredBossZoneListener = 70;
-    public const int FalseKnightAttackEventListener = 71;
-    public const int FalseKnightJumpEventListener = 72;
-    public const int FalseKnightRollEventListener = 73;
-    public const int FalseKnightStrongAttackEventListener = 74;
-    public const int GroundedListener = 75;
-    public const int HitEventListener = 76;
-    public const int JumpingListener = 77;
-    public const int MovingListener = 78;
-    public const int ObtainedGeoListener = 79;
-    public const int PlayerTalkingWithNPCEventListener = 80;
-    public const int PositionListener = 81;
-    public const int RestoredHealthListener = 82;
-    public const int StoppedMovingListener = 83;
+    public const int CameraFadeEvent = 55;
+    public const int CameraShakeEvent = 56;
+    public const int FalseKnightAttackEvent = 57;
+    public const int FalseKnightJumpEvent = 58;
+    public const int FalseKnightRollEvent = 59;
+    public const int FalseKnightStrongAttackEvent = 60;
+    public const int DamageTakenListener = 61;
+    public const int DestroyedListener = 62;
+    public const int DiedListener = 63;
+    public const int DirectionListener = 64;
+    public const int EnergyReducedListener = 65;
+    public const int EnteredBossZoneListener = 66;
+    public const int FalseKnightAttackEventListener = 67;
+    public const int FalseKnightJumpEventListener = 68;
+    public const int FalseKnightRollEventListener = 69;
+    public const int FalseKnightStrongAttackEventListener = 70;
+    public const int GroundedListener = 71;
+    public const int HitEventListener = 72;
+    public const int JumpingListener = 73;
+    public const int MovingListener = 74;
+    public const int ObtainedGeoListener = 75;
+    public const int PlayerTalkingWithNPCEventListener = 76;
+    public const int PositionListener = 77;
+    public const int RestoredHealthListener = 78;
+    public const int StoppedMovingListener = 79;
 
-    public const int TotalComponents = 84;
+    public const int TotalComponents = 80;
 
     public static readonly string[] componentNames = {
-        "AnimateDamageEventListener",
         "AttackingListener",
         "CameraFadeEventListener",
         "CameraShakeEventListener",
@@ -136,6 +131,7 @@ public static class GameComponentsLookup {
         "Direction",
         "Enemy",
         "Grounded",
+        "HitEvent",
         "Hittable",
         "Invulnerable",
         "Jump",
@@ -151,16 +147,12 @@ public static class GameComponentsLookup {
         "Transform",
         "Unit",
         "ViewController",
-        "AnimateDamageEvent",
         "CameraFadeEvent",
         "CameraShakeEvent",
-        "CreateDustEvent",
         "FalseKnightAttackEvent",
         "FalseKnightJumpEvent",
         "FalseKnightRollEvent",
         "FalseKnightStrongAttackEvent",
-        "HitEvent",
-        "CreateDustEventListener",
         "DamageTakenListener",
         "DestroyedListener",
         "DiedListener",
@@ -183,7 +175,6 @@ public static class GameComponentsLookup {
     };
 
     public static readonly System.Type[] componentTypes = {
-        typeof(AnimateDamageEventListenerComponent),
         typeof(AttackingListenerComponent),
         typeof(CameraFadeEventListenerComponent),
         typeof(CameraShakeEventListenerComponent),
@@ -223,6 +214,7 @@ public static class GameComponentsLookup {
         typeof(Core.ECS.Components.Units.Direction),
         typeof(Core.ECS.Components.Units.Enemy),
         typeof(Core.ECS.Components.Units.Grounded),
+        typeof(Core.ECS.Components.Units.HitEventComponent),
         typeof(Core.ECS.Components.Units.Hittable),
         typeof(Core.ECS.Components.Units.Invulnerable),
         typeof(Core.ECS.Components.Units.JumpComponent),
@@ -238,16 +230,12 @@ public static class GameComponentsLookup {
         typeof(Core.ECS.Components.Units.TransformComponent),
         typeof(Core.ECS.Components.Units.Unit),
         typeof(Core.ECS.Components.Units.ViewControllerComponent),
-        typeof(Core.ECS.Events.AnimateDamageEventComponent),
         typeof(Core.ECS.Events.CameraFadeEventComponent),
         typeof(Core.ECS.Events.CameraShakeEventComponent),
-        typeof(Core.ECS.Events.CreateDustEventComponent),
         typeof(Core.ECS.Events.FalseKnight.FalseKnightAttackEventComponent),
         typeof(Core.ECS.Events.FalseKnight.FalseKnightJumpEvent),
         typeof(Core.ECS.Events.FalseKnight.FalseKnightRollEvent),
         typeof(Core.ECS.Events.FalseKnight.FalseKnightStrongAttackEvent),
-        typeof(Core.ECS.Events.HitEventComponent),
-        typeof(CreateDustEventListenerComponent),
         typeof(DamageTakenListenerComponent),
         typeof(DestroyedListenerComponent),
         typeof(DiedListenerComponent),

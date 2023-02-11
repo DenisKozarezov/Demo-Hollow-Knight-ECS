@@ -1,26 +1,34 @@
 ﻿using System;
-using Core.ECS.Components.Player;
+using System.Collections.Generic;
+using Entitas;
 
 namespace Core.ECS.Systems
 {
-    public sealed class EnergySystem/* : IEcsRunSystem*/
+    public sealed class EnergySystem : ReactiveSystem<GameEntity>
     {
-        //private readonly EcsFilter<EnergyReducedEvent> _event = null;
-        //private readonly EcsFilter<EnergyComponent> _filter = null;
+        public EnergySystem(GameContext game) : base(game) { }
 
-        //public void Run()
-        //{
-        //    foreach (var @event in _event)
-        //    {
-        //        foreach (var i in _filter)
-        //        {
-        //            ref var reducedEnergy = ref _event.Get1(i);
-        //            ref var currentEnergy = ref _filter.Get1(i);
+        protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
+        {
+            return context.CreateCollector(GameMatcher
+                .AllOf(GameMatcher.EnergyReduced, GameMatcher.Player, GameMatcher.CurrentEnergy, GameMatcher.MaxEnergy)
+                .NoneOf(GameMatcher.Dead));
+        }
+        protected override bool Filter(GameEntity entity)
+        {
+            return entity.currentEnergy.Value > 0f;
+        }
+        protected override void Execute(List<GameEntity> entities)
+        {
+            foreach (GameEntity entity in entities)
+            {
+                float reducedEnergy = entity.energyReduced.Value;
 
-        //            // Reduce energy
-        //            currentEnergy.Energy = Math.Max(currentEnergy.Energy - reducedEnergy.Value, 0f);
-        //        }
-        //    }
-        //}
+                if (reducedEnergy == 0f) continue;
+
+                float newEnergy = Math.Max(entity.currentEnergy.Value - reducedEnergy, 0f);
+                entity.ReplaceCurrentEnergy(newEnergy);
+            }
+        }
     }
 }

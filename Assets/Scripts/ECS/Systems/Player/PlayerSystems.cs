@@ -2,18 +2,17 @@
 {
     public class PlayerSystems : Feature
     {
-        public PlayerSystems(Contexts context) : base(nameof(PlayerSystems))
+        public PlayerSystems(Contexts contexts) : base(nameof(PlayerSystems))
         {
-            //Add(new PlayerInitSystem(model));
             //Add(new PlayerRecievedDamageSystem());
             //Add(new PlayerFocusSystem(context.InputSystem, model.GetAbility<HealingFocusAbility>()));
-            //Add(new EnergySystem());
-            Add(new PlayerDiedSystem(context.game));
+            Add(new EnergySystem(contexts.game));
+            Add(new PlayerDiedSystem(contexts.game));
             //Add(new PlayerRespawnSystem());
-            Add(new PlayerMoveSystem(context.game, context.input));
-            Add(new PlayerStoppedMovingSystem(context.game));
-            Add(new PlayerJumpSystem(context.game, context.input));
-            Add(new PlayerHealingSystem(context.game));
+            Add(new PlayerMoveSystem(contexts.game, contexts.input));
+            Add(new PlayerStoppedMovingSystem(contexts.game));
+            Add(new PlayerJumpSystem(contexts.game, contexts.input));
+            Add(new PlayerHealingSystem(contexts.game));
             //Add(new PlayerAttackSystem(context.InputSystem));
             //Add(new PlayerAttackCooldownSystem(context.InputSystem));
             //Add(new PlayerAnimationSystem(context.InputSystem));

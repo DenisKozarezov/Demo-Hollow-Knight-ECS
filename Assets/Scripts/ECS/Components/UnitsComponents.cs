@@ -51,4 +51,16 @@ namespace Core.ECS.Components.Units
 
     [Game, Event(Self)] public sealed class Position : IComponent { public Vector2 Value; }
     [Game, Event(Self)] public sealed class Direction : IComponent { public float Value; }
+
+    // Temp
+
+    [Event(Self)]
+    public sealed class HitEventComponent : IComponent
+    {
+        public int Damage;
+        public Vector2 HitPosition;
+        public float HitRadius;
+        public int TargetLayer;
+        public GameObject Source;
+    }
 }

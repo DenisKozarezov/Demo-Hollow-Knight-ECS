@@ -9,11 +9,9 @@
 public sealed class GameEventSystems : Feature {
 
     public GameEventSystems(Contexts contexts) {
-        Add(new AnimateDamageEventEventSystem(contexts)); // priority: 0
         Add(new AttackingEventSystem(contexts)); // priority: 0
         Add(new CameraFadeEventEventSystem(contexts)); // priority: 0
         Add(new CameraShakeEventEventSystem(contexts)); // priority: 0
-        Add(new CreateDustEventEventSystem(contexts)); // priority: 0
         Add(new DamageTakenEventSystem(contexts)); // priority: 0
         Add(new DestroyedEventSystem(contexts)); // priority: 0
         Add(new DiedEventSystem(contexts)); // priority: 0
