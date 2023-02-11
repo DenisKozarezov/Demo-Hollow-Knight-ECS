@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Leopotam.Ecs;
 using BehaviourTree.Runtime.Nodes;
 using BehaviourTree.Runtime.Nodes.Decorators;
 using Node = BehaviourTree.Runtime.Nodes.Node;
+using Entitas;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -36,10 +36,10 @@ namespace BehaviourTree.Runtime
                 }
             }
         }
-        public void Init(ref EcsEntity agent, EcsWorld world)
-        {
-            foreach (Node node in _nodes) node.Init(ref agent, world);
-        }
+        //public void Init(IEntity agent, GameContext world)
+        //{
+        //    foreach (Node node in _nodes) node.Init(ref agent, world);
+        //}
         public State Update()
         {
             if (RootNode.State == State.Running)

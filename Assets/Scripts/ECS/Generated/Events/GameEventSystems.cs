@@ -26,8 +26,6 @@ public sealed class GameEventSystems : Feature {
         Add(new FalseKnightStrongAttackEventEventSystem(contexts)); // priority: 0
         Add(new GroundedEventSystem(contexts)); // priority: 0
         Add(new HitEventEventSystem(contexts)); // priority: 0
-        Add(new InteractableTriggerEnterEventEventSystem(contexts)); // priority: 0
-        Add(new InteractableTriggerExitEventEventSystem(contexts)); // priority: 0
         Add(new JumpingEventSystem(contexts)); // priority: 0
         Add(new MovingEventSystem(contexts)); // priority: 0
         Add(new ObtainedGeoEventSystem(contexts)); // priority: 0

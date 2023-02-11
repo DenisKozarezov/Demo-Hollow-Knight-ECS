@@ -59,7 +59,10 @@ namespace Core.ECS.ViewListeners
         private void RegisterCollisions()
         {
             foreach (Collider2D collider in GetComponentsInChildren<Collider2D>(includeInactive: true))
+            {
                 _game.collisionRegistry.Value.Register(collider.GetInstanceID(), this);
+                Entity.AddCollider(collider);
+            }
         }
         private void UnregisterCollisions()
         {

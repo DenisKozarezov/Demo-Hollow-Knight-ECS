@@ -10,7 +10,7 @@ namespace Core.ECS.Systems.Units
         {
             _entities = game.GetGroup(GameMatcher
                 .AllOf(GameMatcher.Unit)
-                .NoneOf(GameMatcher.Grounded, GameMatcher.Jumping));
+                .NoneOf(GameMatcher.Grounded, GameMatcher.Jumping, GameMatcher.Dead));
         }
         public void Execute()
         {

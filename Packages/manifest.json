@@ -1,7 +1,6 @@
 {
   "dependencies": {
     "com.korolev.uilityai-package": "1.0.0",
-    "com.leopotam.ecs": "https://github.com/Leopotam/ecs.git",
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.collab-proxy": "1.15.18",
     "com.unity.ide.rider": "3.0.14",
@@ -14,7 +13,6 @@
     "com.unity.textmeshpro": "3.0.6",
     "com.unity.timeline": "1.6.4",
     "com.unity.ugui": "1.0.0",
-    "com.voody.unileo": "https://github.com/voody2506/UniLeo.git",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
     "com.unity.modules.animation": "1.0.0",

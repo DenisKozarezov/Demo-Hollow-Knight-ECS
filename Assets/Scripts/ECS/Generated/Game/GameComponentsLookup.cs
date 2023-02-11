@@ -29,74 +29,71 @@ public static class GameComponentsLookup {
     public const int RestoredHealth = 18;
     public const int Time = 19;
     public const int HealthUI = 20;
-    public const int Animator = 21;
-    public const int Attacking = 22;
-    public const int AttackRange = 23;
-    public const int BehaviourTree = 24;
-    public const int Boss = 25;
-    public const int CanAttack = 26;
-    public const int Channelling = 27;
-    public const int Collided = 28;
-    public const int Collider = 29;
-    public const int CurrentHp = 30;
-    public const int Damage = 31;
-    public const int DamageTaken = 32;
-    public const int Dead = 33;
-    public const int Destroyed = 34;
-    public const int Died = 35;
-    public const int Direction = 36;
-    public const int Enemy = 37;
-    public const int Grounded = 38;
-    public const int Hittable = 39;
-    public const int Invulnerable = 40;
-    public const int Jump = 41;
-    public const int Jumping = 42;
-    public const int MaxHp = 43;
-    public const int Movable = 44;
-    public const int Moving = 45;
-    public const int NPC = 46;
-    public const int Position = 47;
-    public const int Rigidbody = 48;
-    public const int SpriteRenderer = 49;
-    public const int StoppedMoving = 50;
-    public const int Transform = 51;
-    public const int Unit = 52;
-    public const int ViewController = 53;
-    public const int AnimateDamageEvent = 54;
-    public const int CameraFadeEvent = 55;
-    public const int CameraShakeEvent = 56;
-    public const int CreateDustEvent = 57;
-    public const int FalseKnightAttackEvent = 58;
-    public const int FalseKnightJumpEvent = 59;
-    public const int FalseKnightRollEvent = 60;
-    public const int FalseKnightStrongAttackEvent = 61;
-    public const int HitEvent = 62;
-    public const int InteractableTriggerEnterEvent = 63;
-    public const int InteractableTriggerExitEvent = 64;
-    public const int CreateDustEventListener = 65;
-    public const int DamageTakenListener = 66;
-    public const int DestroyedListener = 67;
-    public const int DiedListener = 68;
-    public const int DirectionListener = 69;
-    public const int EnergyReducedListener = 70;
-    public const int EnteredBossZoneListener = 71;
-    public const int FalseKnightAttackEventListener = 72;
-    public const int FalseKnightJumpEventListener = 73;
-    public const int FalseKnightRollEventListener = 74;
-    public const int FalseKnightStrongAttackEventListener = 75;
-    public const int GroundedListener = 76;
-    public const int HitEventListener = 77;
-    public const int InteractableTriggerEnterEventListener = 78;
-    public const int InteractableTriggerExitEventListener = 79;
-    public const int JumpingListener = 80;
-    public const int MovingListener = 81;
-    public const int ObtainedGeoListener = 82;
-    public const int PlayerTalkingWithNPCEventListener = 83;
-    public const int PositionListener = 84;
-    public const int RestoredHealthListener = 85;
-    public const int StoppedMovingListener = 86;
+    public const int Vignette = 21;
+    public const int Animator = 22;
+    public const int Attacking = 23;
+    public const int AttackRange = 24;
+    public const int BehaviourTree = 25;
+    public const int Boss = 26;
+    public const int CanAttack = 27;
+    public const int Channelling = 28;
+    public const int Collided = 29;
+    public const int Collider = 30;
+    public const int CurrentHp = 31;
+    public const int Damage = 32;
+    public const int DamageTaken = 33;
+    public const int Dead = 34;
+    public const int Destroyed = 35;
+    public const int Died = 36;
+    public const int Direction = 37;
+    public const int Enemy = 38;
+    public const int Grounded = 39;
+    public const int Hittable = 40;
+    public const int Invulnerable = 41;
+    public const int Jump = 42;
+    public const int Jumping = 43;
+    public const int MaxHp = 44;
+    public const int Movable = 45;
+    public const int Moving = 46;
+    public const int NPC = 47;
+    public const int Position = 48;
+    public const int Rigidbody = 49;
+    public const int SpriteRenderer = 50;
+    public const int StoppedMoving = 51;
+    public const int Transform = 52;
+    public const int Unit = 53;
+    public const int ViewController = 54;
+    public const int AnimateDamageEvent = 55;
+    public const int CameraFadeEvent = 56;
+    public const int CameraShakeEvent = 57;
+    public const int CreateDustEvent = 58;
+    public const int FalseKnightAttackEvent = 59;
+    public const int FalseKnightJumpEvent = 60;
+    public const int FalseKnightRollEvent = 61;
+    public const int FalseKnightStrongAttackEvent = 62;
+    public const int HitEvent = 63;
+    public const int CreateDustEventListener = 64;
+    public const int DamageTakenListener = 65;
+    public const int DestroyedListener = 66;
+    public const int DiedListener = 67;
+    public const int DirectionListener = 68;
+    public const int EnergyReducedListener = 69;
+    public const int EnteredBossZoneListener = 70;
+    public const int FalseKnightAttackEventListener = 71;
+    public const int FalseKnightJumpEventListener = 72;
+    public const int FalseKnightRollEventListener = 73;
+    public const int FalseKnightStrongAttackEventListener = 74;
+    public const int GroundedListener = 75;
+    public const int HitEventListener = 76;
+    public const int JumpingListener = 77;
+    public const int MovingListener = 78;
+    public const int ObtainedGeoListener = 79;
+    public const int PlayerTalkingWithNPCEventListener = 80;
+    public const int PositionListener = 81;
+    public const int RestoredHealthListener = 82;
+    public const int StoppedMovingListener = 83;
 
-    public const int TotalComponents = 87;
+    public const int TotalComponents = 84;
 
     public static readonly string[] componentNames = {
         "AnimateDamageEventListener",
@@ -120,6 +117,7 @@ public static class GameComponentsLookup {
         "RestoredHealth",
         "Time",
         "HealthUI",
+        "Vignette",
         "Animator",
         "Attacking",
         "AttackRange",
@@ -162,8 +160,6 @@ public static class GameComponentsLookup {
         "FalseKnightRollEvent",
         "FalseKnightStrongAttackEvent",
         "HitEvent",
-        "InteractableTriggerEnterEvent",
-        "InteractableTriggerExitEvent",
         "CreateDustEventListener",
         "DamageTakenListener",
         "DestroyedListener",
@@ -177,8 +173,6 @@ public static class GameComponentsLookup {
         "FalseKnightStrongAttackEventListener",
         "GroundedListener",
         "HitEventListener",
-        "InteractableTriggerEnterEventListener",
-        "InteractableTriggerExitEventListener",
         "JumpingListener",
         "MovingListener",
         "ObtainedGeoListener",
@@ -210,6 +204,7 @@ public static class GameComponentsLookup {
         typeof(Core.ECS.Components.Player.RestoredHealth),
         typeof(Core.ECS.Components.Time),
         typeof(Core.ECS.Components.UI.HealthUI),
+        typeof(Core.ECS.Components.UI.Vignette),
         typeof(Core.ECS.Components.Units.AnimatorComponent),
         typeof(Core.ECS.Components.Units.Attacking),
         typeof(Core.ECS.Components.Units.AttackRange),
@@ -252,8 +247,6 @@ public static class GameComponentsLookup {
         typeof(Core.ECS.Events.FalseKnight.FalseKnightRollEvent),
         typeof(Core.ECS.Events.FalseKnight.FalseKnightStrongAttackEvent),
         typeof(Core.ECS.Events.HitEventComponent),
-        typeof(Core.ECS.Events.InteractableTriggerEnterEvent),
-        typeof(Core.ECS.Events.InteractableTriggerExitEvent),
         typeof(CreateDustEventListenerComponent),
         typeof(DamageTakenListenerComponent),
         typeof(DestroyedListenerComponent),
@@ -267,8 +260,6 @@ public static class GameComponentsLookup {
         typeof(FalseKnightStrongAttackEventListenerComponent),
         typeof(GroundedListenerComponent),
         typeof(HitEventListenerComponent),
-        typeof(InteractableTriggerEnterEventListenerComponent),
-        typeof(InteractableTriggerExitEventListenerComponent),
         typeof(JumpingListenerComponent),
         typeof(MovingListenerComponent),
         typeof(ObtainedGeoListenerComponent),

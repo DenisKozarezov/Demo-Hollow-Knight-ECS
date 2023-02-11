@@ -1,7 +1,7 @@
+using Entitas;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Leopotam.Ecs;
 
 namespace BehaviourTree.Runtime.Nodes
 {
@@ -18,15 +18,15 @@ namespace BehaviourTree.Runtime.Nodes
         [HideInInspector] public bool Started = false;
         [SerializeField, HideInInspector] public string GUID;
 
-        protected EcsEntity Agent;
-        protected EcsWorld World;
+        protected IEntity Agent;
+        //protected EcsWorld World;
         
-        public void Init(ref EcsEntity agent, EcsWorld world)
-        {
-            Agent = agent;
-            World = world;
-            OnInit();
-        }
+        //public void Init(ref IEntity agent, EcsWorld world)
+        //{
+        //    Agent = agent;
+        //    World = world;
+        //    OnInit();
+        //}
         public State Update() 
         {
             if (!Started) 

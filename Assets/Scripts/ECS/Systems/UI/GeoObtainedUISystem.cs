@@ -1,5 +1,4 @@
 ﻿using Core.UI;
-using Leopotam.Ecs;
 
 namespace Core.ECS.Systems.UI
 {

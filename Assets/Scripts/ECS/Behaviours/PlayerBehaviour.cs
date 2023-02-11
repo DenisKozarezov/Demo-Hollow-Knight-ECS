@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using Core.Models;
+﻿using Core.Models;
+using UnityEngine;
 
 namespace Core.ECS.Behaviours
 {

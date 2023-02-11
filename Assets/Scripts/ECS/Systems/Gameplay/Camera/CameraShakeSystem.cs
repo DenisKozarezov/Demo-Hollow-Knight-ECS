@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections;
-using Leopotam.Ecs;
 using Core.ECS.Events;
 
 namespace Core.ECS.Systems.Camera

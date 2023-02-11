@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using Core.ECS.Events;
-using Leopotam.Ecs;
 
 namespace Core.ECS.Systems
 {

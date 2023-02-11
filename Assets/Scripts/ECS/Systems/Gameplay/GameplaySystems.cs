@@ -1,4 +1,5 @@
-﻿using Core.ECS.Systems.Player;
+﻿using Core.ECS.Systems.Camera;
+using Core.ECS.Systems.Player;
 using Core.ECS.Systems.Units;
 
 namespace Core.ECS.Systems
@@ -18,7 +19,7 @@ namespace Core.ECS.Systems
             //Add(new BehaviourTreeSystem());
             //Add(new EnemyDiedSystem());
             //Add(new EnemyDroppingGeoSystem(context.DiContainer.Resolve<GeoView.Factory>()));
-            //Add(new CameraSystems(contexts, UnityEngine.Camera.main));
+            Add(new CameraSystems(contexts));
         }
     }
 }

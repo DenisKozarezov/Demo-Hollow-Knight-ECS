@@ -1,5 +1,4 @@
 using UnityEngine;
-using Leopotam.Ecs;
 using BehaviourTree.Runtime.Nodes;
 using BehaviourTree.Runtime.Nodes.Decorators;
 using Core.ECS.Components.Player;

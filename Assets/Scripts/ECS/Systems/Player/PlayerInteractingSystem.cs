@@ -1,5 +1,4 @@
-﻿using Leopotam.Ecs;
-using Core.ECS.Components.Player;
+﻿using Core.ECS.Components.Player;
 using Core.ECS.Components.Units;
 
 namespace Core.ECS.Systems.Player

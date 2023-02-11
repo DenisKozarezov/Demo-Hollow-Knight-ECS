@@ -7,8 +7,8 @@ namespace Core.ECS.Systems
 {
     public sealed class DamageAnimationSystem : ReactiveSystem<GameEntity>
     {
-        private const float Duration = 0.4f;
-        private Color WhiteColor = new Color(1, 1, 1, 0.7f);
+        private const float Duration = 0.3f;
+        private Color WhiteColor = new Color(1, 1, 1, 0.9f);
 
         public DamageAnimationSystem(GameContext game) : base(game) { }
 
@@ -26,8 +26,9 @@ namespace Core.ECS.Systems
             {
                 SpriteRenderer renderer = entity.spriteRenderer.Value;
                 renderer
-                    .DOColor(WhiteColor, Duration).SetEase(Ease.Linear)
-                    .OnComplete(() => renderer.DOColor(Color.black, Duration));
+                    .DOColor(WhiteColor, Duration)
+                    .OnComplete(() => renderer.DOColor(Color.black, Duration))
+                    .SetEase(Ease.Linear);
             }
         }   
     }

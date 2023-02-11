@@ -2,10 +2,8 @@ using UnityEditor;
 using UnityEditor.Callbacks;
 using UnityEngine;
 using UnityEngine.UIElements;
-using Leopotam.Ecs;
 using BehaviourTree.Editor.VisualElements;
 using BehaviourTree.Editor.VisualElements.Nodes;
-using Core.ECS.Components.Units;
 
 namespace BehaviourTree.Editor
 {

@@ -1,5 +1,4 @@
 using Core.ECS.Components.Units;
-using Leopotam.Ecs;
 
 namespace Core.ECS.Systems
 {

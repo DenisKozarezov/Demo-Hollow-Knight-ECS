@@ -1,9 +1,7 @@
 {
     "name": "BehaviourTree.Runtime",
     "rootNamespace": "BehaviourTree.Runtime",
-    "references": [
-        "Leopotam.Ecs"
-    ],
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

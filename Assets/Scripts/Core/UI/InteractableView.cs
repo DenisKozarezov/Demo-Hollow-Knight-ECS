@@ -2,8 +2,6 @@ using UnityEngine;
 using Core.ECS;
 using Core.ECS.Events;
 using Core.ECS.Components;
-using Voody.UniLeo;
-using Leopotam.Ecs;
 
 namespace Core.UI
 {

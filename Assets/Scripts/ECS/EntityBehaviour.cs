@@ -8,20 +8,17 @@ namespace Core.ECS
         [SerializeField]
         private bool _selfInitialize;
 
-        private ViewController _viewController;
-
         protected GameEntity Entity { get; private set; }
         protected GameContext Game => Contexts.sharedInstance.game;
 
         protected virtual void Awake()
         {
-            _viewController = GetComponent<ViewController>();
-
             if (_selfInitialize) Entity = Game.CreateEntity();
 
-            if (_viewController)
+            var viewController = GetComponent<ViewController>();
+            if (viewController)
             {
-                _viewController.InitializeView(Game, Entity);
+                viewController.InitializeView(Game, Entity);
             }
 
             foreach (var listener in GetComponents<IEventListener>())

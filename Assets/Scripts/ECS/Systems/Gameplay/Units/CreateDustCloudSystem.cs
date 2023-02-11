@@ -1,29 +1,40 @@
+using System.Collections.Generic;
 using UnityEngine;
-using Leopotam.Ecs;
-using Core.ECS.Events;
+using Entitas;
 
 namespace Core.ECS.Systems
 {
-    public sealed class CreateDustCloudSystem /*: IEcsRunSystem*/
+    public sealed class CreateDustCloudSystem : ReactiveSystem<GameEntity>
     {
-        //private readonly EcsFilter<CreateDustEventComponent> _filter = null;
-        //private const string PrefabPath = "Prefabs/VFX/Smoke/Dust";
+        private readonly string PrefabPath = "Prefabs/VFX/Smoke/Dust";
 
-        //private GameObject InstantiatePrefab(ref Vector2 point, ref Vector3 scale)
-        //{
-        //    var asset = Resources.Load(PrefabPath) as GameObject;
-        //    GameObject prefab = GameObject.Instantiate(asset, point, Quaternion.identity);
-        //    prefab.transform.localScale = scale;
-        //    return prefab;
-        //}
+        public CreateDustCloudSystem(GameContext game) : base(game) { }
 
-        //void IEcsRunSystem.Run()
-        //{
-        //    foreach (var i in _filter)
-        //    {
-        //        ref var component = ref _filter.Get1(i);
-        //        GameObject.Destroy(InstantiatePrefab(ref component.Point, ref component.Scale), 1f);
-        //    }
-        //}
+        private GameObject InstantiatePrefab(Vector2 point, Vector3 scale)
+        {
+            var asset = Resources.Load(PrefabPath) as GameObject;
+            GameObject prefab = GameObject.Instantiate(asset, point, Quaternion.identity);
+            prefab.transform.localScale = scale;
+            return prefab;
+        }
+
+        protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
+        {
+            return context.CreateCollector(GameMatcher.Grounded.Added());
+        }
+        protected override bool Filter(GameEntity entity)
+        {
+            return entity.isGrounded;
+        }
+        protected override void Execute(List<GameEntity> entities)
+        {
+            foreach (GameEntity entity in entities)
+            {
+                Vector3 center = entity.spriteRenderer.Value.bounds.center;
+                Collider2D collider = entity.collider.Value;
+                Vector3 point = center + Vector3.down * collider.bounds.extents.y;
+                GameObject.Destroy(InstantiatePrefab(point, Vector2.one), 1f);
+            }
+        }
     }
 }

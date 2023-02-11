@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using Leopotam.Ecs;
 using Core.UI;
 using Core.ECS.Events;
 

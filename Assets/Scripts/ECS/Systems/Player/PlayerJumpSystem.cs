@@ -34,6 +34,7 @@ namespace Core.ECS.Systems.Player
                 foreach (GameEntity player in _players.GetEntities())
                 {
                     player.isJumping = true;
+                    player.AddDamageTaken(1);
 
                     float jumpHeight = player.jump.JumpForceRange.x;
                     float jumpForce = Utils.CalculateJumpForce(Physics2D.gravity.magnitude, jumpHeight);

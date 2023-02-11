@@ -1,16 +1,14 @@
 using System;
 using UnityEngine;
 using UnityEngine.Rendering;
-using Leopotam.Ecs;
 
 namespace Core
 {
-    public static class CameraExtensions
+    public static class RenderingExtensions
     {
-        public static T GetPostProcessSetting<T>(this Camera camera) where T : VolumeComponent
+        public static T GetPostProcessSetting<T>(this VolumeProfile volume) where T : VolumeComponent
         {
-            var volume = camera.GetComponentInChildren<Volume>();
-            if (!volume.profile.TryGet<T>(out var setting))
+            if (!volume.TryGet(out T setting))
             {
                 throw new NullReferenceException($"There is no override <b><color=yellow>{typeof(T).Name}</color></b> in camera Global Volume.");
             }
@@ -24,22 +22,6 @@ namespace Core
         {
             color.a = alpha;
             return color;
-        }
-    }
-
-    public static class EcsExtensions
-    {
-        public static bool IsNullOrEmpty(this EcsEntity entity)
-        {
-            return !entity.IsAlive() || entity.IsNull() || !entity.IsWorldAlive();
-        }
-        public static T NewEntity<T>(this EcsWorld world) where T : struct
-        {
-            return world.NewEntity().Get<T>();
-        }
-        public static void NewEntity<T>(this EcsWorld world, in T value) where T : struct
-        {
-            world.NewEntity().Get<T>() = value;
         }
     }
 

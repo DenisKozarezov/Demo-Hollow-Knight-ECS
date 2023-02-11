@@ -1,35 +1,41 @@
 ﻿using UnityEngine;
 using UnityEngine.Rendering.Universal;
-using Leopotam.Ecs;
-using Core.ECS.Components.Units;
-using Core.ECS.Components.Player;
+using Entitas;
 
 namespace Core.ECS.Systems.Camera
 {
-    public sealed class CameraLowHealthVignetteSystem
+    public sealed class CameraLowHealthVignetteSystem : IExecuteSystem
     {
-        //private readonly EcsFilter<HealthComponent, PlayerTagComponent> _filter = null;
-        //private readonly Vignette _vignette;
-        //private float _currentVelocity;
+        private readonly IGroup<GameEntity> _players;
+        private readonly IGroup<GameEntity> _vignettes;
+        
+        private const float IntensityMax = 0.55f;
 
-        //private const float IntensityMax = 0.55f;
+        private float _currentVelocity;
 
-        //public CameraLowHealthVignetteSystem(Vignette vignette)
-        //{
-        //    _vignette = vignette;
-        //}
+        public CameraLowHealthVignetteSystem(GameContext game)
+        {
+            _players = game.GetGroup(GameMatcher.AllOf(GameMatcher.Player, GameMatcher.CurrentHp, GameMatcher.MaxHp));
+            _vignettes = game.GetGroup(GameMatcher.Vignette);
+        }
 
-        //void IEcsRunSystem.Run()
-        //{
-        //    foreach (var i in _filter)
-        //    {
-        //        ref var healthComponent = ref _filter.Get1(i);
+        public void Execute()
+        {
+            foreach (GameEntity entity in _vignettes)
+            {
+                foreach (GameEntity player in _players)
+                {
+                    int currentHealth = player.currentHp.Value;
+                    int maxHp = player.maxHp.Value;
 
-        //        if (healthComponent.Health == 0 || healthComponent.Health == healthComponent.MaxHealth) continue;
+                    if (currentHealth == 0 || currentHealth == maxHp) continue;
 
-        //        float factor = Mathf.Clamp(1f - (float)healthComponent.Health / healthComponent.MaxHealth, 0f, IntensityMax);
-        //        _vignette.intensity.value = Mathf.SmoothDamp(_vignette.intensity.value, factor, ref _currentVelocity, 0.3f);
-        //    }
-        //}
+                    Vignette vignette = entity.vignette.Value;
+
+                    float factor = Mathf.Clamp(1f - (float)currentHealth / maxHp, 0f, IntensityMax);
+                    vignette.intensity.value = Mathf.SmoothDamp(vignette.intensity.value, factor, ref _currentVelocity, 0.3f);
+                }
+            }
+        }
     }
 }

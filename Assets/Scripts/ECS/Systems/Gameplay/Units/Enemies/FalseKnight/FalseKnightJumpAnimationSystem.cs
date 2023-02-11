@@ -1,7 +1,6 @@
 using UnityEngine;
 using Core.ECS.Events;
 using Core.ECS.Components.Units;
-using Leopotam.Ecs;
 
 namespace Core.ECS.Systems.FalseKnight
 {

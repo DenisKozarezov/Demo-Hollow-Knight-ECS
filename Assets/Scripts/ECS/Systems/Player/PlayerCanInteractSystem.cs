@@ -1,5 +1,4 @@
-﻿using Leopotam.Ecs;
-using Core.ECS.Events;
+﻿using Core.ECS.Events;
 using Core.ECS.Components.Player;
 using Core.ECS.Components.Units;
 

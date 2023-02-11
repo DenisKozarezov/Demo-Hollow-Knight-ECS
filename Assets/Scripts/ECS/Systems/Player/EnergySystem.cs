@@ -1,6 +1,5 @@
 ﻿using System;
 using Core.ECS.Components.Player;
-using Leopotam.Ecs;
 
 namespace Core.ECS.Systems
 {

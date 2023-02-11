@@ -1,5 +1,4 @@
-﻿using Leopotam.Ecs;
-using Core.UI;
+﻿using Core.UI;
 using Core.ECS.Events;
 
 namespace Core.ECS.Systems.Camera
