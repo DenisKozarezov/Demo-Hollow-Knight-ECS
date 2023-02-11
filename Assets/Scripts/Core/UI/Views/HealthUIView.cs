@@ -1,23 +1,33 @@
+﻿using Entitas;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
-using Editor;
+using Core.ECS.ViewListeners;
 
-namespace Core.UI
+namespace Core.ECS.Behaviours
 {
-    public class HealthUIView : MonoBehaviour
+    public sealed class HealthUIView : EntityBehaviour, IEventListener, IDamageTakenListener, IRestoredHealthListener
     {
+        private GameEntity _entity;
+
         [SerializeField]
         private Transform _healthTransform;
         [SerializeField]
         private Sprite _emptyHealth;
         [SerializeField]
         private Sprite _fullHealth;
-        [SerializeField, ObjectPicker]
-        private string _healthPrefab;
+        [SerializeField]
+        private GameObject _healthPrefab;
 
         private int _currentHealth;
         private int Count => _healthTransform.childCount;
+
+        protected override void Awake()
+        {
+            base.Awake();
+            Entity.AddHealthUI(this);
+        }
+        protected override void Start() => Clear();
 
         public void Init(int value)
         {
@@ -25,21 +35,21 @@ namespace Core.UI
 
             _currentHealth = value;
 
-            var asset = Resources.Load(_healthPrefab);
-            for (int i = 0; i < value; i++) Instantiate(asset, _healthTransform);
+            for (int i = 0; i < value; i++) Instantiate(_healthPrefab, _healthTransform);
         }
-        public void RestoreHealth(int value)
+        public void RegisterListeners(IEntity entity)
         {
-            if (value == 0 || _currentHealth >= Count) return;
-
-            for (int i = _currentHealth; i < _currentHealth + value && i < Count; i++)
-            {
-                var image = _healthTransform.GetChild(i).GetComponentInChildren<Image>();
-                image.sprite = _fullHealth;
-            }
-            _currentHealth = Math.Min(_currentHealth + value, Count);
+            GameEntity player = (GameEntity)entity;
+            player.AddDamageTakenListener(this);
+            player.AddRestoredHealthListener(this);
         }
-        public void Hit(int value)
+        public void UnregisterListeners()
+        {
+            _entity.RemoveDamageTakenListener();
+            _entity.RemoveDamageTakenListener();
+        }
+
+        private void Hit(int value)
         {
             if (value == 0 || Count == 0 || _currentHealth == 0) return;
 
@@ -50,7 +60,18 @@ namespace Core.UI
             }
             _currentHealth = Math.Max(_currentHealth - value, 0);
         }
-        public void Clear()
+        private void RestoreHealth(int value)
+        {
+            if (value == 0 || _currentHealth >= Count) return;
+
+            for (int i = _currentHealth; i < _currentHealth + value && i < Count; i++)
+            {
+                var image = _healthTransform.GetChild(i).GetComponentInChildren<Image>();
+                image.sprite = _fullHealth;
+            }
+            _currentHealth = Math.Min(_currentHealth + value, Count);
+        }
+        private void Clear()
         {
             _currentHealth = 0;
             for (int i = Count; i > 0; i--)
@@ -58,5 +79,9 @@ namespace Core.UI
                 Destroy(_healthTransform.GetChild(i - 1).gameObject);
             }
         }
+
+        // Player events
+        public void OnDamageTaken(GameEntity entity, int value) => Hit(value);
+        public void OnRestoredHealth(GameEntity entity, int value) => RestoreHealth(value);
     }
 }

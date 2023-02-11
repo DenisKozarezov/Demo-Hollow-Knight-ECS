@@ -1,28 +1,37 @@
-﻿using Leopotam.Ecs;
-using Core.ECS.Components.Player;
-using Core.ECS.Components.Units;
-using Core.UI;
+﻿using System.Collections.Generic;
+using Entitas;
 
 namespace Core.ECS.Systems.UI
 {
-    public sealed class HealthViewInitSystem /*: IEcsInitSystem*/
+    public sealed class HealthViewInitSystem : ReactiveSystem<GameEntity>
     {
-        //private readonly EcsFilter<HealthComponent, PlayerTagComponent> _player = null;
-        //private readonly HealthUIView _view;
-        
-        //public HealthViewInitSystem(HealthUIView view)
-        //{
-        //    _view = view;
-        //}
+        private IGroup<GameEntity> _healthUI;
 
-        //void IEcsInitSystem.Init()
-        //{
-        //    foreach (var player in _player)
-        //    {
-        //        ref int maxHealth = ref _player.Get1(player).MaxHealth;
-        //        _view.Clear();
-        //        _view.Init(maxHealth);
-        //    }
-        //}
+        public HealthViewInitSystem(GameContext game) : base(game)
+        {
+            _healthUI = game.GetGroup(GameMatcher.HealthUI);
+        }
+
+        protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
+        {
+            return context.CreateCollector(GameMatcher.Player.Added());
+        }
+        protected override bool Filter(GameEntity entity)
+        {
+            return entity.isPlayer;
+        }
+        protected override void Execute(List<GameEntity> entities)
+        {
+            foreach (GameEntity player in entities)
+            {
+                foreach (GameEntity viewEntity in _healthUI)
+                {
+                    int maxHealth = player.maxHp.Value;
+                    var view = viewEntity.healthUI.Value;
+                    view.Init(maxHealth);
+                    view.RegisterListeners(player);
+                }
+            }
+        }       
     }
 }

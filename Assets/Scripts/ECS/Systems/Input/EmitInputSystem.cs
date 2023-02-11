@@ -3,7 +3,7 @@ using Core.Services;
 
 namespace Core.ECS.Systems
 {
-    public sealed class EmitInputSystem : IExecuteSystem
+    public sealed class EmitInputSystem : IInitializeSystem, IExecuteSystem
     {
         private readonly IGroup<InputEntity> _leftMouse;
         private readonly IGroup<InputEntity> _rightMouse;
@@ -15,13 +15,15 @@ namespace Core.ECS.Systems
             _inputContext = inputContext;
             _leftMouse = inputContext.GetGroup(InputMatcher.LeftMouse);
             _rightMouse = inputContext.GetGroup(InputMatcher.RightMouse);
-            _keyboard = inputContext.GetGroup(InputMatcher.Keyboard);
+            _keyboard = inputContext.GetGroup(InputMatcher.Keyboard);      
+        }
 
+        public void Initialize()
+        {
             _inputContext.isLeftMouse = true;
             _inputContext.isRightMouse = true;
             _inputContext.isKeyboard = true;
         }
-
         public void Execute()
         {
             foreach (InputEntity leftMouse in _leftMouse)

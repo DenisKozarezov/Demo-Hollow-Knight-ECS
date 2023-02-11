@@ -10,10 +10,10 @@ namespace Core.ECS.Systems
             Add(new EmitInputSystem(contexts.input));
 
             //Add(new HitSystem());
-            //Add(new DamageSystem());
             Add(new HealthSystem(contexts.game));
             Add(new UnitsSystems(contexts));
             Add(new PlayerSystems(contexts));
+            Add(new DamageSystem(contexts.game));
             //Add(new DialogueSystem(context.DiContainer.Resolve<DialogueUIView>()));
             //Add(new BehaviourTreeSystem());
             //Add(new EnemyDiedSystem());

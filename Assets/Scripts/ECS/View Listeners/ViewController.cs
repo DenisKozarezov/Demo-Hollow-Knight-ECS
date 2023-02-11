@@ -5,7 +5,7 @@ using Core.ECS.ViewComponentRegistrators;
 
 namespace Core.ECS.ViewListeners
 {
-    public sealed class UnityViewController : MonoBehaviour, IViewController
+    public sealed class ViewController : MonoBehaviour, IViewController
     {
         private GameContext _game;
         public GameEntity Entity { get; private set; }

@@ -22,10 +22,6 @@ namespace Core.ECS.ViewListeners
             _entity.RemoveStoppedMovingListener();
         }
         public void OnMoving(GameEntity entity) => _animator.SetBool("IsMoving", true);
-        public void OnStoppedMoving(GameEntity entity)
-        {
-            _animator.SetBool("IsMoving", false);
-            entity.isStoppedMoving = false;
-        }
+        public void OnStoppedMoving(GameEntity entity) => _animator.SetBool("IsMoving", false);
     }
 }

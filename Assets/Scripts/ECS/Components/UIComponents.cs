@@ -1,7 +1,7 @@
-﻿using System;
-using TMPro;
+﻿using Entitas;
+using Core.ECS.Behaviours;
 
 namespace Core.ECS.Components.UI
 {
-    [Serializable] public struct InteractablePromptComponent { public TextMeshPro Label; }
+    public sealed class HealthUI : IComponent { public HealthUIView Value; }
 }

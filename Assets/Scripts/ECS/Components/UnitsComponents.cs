@@ -5,6 +5,7 @@ using Entitas.CodeGeneration.Attributes;
 using Core.Models;
 using Core.ECS.ViewListeners;
 using static Entitas.CodeGeneration.Attributes.EventTarget;
+using static Entitas.CodeGeneration.Attributes.CleanupMode;
 
 namespace Core.ECS.Components.Units
 {  
@@ -39,13 +40,13 @@ namespace Core.ECS.Components.Units
     public sealed class ViewControllerComponent : IComponent { public IViewController Value; }
 
     [Event(Self)] public sealed class Attacking : IComponent { }
-    [Event(Self)] public sealed class DamageTaken : IComponent { }
-    [Event(Self)] public sealed class Died : IComponent { }
     [Event(Self)] public sealed class Jumping : IComponent { }
     [Event(Self)] public sealed class Grounded : IComponent { }
-    [Event(Self)] public sealed class StoppedMoving : IComponent { }
     [Event(Self)] public sealed class Moving : IComponent { }
     [Event(Self)] public sealed class Destroyed : IComponent { }
+    [Event(Self), Cleanup(RemoveComponent)] public sealed class DamageTaken : IComponent { public int Value; }
+    [Event(Self), Cleanup(RemoveComponent)] public sealed class StoppedMoving : IComponent { }
+    [Event(Self), Cleanup(RemoveComponent)] public sealed class Died : IComponent { }
 
     [Game, Event(Self)] public sealed class Position : IComponent { public Vector2 Value; }
     [Game, Event(Self)] public sealed class Direction : IComponent { public float Value; }

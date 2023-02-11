@@ -21,16 +21,16 @@ public sealed class DamageTakenEventSystem : Entitas.ReactiveSystem<GameEntity> 
     }
 
     protected override bool Filter(GameEntity entity) {
-        return entity.isDamageTaken && entity.hasDamageTakenListener;
+        return entity.hasDamageTaken && entity.hasDamageTakenListener;
     }
 
     protected override void Execute(System.Collections.Generic.List<GameEntity> entities) {
         foreach (var e in entities) {
-            
+            var component = e.damageTaken;
             _listenerBuffer.Clear();
             _listenerBuffer.AddRange(e.damageTakenListener.value);
             foreach (var listener in _listenerBuffer) {
-                listener.OnDamageTaken(e);
+                listener.OnDamageTaken(e, component.Value);
             }
         }
     }

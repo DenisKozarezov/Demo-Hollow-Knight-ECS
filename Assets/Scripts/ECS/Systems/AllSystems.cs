@@ -9,7 +9,8 @@ namespace Core.ECS.Systems
             Add(new ServiceRegistrationSystems(contexts, services));
             Add(new GameplaySystems(contexts));         
             Add(new UISystems(contexts));
-            Add(new GameEventSystems(contexts));   
+            Add(new GameEventSystems(contexts));
+            Add(new GameCleanupSystems(contexts));
         }
     }
 }

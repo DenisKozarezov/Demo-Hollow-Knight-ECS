@@ -7,5 +7,5 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 public interface IDamageTakenListener {
-    void OnDamageTaken(GameEntity entity);
+    void OnDamageTaken(GameEntity entity, int value);
 }

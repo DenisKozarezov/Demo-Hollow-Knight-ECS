@@ -20,21 +20,18 @@ namespace Core.ECS.Systems.Player
 
         private void Move(GameEntity player, float horizontal, float speed)
         {
-            player.isStoppedMoving = false;
-
             Vector2 newPosition = player.position.Value + Vector2.right * horizontal * speed * _game.time.Value.DeltaTime;
             newPosition.y = player.rigidbody.Value.position.y;
-            player.ReplacePosition(newPosition);   
+            player.ReplacePosition(newPosition);
         }
         private void UpdateDirection(GameEntity player, float horizontal)
         {
             bool alreadySynced = player.hasDirection && player.direction.Value == horizontal;
-            
+
             if (alreadySynced) return;
 
             player.ReplaceDirection(horizontal);
         }
-
         public void Execute()
         {
             foreach (InputEntity input in _inputs)
@@ -45,7 +42,6 @@ namespace Core.ECS.Systems.Player
                     float speed = player.movable.Value;
 
                     player.isMoving = Mathf.Abs(direction) > 0f;
-                    player.isStoppedMoving = !player.isMoving;
 
                     if (player.isMoving)
                     {
@@ -55,6 +51,6 @@ namespace Core.ECS.Systems.Player
                     }
                 }
             }
-        }                 
+        }
     }
 }

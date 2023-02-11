@@ -8,25 +8,25 @@
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Core.ECS.Components.Units.DamageTaken damageTakenComponent = new Core.ECS.Components.Units.DamageTaken();
+    public Core.ECS.Components.Units.DamageTaken damageTaken { get { return (Core.ECS.Components.Units.DamageTaken)GetComponent(GameComponentsLookup.DamageTaken); } }
+    public bool hasDamageTaken { get { return HasComponent(GameComponentsLookup.DamageTaken); } }
 
-    public bool isDamageTaken {
-        get { return HasComponent(GameComponentsLookup.DamageTaken); }
-        set {
-            if (value != isDamageTaken) {
-                var index = GameComponentsLookup.DamageTaken;
-                if (value) {
-                    var componentPool = GetComponentPool(index);
-                    var component = componentPool.Count > 0
-                            ? componentPool.Pop()
-                            : damageTakenComponent;
+    public void AddDamageTaken(int newValue) {
+        var index = GameComponentsLookup.DamageTaken;
+        var component = (Core.ECS.Components.Units.DamageTaken)CreateComponent(index, typeof(Core.ECS.Components.Units.DamageTaken));
+        component.Value = newValue;
+        AddComponent(index, component);
+    }
 
-                    AddComponent(index, component);
-                } else {
-                    RemoveComponent(index);
-                }
-            }
-        }
+    public void ReplaceDamageTaken(int newValue) {
+        var index = GameComponentsLookup.DamageTaken;
+        var component = (Core.ECS.Components.Units.DamageTaken)CreateComponent(index, typeof(Core.ECS.Components.Units.DamageTaken));
+        component.Value = newValue;
+        ReplaceComponent(index, component);
+    }
+
+    public void RemoveDamageTaken() {
+        RemoveComponent(GameComponentsLookup.DamageTaken);
     }
 }
 

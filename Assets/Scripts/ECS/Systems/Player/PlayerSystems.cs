@@ -21,6 +21,7 @@ namespace Core.ECS.Systems.Player
             //Add(new PlayerRespawnSystem());
             //Add(new PlayerHealingSystem());
             Add(new PlayerMoveSystem(context.game, context.input));
+            Add(new PlayerStoppedMovingSystem(context.game));
             Add(new PlayerJumpSystem(context.game, context.input));
             //Add(new PlayerAttackSystem(context.InputSystem));
             //Add(new PlayerAttackCooldownSystem(context.InputSystem));

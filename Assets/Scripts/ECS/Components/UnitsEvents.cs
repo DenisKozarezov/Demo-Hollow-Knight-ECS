@@ -13,22 +13,11 @@ namespace Core.ECS.Events
         public int TargetLayer;
         public GameObject Source;
     }
-    [Event(Self)] public sealed class DamageEventComponent : IComponent
-    {
-        public int Damage;
-        public GameObject Target;
-        public GameObject Source;
-    }
     [Event(Self)] public sealed class AnimateDamageEventComponent : IComponent
     {
         public GameObject GameObjectRef;
         public float Duration;
         public bool Damaged;
-    }
-    [Event(Self)] public sealed class CreateUnitEventComponent : IComponent
-    {
-        public uint ID;
-        public Vector2 Point;
     }
     [Event(Self)] public sealed class CreateDustEventComponent : IComponent
     {
