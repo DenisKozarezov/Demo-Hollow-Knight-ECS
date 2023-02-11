@@ -20,8 +20,8 @@ namespace Core.ECS.Systems.Player
 
         private void Move(GameEntity player, float horizontal, float speed)
         {
-            Vector2 newPosition = player.position.Value + Vector2.right * horizontal * speed * _game.time.Value.DeltaTime;
-            newPosition.y = player.rigidbody.Value.position.y;
+            Vector2 currentPosition = player.rigidbody.Value.position;
+            Vector2 newPosition = currentPosition + Vector2.right * horizontal * speed * _game.time.Value.FixedDeltaTime;
             player.ReplacePosition(newPosition);
         }
         private void UpdateDirection(GameEntity player, float horizontal)

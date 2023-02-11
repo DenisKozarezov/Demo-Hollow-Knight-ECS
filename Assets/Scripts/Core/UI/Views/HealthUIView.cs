@@ -1,7 +1,7 @@
-﻿using Entitas;
-using System;
+﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
+using Entitas;
 using Core.ECS.ViewListeners;
 
 namespace Core.ECS.Behaviours
@@ -46,7 +46,7 @@ namespace Core.ECS.Behaviours
         public void UnregisterListeners()
         {
             _entity.RemoveDamageTakenListener();
-            _entity.RemoveDamageTakenListener();
+            _entity.RemoveRestoredHealthListener();
         }
 
         private void Hit(int value)

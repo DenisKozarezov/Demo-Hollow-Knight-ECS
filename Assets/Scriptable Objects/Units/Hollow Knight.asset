@@ -16,7 +16,7 @@ MonoBehaviour:
   <DisplayName>k__BackingField: Hollow Knight
   <Description>k__BackingField: 
   <PrefabPath>k__BackingField: Prefabs/Units/Player/Hollow Knight
-  <MovementSpeed>k__BackingField: 3
+  <MovementSpeed>k__BackingField: 2
   <BaseDamage>k__BackingField: 9
   <AttackRange>k__BackingField: 1.5
   <MaxHealth>k__BackingField: 5
