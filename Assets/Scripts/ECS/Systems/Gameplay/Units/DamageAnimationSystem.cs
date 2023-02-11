@@ -1,43 +1,34 @@
+using System.Collections.Generic;
 using UnityEngine;
-using Leopotam.Ecs;
-using Core.ECS.Events;
+using Entitas;
+using DG.Tweening;
 
 namespace Core.ECS.Systems
 {
-    public sealed class DamageAnimationSystem/* : IEcsRunSystem*/
+    public sealed class DamageAnimationSystem : ReactiveSystem<GameEntity>
     {
-        //private readonly EcsFilter<AnimateDamageEventComponent> _event = null;
-        //private const float Duration = 0.4f;
-        //private Color WhiteColor = new Color(1, 1, 1, 0.7f);
+        private const float Duration = 0.4f;
+        private Color WhiteColor = new Color(1, 1, 1, 0.7f);
 
-        //void IEcsRunSystem.Run()
-        //{
-        //    foreach (var @event in _event)
-        //    {
-        //        ref var entity = ref _event.GetEntity(@event);
-        //        ref var eventComponent = ref _event.Get1(@event);
+        public DamageAnimationSystem(GameContext game) : base(game) { }
 
-        //        SpriteRenderer renderer = eventComponent.GameObjectRef.GetComponent<SpriteRenderer>();
-
-        //        // Colorize in white
-        //        if (!eventComponent.Damaged)
-        //        {
-        //            renderer.color = WhiteColor;
-        //            eventComponent.Damaged = true;
-        //            eventComponent.Duration = Duration;
-        //        }
-
-        //        // Return default color
-        //        else
-        //        {
-        //            eventComponent.Duration -= Time.deltaTime;
-        //            if (eventComponent.Duration <= 0f)
-        //            {
-        //                renderer.color = Color.black;
-        //                entity.Del<AnimateDamageEventComponent>();
-        //            }
-        //        }
-        //    }
-        //}
+        protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
+        {
+            return context.CreateCollector(GameMatcher.AllOf(GameMatcher.DamageTaken, GameMatcher.CurrentHp));
+        }
+        protected override bool Filter(GameEntity entity)
+        {
+            return entity.hasCurrentHp;
+        }
+        protected override void Execute(List<GameEntity> entities)
+        {
+            foreach (GameEntity entity in entities)
+            {
+                SpriteRenderer renderer = entity.spriteRenderer.Value;
+                renderer
+                    .DOColor(WhiteColor, Duration).SetEase(Ease.Linear)
+                    .OnComplete(() => renderer.DOColor(Color.black, Duration));
+            }
+        }   
     }
 }

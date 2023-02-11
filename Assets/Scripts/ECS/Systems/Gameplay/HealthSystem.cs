@@ -19,7 +19,7 @@ namespace Core.ECS.Systems
         }
         protected override void Execute(List<GameEntity> entities)
         {
-            foreach (var entity in entities)
+            foreach (GameEntity entity in entities)
             {
                 if (entity.currentHp.Value <= 0f) entity.isDead = true;
             }

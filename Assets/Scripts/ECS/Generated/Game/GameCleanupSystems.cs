@@ -9,6 +9,11 @@
 public sealed class GameCleanupSystems : Feature {
 
     public GameCleanupSystems(Contexts contexts) {
+        Add(new RemoveObtainedGeoGameSystem(contexts));
+        Add(new RemoveRestoredHealthGameSystem(contexts));
+        Add(new RemoveEnergyReducedGameSystem(contexts));
+        Add(new RemoveEnteredBossZoneGameSystem(contexts));
+        Add(new RemovePlayerTalkingWithNPCEventGameSystem(contexts));
         Add(new RemoveDamageTakenGameSystem(contexts));
         Add(new RemoveStoppedMovingGameSystem(contexts));
         Add(new RemoveDiedGameSystem(contexts));

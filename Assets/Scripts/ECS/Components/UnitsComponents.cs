@@ -20,6 +20,7 @@ namespace Core.ECS.Components.Units
     // Tags
     public sealed class Unit : IComponent { }
     public sealed class Enemy : IComponent { }
+    public sealed class Boss : IComponent { }
     public sealed class NPC : IComponent { public List<ConversationContext> Conversations; }
 
     // Characteristics

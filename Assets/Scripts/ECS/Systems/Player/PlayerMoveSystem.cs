@@ -41,12 +41,12 @@ namespace Core.ECS.Systems.Player
                     float direction = input.horizontal.Value;
                     float speed = player.movable.Value;
 
-                    player.isMoving = Mathf.Abs(direction) > 0f;
+                    int sign = System.Math.Sign(direction);
+                    Move(player, horizontal: sign, speed);
 
+                    player.isMoving = Mathf.Abs(direction) > 0f;
                     if (player.isMoving)
-                    {
-                        int sign = System.Math.Sign(direction);
-                        Move(player, horizontal: sign, speed);
+                    {                     
                         UpdateDirection(player, horizontal: sign);
                     }
                 }

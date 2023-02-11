@@ -16,9 +16,6 @@ namespace Core.ECS.ViewListeners
             _animator = GetComponent<Animator>();
         }
         public void UnregisterListeners() => _entity.RemoveDamageTakenListener();
-        public void OnDamageTaken(GameEntity entity, int value)
-        {
-            _animator.SetTrigger("Hit");
-        }
+        public void OnDamageTaken(GameEntity entity, int value) => _animator.SetTrigger("Hit");
     }
 }

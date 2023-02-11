@@ -33,69 +33,70 @@ public static class GameComponentsLookup {
     public const int Attacking = 22;
     public const int AttackRange = 23;
     public const int BehaviourTree = 24;
-    public const int CanAttack = 25;
-    public const int Channelling = 26;
-    public const int Collided = 27;
-    public const int Collider = 28;
-    public const int CurrentHp = 29;
-    public const int Damage = 30;
-    public const int DamageTaken = 31;
-    public const int Dead = 32;
-    public const int Destroyed = 33;
-    public const int Died = 34;
-    public const int Direction = 35;
-    public const int Enemy = 36;
-    public const int Grounded = 37;
-    public const int Hittable = 38;
-    public const int Invulnerable = 39;
-    public const int Jump = 40;
-    public const int Jumping = 41;
-    public const int MaxHp = 42;
-    public const int Movable = 43;
-    public const int Moving = 44;
-    public const int NPC = 45;
-    public const int Position = 46;
-    public const int Rigidbody = 47;
-    public const int SpriteRenderer = 48;
-    public const int StoppedMoving = 49;
-    public const int Transform = 50;
-    public const int Unit = 51;
-    public const int ViewController = 52;
-    public const int AnimateDamageEvent = 53;
-    public const int CameraFadeEvent = 54;
-    public const int CameraShakeEvent = 55;
-    public const int CreateDustEvent = 56;
-    public const int FalseKnightAttackEvent = 57;
-    public const int FalseKnightJumpEvent = 58;
-    public const int FalseKnightRollEvent = 59;
-    public const int FalseKnightStrongAttackEvent = 60;
-    public const int HitEvent = 61;
-    public const int InteractableTriggerEnterEvent = 62;
-    public const int InteractableTriggerExitEvent = 63;
-    public const int CreateDustEventListener = 64;
-    public const int DamageTakenListener = 65;
-    public const int DestroyedListener = 66;
-    public const int DiedListener = 67;
-    public const int DirectionListener = 68;
-    public const int EnergyReducedListener = 69;
-    public const int EnteredBossZoneListener = 70;
-    public const int FalseKnightAttackEventListener = 71;
-    public const int FalseKnightJumpEventListener = 72;
-    public const int FalseKnightRollEventListener = 73;
-    public const int FalseKnightStrongAttackEventListener = 74;
-    public const int GroundedListener = 75;
-    public const int HitEventListener = 76;
-    public const int InteractableTriggerEnterEventListener = 77;
-    public const int InteractableTriggerExitEventListener = 78;
-    public const int JumpingListener = 79;
-    public const int MovingListener = 80;
-    public const int ObtainedGeoListener = 81;
-    public const int PlayerTalkingWithNPCEventListener = 82;
-    public const int PositionListener = 83;
-    public const int RestoredHealthListener = 84;
-    public const int StoppedMovingListener = 85;
+    public const int Boss = 25;
+    public const int CanAttack = 26;
+    public const int Channelling = 27;
+    public const int Collided = 28;
+    public const int Collider = 29;
+    public const int CurrentHp = 30;
+    public const int Damage = 31;
+    public const int DamageTaken = 32;
+    public const int Dead = 33;
+    public const int Destroyed = 34;
+    public const int Died = 35;
+    public const int Direction = 36;
+    public const int Enemy = 37;
+    public const int Grounded = 38;
+    public const int Hittable = 39;
+    public const int Invulnerable = 40;
+    public const int Jump = 41;
+    public const int Jumping = 42;
+    public const int MaxHp = 43;
+    public const int Movable = 44;
+    public const int Moving = 45;
+    public const int NPC = 46;
+    public const int Position = 47;
+    public const int Rigidbody = 48;
+    public const int SpriteRenderer = 49;
+    public const int StoppedMoving = 50;
+    public const int Transform = 51;
+    public const int Unit = 52;
+    public const int ViewController = 53;
+    public const int AnimateDamageEvent = 54;
+    public const int CameraFadeEvent = 55;
+    public const int CameraShakeEvent = 56;
+    public const int CreateDustEvent = 57;
+    public const int FalseKnightAttackEvent = 58;
+    public const int FalseKnightJumpEvent = 59;
+    public const int FalseKnightRollEvent = 60;
+    public const int FalseKnightStrongAttackEvent = 61;
+    public const int HitEvent = 62;
+    public const int InteractableTriggerEnterEvent = 63;
+    public const int InteractableTriggerExitEvent = 64;
+    public const int CreateDustEventListener = 65;
+    public const int DamageTakenListener = 66;
+    public const int DestroyedListener = 67;
+    public const int DiedListener = 68;
+    public const int DirectionListener = 69;
+    public const int EnergyReducedListener = 70;
+    public const int EnteredBossZoneListener = 71;
+    public const int FalseKnightAttackEventListener = 72;
+    public const int FalseKnightJumpEventListener = 73;
+    public const int FalseKnightRollEventListener = 74;
+    public const int FalseKnightStrongAttackEventListener = 75;
+    public const int GroundedListener = 76;
+    public const int HitEventListener = 77;
+    public const int InteractableTriggerEnterEventListener = 78;
+    public const int InteractableTriggerExitEventListener = 79;
+    public const int JumpingListener = 80;
+    public const int MovingListener = 81;
+    public const int ObtainedGeoListener = 82;
+    public const int PlayerTalkingWithNPCEventListener = 83;
+    public const int PositionListener = 84;
+    public const int RestoredHealthListener = 85;
+    public const int StoppedMovingListener = 86;
 
-    public const int TotalComponents = 86;
+    public const int TotalComponents = 87;
 
     public static readonly string[] componentNames = {
         "AnimateDamageEventListener",
@@ -123,6 +124,7 @@ public static class GameComponentsLookup {
         "Attacking",
         "AttackRange",
         "BehaviourTree",
+        "Boss",
         "CanAttack",
         "Channelling",
         "Collided",
@@ -212,6 +214,7 @@ public static class GameComponentsLookup {
         typeof(Core.ECS.Components.Units.Attacking),
         typeof(Core.ECS.Components.Units.AttackRange),
         typeof(Core.ECS.Components.Units.BehaviourTreeComponent),
+        typeof(Core.ECS.Components.Units.Boss),
         typeof(Core.ECS.Components.Units.CanAttack),
         typeof(Core.ECS.Components.Units.Channelling),
         typeof(Core.ECS.Components.Units.Collided),
