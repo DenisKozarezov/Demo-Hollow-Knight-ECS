@@ -8,25 +8,27 @@
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Core.ECS.Components.Interactable interactableComponent = new Core.ECS.Components.Interactable();
+    public Core.ECS.Components.Interactable interactable { get { return (Core.ECS.Components.Interactable)GetComponent(GameComponentsLookup.Interactable); } }
+    public bool hasInteractable { get { return HasComponent(GameComponentsLookup.Interactable); } }
 
-    public bool isInteractable {
-        get { return HasComponent(GameComponentsLookup.Interactable); }
-        set {
-            if (value != isInteractable) {
-                var index = GameComponentsLookup.Interactable;
-                if (value) {
-                    var componentPool = GetComponentPool(index);
-                    var component = componentPool.Count > 0
-                            ? componentPool.Pop()
-                            : interactableComponent;
+    public void AddInteractable(string newLabel, Core.InteractType newInteractType) {
+        var index = GameComponentsLookup.Interactable;
+        var component = (Core.ECS.Components.Interactable)CreateComponent(index, typeof(Core.ECS.Components.Interactable));
+        component.Label = newLabel;
+        component.InteractType = newInteractType;
+        AddComponent(index, component);
+    }
 
-                    AddComponent(index, component);
-                } else {
-                    RemoveComponent(index);
-                }
-            }
-        }
+    public void ReplaceInteractable(string newLabel, Core.InteractType newInteractType) {
+        var index = GameComponentsLookup.Interactable;
+        var component = (Core.ECS.Components.Interactable)CreateComponent(index, typeof(Core.ECS.Components.Interactable));
+        component.Label = newLabel;
+        component.InteractType = newInteractType;
+        ReplaceComponent(index, component);
+    }
+
+    public void RemoveInteractable() {
+        RemoveComponent(GameComponentsLookup.Interactable);
     }
 }
 

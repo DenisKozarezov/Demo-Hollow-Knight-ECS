@@ -1,10 +1,11 @@
 using UnityEngine;
 using TMPro;
 using DG.Tweening;
+using Core.ECS;
 
 namespace Core.UI
 {
-    public class InteractablePrompt : MonoBehaviour
+    public sealed class InteractablePromptBehaviour : EntityBehaviour
     {
         [SerializeField]
         private TextMeshPro _text;
@@ -14,10 +15,16 @@ namespace Core.UI
 
         public bool IsPlaying => _sequence.IsActive() && _sequence.IsPlaying();
 
-        private void Start()
+        protected override void Start()
         {
+            Entity.AddInteractablePrompt(this);
             _text.color = _text.color.WithAlpha(0f);
             _renderer.color = _text.color.WithAlpha(0f);
+            transform
+                .DOBlendableLocalMoveBy(Vector2.up * 0.15f, 2f)
+                .SetLoops(-1, LoopType.Yoyo)
+                .SetEase(Ease.InOutSine)
+                .SetLink(gameObject);
         }
         public void Fade(FadeMode mode, float time)
         {
@@ -32,10 +39,8 @@ namespace Core.UI
             {
                 if (mode == FadeMode.Off) GameObject.DestroyImmediate(gameObject);
             });
+            _sequence.SetLink(gameObject);
         }
-        public void SetText(string label)
-        {
-            _text.text = label;
-        }
+        public void SetText(string label) => _text.text = label;
     }
 }

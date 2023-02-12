@@ -14,6 +14,7 @@ public sealed class GameCleanupSystems : Feature {
         Add(new RemoveEnergyReducedGameSystem(contexts));
         Add(new RemoveEnteredBossZoneGameSystem(contexts));
         Add(new RemovePlayerTalkingWithNPCEventGameSystem(contexts));
+        Add(new DestroyDestroyedGameSystem(contexts));
         Add(new RemoveDamageTakenGameSystem(contexts));
         Add(new RemoveStoppedMovingGameSystem(contexts));
         Add(new RemoveDiedGameSystem(contexts));

@@ -7,7 +7,8 @@
             Add(new HealthViewInitSystem(contexts.game));
             //Add(new HealthReducedUISystem(healthView));
             //Add(new HealthHealedUISystem(healthView));
-            //Add(new InteractablePromptUISystem());
+            Add(new InteractablePromptAddedSystem(contexts.game));
+            Add(new InteractablePromptRemovedSystem(contexts.game));
             //Add(new BossAnnouncementUISystem(gameView));
             //Add(new GeoObtainedUISystem(geoView));
         }

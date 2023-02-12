@@ -4948,7 +4948,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _selfInitialize: 1
-  _isInteractable: 1
+  _label: INSPECT
+  _interactType: 1
   _triggeringLayers:
     serializedVersion: 2
     m_Bits: 256

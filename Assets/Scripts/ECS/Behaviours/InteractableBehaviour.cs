@@ -7,6 +7,10 @@ namespace Core.UI
     public sealed class InteractableBehaviour : EntityBehaviour
     {
         [SerializeField]
+        private string _label;
+        [SerializeField]
+        private InteractType _interactType;
+        [SerializeField]
         private LayerMask _triggeringLayers;
 
         private void OnTriggerEnter2D(Collider2D other) => TriggerBy(other);
@@ -14,12 +18,12 @@ namespace Core.UI
         private void OnTriggerExit2D(Collider2D other) => ResetTriggerBy(other);
         protected override void Start()
         {
-            Entity.isInteractable = true;
+            Entity.AddInteractable(_label, _interactType);
         }
 
         private void TriggerBy(Collider2D collision)
         {
-            if (!Entity.isInteractable || Entity.hasCollided) return;
+            if (!Entity.hasInteractable || Entity.hasCollided) return;
 
             if (collision.Matches(_triggeringLayers))
             {

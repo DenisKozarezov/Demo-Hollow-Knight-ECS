@@ -45,7 +45,7 @@ namespace Core.ECS.Components.Units
     [Event(Self)] public sealed class Jumping : IComponent { }
     [Event(Self)] public sealed class Grounded : IComponent { }
     [Event(Self)] public sealed class Moving : IComponent { }
-    [Event(Self)] public sealed class Destroyed : IComponent { }
+    [Event(Self), Cleanup(DestroyEntity)] public sealed class Destroyed : IComponent { }
     [Event(Self), Cleanup(RemoveComponent)] public sealed class DamageTaken : IComponent { public int Value; }
     [Event(Self), Cleanup(RemoveComponent)] public sealed class StoppedMoving : IComponent { }
     [Event(Self), Cleanup(RemoveComponent)] public sealed class Died : IComponent { }
