@@ -8,25 +8,25 @@
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Core.ECS.Components.Units.Collided collidedComponent = new Core.ECS.Components.Units.Collided();
+    public Core.ECS.Components.Units.Collided collided { get { return (Core.ECS.Components.Units.Collided)GetComponent(GameComponentsLookup.Collided); } }
+    public bool hasCollided { get { return HasComponent(GameComponentsLookup.Collided); } }
 
-    public bool isCollided {
-        get { return HasComponent(GameComponentsLookup.Collided); }
-        set {
-            if (value != isCollided) {
-                var index = GameComponentsLookup.Collided;
-                if (value) {
-                    var componentPool = GetComponentPool(index);
-                    var component = componentPool.Count > 0
-                            ? componentPool.Pop()
-                            : collidedComponent;
+    public void AddCollided(int newCollidedID) {
+        var index = GameComponentsLookup.Collided;
+        var component = (Core.ECS.Components.Units.Collided)CreateComponent(index, typeof(Core.ECS.Components.Units.Collided));
+        component.CollidedID = newCollidedID;
+        AddComponent(index, component);
+    }
 
-                    AddComponent(index, component);
-                } else {
-                    RemoveComponent(index);
-                }
-            }
-        }
+    public void ReplaceCollided(int newCollidedID) {
+        var index = GameComponentsLookup.Collided;
+        var component = (Core.ECS.Components.Units.Collided)CreateComponent(index, typeof(Core.ECS.Components.Units.Collided));
+        component.CollidedID = newCollidedID;
+        ReplaceComponent(index, component);
+    }
+
+    public void RemoveCollided() {
+        RemoveComponent(GameComponentsLookup.Collided);
     }
 }
 

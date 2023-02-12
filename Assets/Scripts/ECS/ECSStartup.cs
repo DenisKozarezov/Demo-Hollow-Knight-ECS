@@ -20,17 +20,19 @@ namespace Core.ECS
             ILogService logger,
             IRegisterService<IViewController> collisionRegistry,
             ITimeService time,
-            IPhysicsService physics)
+            IPhysicsService physics,
+            IIdentifierService identifier)
         {
             Contexts contexts = Contexts.sharedInstance;
 
             Services.Services allServices = new Services.Services
             {
-                InputService = inputSystem,
-                CoroutineRunner = coroutineRunner,
                 Logger = logger,
+                Identifiers = identifier,
                 Time = time,
+                InputService = inputSystem,
                 Physics = physics,
+                CoroutineRunner = coroutineRunner,
                 CollisionRegistry = collisionRegistry
             };
 

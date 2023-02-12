@@ -24,6 +24,7 @@ namespace Core.ECS.Components.Units
     public sealed class NPC : IComponent { public List<ConversationContext> Conversations; }
 
     // Characteristics
+    public class Id : IComponent { [PrimaryEntityIndex] public int Value; }
     public sealed class CurrentHp : IComponent { public int Value; }
     public sealed class MaxHp : IComponent { public int Value; }
     public sealed class Damage : IComponent { public int Value; }
@@ -36,7 +37,7 @@ namespace Core.ECS.Components.Units
     public sealed class Channelling : IComponent { }
 
     public sealed class Hittable : IComponent { }
-    public sealed class Collided : IComponent { }
+    public sealed class Collided : IComponent { public int CollidedID; }
 
     public sealed class ViewControllerComponent : IComponent { public IViewController Value; }
 

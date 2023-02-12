@@ -13,7 +13,6 @@ namespace Core.ECS.Behaviours
             Entity.isPlayer = true;
             Entity.isUnit = true;
             Entity.isHittable = true;
-            Entity.isCanInteract = true;
             Entity.AddTransform(transform);
             Entity.AddPosition(transform.position);
             Entity.AddCurrentHp(_playerModel.MaxHealth);

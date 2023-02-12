@@ -13,6 +13,7 @@ namespace Core.Infrastructure.Installers
             Container.Bind<IRegisterService<IViewController>>().To<UnityCollisionRegistry>().AsSingle().NonLazy();
             Container.Bind<ITimeService>().To<UnityTimeService>().AsSingle().NonLazy();
             Container.Bind<IPhysicsService>().To<UnityPhysicsService>().AsSingle().NonLazy();
+            Container.Bind<IIdentifierService>().To<GameIdentifierRegistry>().AsSingle().NonLazy();
         }
     }
 }

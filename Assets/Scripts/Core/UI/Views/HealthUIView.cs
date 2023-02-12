@@ -22,12 +22,11 @@ namespace Core.ECS.Behaviours
         private int _currentHealth;
         private int Count => _healthTransform.childCount;
 
-        protected override void Awake()
+        protected override void Start()
         {
-            base.Awake();
+            Clear();
             Entity.AddHealthUI(this);
         }
-        protected override void Start() => Clear();
 
         public void Init(int value)
         {

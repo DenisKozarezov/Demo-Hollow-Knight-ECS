@@ -18,7 +18,7 @@ namespace Core.ECS.Systems
             Add(new RegisterServiceSystem<IPhysicsService>(services.Physics, game.ReplacePhysics));
             Add(new RegisterServiceSystem<ICoroutineRunnerService>(services.CoroutineRunner, game.ReplaceCoroutineRunner));
             Add(new RegisterServiceSystem<IRegisterService<IViewController>>(services.CollisionRegistry, game.ReplaceCollisionRegistry));
-            //Add(new RegisterServiceSystem<IIdentifierService>(services.Identifiers, game.ReplaceIdentifiers));
+            Add(new RegisterServiceSystem<IIdentifierService>(services.Identifiers, game.ReplaceIdentifiers));
         }
     }
 }

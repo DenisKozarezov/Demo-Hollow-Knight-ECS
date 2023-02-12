@@ -13,7 +13,10 @@ namespace Core.ECS
 
         protected virtual void Awake()
         {
-            if (_selfInitialize) Entity = Game.CreateEntity();
+            if (_selfInitialize)
+            {
+                Entity = Game.CreateEntity();
+            }
 
             var viewController = GetComponent<ViewController>();
             if (viewController)

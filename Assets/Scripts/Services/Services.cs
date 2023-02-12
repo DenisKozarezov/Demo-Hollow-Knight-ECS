@@ -5,7 +5,7 @@ namespace Core.Services
     public struct Services
     {
         public ILogService Logger;
-        //public IIdentifierService Identifiers;
+        public IIdentifierService Identifiers;
         //public IViewService ViewService;
         public ITimeService Time;
         public IInputService InputService;

@@ -9,9 +9,8 @@ namespace Core.ECS.Behaviours
         [SerializeReference]
         private Volume _volume;
 
-        protected override void Awake()
+        protected override void Start()
         {
-            base.Awake();
             Entity.AddVignette(_volume.profile.GetPostProcessSetting<Vignette>());
         }
     }

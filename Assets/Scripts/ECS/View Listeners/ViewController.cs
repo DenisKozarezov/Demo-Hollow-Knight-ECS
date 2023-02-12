@@ -30,11 +30,10 @@ namespace Core.ECS.ViewListeners
             UnregisterListeners();
             gameObject.DestroyGameObject();
         }
-
         private void Start()
         {
+            Entity.AddId(_game.identifiers.Value.Next());
             RegisterCollisions();
-            //Entity.WithNewGeneralId();
         }
 
         private void RegisterViewComponents()

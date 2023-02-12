@@ -1,36 +1,26 @@
-﻿using Core.ECS.Events;
-using Core.ECS.Components.Player;
-using Core.ECS.Components.Units;
+﻿using System.Collections.Generic;
+using Entitas;
 
 namespace Core.ECS.Systems.Player
 {
-    public sealed class PlayerCanInteractSystem /*: IEcsRunSystem*/
+    public sealed class PlayerCanInteractSystem : ReactiveSystem<GameEntity>
     {
-        //private readonly EcsFilter<InteractableTriggerEnterEvent> _enter = null;
-        //private readonly EcsFilter<InteractableTriggerExitEvent> _exit = null;
-        //private readonly EcsFilter<PlayerTagComponent>.Exclude<DiedComponent> _player = null;
+        public PlayerCanInteractSystem(GameContext game) : base(game) { }
 
-        //void IEcsRunSystem.Run()
-        //{
-        //    foreach (var pl in _player)
-        //    {
-        //        ref var player = ref _player.GetEntity(pl);
-
-        //        // Player can interact with some object
-        //        foreach (var i in _enter)
-        //        {
-        //            ref var eventEntity = ref _enter.Get1(i);
-        //            ref var component = ref player.Get<CanInteractComponent>();
-        //            component.InteractableEntity = eventEntity.InteractableEntity;
-        //            component.InteractableComponent = eventEntity.InteractableComponent;
-        //        }
-
-        //        // Player left interactable object
-        //        foreach (var i in _exit)
-        //        {
-        //            player.Del<CanInteractComponent>();
-        //        }
-        //    }
-        //}
+        protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
+        {
+            return context.CreateCollector(GameMatcher.Collided.AddedOrRemoved());
+        }
+        protected override bool Filter(GameEntity entity)
+        {
+            return entity.isPlayer && !entity.isDead;
+        }
+        protected override void Execute(List<GameEntity> entities)
+        {
+            foreach (GameEntity entity in entities)
+            {
+                entity.isCanInteract = entity.hasCollided;
+            }
+        }
     }
 }
