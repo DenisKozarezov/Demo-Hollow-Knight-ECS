@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Entitas;
 
 namespace Core.ECS.ViewListeners
@@ -19,8 +20,10 @@ namespace Core.ECS.ViewListeners
         {
             if (entity.isDestroyed)
             {
-                IViewController controller = gameObject.GetComponent<IViewController>();
-                controller.Destroy();
+                foreach (IDisposable disposable in gameObject.GetComponents<IDisposable>())
+                {
+                    disposable.Dispose();
+                }
             }
         }
     }

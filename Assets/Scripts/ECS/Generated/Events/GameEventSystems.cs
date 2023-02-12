@@ -26,7 +26,7 @@ public sealed class GameEventSystems : Feature {
         Add(new HitEventEventSystem(contexts)); // priority: 0
         Add(new JumpingEventSystem(contexts)); // priority: 0
         Add(new MovingEventSystem(contexts)); // priority: 0
-        Add(new ObtainedGeoEventSystem(contexts)); // priority: 0
+        Add(new AnyObtainedGeoEventSystem(contexts)); // priority: 0
         Add(new PlayerTalkingWithNPCEventEventSystem(contexts)); // priority: 0
         Add(new PositionEventSystem(contexts)); // priority: 0
         Add(new RestoredHealthEventSystem(contexts)); // priority: 0

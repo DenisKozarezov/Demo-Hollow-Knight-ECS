@@ -10,12 +10,12 @@ namespace Core.ECS.Behaviours
         [SerializeField]
         private BehaviourTree.Runtime.BehaviourTree _AI;
 
-        protected override void Start()
+        private void Start()
         {
             Entity.isUnit = true;
-            Entity.isEnemy = true;
             Entity.isBoss = true;
             Entity.isHittable = true;
+            Entity.AddEnemy(_model);
             Entity.AddTransform(transform);
             Entity.AddPosition(transform.position);
             Entity.AddCurrentHp(_model.MaxHealth);

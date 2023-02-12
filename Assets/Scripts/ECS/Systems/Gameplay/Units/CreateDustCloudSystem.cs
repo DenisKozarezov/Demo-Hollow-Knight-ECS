@@ -24,7 +24,7 @@ namespace Core.ECS.Systems
         }
         protected override bool Filter(GameEntity entity)
         {
-            return entity.isGrounded;
+            return entity.isGrounded && entity.isUnit;
         }
         protected override void Execute(List<GameEntity> entities)
         {

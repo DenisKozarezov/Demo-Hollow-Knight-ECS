@@ -5,7 +5,7 @@ using Entitas;
 
 namespace Core.ECS.Behaviours
 {
-    public sealed class HealthUIView : EntityBehaviour, IDamageTakenListener, IRestoredHealthListener
+    public sealed class HealthUIView : UIBaseView, IDamageTakenListener, IRestoredHealthListener
     {
         private GameEntity _entity;
 
@@ -21,7 +21,7 @@ namespace Core.ECS.Behaviours
         private int _currentHealth;
         private int Count => _healthTransform.childCount;
 
-        protected override void Start()
+        private void Start()
         {
             Clear();
             Entity.AddHealthUI(this);
@@ -37,9 +37,9 @@ namespace Core.ECS.Behaviours
         }
         public void RegisterListeners(IEntity entity)
         {
-            GameEntity player = (GameEntity)entity;
-            player.AddDamageTakenListener(this);
-            player.AddRestoredHealthListener(this);
+            _entity = (GameEntity)entity;
+            _entity.AddDamageTakenListener(this);
+            _entity.AddRestoredHealthListener(this);
         }
         public void UnregisterListeners()
         {

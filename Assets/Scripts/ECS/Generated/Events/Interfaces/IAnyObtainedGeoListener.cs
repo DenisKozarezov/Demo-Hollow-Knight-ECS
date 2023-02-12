@@ -6,6 +6,6 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public interface IObtainedGeoListener {
-    void OnObtainedGeo(GameEntity entity, int value);
+public interface IAnyObtainedGeoListener {
+    void OnAnyObtainedGeo(GameEntity entity, int value);
 }

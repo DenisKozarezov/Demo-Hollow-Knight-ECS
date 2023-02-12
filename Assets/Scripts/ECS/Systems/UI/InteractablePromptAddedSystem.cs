@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using Entitas;
-using Core.UI;
+using Core.ECS.Behaviours;
 
 namespace Core.ECS.Systems.UI
 {

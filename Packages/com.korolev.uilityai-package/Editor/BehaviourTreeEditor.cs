@@ -68,7 +68,7 @@ namespace BehaviourTree.Editor
             if (!EditorApplication.isPlaying) return;
             
             GameObject go = Selection.activeGameObject;
-            if (go != null && go.TryGetComponent(out Core.ECS.EntityBehaviour entityRef))
+            if (go != null && go.TryGetComponent(out Core.ECS.Behaviours.EntityBehaviour entityRef))
             {
                 //if (entityRef.Entity.IsAlive() && entityRef.Entity.Has<BehaviourTreeComponent>())
                 //{

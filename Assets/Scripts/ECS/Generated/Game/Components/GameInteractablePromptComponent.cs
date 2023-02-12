@@ -11,14 +11,14 @@ public partial class GameEntity {
     public Core.ECS.Components.InteractablePrompt interactablePrompt { get { return (Core.ECS.Components.InteractablePrompt)GetComponent(GameComponentsLookup.InteractablePrompt); } }
     public bool hasInteractablePrompt { get { return HasComponent(GameComponentsLookup.InteractablePrompt); } }
 
-    public void AddInteractablePrompt(Core.UI.InteractablePromptBehaviour newValue) {
+    public void AddInteractablePrompt(Core.ECS.Behaviours.InteractablePromptBehaviour newValue) {
         var index = GameComponentsLookup.InteractablePrompt;
         var component = (Core.ECS.Components.InteractablePrompt)CreateComponent(index, typeof(Core.ECS.Components.InteractablePrompt));
         component.Value = newValue;
         AddComponent(index, component);
     }
 
-    public void ReplaceInteractablePrompt(Core.UI.InteractablePromptBehaviour newValue) {
+    public void ReplaceInteractablePrompt(Core.ECS.Behaviours.InteractablePromptBehaviour newValue) {
         var index = GameComponentsLookup.InteractablePrompt;
         var component = (Core.ECS.Components.InteractablePrompt)CreateComponent(index, typeof(Core.ECS.Components.InteractablePrompt));
         component.Value = newValue;

@@ -6,6 +6,5 @@ namespace Core.ECS.ViewListeners
     {
         GameEntity Entity { get; }
         IViewController InitializeView(GameContext game, IEntity entity);
-        void Destroy();
     }
 }

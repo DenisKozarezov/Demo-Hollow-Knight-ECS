@@ -1,46 +1,39 @@
-﻿using UnityEngine;
-using Core.ECS.Components.Units;
+﻿using System.Collections.Generic;
+using Entitas;
+using Core.ECS.Behaviours;
 
 namespace Core.ECS.Systems.Units
 {
-    public class EnemyDroppingGeoSystem/* : IEcsRunSystem*/
+    public sealed class EnemyDroppingGeoSystem : ReactiveSystem<GameEntity>
     {
-        //private readonly EcsWorld _world = null;
-        //private readonly EcsFilter<TransformComponent, EnemyComponent, DiedComponent> _enemies = null;
-        //private readonly GeoView.Factory _factory;
+        private readonly GeoView.Factory _factory;
 
-        //public EnemyDroppingGeoSystem(GeoView.Factory factory)
-        //{
-        //    _factory = factory;
-        //}
+        public EnemyDroppingGeoSystem(GameContext game, GeoView.Factory factory) : base(game)
+        {
+            _factory = factory;
+        }
 
-        //private Vector3 GetRandomForce(float force)
-        //{
-        //    float randomAngle = Random.Range(50f, 80f);
-        //    return Vector2.up.RotateVector(randomAngle).normalized * force;
-        //}
+        protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
+        {
+            return context.CreateCollector(GameMatcher.Dead.Added());
+        }
+        protected override bool Filter(GameEntity entity)
+        {
+            return entity.hasEnemy;
+        }
+        protected override void Execute(List<GameEntity> entities)
+        {
+            foreach (GameEntity deadEnemy in entities)
+            {
+                ushort geoReward = deadEnemy.enemy.Value.GeoReward;
 
-        //private void OnPlayerObtainedGeo(GeoView geo)
-        //{
-        //    geo.Obtained -= OnPlayerObtainedGeo;
-        //    geo.Dispose();           
-        //    _world.NewEntity(new PlayerObtainedGeoEvent { Value = 2 });
-        //}
-        //void IEcsRunSystem.Run()
-        //{
-        //    foreach (var i in _enemies)
-        //    {
-        //        Vector2 position = _enemies.Get1(i).Value.position;
-        //        ushort geoReward = _enemies.Get2(i).EnemyModel.GeoReward;
-
-        //        for (int j = 0; j < geoReward / 2; j++)
-        //        {
-        //            GeoView geo = _factory.Create();
-        //            geo.Obtained += OnPlayerObtainedGeo;
-        //            geo.transform.position = position;
-        //            geo.SetVelocity(GetRandomForce(15f));
-        //        }
-        //    }
-        //}
+                for (int i = 0; i < geoReward / 2; i++)
+                {
+                    GeoView geo = _factory.Create(2);
+                    geo.gameObject.AddComponent<EntitySelfInitializer>();
+                    geo.transform.position = deadEnemy.position.Value;
+                }
+            }
+        }    
     }
 }

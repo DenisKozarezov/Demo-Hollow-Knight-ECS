@@ -2,13 +2,13 @@
 
 namespace Core.ECS.Behaviours
 {
-    public sealed class GroundBehaviour : EntityBehaviour
+    public sealed class GroundBehaviour : CollisionEntityBehaviour
     {
-        private void OnTriggerEnter2D(Collider2D collider) => MarkGrounded(collider);
-        private void OnTriggerExit2D(Collider2D collider) => UnmarkGrounded(collider);
-        private void OnCollisionEnter2D(Collision2D other) => MarkGrounded(other.collider);
-        private void OnCollisionExit2D(Collision2D other) => UnmarkGrounded(other.collider);
-        private void OnTriggerStay2D(Collider2D collider) => MarkGrounded(collider);
+        protected override void OnTriggerEnter2D(Collider2D collider) => MarkGrounded(collider);
+        protected override void OnTriggerExit2D(Collider2D collider) => UnmarkGrounded(collider);
+        protected override void OnCollisionEnter2D(Collision2D other) => MarkGrounded(other.collider);
+        protected override void OnCollisionExit2D(Collision2D other) => UnmarkGrounded(other.collider);
+        protected override void OnTriggerStay2D(Collider2D collider) => MarkGrounded(collider);
 
         private void MarkGrounded(Collider2D collider)
         {

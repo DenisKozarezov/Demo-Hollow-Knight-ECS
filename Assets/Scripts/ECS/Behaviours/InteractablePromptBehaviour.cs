@@ -1,9 +1,8 @@
 using UnityEngine;
 using TMPro;
 using DG.Tweening;
-using Core.ECS;
 
-namespace Core.UI
+namespace Core.ECS.Behaviours
 {
     public sealed class InteractablePromptBehaviour : EntityBehaviour
     {
@@ -15,7 +14,7 @@ namespace Core.UI
 
         public bool IsPlaying => _sequence.IsActive() && _sequence.IsPlaying();
 
-        protected override void Start()
+        private void Start()
         {
             Entity.AddInteractablePrompt(this);
             

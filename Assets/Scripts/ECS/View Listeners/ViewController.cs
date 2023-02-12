@@ -1,11 +1,11 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Entitas;
-using Entitas.VisualDebugging.Unity;
 using Core.ECS.ViewComponentRegistrators;
 
 namespace Core.ECS.ViewListeners
 {
-    public sealed class ViewController : MonoBehaviour, IViewController
+    public sealed class ViewController : MonoBehaviour, IViewController, IDisposable
     {
         private GameContext _game;
         public GameEntity Entity { get; private set; }
@@ -14,22 +14,14 @@ namespace Core.ECS.ViewListeners
         {
             _game = game;
             Entity = (GameEntity)entity;
-
             Entity.AddViewController(this);
 
             AddDestroyedListener();
-
             RegisterViewComponents();
 
             return this;
         }
 
-        public void Destroy()
-        {
-            UnregisterCollisions();
-            UnregisterListeners();
-            gameObject.DestroyGameObject();
-        }
         private void Start()
         {
             Entity.AddId(_game.identifiers.Value.Next());
@@ -67,6 +59,12 @@ namespace Core.ECS.ViewListeners
         {
             foreach (Collider2D collider in GetComponentsInChildren<Collider2D>())
                 _game.collisionRegistry.Value.Unregister(collider.GetInstanceID(), this);
+        }
+
+        public void Dispose()
+        {
+            UnregisterCollisions();
+            UnregisterListeners();
         }
     }
 }

@@ -7,6 +7,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 [Entitas.CodeGeneration.Attributes.DontGenerate(false)]
-public sealed class ObtainedGeoListenerComponent : Entitas.IComponent {
-    public System.Collections.Generic.List<IObtainedGeoListener> value;
+public sealed class AnyObtainedGeoListenerComponent : Entitas.IComponent {
+    public System.Collections.Generic.List<IAnyObtainedGeoListener> value;
 }

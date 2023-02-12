@@ -4832,8 +4832,8 @@ GameObject:
   - component: {fileID: 7589666601377239130}
   - component: {fileID: 7589666601377239133}
   - component: {fileID: -6903961074273792260}
-  - component: {fileID: -5998407083546517105}
-  - component: {fileID: -1502336156337291063}
+  - component: {fileID: -3116192967352844361}
+  - component: {fileID: -3512927067104660202}
   m_Layer: 0
   m_Name: Bench
   m_TagString: Interactable
@@ -4935,7 +4935,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.3, y: 1}
   m_EdgeRadius: 0
---- !u!114 &-5998407083546517105
+--- !u!114 &-3116192967352844361
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4944,24 +4944,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 7589666601377239132}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e9d04047db154540a67833af8662386, type: 3}
+  m_Script: {fileID: 11500000, guid: 1735b7b8c2aa3984cbf5172db6c13c6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _selfInitialize: 1
-  _label: REST
-  _interactType: 2
+--- !u!114 &-3512927067104660202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7589666601377239132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f7feffe37566c9419f876fd77e7f328, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   _triggeringLayers:
     serializedVersion: 2
     m_Bits: 256
---- !u!114 &-1502336156337291063
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7589666601377239132}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51d8fb3e1df806649a9896038e3606ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  _label: REST
+  _interactType: 2

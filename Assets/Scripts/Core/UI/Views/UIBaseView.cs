@@ -1,9 +1,9 @@
 ﻿using DG.Tweening;
 using UnityEngine;
 
-namespace Core.UI
+namespace Core.ECS.Behaviours
 {
-    public abstract class UIBaseView : MonoBehaviour
+    public abstract class UIBaseView : EntityBehaviour
     {
         public void SetActive(bool isActive) => gameObject.SetActive(isActive);
         protected Tweener Fade(CanvasGroup cg, FadeMode mode, float time = 2f)

@@ -17,7 +17,7 @@
             //Add(new PlayerAttackCooldownSystem(context.InputSystem));
             Add(new PlayerCanInteractSystem(contexts.game));
             //Add(new PlayerInteractingSystem(context.InputSystem));
-            //Add(new PlayerObtainedGeoSystem());
+            Add(new PlayerObtainedGeoSystem(contexts.game));
         }
     }
 }

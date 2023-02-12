@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using Core.Models;
 
-namespace Core.UI
+namespace Core.ECS.Behaviours
 {
     public class DialogueUIView : UIBaseView
     {

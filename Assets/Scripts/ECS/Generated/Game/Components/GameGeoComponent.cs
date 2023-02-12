@@ -8,25 +8,25 @@
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public Core.ECS.Components.Units.Enemy enemy { get { return (Core.ECS.Components.Units.Enemy)GetComponent(GameComponentsLookup.Enemy); } }
-    public bool hasEnemy { get { return HasComponent(GameComponentsLookup.Enemy); } }
+    public Core.ECS.Components.Geo geo { get { return (Core.ECS.Components.Geo)GetComponent(GameComponentsLookup.Geo); } }
+    public bool hasGeo { get { return HasComponent(GameComponentsLookup.Geo); } }
 
-    public void AddEnemy(Core.Models.EnemyModel newValue) {
-        var index = GameComponentsLookup.Enemy;
-        var component = (Core.ECS.Components.Units.Enemy)CreateComponent(index, typeof(Core.ECS.Components.Units.Enemy));
+    public void AddGeo(ushort newValue) {
+        var index = GameComponentsLookup.Geo;
+        var component = (Core.ECS.Components.Geo)CreateComponent(index, typeof(Core.ECS.Components.Geo));
         component.Value = newValue;
         AddComponent(index, component);
     }
 
-    public void ReplaceEnemy(Core.Models.EnemyModel newValue) {
-        var index = GameComponentsLookup.Enemy;
-        var component = (Core.ECS.Components.Units.Enemy)CreateComponent(index, typeof(Core.ECS.Components.Units.Enemy));
+    public void ReplaceGeo(ushort newValue) {
+        var index = GameComponentsLookup.Geo;
+        var component = (Core.ECS.Components.Geo)CreateComponent(index, typeof(Core.ECS.Components.Geo));
         component.Value = newValue;
         ReplaceComponent(index, component);
     }
 
-    public void RemoveEnemy() {
-        RemoveComponent(GameComponentsLookup.Enemy);
+    public void RemoveGeo() {
+        RemoveComponent(GameComponentsLookup.Geo);
     }
 }
 
@@ -40,17 +40,17 @@ public partial class GameEntity {
 //------------------------------------------------------------------------------
 public sealed partial class GameMatcher {
 
-    static Entitas.IMatcher<GameEntity> _matcherEnemy;
+    static Entitas.IMatcher<GameEntity> _matcherGeo;
 
-    public static Entitas.IMatcher<GameEntity> Enemy {
+    public static Entitas.IMatcher<GameEntity> Geo {
         get {
-            if (_matcherEnemy == null) {
-                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.Enemy);
+            if (_matcherGeo == null) {
+                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.Geo);
                 matcher.componentNames = GameComponentsLookup.componentNames;
-                _matcherEnemy = matcher;
+                _matcherGeo = matcher;
             }
 
-            return _matcherEnemy;
+            return _matcherGeo;
         }
     }
 }

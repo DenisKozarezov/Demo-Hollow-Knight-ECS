@@ -21,7 +21,8 @@ namespace Core.ECS
             IRegisterService<IViewController> collisionRegistry,
             ITimeService time,
             IPhysicsService physics,
-            IIdentifierService identifier)
+            IIdentifierService identifier,
+            DiContainer diContainer)
         {
             Contexts contexts = Contexts.sharedInstance;
 
@@ -33,7 +34,8 @@ namespace Core.ECS
                 InputService = inputSystem,
                 Physics = physics,
                 CoroutineRunner = coroutineRunner,
-                CollisionRegistry = collisionRegistry
+                CollisionRegistry = collisionRegistry,
+                DiContainer = diContainer
             };
 
             _allSystems = new AllSystems(contexts, allServices);

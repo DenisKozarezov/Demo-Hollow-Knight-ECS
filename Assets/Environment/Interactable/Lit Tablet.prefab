@@ -4832,8 +4832,8 @@ GameObject:
   - component: {fileID: 8612914875454351439}
   - component: {fileID: 8612914875454351432}
   - component: {fileID: 4531995642760247017}
-  - component: {fileID: -6191884730207994979}
-  - component: {fileID: -7594818294538214725}
+  - component: {fileID: -7847811048450373015}
+  - component: {fileID: 656589843491302451}
   m_Layer: 0
   m_Name: Lit Tablet
   m_TagString: Interactable
@@ -4935,7 +4935,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.6, y: 2.1}
   m_EdgeRadius: 0
---- !u!114 &-6191884730207994979
+--- !u!114 &-7847811048450373015
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4944,24 +4944,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 8612914875454351433}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e9d04047db154540a67833af8662386, type: 3}
+  m_Script: {fileID: 11500000, guid: 1735b7b8c2aa3984cbf5172db6c13c6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _selfInitialize: 1
-  _label: INSPECT
-  _interactType: 1
+--- !u!114 &656589843491302451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8612914875454351433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f7feffe37566c9419f876fd77e7f328, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   _triggeringLayers:
     serializedVersion: 2
     m_Bits: 256
---- !u!114 &-7594818294538214725
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8612914875454351433}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51d8fb3e1df806649a9896038e3606ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  _label: INSPECT
+  _interactType: 1

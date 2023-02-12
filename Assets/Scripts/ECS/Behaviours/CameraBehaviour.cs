@@ -14,7 +14,7 @@ namespace Core.ECS.Behaviours
         [SerializeField]
         private Fader _fader;
 
-        protected override void Start()
+        private void Start()
         {
             Entity.AddVignette(_volume.profile.GetPostProcessSetting<Vignette>());
 

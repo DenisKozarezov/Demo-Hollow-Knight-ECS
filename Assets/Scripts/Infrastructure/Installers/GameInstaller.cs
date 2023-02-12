@@ -3,6 +3,7 @@ using Zenject;
 using Core.ECS;
 using Core.Models;
 using Core.Services;
+using Core.ECS.Behaviours;
 
 namespace Core.Infrastructure.Installers
 {
@@ -30,7 +31,7 @@ namespace Core.Infrastructure.Installers
         }
         private void BindPools()
         {
-            Container.BindFactory<GeoView, GeoView.Factory>().FromMonoPoolableMemoryPool(x => x
+            Container.BindFactory<ushort, GeoView, GeoView.Factory>().FromMonoPoolableMemoryPool(x => x
                 .WithInitialSize(30)
                 .FromComponentInNewPrefab(_geoPrefab)
                 .UnderTransformGroup("Geo"));

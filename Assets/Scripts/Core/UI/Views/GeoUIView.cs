@@ -2,9 +2,9 @@ using UnityEngine;
 using TMPro;
 using DG.Tweening;
 
-namespace Core.UI
+namespace Core.ECS.Behaviours
 {
-    public class GeoUIView : UIBaseView
+    public sealed class GeoUIView : UIBaseView, IAnyObtainedGeoListener
     {
         [SerializeField]
         private CanvasGroup _canvasGroup;
@@ -21,7 +21,8 @@ namespace Core.UI
         private void Start()
         {
             _canvasGroup.alpha = 0f;
-            SetActive(false);
+            gameObject.SetActive(false);
+            Entity.AddAnyObtainedGeoListener(this);
         }
         private void SetAddingValue(int signedValue)
         {
@@ -47,22 +48,24 @@ namespace Core.UI
         {
             if (!_sequence.IsActive()) 
                 Fade(_canvasGroup, FadeMode.On);         
-            else  
+            else
                 _sequence.Kill();
             
             _sequence = GeoSequence();
             _sequence.PrependInterval(2f);
             _sequence.Append(Fade(_canvasGroup, FadeMode.Off));
         }
-        public void AddValue(int value)
+
+        public void OnAnyObtainedGeo(GameEntity entity, int value)
         {
+            if (value == 0)
+            {
+                SetCurrentValue(value);
+                return;
+            }
+
             SetAddingValue(_addingValue + value);
             StartSequence();
         }
-        public void ReduceValue(int value)
-        {
-            SetAddingValue(_addingValue - value);
-            StartSequence();
-        }    
     }
 }

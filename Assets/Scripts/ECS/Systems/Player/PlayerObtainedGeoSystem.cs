@@ -1,23 +1,32 @@
-﻿using Core.ECS.Components.Player;
+﻿using Entitas;
 
 namespace Core.ECS.Systems.Player
 {
-    public sealed class PlayerObtainedGeoSystem/* : IEcsRunSystem*/
+    public sealed class PlayerObtainedGeoSystem : IExecuteSystem
     {
-        //private readonly EcsFilter<PlayerObtainedGeoEvent> _event = null;
-        //private readonly EcsFilter<GeoComponent> _player = null;
+        private readonly IGroup<GameEntity> _geos;
+        private readonly IGroup<GameEntity> _players;
 
-        //void IEcsRunSystem.Run()
-        //{
-        //    foreach (var @event in _event)
-        //    {
-        //        foreach (var pl in _player)
-        //        {
-        //            ref var obtainedGeo = ref _event.Get1(@event);
-        //            ref var currentGeo = ref _player.Get1(pl);
-        //            currentGeo.Value += obtainedGeo.Value;
-        //        }
-        //    }
-        //}
+        public PlayerObtainedGeoSystem(GameContext game)
+        {
+            _geos = game.GetGroup(GameMatcher.AllOf(GameMatcher.Geo, GameMatcher.Collided));
+            _players = game.GetGroup(GameMatcher
+                .AllOf(GameMatcher.Player, GameMatcher.CurrentGeo)
+                .NoneOf(GameMatcher.Dead));
+        }
+        public void Execute()
+        {
+            foreach (GameEntity player in _players)
+            {
+                foreach (GameEntity entity in _geos)
+                {
+                    ushort obtainedGeo = entity.geo.Value;
+                    int newGeo = player.currentGeo.Value + obtainedGeo;
+                    player.ReplaceCurrentGeo(newGeo);
+                    player.ReplaceObtainedGeo(obtainedGeo);
+                    entity.isDestroyed = true;
+                }           
+            }
+        }
     }
 }

@@ -1,5 +1,5 @@
-﻿using Core.Models;
-using UnityEngine;
+﻿using UnityEngine;
+using Core.Models;
 
 namespace Core.ECS.Behaviours
 {
@@ -8,7 +8,7 @@ namespace Core.ECS.Behaviours
         [SerializeField]
         private PlayerModel _playerModel;
 
-        protected override void Start()
+        private void Start()
         {
             Entity.isPlayer = true;
             Entity.isUnit = true;

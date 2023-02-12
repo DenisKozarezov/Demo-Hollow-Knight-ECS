@@ -16,7 +16,7 @@ namespace Core.ECS.Components.Player
     public sealed class CanInteract : IComponent { }
 
     // Player Events
-    [Event(Self), Cleanup(RemoveComponent)] public sealed class ObtainedGeo : IComponent { public int Value; }
+    [Event(Any), Cleanup(RemoveComponent)] public sealed class ObtainedGeo : IComponent { public int Value; }
     [Event(Self), Cleanup(RemoveComponent)] public sealed class RestoredHealth : IComponent { public int Value; }
     [Event(Self), Cleanup(RemoveComponent)] public sealed class EnergyReduced : IComponent { public float Value; }
     [Event(Self), Cleanup(RemoveComponent)] public sealed class EnteredBossZone : IComponent { public EnemyModel BossModel; }
