@@ -18,8 +18,7 @@ namespace Core.UI
         protected override void Start()
         {
             Entity.AddInteractablePrompt(this);
-            _text.color = _text.color.WithAlpha(0f);
-            _renderer.color = _text.color.WithAlpha(0f);
+            
             transform
                 .DOBlendableLocalMoveBy(Vector2.up * 0.15f, 2f)
                 .SetLoops(-1, LoopType.Yoyo)
@@ -32,9 +31,12 @@ namespace Core.UI
 
             float alpha = mode == FadeMode.On ? 1f : 0f;
 
+            _text.color = _text.color.WithAlpha(1f - alpha);
+            _renderer.color = _renderer.color.WithAlpha(1f - alpha);
+
             _sequence = DOTween.Sequence();
+            _sequence.Join(_text.DOColor(_text.color.WithAlpha(alpha), time));
             _sequence.Join(_renderer.DOColor(_renderer.color.WithAlpha(alpha), time));
-            _sequence.Join(_text.DOColor(_renderer.color.WithAlpha(alpha), time));
             _sequence.OnComplete(() =>
             {
                 if (mode == FadeMode.Off) GameObject.DestroyImmediate(gameObject);

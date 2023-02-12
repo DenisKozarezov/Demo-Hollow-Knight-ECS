@@ -27569,6 +27569,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _selfInitialize: 1
   _volume: {fileID: 697101862}
+  _fader: {fileID: 1500051663}
 --- !u!1001 &1325808511
 PrefabInstance:
   m_ObjectHideFlags: 0

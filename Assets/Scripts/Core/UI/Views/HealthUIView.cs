@@ -2,11 +2,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 using Entitas;
-using Core.ECS.ViewListeners;
 
 namespace Core.ECS.Behaviours
 {
-    public sealed class HealthUIView : EntityBehaviour, IEventListener, IDamageTakenListener, IRestoredHealthListener
+    public sealed class HealthUIView : EntityBehaviour, IDamageTakenListener, IRestoredHealthListener
     {
         private GameEntity _entity;
 

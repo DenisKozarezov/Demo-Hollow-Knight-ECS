@@ -24,6 +24,8 @@ namespace Core.UI
                 return;
             }
 
+            _vignette.color = _vignette.color.WithAlpha(1f - alpha);
+
             _vignette.DOFade(alpha, time)
                 .SetLink(gameObject)
                 .SetEase(Ease.Linear)

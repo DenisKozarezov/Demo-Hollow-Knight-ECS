@@ -1,15 +1,16 @@
 using Entitas;
 using Entitas.CodeGeneration.Attributes;
 using static Entitas.CodeGeneration.Attributes.EventTarget;
+using static Entitas.CodeGeneration.Attributes.CleanupMode;
 
 namespace Core.ECS.Events
 {
-    [Event(Self)] public sealed class CameraShakeEventComponent : IComponent
+    [Event(Any), Cleanup(DestroyEntity)] public sealed class CameraShake : IComponent
     {
         public float ShakeDuration;
         public float ShakeForce;
     }
-    [Event(Self)] public sealed class CameraFadeEventComponent : IComponent
+    [Event(Any), Cleanup(DestroyEntity)] public sealed class CameraFade : IComponent
     { 
         public float FadeTime; 
         public FadeMode FadeMode;

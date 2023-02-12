@@ -5,8 +5,6 @@
         public UISystems(Contexts contexts) : base(nameof(GameplaySystems))
         {
             Add(new HealthViewInitSystem(contexts.game));
-            //Add(new HealthReducedUISystem(healthView));
-            //Add(new HealthHealedUISystem(healthView));
             Add(new InteractablePromptAddedSystem(contexts.game));
             Add(new InteractablePromptRemovedSystem(contexts.game));
             //Add(new BossAnnouncementUISystem(gameView));

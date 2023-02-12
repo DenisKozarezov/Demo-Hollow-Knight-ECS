@@ -6,6 +6,6 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public interface ICameraShakeEventListener {
-    void OnCameraShakeEvent(GameEntity entity, float shakeDuration, float shakeForce);
+public interface IAnyCameraFadeListener {
+    void OnAnyCameraFade(GameEntity entity, float fadeTime, Core.FadeMode fadeMode);
 }

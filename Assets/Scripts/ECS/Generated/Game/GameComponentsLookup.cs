@@ -8,9 +8,9 @@
 //------------------------------------------------------------------------------
 public static class GameComponentsLookup {
 
-    public const int AttackingListener = 0;
-    public const int CameraFadeEventListener = 1;
-    public const int CameraShakeEventListener = 2;
+    public const int AnyCameraFadeListener = 0;
+    public const int AnyCameraShakeListener = 1;
+    public const int AttackingListener = 2;
     public const int CollisionRegistry = 3;
     public const int CoroutineRunner = 4;
     public const int Identifiers = 5;
@@ -67,8 +67,8 @@ public static class GameComponentsLookup {
     public const int Transform = 56;
     public const int Unit = 57;
     public const int ViewController = 58;
-    public const int CameraFadeEvent = 59;
-    public const int CameraShakeEvent = 60;
+    public const int CameraFade = 59;
+    public const int CameraShake = 60;
     public const int FalseKnightAttackEvent = 61;
     public const int FalseKnightJumpEvent = 62;
     public const int FalseKnightRollEvent = 63;
@@ -96,9 +96,9 @@ public static class GameComponentsLookup {
     public const int TotalComponents = 84;
 
     public static readonly string[] componentNames = {
+        "AnyCameraFadeListener",
+        "AnyCameraShakeListener",
         "AttackingListener",
-        "CameraFadeEventListener",
-        "CameraShakeEventListener",
         "CollisionRegistry",
         "CoroutineRunner",
         "Identifiers",
@@ -155,8 +155,8 @@ public static class GameComponentsLookup {
         "Transform",
         "Unit",
         "ViewController",
-        "CameraFadeEvent",
-        "CameraShakeEvent",
+        "CameraFade",
+        "CameraShake",
         "FalseKnightAttackEvent",
         "FalseKnightJumpEvent",
         "FalseKnightRollEvent",
@@ -183,9 +183,9 @@ public static class GameComponentsLookup {
     };
 
     public static readonly System.Type[] componentTypes = {
+        typeof(AnyCameraFadeListenerComponent),
+        typeof(AnyCameraShakeListenerComponent),
         typeof(AttackingListenerComponent),
-        typeof(CameraFadeEventListenerComponent),
-        typeof(CameraShakeEventListenerComponent),
         typeof(Core.ECS.Components.CollisionRegistry),
         typeof(Core.ECS.Components.CoroutineRunner),
         typeof(Core.ECS.Components.Identifiers),
@@ -242,8 +242,8 @@ public static class GameComponentsLookup {
         typeof(Core.ECS.Components.Units.TransformComponent),
         typeof(Core.ECS.Components.Units.Unit),
         typeof(Core.ECS.Components.Units.ViewControllerComponent),
-        typeof(Core.ECS.Events.CameraFadeEventComponent),
-        typeof(Core.ECS.Events.CameraShakeEventComponent),
+        typeof(Core.ECS.Events.CameraFade),
+        typeof(Core.ECS.Events.CameraShake),
         typeof(Core.ECS.Events.FalseKnight.FalseKnightAttackEventComponent),
         typeof(Core.ECS.Events.FalseKnight.FalseKnightJumpEvent),
         typeof(Core.ECS.Events.FalseKnight.FalseKnightRollEvent),

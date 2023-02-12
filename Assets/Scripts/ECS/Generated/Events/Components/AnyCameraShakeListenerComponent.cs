@@ -7,6 +7,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 [Entitas.CodeGeneration.Attributes.DontGenerate(false)]
-public sealed class CameraShakeEventListenerComponent : Entitas.IComponent {
-    public System.Collections.Generic.List<ICameraShakeEventListener> value;
+public sealed class AnyCameraShakeListenerComponent : Entitas.IComponent {
+    public System.Collections.Generic.List<IAnyCameraShakeListener> value;
 }
