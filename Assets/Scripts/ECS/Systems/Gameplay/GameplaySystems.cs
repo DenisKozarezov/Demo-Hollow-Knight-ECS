@@ -16,7 +16,7 @@ namespace Core.ECS.Systems
             Add(new PlayerSystems(contexts));
             Add(new DamageSystem(contexts.game));
             //Add(new DialogueSystem(context.DiContainer.Resolve<DialogueUIView>()));
-            //Add(new BehaviourTreeSystem());
+            Add(new BehaviourTreeSystem(contexts.game));
             //Add(new EnemyDiedSystem());
             Add(new EnemyDroppingGeoSystem(contexts.game, services.DiContainer.Resolve<Behaviours.GeoView.Factory>()));
             Add(new CameraSystems(contexts));

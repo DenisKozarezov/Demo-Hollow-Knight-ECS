@@ -23,11 +23,11 @@ namespace Core.Units
         private Animator _animator;
         [SerializeField]
         private SpriteRenderer _renderer;
-        [SerializeField]
+        [SerializeReference]
         private GameObject _defaultAttackVFX;
-        [SerializeField]
+        [SerializeReference]
         private GameObject _attackUpVFX;
-        [SerializeField]
+        [SerializeReference]
         private GameObject _attackDownVFX;
 
         public void PlayMove() => _animator.SetBool(_movingHash, true);
@@ -40,6 +40,7 @@ namespace Core.Units
         public void PlayGrounded()
         {
             _animator.SetBool(_onGroundHash, true);
+            _animator.ResetTrigger(_jumpHash);
             _animator.SetBool(_jumpingHash, false);
         }
         public void PlayDamageTaken()
@@ -55,18 +56,27 @@ namespace Core.Units
             {
                 case AttackDirection.Default:
                     _animator.SetTrigger(_attackHash);
-                    _defaultAttackVFX?.SetActive(true);
-                    Delay.For(0.15f, andThen: () => _defaultAttackVFX?.SetActive(false));
+                    if (_defaultAttackVFX)
+                    {
+                        _defaultAttackVFX.SetActive(true);
+                        Delay.For(0.15f, andThen: () => _defaultAttackVFX.SetActive(false));
+                    }
                     break;
                 case AttackDirection.Up:
                     _animator.SetTrigger(_attackUpHash);
-                    _attackUpVFX?.SetActive(true);
-                    Delay.For(0.15f, andThen: () => _attackUpVFX?.SetActive(false));
+                    if (_attackUpVFX)
+                    {
+                        _attackUpVFX.SetActive(true);
+                        Delay.For(0.15f, andThen: () => _attackUpVFX.SetActive(false));
+                    }
                     break;
                 case AttackDirection.Down:
                     _animator.SetTrigger(_attackDownHash);
-                    _attackDownVFX?.SetActive(true);
-                    Delay.For(0.15f, andThen: () => _attackDownVFX?.SetActive(false));
+                    if (_attackDownVFX)
+                    {
+                        _attackDownVFX.SetActive(true);
+                        Delay.For(0.15f, andThen: () => _attackDownVFX.SetActive(false));
+                    }
                     break;
             }
         }

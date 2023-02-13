@@ -1,35 +1,30 @@
 using UnityEngine;
+using Entitas;
 using BehaviourTree.Runtime.Nodes;
 using BehaviourTree.Runtime.Nodes.Decorators;
-using Core.ECS.Components.Player;
-using Core.ECS.Components.Units;
 
 namespace Core.AI.Agent.Conditions
 {
-    //[Category("Agent/Conditions")]
-    //public class CloseToPlayer : Condition
-    //{
-    //    [SerializeField, Min(0f)]
-    //    private float _distance;
+    [Category("Agent/Conditions")]
+    public class CloseToPlayer : Condition
+    {
+        [SerializeField, Min(0f)]
+        private float _distance;
+        private IGroup<GameEntity> _players;
 
-    //    private EcsFilter _filter;
-    //    private EcsEntity _player;
-    //    private Transform _transform;
-    //    protected override void OnInit()
-    //    {
-    //        _transform = Agent.Get<TransformComponent>().Value;
-    //        _filter = World.GetFilter(typeof(EcsFilter<PlayerTagComponent>.Exclude<DiedComponent>));
-    //    }
-    //    protected override void OnStart()
-    //    {
-    //        _player = _filter.GetEntity(0);
-    //    }
-    //    protected override bool Check()
-    //    {
-    //        if (_player.IsNullOrEmpty()) return false;
+        protected override void OnInit()
+        {
+            _players = (Agent as GameEntity).Context().GetGroup(GameMatcher
+               .AllOf(GameMatcher.Player)
+               .NoneOf(GameMatcher.Dead));
+        }
+        protected override bool Check()
+        {
+            if (_players.count == 0) return false;
 
-    //        Vector3 playerPos = _player.Get<TransformComponent>().Value.position;
-    //        return (playerPos - _transform.position).sqrMagnitude < _distance * _distance;
-    //    }
-    //}
+            Vector2 playerPos = _players.GetEntities()[0].position.Value;
+            Vector2 agentPos = (Agent as GameEntity).position.Value;
+            return (playerPos - agentPos).sqrMagnitude < _distance * _distance;
+        }
+    }
 }

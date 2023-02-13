@@ -15,7 +15,7 @@ namespace Core.ECS.Components.Units
     public sealed class AnimatorComponent : IComponent { public Animator Value; }
     public sealed class TransformComponent : IComponent { public Transform Value; }
     public sealed class SpriteRendererComponent : IComponent { public SpriteRenderer Value; }
-    public sealed class BehaviourTreeComponent : IComponent { public BehaviourTree.Runtime.BehaviourTree BehaviourTree; }
+    public sealed class BehaviourTreeComponent : IComponent { public BehaviourTree.Runtime.BehaviourTree Value; }
 
     // Tags
     public sealed class Unit : IComponent { }

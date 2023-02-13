@@ -23,13 +23,12 @@ namespace Core.ECS.ViewListeners
         }
         public void OnPosition(GameEntity entity, Vector2 value)
         {
-            if (_rigidbody != null)
-            {
-                Vector2 velocity = (Vector3)value - transform.position;
-                _rigidbody.velocity = velocity.SetY(_rigidbody.velocity.y);
-            }
-            else
+            Vector2 velocity = (Vector3)value - transform.position;
+
+            if (_rigidbody == null || velocity == Vector2.zero) 
                 transform.position = value;
+            else
+                _rigidbody.velocity = velocity.SetY(_rigidbody.velocity.y);
         }
         public void OnStoppedMoving(GameEntity entity)
         {

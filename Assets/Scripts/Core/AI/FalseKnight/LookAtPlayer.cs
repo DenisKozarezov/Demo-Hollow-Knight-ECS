@@ -24,8 +24,8 @@ namespace Core.AI.FalseKnight.Actions
                 foreach (GameEntity player in _players)
                 {
                     float playerX = player.position.Value.x;
-                    float newDirection = playerX - _entity.position.Value.x;
-                    _entity.ReplaceDirection(newDirection);
+                    float sign = UnityEngine.Mathf.Sign(playerX - _entity.position.Value.x);
+                    _entity.ReplaceDirection(sign);
                 }
                 return State.Success;
             }

@@ -24,7 +24,8 @@ namespace Core.ECS.Behaviours
             Entity.AddMovable(_model.MovementSpeed);
             Entity.AddDamage(_model.BaseDamage);
             Entity.AddAttackRange(_model.AttackRange);
-            Entity.AddBehaviourTree(_AI);
+            Entity.AddJump(Vector2.up * _model.JumpHeight);
+            Entity.AddBehaviourTree(_AI.Clone().Init(Entity));
         }
     }
 }

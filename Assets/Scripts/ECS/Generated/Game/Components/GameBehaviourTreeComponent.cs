@@ -11,17 +11,17 @@ public partial class GameEntity {
     public Core.ECS.Components.Units.BehaviourTreeComponent behaviourTree { get { return (Core.ECS.Components.Units.BehaviourTreeComponent)GetComponent(GameComponentsLookup.BehaviourTree); } }
     public bool hasBehaviourTree { get { return HasComponent(GameComponentsLookup.BehaviourTree); } }
 
-    public void AddBehaviourTree(BehaviourTree.Runtime.BehaviourTree newBehaviourTree) {
+    public void AddBehaviourTree(BehaviourTree.Runtime.BehaviourTree newValue) {
         var index = GameComponentsLookup.BehaviourTree;
         var component = (Core.ECS.Components.Units.BehaviourTreeComponent)CreateComponent(index, typeof(Core.ECS.Components.Units.BehaviourTreeComponent));
-        component.BehaviourTree = newBehaviourTree;
+        component.Value = newValue;
         AddComponent(index, component);
     }
 
-    public void ReplaceBehaviourTree(BehaviourTree.Runtime.BehaviourTree newBehaviourTree) {
+    public void ReplaceBehaviourTree(BehaviourTree.Runtime.BehaviourTree newValue) {
         var index = GameComponentsLookup.BehaviourTree;
         var component = (Core.ECS.Components.Units.BehaviourTreeComponent)CreateComponent(index, typeof(Core.ECS.Components.Units.BehaviourTreeComponent));
-        component.BehaviourTree = newBehaviourTree;
+        component.Value = newValue;
         ReplaceComponent(index, component);
     }
 

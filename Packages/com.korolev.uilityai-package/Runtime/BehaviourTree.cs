@@ -35,9 +35,10 @@ namespace BehaviourTree.Runtime
                 }
             }
         }
-        public void Init(Entitas.IEntity agent)
+        public BehaviourTree Init(Entitas.IEntity agent)
         {
             foreach (Node node in _nodes) node.Init(agent);
+            return this;
         }
         public State Update()
         {

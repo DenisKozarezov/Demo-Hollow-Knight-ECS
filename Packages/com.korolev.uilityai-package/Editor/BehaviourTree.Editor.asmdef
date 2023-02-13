@@ -2,7 +2,8 @@
     "name": "BehaviourTree.Editor",
     "rootNamespace": "BehaviourTree.Editor",
     "references": [
-        "GUID:286f9c198a2634f72810f61db1c6ab92"
+        "GUID:286f9c198a2634f72810f61db1c6ab92",
+        "GUID:f8594cfa8ebb42f4997f9be9bcd2b4d3"
     ],
     "includePlatforms": [
         "Editor"

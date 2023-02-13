@@ -4,7 +4,6 @@
     {
         public UnitsSystems(Contexts contexts) : base(nameof(UnitsSystems))
         {
-            //Add(new EntityInitSystem());
             //Add(new FalseKnightInitSystem(context.UnitsModelsProvider.Resolve<FalseKnightModel>()));
             //Add(new FalseKnightJumpAnimationSystem());
             //Add(new FalseKnightAttackAnimationSystem());
