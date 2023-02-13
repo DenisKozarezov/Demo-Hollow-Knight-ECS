@@ -139,3 +139,4 @@ MonoBehaviour:
   _triggeringLayers:
     serializedVersion: 2
     m_Bits: 256
+  _rigidbody: {fileID: -302570695480864263}

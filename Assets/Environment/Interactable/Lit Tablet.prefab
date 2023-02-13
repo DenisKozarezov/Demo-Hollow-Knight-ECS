@@ -4832,7 +4832,6 @@ GameObject:
   - component: {fileID: 8612914875454351439}
   - component: {fileID: 8612914875454351432}
   - component: {fileID: 4531995642760247017}
-  - component: {fileID: -7847811048450373015}
   - component: {fileID: 656589843491302451}
   m_Layer: 0
   m_Name: Lit Tablet
@@ -4935,18 +4934,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.6, y: 2.1}
   m_EdgeRadius: 0
---- !u!114 &-7847811048450373015
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8612914875454351433}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1735b7b8c2aa3984cbf5172db6c13c6f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &656589843491302451
 MonoBehaviour:
   m_ObjectHideFlags: 0

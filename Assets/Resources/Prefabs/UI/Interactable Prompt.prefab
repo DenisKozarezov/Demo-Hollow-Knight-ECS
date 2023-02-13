@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7291746162471621612}
   - component: {fileID: 7313419749436888354}
-  - component: {fileID: -4251785043337094717}
   - component: {fileID: 612809399930497843}
   m_Layer: 5
   m_Name: Interactable Prompt
@@ -87,18 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-4251785043337094717
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7761558600086552322}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1735b7b8c2aa3984cbf5172db6c13c6f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &612809399930497843
 MonoBehaviour:
   m_ObjectHideFlags: 0

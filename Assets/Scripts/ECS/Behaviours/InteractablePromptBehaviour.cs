@@ -38,7 +38,7 @@ namespace Core.ECS.Behaviours
             _sequence.Join(_renderer.DOColor(_renderer.color.WithAlpha(alpha), time));
             _sequence.OnComplete(() =>
             {
-                if (mode == FadeMode.Off) GameObject.DestroyImmediate(gameObject);
+                if (mode == FadeMode.Off) Entity.isDestroyed = true;
             });
             _sequence.SetLink(gameObject);
         }

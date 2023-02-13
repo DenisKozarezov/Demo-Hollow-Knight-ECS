@@ -19,7 +19,7 @@ namespace Core.ECS.Systems.Units
         }
         protected override bool Filter(GameEntity entity)
         {
-            return entity.hasEnemy;
+            return entity.hasEnemy && entity.hasCollider;
         }
         protected override void Execute(List<GameEntity> entities)
         {
@@ -30,8 +30,7 @@ namespace Core.ECS.Systems.Units
                 for (int i = 0; i < geoReward / 2; i++)
                 {
                     GeoView geo = _factory.Create(2);
-                    geo.gameObject.AddComponent<EntitySelfInitializer>();
-                    geo.transform.position = deadEnemy.position.Value;
+                    geo.transform.position = deadEnemy.collider.Value.bounds.center;
                 }
             }
         }    

@@ -24,7 +24,6 @@ namespace Core.ECS.Systems.UI
             foreach (GameEntity entity in _prompts)
             {
                 entity.interactablePrompt.Value.Fade(FadeMode.Off, 0.5f);
-                entity.isDestroyed = true;
             }
         }
     }

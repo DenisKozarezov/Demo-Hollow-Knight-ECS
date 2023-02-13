@@ -7,13 +7,22 @@ namespace Core.ECS.Behaviours
 {
     public abstract class EntityBehaviour : MonoBehaviour, IDisposable
     {
-        private IViewController _controller;
-
+        protected GameEntity Entity { get; private set; }
         protected GameContext Game => Contexts.sharedInstance.game;
-        public GameEntity Entity => _controller.Entity;
 
-        protected virtual void Awake() => _controller = gameObject.GetComponent<IViewController>();
+        protected virtual void Awake()
+        {
+            Entity = Game.CreateEntity();
 
+            gameObject.AddComponent<ViewController>().InitializeView(Game, Entity);
+
+            foreach (var listener in GetComponents<IEventListener>())
+            {
+                if (listener.GetType() == this.GetType()) continue;
+
+                listener.RegisterListeners(Entity);
+            }
+        }
         public virtual void Dispose() => gameObject.DestroyGameObject();
     }
 }
