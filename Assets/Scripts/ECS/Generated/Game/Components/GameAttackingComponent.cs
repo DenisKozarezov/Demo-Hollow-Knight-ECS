@@ -8,25 +8,25 @@
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Core.ECS.Components.Units.Attacking attackingComponent = new Core.ECS.Components.Units.Attacking();
+    public Core.ECS.Components.Units.Attacking attacking { get { return (Core.ECS.Components.Units.Attacking)GetComponent(GameComponentsLookup.Attacking); } }
+    public bool hasAttacking { get { return HasComponent(GameComponentsLookup.Attacking); } }
 
-    public bool isAttacking {
-        get { return HasComponent(GameComponentsLookup.Attacking); }
-        set {
-            if (value != isAttacking) {
-                var index = GameComponentsLookup.Attacking;
-                if (value) {
-                    var componentPool = GetComponentPool(index);
-                    var component = componentPool.Count > 0
-                            ? componentPool.Pop()
-                            : attackingComponent;
+    public void AddAttacking(Core.ECS.Components.Units.AttackDirection newValue) {
+        var index = GameComponentsLookup.Attacking;
+        var component = (Core.ECS.Components.Units.Attacking)CreateComponent(index, typeof(Core.ECS.Components.Units.Attacking));
+        component.Value = newValue;
+        AddComponent(index, component);
+    }
 
-                    AddComponent(index, component);
-                } else {
-                    RemoveComponent(index);
-                }
-            }
-        }
+    public void ReplaceAttacking(Core.ECS.Components.Units.AttackDirection newValue) {
+        var index = GameComponentsLookup.Attacking;
+        var component = (Core.ECS.Components.Units.Attacking)CreateComponent(index, typeof(Core.ECS.Components.Units.Attacking));
+        component.Value = newValue;
+        ReplaceComponent(index, component);
+    }
+
+    public void RemoveAttacking() {
+        RemoveComponent(GameComponentsLookup.Attacking);
     }
 }
 

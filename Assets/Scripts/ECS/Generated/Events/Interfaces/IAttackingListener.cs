@@ -7,5 +7,5 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 public interface IAttackingListener {
-    void OnAttacking(GameEntity entity);
+    void OnAttacking(GameEntity entity, Core.ECS.Components.Units.AttackDirection value);
 }

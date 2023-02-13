@@ -32,7 +32,9 @@ namespace Core.ECS.Components.Player
     [Input] public sealed class MouseScreenPosition : IComponent { public Vector2 Value; }
     [Input] public sealed class MouseUp : IComponent { }
     [Input] public sealed class Mouse : IComponent { }
+    [Input] public sealed class Attack : IComponent { }
     [Input] public sealed class Jump : IComponent { }
     [Input] public sealed class Look : IComponent { }
     [Input] public sealed class Horizontal : IComponent { public float Value; }
+    [Input] public sealed class Vertical : IComponent { public float Value; }
 }

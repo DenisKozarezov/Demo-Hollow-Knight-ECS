@@ -7,7 +7,7 @@ namespace Core.AI.FalseKnight.Actions
     {
         protected override State OnUpdate()
         {
-            (Agent as GameEntity).isAttacking = true;
+            (Agent as GameEntity).AddAttacking(ECS.Components.Units.AttackDirection.Default);
             return State.Success;
         }
     }

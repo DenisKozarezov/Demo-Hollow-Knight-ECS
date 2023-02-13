@@ -15,6 +15,7 @@ namespace Core.ECS.Behaviours
             Entity.isUnit = true;
             Entity.isBoss = true;
             Entity.isHittable = true;
+            Entity.isCanAttack = true;
             Entity.AddEnemy(_model);
             Entity.AddTransform(transform);
             Entity.AddPosition(transform.position);

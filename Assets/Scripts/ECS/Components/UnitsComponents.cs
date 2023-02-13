@@ -41,11 +41,11 @@ namespace Core.ECS.Components.Units
 
     public sealed class ViewControllerComponent : IComponent { public IViewController Value; }
 
-    [Event(Self)] public sealed class Attacking : IComponent { }
     [Event(Self)] public sealed class Jumping : IComponent { }
     [Event(Self)] public sealed class Grounded : IComponent { }
     [Event(Self)] public sealed class Moving : IComponent { }
     [Event(Self), Cleanup(DestroyEntity)] public sealed class Destroyed : IComponent { }
+    [Event(Self), Cleanup(RemoveComponent)] public sealed class Attacking : IComponent { public AttackDirection Value; }
     [Event(Self), Cleanup(RemoveComponent)] public sealed class DamageTaken : IComponent { public int Value; }
     [Event(Self), Cleanup(RemoveComponent)] public sealed class StoppedMoving : IComponent { }
     [Event(Self), Cleanup(RemoveComponent)] public sealed class Died : IComponent { }
@@ -54,6 +54,14 @@ namespace Core.ECS.Components.Units
     [Game, Event(Self)] public sealed class Direction : IComponent { public float Value; }
 
     // Temp
+
+    public enum AttackDirection : byte
+    {
+        None = 0x00,
+        Default = 0x01,
+        Up = 0x02,
+        Down = 0x04
+    }
 
     [Event(Self)]
     public sealed class HitEventComponent : IComponent

@@ -9,22 +9,25 @@
 public static class InputComponentsLookup {
 
     public const int Input = 0;
-    public const int Horizontal = 1;
-    public const int Jump = 2;
-    public const int Keyboard = 3;
-    public const int LeftMouse = 4;
-    public const int Look = 5;
-    public const int Mouse = 6;
-    public const int MouseDown = 7;
-    public const int MouseScreenPosition = 8;
-    public const int MouseUp = 9;
-    public const int MouseWorldPosition = 10;
-    public const int RightMouse = 11;
+    public const int Attack = 1;
+    public const int Horizontal = 2;
+    public const int Jump = 3;
+    public const int Keyboard = 4;
+    public const int LeftMouse = 5;
+    public const int Look = 6;
+    public const int Mouse = 7;
+    public const int MouseDown = 8;
+    public const int MouseScreenPosition = 9;
+    public const int MouseUp = 10;
+    public const int MouseWorldPosition = 11;
+    public const int RightMouse = 12;
+    public const int Vertical = 13;
 
-    public const int TotalComponents = 12;
+    public const int TotalComponents = 14;
 
     public static readonly string[] componentNames = {
         "Input",
+        "Attack",
         "Horizontal",
         "Jump",
         "Keyboard",
@@ -35,11 +38,13 @@ public static class InputComponentsLookup {
         "MouseScreenPosition",
         "MouseUp",
         "MouseWorldPosition",
-        "RightMouse"
+        "RightMouse",
+        "Vertical"
     };
 
     public static readonly System.Type[] componentTypes = {
         typeof(Core.ECS.Components.Input),
+        typeof(Core.ECS.Components.Player.Attack),
         typeof(Core.ECS.Components.Player.Horizontal),
         typeof(Core.ECS.Components.Player.Jump),
         typeof(Core.ECS.Components.Player.Keyboard),
@@ -50,6 +55,7 @@ public static class InputComponentsLookup {
         typeof(Core.ECS.Components.Player.MouseScreenPosition),
         typeof(Core.ECS.Components.Player.MouseUp),
         typeof(Core.ECS.Components.Player.MouseWorldPosition),
-        typeof(Core.ECS.Components.Player.RightMouse)
+        typeof(Core.ECS.Components.Player.RightMouse),
+        typeof(Core.ECS.Components.Player.Vertical)
     };
 }

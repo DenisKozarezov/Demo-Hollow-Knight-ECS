@@ -21,16 +21,16 @@ public sealed class AttackingEventSystem : Entitas.ReactiveSystem<GameEntity> {
     }
 
     protected override bool Filter(GameEntity entity) {
-        return entity.isAttacking && entity.hasAttackingListener;
+        return entity.hasAttacking && entity.hasAttackingListener;
     }
 
     protected override void Execute(System.Collections.Generic.List<GameEntity> entities) {
         foreach (var e in entities) {
-            
+            var component = e.attacking;
             _listenerBuffer.Clear();
             _listenerBuffer.AddRange(e.attackingListener.value);
             foreach (var listener in _listenerBuffer) {
-                listener.OnAttacking(e);
+                listener.OnAttacking(e, component.Value);
             }
         }
     }

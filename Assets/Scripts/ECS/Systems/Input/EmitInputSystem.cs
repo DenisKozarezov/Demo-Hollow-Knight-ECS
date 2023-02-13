@@ -1,5 +1,6 @@
 ﻿using Entitas;
 using Core.Services;
+using UnityEngine;
 
 namespace Core.ECS.Systems
 {
@@ -34,24 +35,26 @@ namespace Core.ECS.Systems
                     {
                         IInputService inputSystem = _inputContext.input.Value;
 
-                        //Vector2 screenPosition = _inputSystem.GetScreenMousePosition();
-                        //Vector2 worldPosition = _inputSystem.GetWorldMousePosition();
+                        //Vector2 screenPosition = inputSystem.GetScreenMousePosition();
+                        //Vector2 worldPosition = inputSystem.GetWorldMousePosition();
 
-                        //leftMouse.isMouseDown = _inputSystem.GetLeftMouseButtonDown();
-                        //leftMouse.isMouse = _inputSystem.GetLeftMouseButton();
+                        //leftMouse.isMouseDown = inputSystem.GetLeftMouseButtonDown();
+                        //leftMouse.isMouse = inputSystem.GetLeftMouseButton();
                         //leftMouse.Do(l => l.ReplaceMouseScreenPosition(screenPosition), when: Input.GetLeftMouseButton());
                         //leftMouse.Do(l => l.ReplaceMouseWorldPosition(worldPosition), when: Input.GetLeftMouseButton());
-                        //leftMouse.isMouseUp = _inputSystem.GetLeftMouseButtonUp();
+                        //leftMouse.isMouseUp = inputSystem.GetLeftMouseButtonUp();
 
-                        //rightMouse.isMouseDown = _inputSystem.GetRightMouseButtonDown();
-                        //rightMouse.isMouse = _inputSystem.GetRightMouseButton();
+                        //rightMouse.isMouseDown = inputSystem.GetRightMouseButtonDown();
+                        //rightMouse.isMouse = inputSystem.GetRightMouseButton();
                         //rightMouse.Do(r => r.ReplaceMouseScreenPosition(screenPosition), when: Input.GetRightMouseButton());
                         //rightMouse.Do(r => r.ReplaceMouseWorldPosition(worldPosition), when: Input.GetRightMouseButton());
-                        //rightMouse.isMouseUp = _inputSystem.GetRightMouseButtonUp();
+                        //rightMouse.isMouseUp = inputSystem.GetRightMouseButtonUp();
 
                         keyboard.ReplaceHorizontal(inputSystem.Direction.x);
+                        keyboard.ReplaceVertical(inputSystem.Direction.y);
                         keyboard.isJump = inputSystem.JumpHoldTime > 0;
                         keyboard.isLook = inputSystem.IsLook;
+                        keyboard.isAttack = inputSystem.IsAttack;
                     }
                 }
             }
