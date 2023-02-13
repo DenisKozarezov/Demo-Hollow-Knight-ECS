@@ -26,75 +26,76 @@ public static class GameComponentsLookup {
     public const int CurrentGeo = 15;
     public const int EnergyReduced = 16;
     public const int EnteredBossZone = 17;
-    public const int MaxEnergy = 18;
-    public const int ObtainedGeo = 19;
-    public const int Player = 20;
-    public const int PlayerTalkingWithNPCEvent = 21;
-    public const int RestoredHealth = 22;
-    public const int Time = 23;
-    public const int HealthUI = 24;
-    public const int Vignette = 25;
-    public const int Animator = 26;
-    public const int Attacking = 27;
-    public const int AttackRange = 28;
-    public const int BehaviourTree = 29;
-    public const int Boss = 30;
-    public const int CanAttack = 31;
-    public const int Channelling = 32;
-    public const int Collided = 33;
-    public const int Collider = 34;
-    public const int CurrentHp = 35;
-    public const int Damage = 36;
-    public const int DamageTaken = 37;
-    public const int Dead = 38;
-    public const int Destroyed = 39;
-    public const int Died = 40;
-    public const int Direction = 41;
-    public const int Enemy = 42;
-    public const int Grounded = 43;
-    public const int HitEvent = 44;
-    public const int Hittable = 45;
-    public const int Id = 46;
-    public const int Invulnerable = 47;
-    public const int Jump = 48;
-    public const int Jumping = 49;
-    public const int MaxHp = 50;
-    public const int Movable = 51;
-    public const int Moving = 52;
-    public const int NPC = 53;
-    public const int Position = 54;
-    public const int Rigidbody = 55;
-    public const int SpriteRenderer = 56;
-    public const int StoppedMoving = 57;
-    public const int Transform = 58;
-    public const int Unit = 59;
-    public const int ViewController = 60;
-    public const int CameraFade = 61;
-    public const int CameraShake = 62;
-    public const int FalseKnightAttackEvent = 63;
-    public const int FalseKnightJumpEvent = 64;
-    public const int FalseKnightRollEvent = 65;
-    public const int FalseKnightStrongAttackEvent = 66;
-    public const int DamageTakenListener = 67;
-    public const int DestroyedListener = 68;
-    public const int DiedListener = 69;
-    public const int DirectionListener = 70;
-    public const int EnergyReducedListener = 71;
-    public const int EnteredBossZoneListener = 72;
-    public const int FalseKnightAttackEventListener = 73;
-    public const int FalseKnightJumpEventListener = 74;
-    public const int FalseKnightRollEventListener = 75;
-    public const int FalseKnightStrongAttackEventListener = 76;
-    public const int GroundedListener = 77;
-    public const int HitEventListener = 78;
-    public const int JumpingListener = 79;
-    public const int MovingListener = 80;
-    public const int PlayerTalkingWithNPCEventListener = 81;
-    public const int PositionListener = 82;
-    public const int RestoredHealthListener = 83;
-    public const int StoppedMovingListener = 84;
+    public const int Interacting = 18;
+    public const int MaxEnergy = 19;
+    public const int ObtainedGeo = 20;
+    public const int Player = 21;
+    public const int PlayerTalkingWithNPCEvent = 22;
+    public const int RestoredHealth = 23;
+    public const int Time = 24;
+    public const int HealthUI = 25;
+    public const int Vignette = 26;
+    public const int Animator = 27;
+    public const int Attacking = 28;
+    public const int AttackRange = 29;
+    public const int BehaviourTree = 30;
+    public const int Boss = 31;
+    public const int CanAttack = 32;
+    public const int Channelling = 33;
+    public const int Collided = 34;
+    public const int Collider = 35;
+    public const int CurrentHp = 36;
+    public const int Damage = 37;
+    public const int DamageTaken = 38;
+    public const int Dead = 39;
+    public const int Destroyed = 40;
+    public const int Died = 41;
+    public const int Direction = 42;
+    public const int Enemy = 43;
+    public const int Grounded = 44;
+    public const int HitEvent = 45;
+    public const int Hittable = 46;
+    public const int Id = 47;
+    public const int Invulnerable = 48;
+    public const int Jump = 49;
+    public const int Jumping = 50;
+    public const int MaxHp = 51;
+    public const int Movable = 52;
+    public const int Moving = 53;
+    public const int NPC = 54;
+    public const int Position = 55;
+    public const int Rigidbody = 56;
+    public const int SpriteRenderer = 57;
+    public const int StoppedMoving = 58;
+    public const int Transform = 59;
+    public const int Unit = 60;
+    public const int ViewController = 61;
+    public const int CameraFade = 62;
+    public const int CameraShake = 63;
+    public const int FalseKnightAttackEvent = 64;
+    public const int FalseKnightJumpEvent = 65;
+    public const int FalseKnightRollEvent = 66;
+    public const int FalseKnightStrongAttackEvent = 67;
+    public const int DamageTakenListener = 68;
+    public const int DestroyedListener = 69;
+    public const int DiedListener = 70;
+    public const int DirectionListener = 71;
+    public const int EnergyReducedListener = 72;
+    public const int EnteredBossZoneListener = 73;
+    public const int FalseKnightAttackEventListener = 74;
+    public const int FalseKnightJumpEventListener = 75;
+    public const int FalseKnightRollEventListener = 76;
+    public const int FalseKnightStrongAttackEventListener = 77;
+    public const int GroundedListener = 78;
+    public const int HitEventListener = 79;
+    public const int JumpingListener = 80;
+    public const int MovingListener = 81;
+    public const int PlayerTalkingWithNPCEventListener = 82;
+    public const int PositionListener = 83;
+    public const int RestoredHealthListener = 84;
+    public const int StoppedMovingListener = 85;
 
-    public const int TotalComponents = 85;
+    public const int TotalComponents = 86;
 
     public static readonly string[] componentNames = {
         "AnyCameraFadeListener",
@@ -115,6 +116,7 @@ public static class GameComponentsLookup {
         "CurrentGeo",
         "EnergyReduced",
         "EnteredBossZone",
+        "Interacting",
         "MaxEnergy",
         "ObtainedGeo",
         "Player",
@@ -197,12 +199,13 @@ public static class GameComponentsLookup {
         typeof(Core.ECS.Components.InteractablePrompt),
         typeof(Core.ECS.Components.Logger),
         typeof(Core.ECS.Components.Physics),
-        typeof(Core.ECS.Components.Player.AttackCooldownComponent),
+        typeof(Core.ECS.Components.Player.AttackCooldown),
         typeof(Core.ECS.Components.Player.CanInteract),
         typeof(Core.ECS.Components.Player.CurrentEnergy),
         typeof(Core.ECS.Components.Player.CurrentGeo),
         typeof(Core.ECS.Components.Player.EnergyReduced),
         typeof(Core.ECS.Components.Player.EnteredBossZone),
+        typeof(Core.ECS.Components.Player.Interacting),
         typeof(Core.ECS.Components.Player.MaxEnergy),
         typeof(Core.ECS.Components.Player.ObtainedGeo),
         typeof(Core.ECS.Components.Player.Player),

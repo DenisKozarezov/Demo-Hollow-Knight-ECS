@@ -9,12 +9,12 @@ namespace Core.Services
         ref float JumpHoldTime { get; }
         bool Enabled { get; }
         bool IsMoving { get; }
-        event Action Look;
-        event Action Jump;
-        event Action Attack;
+        bool IsLook { get; }
+        bool IsJump { get; }
+        bool IsAttack { get; }
         event Action FocusStarted;
         event Action FocusCanceled;
-        event Action Pause;
+        bool IsPause { get; }
         void Enable();
         void Disable();
     }

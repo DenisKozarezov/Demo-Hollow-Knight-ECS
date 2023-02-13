@@ -51,6 +51,7 @@ namespace Core.ECS.Systems
 
                         keyboard.ReplaceHorizontal(inputSystem.Direction.x);
                         keyboard.isJump = inputSystem.JumpHoldTime > 0;
+                        keyboard.isLook = inputSystem.IsLook;
                     }
                 }
             }

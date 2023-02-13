@@ -8,19 +8,19 @@
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public Core.ECS.Components.Player.AttackCooldownComponent attackCooldown { get { return (Core.ECS.Components.Player.AttackCooldownComponent)GetComponent(GameComponentsLookup.AttackCooldown); } }
+    public Core.ECS.Components.Player.AttackCooldown attackCooldown { get { return (Core.ECS.Components.Player.AttackCooldown)GetComponent(GameComponentsLookup.AttackCooldown); } }
     public bool hasAttackCooldown { get { return HasComponent(GameComponentsLookup.AttackCooldown); } }
 
     public void AddAttackCooldown(float newValue) {
         var index = GameComponentsLookup.AttackCooldown;
-        var component = (Core.ECS.Components.Player.AttackCooldownComponent)CreateComponent(index, typeof(Core.ECS.Components.Player.AttackCooldownComponent));
+        var component = (Core.ECS.Components.Player.AttackCooldown)CreateComponent(index, typeof(Core.ECS.Components.Player.AttackCooldown));
         component.Value = newValue;
         AddComponent(index, component);
     }
 
     public void ReplaceAttackCooldown(float newValue) {
         var index = GameComponentsLookup.AttackCooldown;
-        var component = (Core.ECS.Components.Player.AttackCooldownComponent)CreateComponent(index, typeof(Core.ECS.Components.Player.AttackCooldownComponent));
+        var component = (Core.ECS.Components.Player.AttackCooldown)CreateComponent(index, typeof(Core.ECS.Components.Player.AttackCooldown));
         component.Value = newValue;
         ReplaceComponent(index, component);
     }

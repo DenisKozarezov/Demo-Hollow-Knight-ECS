@@ -2,11 +2,11 @@
 using UnityEngine;
 using Entitas;
 
-namespace Core.ECS.Systems.Player
+namespace Core.ECS.Systems.Camera
 {
-    public sealed class PlayerDiedSystem : ReactiveSystem<GameEntity>
+    public sealed class CameraShakeAfterDeathSystem : ReactiveSystem<GameEntity>
     {
-        public PlayerDiedSystem(GameContext game) : base(game) { }
+        public CameraShakeAfterDeathSystem(GameContext game) : base(game) { }
 
         private readonly string DeathBlow = "Prefabs/VFX/Player Death/Low Health Hit";
         private readonly string DeathParticle = "Prefabs/VFX/Player Death/Death Effect";
@@ -30,11 +30,11 @@ namespace Core.ECS.Systems.Player
 
         protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
         {
-            return context.CreateCollector(GameMatcher.AllOf(GameMatcher.Player, GameMatcher.Collider, GameMatcher.Dead));
+            return context.CreateCollector(GameMatcher.AllOf(GameMatcher.Unit, GameMatcher.Collider, GameMatcher.Dead));
         }
         protected override bool Filter(GameEntity entity)
         {
-            return entity.isPlayer;
+            return entity.isPlayer || entity.isBoss;
         }
         protected override void Execute(List<GameEntity> entities)
         {
@@ -46,10 +46,7 @@ namespace Core.ECS.Systems.Player
                 CreateDeathEffect(collider.bounds.center);
 
                 // Camera Shake
-                //_world.NewEntity(new CameraShakeEventComponent { ShakeDuration = 5f, ShakeForce = 0.2f });
-
-                // Camera Fade
-                //_world.NewEntity(new CameraFadeEventComponent { FadeMode = FadeMode.On, FadeTime = 5f });
+                ECSExtensions.Empty().AddCameraShake(newShakeDuration: 5f, newShakeForce: 0.2f);
             }
         }
     }

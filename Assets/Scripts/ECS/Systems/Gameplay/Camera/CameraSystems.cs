@@ -5,6 +5,7 @@
         public CameraSystems(Contexts contexts) : base(nameof(CameraSystems))
         {
             Add(new CameraLowHealthVignetteSystem(contexts.game));
+            Add(new CameraShakeAfterDeathSystem(contexts.game));
         }
     }
 }

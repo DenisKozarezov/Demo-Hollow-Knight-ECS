@@ -20,6 +20,7 @@ namespace Core.ECS.Behaviours
             Entity.AddMovable(_playerModel.MovementSpeed);
             Entity.AddDamage(_playerModel.BaseDamage);
             Entity.AddAttackRange(_playerModel.AttackRange);
+            Entity.AddAttackCooldown(_playerModel.AttackCooldown);
             Entity.AddJump(_playerModel.JumpHeightRange);
             Entity.AddMaxEnergy(_playerModel.EnergyCapacity);
             Entity.AddCurrentEnergy(_playerModel.EnergyCapacity);

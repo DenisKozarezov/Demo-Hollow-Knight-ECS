@@ -13,14 +13,15 @@ public static class InputComponentsLookup {
     public const int Jump = 2;
     public const int Keyboard = 3;
     public const int LeftMouse = 4;
-    public const int Mouse = 5;
-    public const int MouseDown = 6;
-    public const int MouseScreenPosition = 7;
-    public const int MouseUp = 8;
-    public const int MouseWorldPosition = 9;
-    public const int RightMouse = 10;
+    public const int Look = 5;
+    public const int Mouse = 6;
+    public const int MouseDown = 7;
+    public const int MouseScreenPosition = 8;
+    public const int MouseUp = 9;
+    public const int MouseWorldPosition = 10;
+    public const int RightMouse = 11;
 
-    public const int TotalComponents = 11;
+    public const int TotalComponents = 12;
 
     public static readonly string[] componentNames = {
         "Input",
@@ -28,6 +29,7 @@ public static class InputComponentsLookup {
         "Jump",
         "Keyboard",
         "LeftMouse",
+        "Look",
         "Mouse",
         "MouseDown",
         "MouseScreenPosition",
@@ -42,6 +44,7 @@ public static class InputComponentsLookup {
         typeof(Core.ECS.Components.Player.Jump),
         typeof(Core.ECS.Components.Player.Keyboard),
         typeof(Core.ECS.Components.Player.LeftMouse),
+        typeof(Core.ECS.Components.Player.Look),
         typeof(Core.ECS.Components.Player.Mouse),
         typeof(Core.ECS.Components.Player.MouseDown),
         typeof(Core.ECS.Components.Player.MouseScreenPosition),

@@ -9,11 +9,12 @@ using static Entitas.CodeGeneration.Attributes.CleanupMode;
 namespace Core.ECS.Components.Player
 {
     public sealed class Player : IComponent { }
-    public sealed class AttackCooldownComponent : IComponent { public float Value; }
+    public sealed class AttackCooldown : IComponent { public float Value; }
     public sealed class CurrentEnergy : IComponent { public float Value; }
     public sealed class MaxEnergy : IComponent { public float Value; }
     public sealed class CurrentGeo : IComponent { public int Value; }
     public sealed class CanInteract : IComponent { }
+    public sealed class Interacting : IComponent { }
 
     // Player Events
     [Event(Any), Cleanup(RemoveComponent)] public sealed class ObtainedGeo : IComponent { public int Value; }
@@ -32,5 +33,6 @@ namespace Core.ECS.Components.Player
     [Input] public sealed class MouseUp : IComponent { }
     [Input] public sealed class Mouse : IComponent { }
     [Input] public sealed class Jump : IComponent { }
+    [Input] public sealed class Look : IComponent { }
     [Input] public sealed class Horizontal : IComponent { public float Value; }
 }

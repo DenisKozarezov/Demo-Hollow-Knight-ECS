@@ -11,24 +11,18 @@ namespace Core.Services
         private PlayerInputController _playerInput;
         public ref Vector2 Direction => ref _direction;
         public ref float JumpHoldTime => ref _jumpHoldTime;
-        public event Action Look;
-        public event Action Jump;
-        public event Action Attack;
         public event Action FocusStarted;
         public event Action FocusCanceled;
-        public event Action Pause;
+        public bool IsLook => _playerInput.Keyboard.Look.IsPressed();
+        public bool IsAttack => _playerInput.Keyboard.Attack.IsPressed();
+        public bool IsJump { get; private set; }
+        public bool IsPause => _playerInput.Keyboard.Pause.IsPressed();
         public bool Enabled => _playerInput.Keyboard.enabled;
         public bool IsMoving => Direction.x != 0;
 
         void IInitializable.Initialize()
         {
             _playerInput = new PlayerInputController();
-            _playerInput.Keyboard.Jump.started += _ => Jump?.Invoke();
-            _playerInput.Keyboard.Attack.started += _ => Attack?.Invoke();
-            _playerInput.Keyboard.Pause.performed += _ => Pause?.Invoke();
-            _playerInput.Keyboard.Focus.started += _ => FocusStarted?.Invoke();
-            _playerInput.Keyboard.Focus.canceled += _ => FocusCanceled?.Invoke();
-            _playerInput.Keyboard.Look.started += _ => Look?.Invoke();
             Enable();
         }
         void ITickable.Tick()
