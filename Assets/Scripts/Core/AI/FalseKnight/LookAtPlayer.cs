@@ -1,35 +1,34 @@
-using UnityEngine;
 using BehaviourTree.Runtime.Nodes;
-using Core.ECS.Components.Units;
-using Core.ECS.Components.Player;
+using Entitas;
 
 namespace Core.AI.FalseKnight.Actions
 {
-    //[Category("False Knight/Actions")]
-    //public class LookAtPlayer : Action
-    //{
-    //    private Transform _agent;
-    //    private EcsFilter _filter;
-    //    private float _startLocalX;
+    [Category("False Knight/Actions")]
+    public class LookAtPlayer : Action
+    {
+        private GameEntity _entity;
+        private IGroup<GameEntity> _players;
 
-    //    protected override void OnInit()
-    //    {
-    //        _agent = Agent.Get<TransformComponent>().Value;
-    //        _filter = World.GetFilter(typeof(EcsFilter<PlayerTagComponent>.Exclude<DiedComponent>));
-    //        _startLocalX = _agent.localScale.x;
-    //    }
-    //    protected override State OnUpdate()
-    //    {
-    //        ref EcsEntity player = ref _filter.GetEntity(0);
-    //        if (player.IsNullOrEmpty()) return State.Failure;
-
-    //        float playerX = player.Get<TransformComponent>().Value.position.x;
-    //        float direction = playerX - _agent.position.x;
-
-    //        Vector3 localScale = _agent.localScale;
-    //        localScale.x = _startLocalX * (direction < 0f ? -1f : 1f);
-    //        _agent.localScale = localScale;
-    //        return State.Success;
-    //    }
-    //}
+        protected override void OnInit()
+        {
+            _entity = (GameEntity)Agent;
+            _players = _entity.Context().GetGroup(GameMatcher
+                .AllOf(GameMatcher.Player)
+                .NoneOf(GameMatcher.Dead));
+        }
+        protected override State OnUpdate()
+        {
+            if (_players.count == 0) return State.Failure;
+            else
+            {
+                foreach (GameEntity player in _players)
+                {
+                    float playerX = player.position.Value.x;
+                    float newDirection = playerX - _entity.position.Value.x;
+                    _entity.ReplaceDirection(newDirection);
+                }
+                return State.Success;
+            }
+        }
+    }
 }

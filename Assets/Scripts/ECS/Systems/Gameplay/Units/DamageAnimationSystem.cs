@@ -14,7 +14,7 @@ namespace Core.ECS.Systems
 
         protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
         {
-            return context.CreateCollector(GameMatcher.AllOf(GameMatcher.DamageTaken, GameMatcher.CurrentHp));
+            return context.CreateCollector(GameMatcher.AllOf(GameMatcher.DamageTaken, GameMatcher.CurrentHp, GameMatcher.SpriteRenderer));
         }
         protected override bool Filter(GameEntity entity)
         {

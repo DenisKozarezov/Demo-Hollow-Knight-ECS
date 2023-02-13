@@ -18,10 +18,6 @@ public sealed class GameEventSystems : Feature {
         Add(new DirectionEventSystem(contexts)); // priority: 0
         Add(new EnergyReducedEventSystem(contexts)); // priority: 0
         Add(new EnteredBossZoneEventSystem(contexts)); // priority: 0
-        Add(new FalseKnightAttackEventEventSystem(contexts)); // priority: 0
-        Add(new FalseKnightJumpEventEventSystem(contexts)); // priority: 0
-        Add(new FalseKnightRollEventEventSystem(contexts)); // priority: 0
-        Add(new FalseKnightStrongAttackEventEventSystem(contexts)); // priority: 0
         Add(new GroundedEventSystem(contexts)); // priority: 0
         Add(new HitEventEventSystem(contexts)); // priority: 0
         Add(new JumpingEventSystem(contexts)); // priority: 0

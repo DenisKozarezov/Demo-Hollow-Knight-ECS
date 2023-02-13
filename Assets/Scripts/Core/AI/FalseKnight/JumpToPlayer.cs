@@ -1,41 +1,44 @@
 using UnityEngine;
+using Entitas;
 using BehaviourTree.Runtime.Nodes;
-using Core.ECS.Components.Units;
-using Core.ECS.Components.Player;
 
 namespace Core.AI.FalseKnight.Actions
 {
-    //[Category("False Knight/Actions")]
-    //public class JumpToPlayer : Action
-    //{
-    //    private EcsFilter _filter;
-    //    private EcsEntity _player;
-    //    private float _jumpForce;
-    //    private Rigidbody2D _rigidbody;
+    [Category("False Knight/Actions")]
+    public class JumpToPlayer : Action
+    {
+        private GameEntity _entity;
+        private IGroup<GameEntity> _players;
+        private float _jumpForce;
 
-    //    protected override void OnInit()
-    //    {
-    //        float jumpHeight = Agent.Get<JumpComponent>().JumpForceRange.y;
-    //        _jumpForce = Utils.CalculateJumpForce(Physics2D.gravity.magnitude, jumpHeight);
-    //        _filter = World.GetFilter(typeof(EcsFilter<PlayerTagComponent>.Exclude<DiedComponent>));
-    //        _rigidbody = Agent.Get<RigidbodyComponent>().Value;
-    //    }
-    //    protected override void OnStart()
-    //    {
-    //        _player = _filter.GetEntity(0);
-    //    }      
-    //    protected override State OnUpdate()
-    //    {
-    //        if (_rigidbody == null || _player.IsNullOrEmpty()) return State.Failure;
+        protected override void OnInit()
+        {
+            _entity = (GameEntity)Agent;
+            _players = _entity.Context().GetGroup(GameMatcher
+                .AllOf(GameMatcher.Player)
+                .NoneOf(GameMatcher.Dead));
 
-    //        // Calculate distance
-    //        float playerX = _player.Get<TransformComponent>().Value.position.x;
-    //        float distanceToPlayer = playerX - _rigidbody.transform.position.x;
+            float jumpForceY = _entity.jump.JumpForceRange.y;
+            _jumpForce = Utils.CalculateJumpForce(Physics2D.gravity.magnitude, jumpForceY);
+        }
+        protected override State OnUpdate()
+        {
+            if (_players.count == 0) return State.Failure;
+            else
+            {
+                foreach (GameEntity player in _players)
+                {
+                    // Calculate distance
+                    float playerX = player.position.Value.x;
+                    float distanceToPlayer = playerX - _entity.position.Value.x;
 
-    //        // Jump
-    //        Vector2 velocity = new Vector2(distanceToPlayer * 0.8f, _jumpForce);
-    //        _rigidbody.velocity = velocity;
-    //        return State.Success;
-    //    }
-    //}
+                    // Jump
+                    Vector2 velocity = new Vector2(distanceToPlayer * 0.8f, _jumpForce);
+                    _entity.rigidbody.Value.velocity = velocity;
+                    _entity.isJumping = true;
+                }
+                return State.Success;
+            }    
+        }
+    }
 }

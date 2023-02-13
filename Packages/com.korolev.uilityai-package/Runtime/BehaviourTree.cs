@@ -4,7 +4,6 @@ using UnityEngine;
 using BehaviourTree.Runtime.Nodes;
 using BehaviourTree.Runtime.Nodes.Decorators;
 using Node = BehaviourTree.Runtime.Nodes.Node;
-using Entitas;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -36,10 +35,10 @@ namespace BehaviourTree.Runtime
                 }
             }
         }
-        //public void Init(IEntity agent, GameContext world)
-        //{
-        //    foreach (Node node in _nodes) node.Init(ref agent, world);
-        //}
+        public void Init(Entitas.IEntity agent)
+        {
+            foreach (Node node in _nodes) node.Init(agent);
+        }
         public State Update()
         {
             if (RootNode.State == State.Running)

@@ -1,6 +1,5 @@
 using Core.ECS.Events;
 using Core.ECS.Components.Units;
-using Core.ECS.Events.FalseKnight;
 
 namespace Core.ECS.Systems.FalseKnight
 {

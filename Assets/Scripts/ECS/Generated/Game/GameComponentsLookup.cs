@@ -72,30 +72,22 @@ public static class GameComponentsLookup {
     public const int ViewController = 61;
     public const int CameraFade = 62;
     public const int CameraShake = 63;
-    public const int FalseKnightAttackEvent = 64;
-    public const int FalseKnightJumpEvent = 65;
-    public const int FalseKnightRollEvent = 66;
-    public const int FalseKnightStrongAttackEvent = 67;
-    public const int DamageTakenListener = 68;
-    public const int DestroyedListener = 69;
-    public const int DiedListener = 70;
-    public const int DirectionListener = 71;
-    public const int EnergyReducedListener = 72;
-    public const int EnteredBossZoneListener = 73;
-    public const int FalseKnightAttackEventListener = 74;
-    public const int FalseKnightJumpEventListener = 75;
-    public const int FalseKnightRollEventListener = 76;
-    public const int FalseKnightStrongAttackEventListener = 77;
-    public const int GroundedListener = 78;
-    public const int HitEventListener = 79;
-    public const int JumpingListener = 80;
-    public const int MovingListener = 81;
-    public const int PlayerTalkingWithNPCEventListener = 82;
-    public const int PositionListener = 83;
-    public const int RestoredHealthListener = 84;
-    public const int StoppedMovingListener = 85;
+    public const int DamageTakenListener = 64;
+    public const int DestroyedListener = 65;
+    public const int DiedListener = 66;
+    public const int DirectionListener = 67;
+    public const int EnergyReducedListener = 68;
+    public const int EnteredBossZoneListener = 69;
+    public const int GroundedListener = 70;
+    public const int HitEventListener = 71;
+    public const int JumpingListener = 72;
+    public const int MovingListener = 73;
+    public const int PlayerTalkingWithNPCEventListener = 74;
+    public const int PositionListener = 75;
+    public const int RestoredHealthListener = 76;
+    public const int StoppedMovingListener = 77;
 
-    public const int TotalComponents = 86;
+    public const int TotalComponents = 78;
 
     public static readonly string[] componentNames = {
         "AnyCameraFadeListener",
@@ -162,20 +154,12 @@ public static class GameComponentsLookup {
         "ViewController",
         "CameraFade",
         "CameraShake",
-        "FalseKnightAttackEvent",
-        "FalseKnightJumpEvent",
-        "FalseKnightRollEvent",
-        "FalseKnightStrongAttackEvent",
         "DamageTakenListener",
         "DestroyedListener",
         "DiedListener",
         "DirectionListener",
         "EnergyReducedListener",
         "EnteredBossZoneListener",
-        "FalseKnightAttackEventListener",
-        "FalseKnightJumpEventListener",
-        "FalseKnightRollEventListener",
-        "FalseKnightStrongAttackEventListener",
         "GroundedListener",
         "HitEventListener",
         "JumpingListener",
@@ -251,20 +235,12 @@ public static class GameComponentsLookup {
         typeof(Core.ECS.Components.Units.ViewControllerComponent),
         typeof(Core.ECS.Events.CameraFade),
         typeof(Core.ECS.Events.CameraShake),
-        typeof(Core.ECS.Events.FalseKnight.FalseKnightAttackEventComponent),
-        typeof(Core.ECS.Events.FalseKnight.FalseKnightJumpEvent),
-        typeof(Core.ECS.Events.FalseKnight.FalseKnightRollEvent),
-        typeof(Core.ECS.Events.FalseKnight.FalseKnightStrongAttackEvent),
         typeof(DamageTakenListenerComponent),
         typeof(DestroyedListenerComponent),
         typeof(DiedListenerComponent),
         typeof(DirectionListenerComponent),
         typeof(EnergyReducedListenerComponent),
         typeof(EnteredBossZoneListenerComponent),
-        typeof(FalseKnightAttackEventListenerComponent),
-        typeof(FalseKnightJumpEventListenerComponent),
-        typeof(FalseKnightRollEventListenerComponent),
-        typeof(FalseKnightStrongAttackEventListenerComponent),
         typeof(GroundedListenerComponent),
         typeof(HitEventListenerComponent),
         typeof(JumpingListenerComponent),

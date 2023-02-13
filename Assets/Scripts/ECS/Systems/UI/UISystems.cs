@@ -8,7 +8,6 @@
             Add(new InteractablePromptAddedSystem(contexts.game));
             Add(new InteractablePromptRemovedSystem(contexts.game));
             //Add(new BossAnnouncementUISystem(gameView));
-            //Add(new GeoObtainedUISystem(geoView));
         }
     }
 }

@@ -1,7 +1,7 @@
-using Entitas;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Entitas;
 
 namespace BehaviourTree.Runtime.Nodes
 {
@@ -19,14 +19,12 @@ namespace BehaviourTree.Runtime.Nodes
         [SerializeField, HideInInspector] public string GUID;
 
         protected IEntity Agent;
-        //protected EcsWorld World;
-        
-        //public void Init(ref IEntity agent, EcsWorld world)
-        //{
-        //    Agent = agent;
-        //    World = world;
-        //    OnInit();
-        //}
+
+        public void Init(IEntity agent)
+        {
+            Agent = agent;
+            OnInit();
+        }
         public State Update() 
         {
             if (!Started) 
