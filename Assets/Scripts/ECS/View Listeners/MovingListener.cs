@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using Entitas;
+using Core.Units;
 
 namespace Core.ECS.ViewListeners
 {
     public sealed class MovingListener : MonoBehaviour, IEventListener, IMovingListener, IStoppedMovingListener
     {
-        private Animator _animator;
         private GameEntity _entity;
+        private UnitAnimator _animator;
 
         public void RegisterListeners(IEntity entity)
         {
@@ -14,14 +15,14 @@ namespace Core.ECS.ViewListeners
             _entity.AddMovingListener(this);
             _entity.AddStoppedMovingListener(this);
 
-            _animator = GetComponent<Animator>();
+            _animator = GetComponent<UnitAnimator>();
         }
         public void UnregisterListeners()
         {
             _entity.RemoveMovingListener();
             _entity.RemoveStoppedMovingListener();
         }
-        public void OnMoving(GameEntity entity) => _animator.SetBool("IsMoving", true);
-        public void OnStoppedMoving(GameEntity entity) => _animator.SetBool("IsMoving", false);
+        public void OnMoving(GameEntity entity) => _animator.PlayMove();
+        public void OnStoppedMoving(GameEntity entity) => _animator.PlayIdle();
     }
 }

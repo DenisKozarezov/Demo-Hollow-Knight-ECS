@@ -121,6 +121,7 @@ GameObject:
   - component: {fileID: -6938646912654286841}
   - component: {fileID: -8616651699144699453}
   - component: {fileID: -8368728950299801736}
+  - component: {fileID: -7283127247196815769}
   m_Layer: 7
   m_Name: False Knight
   m_TagString: Untagged
@@ -387,3 +388,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 6990455316024280043}
+--- !u!114 &-7283127247196815769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7559006615654855930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afa9c47cc3647ca40a41297828b7be1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 7559006615654855931}
+  _renderer: {fileID: 7559006615654855928}
