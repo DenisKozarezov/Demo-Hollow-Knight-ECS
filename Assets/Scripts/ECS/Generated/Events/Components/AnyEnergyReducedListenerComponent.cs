@@ -7,6 +7,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 [Entitas.CodeGeneration.Attributes.DontGenerate(false)]
-public sealed class PlayerTalkingWithNPCEventListenerComponent : Entitas.IComponent {
-    public System.Collections.Generic.List<IPlayerTalkingWithNPCEventListener> value;
+public sealed class AnyEnergyReducedListenerComponent : Entitas.IComponent {
+    public System.Collections.Generic.List<IAnyEnergyReducedListener> value;
 }

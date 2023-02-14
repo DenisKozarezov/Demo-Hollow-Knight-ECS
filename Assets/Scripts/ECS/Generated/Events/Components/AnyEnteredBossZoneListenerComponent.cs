@@ -7,6 +7,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 [Entitas.CodeGeneration.Attributes.DontGenerate(false)]
-public sealed class EnergyReducedListenerComponent : Entitas.IComponent {
-    public System.Collections.Generic.List<IEnergyReducedListener> value;
+public sealed class AnyEnteredBossZoneListenerComponent : Entitas.IComponent {
+    public System.Collections.Generic.List<IAnyEnteredBossZoneListener> value;
 }

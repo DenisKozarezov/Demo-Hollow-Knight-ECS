@@ -6,7 +6,7 @@ namespace Core.ECS.Behaviours
     public class CollisionEntityBehaviour : EntityBehaviour
     {
         [SerializeField]
-        private LayerMask _triggeringLayers;
+        protected LayerMask _triggeringLayers;
 
         protected virtual void OnTriggerEnter2D(Collider2D other) => TriggerBy(other);
         protected virtual void OnTriggerStay2D(Collider2D other) => TriggerBy(other);

@@ -6,6 +6,6 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public interface IEnteredBossZoneListener {
-    void OnEnteredBossZone(GameEntity entity, Core.Models.EnemyModel bossModel);
+public interface IAnyPlayerTalkingWithNPCEventListener {
+    void OnAnyPlayerTalkingWithNPCEvent(GameEntity entity, Core.ECS.Components.Units.NPC nPC);
 }

@@ -19,9 +19,9 @@ namespace Core.ECS.Components.Player
     // Player Events
     [Event(Any), Cleanup(RemoveComponent)] public sealed class ObtainedGeo : IComponent { public int Value; }
     [Event(Self), Cleanup(RemoveComponent)] public sealed class RestoredHealth : IComponent { public int Value; }
-    [Event(Self), Cleanup(RemoveComponent)] public sealed class EnergyReduced : IComponent { public float Value; }
-    [Event(Self), Cleanup(RemoveComponent)] public sealed class EnteredBossZone : IComponent { public EnemyModel BossModel; }
-    [Event(Self), Cleanup(RemoveComponent)] public sealed class PlayerTalkingWithNPCEvent : IComponent { public NPC NPC; }
+    [Event(Any), Cleanup(RemoveComponent)] public sealed class EnergyReduced : IComponent { public float Value; }
+    [Event(Any), Cleanup(RemoveComponent)] public sealed class PlayerTalkingWithNPCEvent : IComponent { public NPC NPC; }
+    [Event(Any), Cleanup(RemoveComponent)] public sealed class EnteredBossZone : IComponent { public EnemyModel BossModel; }
 
     // Input Keys
     [Unique, Input] public sealed class LeftMouse : IComponent { }

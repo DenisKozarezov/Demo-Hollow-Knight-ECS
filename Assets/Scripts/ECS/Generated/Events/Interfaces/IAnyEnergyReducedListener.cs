@@ -6,6 +6,6 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public interface IPlayerTalkingWithNPCEventListener {
-    void OnPlayerTalkingWithNPCEvent(GameEntity entity, Core.ECS.Components.Units.NPC nPC);
+public interface IAnyEnergyReducedListener {
+    void OnAnyEnergyReduced(GameEntity entity, float value);
 }

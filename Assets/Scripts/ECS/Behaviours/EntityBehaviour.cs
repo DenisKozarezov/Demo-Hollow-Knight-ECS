@@ -14,7 +14,8 @@ namespace Core.ECS.Behaviours
         {
             Entity = Game.CreateEntity();
 
-            gameObject.AddComponent<ViewController>().InitializeView(Game, Entity);
+            var controller = GetComponent<ViewController>() ?? gameObject.AddComponent<ViewController>();
+            controller.InitializeView(Game, Entity);
 
             foreach (var listener in GetComponents<IEventListener>())
             {
