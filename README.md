@@ -24,7 +24,7 @@ Controls:
 
 The prototype uses the following architectural patterns:
 1. ```ECS``` — we use a convenient and fast framework called [Entitas](https://github.com/sschmid/Entitas).
-2. ```Behaviour Tree``` — custom framework with an editor to provide a simple AI. You can see our implementation in this [folder](https://github.com/DenisKozarezov/Demo-Hollow-Knight-ECS/tree/main/Packages/com.korolev.uilityai-package). Double-click on Scriptable Object to open Behaviour Tree Editor window.
+2. ```Behaviour Tree``` — custom framework with an editor to provide a simple AI. You can see our implementation in this [folder](https://github.com/DenisKozarezov/Demo-Hollow-Knight-ECS/tree/Entitas/Packages/com.korolev.uilityai-package). Double-click on Scriptable Object to open Behaviour Tree Editor window.
 
 ![image](https://user-images.githubusercontent.com/52127090/215850222-b1e44392-e260-4b36-88d1-59bca2fa2754.png)
 
