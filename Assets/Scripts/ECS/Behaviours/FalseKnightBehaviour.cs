@@ -27,5 +27,10 @@ namespace Core.ECS.Behaviours
             Entity.AddJump(Vector2.up * _model.JumpHeight);
             Entity.AddBehaviourTree(_AI.Clone().Init(Entity));
         }
+
+        public void OnCameraShakeWhenAttack_UnityEditor()
+        {
+            ECSExtensions.Empty().AddCameraShake(newShakeDuration: 0.15f, newShakeForce: 0.3f);
+        }
     }
 }

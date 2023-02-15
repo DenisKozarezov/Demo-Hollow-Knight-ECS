@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using BehaviourTree.Runtime.Nodes;
@@ -92,6 +93,16 @@ namespace BehaviourTree.Runtime
             AddObjectToAsset(node);
             return node;
         }
+        public bool ValidateTree()
+        {
+            bool hasInvalidNode = false;
+            Func<Node, bool> isInvalidNode = (node) => node is null || string.IsNullOrEmpty(node.GUID);
+            TraverseTree(RootNode, (node) =>
+            {
+                if (isInvalidNode(node)) hasInvalidNode = true;
+            });
+            return !hasInvalidNode;
+        }
         public void RemoveNode(Node node)
         {
             Undo.RecordObject(this, "Remove Node (Behaviour Tree)");
@@ -99,6 +110,14 @@ namespace BehaviourTree.Runtime
             RemoveObjectFromAsset(node);
 
             if (node is Root) RootNode = null;
+        }
+        public void ClearInvalidNodes()
+        {
+            Func<Node, bool> isInvalidNode = (node) => node is null || string.IsNullOrEmpty(node.GUID);
+            TraverseTree(RootNode, (node) =>
+            {
+                if (isInvalidNode(node)) RemoveObjectFromAsset(node);
+            });
         }
 #endif
     }

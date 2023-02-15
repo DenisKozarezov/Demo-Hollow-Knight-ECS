@@ -22,7 +22,7 @@ namespace Core.ECS.ViewListeners
             _entity.RemoveMovingListener();
             _entity.RemoveStoppedMovingListener();
         }
-        public void OnMoving(GameEntity entity) => _animator.PlayMove();
+        public void OnMoving(GameEntity entity) => _animator.PlayRun();
         public void OnStoppedMoving(GameEntity entity) => _animator.PlayIdle();
     }
 }

@@ -61,6 +61,10 @@ namespace BehaviourTree.Editor
             Runtime.BehaviourTree tree = Selection.activeObject as Runtime.BehaviourTree;
             if (tree && AssetDatabase.CanOpenAssetInEditor(tree.GetInstanceID()))
             {
+                if (!tree.ValidateTree() && EditorUtility.DisplayDialog("Warning!", "This behaviour tree has some invalid nodes. Want to delete them?", "Yes", "No"))
+                {
+                    tree.ClearInvalidNodes();
+                }
                 _behaviourView?.PopulateView(tree);
             }
 

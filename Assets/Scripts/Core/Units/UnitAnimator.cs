@@ -14,7 +14,7 @@ namespace Core.Units
         private readonly int _jumpingHash = Animator.StringToHash("IsJumping");
         private readonly int _jumpHash = Animator.StringToHash("Jump");
         private readonly int _onGroundHash = Animator.StringToHash("OnGround");
-        private readonly int _movingHash = Animator.StringToHash("IsMoving");
+        private readonly int _runningHash = Animator.StringToHash("IsRunning");
 
         private readonly float Duration = 0.3f;
         private readonly Color WhiteColor = new Color(1, 1, 1, 0.9f);
@@ -30,7 +30,7 @@ namespace Core.Units
         [SerializeReference]
         private GameObject _attackDownVFX;
 
-        public void PlayMove() => _animator.SetBool(_movingHash, true);
+        public void PlayRun() => _animator.SetBool(_runningHash, true);
         public void PlayJump()
         {
             _animator.SetTrigger(_jumpHash);
@@ -81,7 +81,7 @@ namespace Core.Units
             }
         }
         public void PlayDeath() => _animator.SetTrigger(_deathHash);
-        public void PlayIdle() => _animator.SetBool(_movingHash, false);
+        public void PlayIdle() => _animator.SetBool(_runningHash, false);
         public void ResetAnimation()
         {
             _animator.ResetTrigger(_hitHash);

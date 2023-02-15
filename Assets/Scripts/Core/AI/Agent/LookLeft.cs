@@ -2,7 +2,7 @@ using BehaviourTree.Runtime.Nodes;
 
 namespace Core.AI.FalseKnight.Actions
 {
-    [Category("False Knight/Actions")]
+    [Category("Agent/Actions")]
     public class LookLeft : Action
     {
         protected override State OnUpdate()
