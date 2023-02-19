@@ -7,6 +7,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 [Entitas.CodeGeneration.Attributes.DontGenerate(false)]
-public sealed class DiedListenerComponent : Entitas.IComponent {
-    public System.Collections.Generic.List<IDiedListener> value;
+public sealed class DeadListenerComponent : Entitas.IComponent {
+    public System.Collections.Generic.List<IDeadListener> value;
 }

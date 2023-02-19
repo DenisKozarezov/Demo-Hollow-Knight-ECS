@@ -6,31 +6,31 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public sealed class DiedEventSystem : Entitas.ReactiveSystem<GameEntity> {
+public sealed class DeadEventSystem : Entitas.ReactiveSystem<GameEntity> {
 
-    readonly System.Collections.Generic.List<IDiedListener> _listenerBuffer;
+    readonly System.Collections.Generic.List<IDeadListener> _listenerBuffer;
 
-    public DiedEventSystem(Contexts contexts) : base(contexts.game) {
-        _listenerBuffer = new System.Collections.Generic.List<IDiedListener>();
+    public DeadEventSystem(Contexts contexts) : base(contexts.game) {
+        _listenerBuffer = new System.Collections.Generic.List<IDeadListener>();
     }
 
     protected override Entitas.ICollector<GameEntity> GetTrigger(Entitas.IContext<GameEntity> context) {
         return Entitas.CollectorContextExtension.CreateCollector(
-            context, Entitas.TriggerOnEventMatcherExtension.Added(GameMatcher.Died)
+            context, Entitas.TriggerOnEventMatcherExtension.Added(GameMatcher.Dead)
         );
     }
 
     protected override bool Filter(GameEntity entity) {
-        return entity.isDied && entity.hasDiedListener;
+        return entity.isDead && entity.hasDeadListener;
     }
 
     protected override void Execute(System.Collections.Generic.List<GameEntity> entities) {
         foreach (var e in entities) {
             
             _listenerBuffer.Clear();
-            _listenerBuffer.AddRange(e.diedListener.value);
+            _listenerBuffer.AddRange(e.deadListener.value);
             foreach (var listener in _listenerBuffer) {
-                listener.OnDied(e);
+                listener.OnDead(e);
             }
         }
     }

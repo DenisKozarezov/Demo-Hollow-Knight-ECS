@@ -8,25 +8,25 @@
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public DiedListenerComponent diedListener { get { return (DiedListenerComponent)GetComponent(GameComponentsLookup.DiedListener); } }
-    public bool hasDiedListener { get { return HasComponent(GameComponentsLookup.DiedListener); } }
+    public DeadListenerComponent deadListener { get { return (DeadListenerComponent)GetComponent(GameComponentsLookup.DeadListener); } }
+    public bool hasDeadListener { get { return HasComponent(GameComponentsLookup.DeadListener); } }
 
-    public void AddDiedListener(System.Collections.Generic.List<IDiedListener> newValue) {
-        var index = GameComponentsLookup.DiedListener;
-        var component = (DiedListenerComponent)CreateComponent(index, typeof(DiedListenerComponent));
+    public void AddDeadListener(System.Collections.Generic.List<IDeadListener> newValue) {
+        var index = GameComponentsLookup.DeadListener;
+        var component = (DeadListenerComponent)CreateComponent(index, typeof(DeadListenerComponent));
         component.value = newValue;
         AddComponent(index, component);
     }
 
-    public void ReplaceDiedListener(System.Collections.Generic.List<IDiedListener> newValue) {
-        var index = GameComponentsLookup.DiedListener;
-        var component = (DiedListenerComponent)CreateComponent(index, typeof(DiedListenerComponent));
+    public void ReplaceDeadListener(System.Collections.Generic.List<IDeadListener> newValue) {
+        var index = GameComponentsLookup.DeadListener;
+        var component = (DeadListenerComponent)CreateComponent(index, typeof(DeadListenerComponent));
         component.value = newValue;
         ReplaceComponent(index, component);
     }
 
-    public void RemoveDiedListener() {
-        RemoveComponent(GameComponentsLookup.DiedListener);
+    public void RemoveDeadListener() {
+        RemoveComponent(GameComponentsLookup.DeadListener);
     }
 }
 
@@ -40,17 +40,17 @@ public partial class GameEntity {
 //------------------------------------------------------------------------------
 public sealed partial class GameMatcher {
 
-    static Entitas.IMatcher<GameEntity> _matcherDiedListener;
+    static Entitas.IMatcher<GameEntity> _matcherDeadListener;
 
-    public static Entitas.IMatcher<GameEntity> DiedListener {
+    public static Entitas.IMatcher<GameEntity> DeadListener {
         get {
-            if (_matcherDiedListener == null) {
-                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.DiedListener);
+            if (_matcherDeadListener == null) {
+                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.DeadListener);
                 matcher.componentNames = GameComponentsLookup.componentNames;
-                _matcherDiedListener = matcher;
+                _matcherDeadListener = matcher;
             }
 
-            return _matcherDiedListener;
+            return _matcherDeadListener;
         }
     }
 }
@@ -65,21 +65,21 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public void AddDiedListener(IDiedListener value) {
-        var listeners = hasDiedListener
-            ? diedListener.value
-            : new System.Collections.Generic.List<IDiedListener>();
+    public void AddDeadListener(IDeadListener value) {
+        var listeners = hasDeadListener
+            ? deadListener.value
+            : new System.Collections.Generic.List<IDeadListener>();
         listeners.Add(value);
-        ReplaceDiedListener(listeners);
+        ReplaceDeadListener(listeners);
     }
 
-    public void RemoveDiedListener(IDiedListener value, bool removeComponentWhenEmpty = true) {
-        var listeners = diedListener.value;
+    public void RemoveDeadListener(IDeadListener value, bool removeComponentWhenEmpty = true) {
+        var listeners = deadListener.value;
         listeners.Remove(value);
         if (removeComponentWhenEmpty && listeners.Count == 0) {
-            RemoveDiedListener();
+            RemoveDeadListener();
         } else {
-            ReplaceDiedListener(listeners);
+            ReplaceDeadListener(listeners);
         }
     }
 }

@@ -13,8 +13,8 @@ public sealed class GameEventSystems : Feature {
         Add(new AnyCameraFadeEventSystem(contexts)); // priority: 0
         Add(new AnyCameraShakeEventSystem(contexts)); // priority: 0
         Add(new DamageTakenEventSystem(contexts)); // priority: 0
+        Add(new DeadEventSystem(contexts)); // priority: 0
         Add(new DestroyedEventSystem(contexts)); // priority: 0
-        Add(new DiedEventSystem(contexts)); // priority: 0
         Add(new DirectionEventSystem(contexts)); // priority: 0
         Add(new AnyEnergyReducedEventSystem(contexts)); // priority: 0
         Add(new AnyEnteredBossZoneEventSystem(contexts)); // priority: 0
