@@ -24,15 +24,14 @@ namespace Core.ECS.Systems
         }
         protected override bool Filter(GameEntity entity)
         {
-            return entity.isGrounded && entity.isUnit;
+            return entity.isGrounded && entity.isUnit && entity.hasSpriteRenderer;
         }
         protected override void Execute(List<GameEntity> entities)
         {
             foreach (GameEntity entity in entities)
             {
-                Vector3 center = entity.spriteRenderer.Value.bounds.center;
-                Collider2D collider = entity.collider.Value;
-                Vector3 point = center + Vector3.down * collider.bounds.extents.y;
+                Bounds bounds = entity.spriteRenderer.Value.bounds;
+                Vector3 point = bounds.center + Vector3.down * (bounds.size.y / 2f);
                 GameObject.Destroy(InstantiatePrefab(point, Vector2.one), 1f);
             }
         }

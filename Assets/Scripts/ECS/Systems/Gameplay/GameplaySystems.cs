@@ -10,7 +10,6 @@ namespace Core.ECS.Systems
         {
             Add(new EmitInputSystem(contexts.input));
 
-            //Add(new HitSystem());
             Add(new HealthSystem(contexts.game));
             Add(new UnitsSystems(contexts));
             Add(new PlayerSystems(contexts));

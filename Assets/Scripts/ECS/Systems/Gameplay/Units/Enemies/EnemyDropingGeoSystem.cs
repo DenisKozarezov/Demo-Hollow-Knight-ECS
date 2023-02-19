@@ -27,9 +27,9 @@ namespace Core.ECS.Systems.Units
             {
                 ushort geoReward = deadEnemy.enemy.Value.GeoReward;
 
-                for (int i = 0; i < geoReward / 2; i++)
+                for (int i = 0; i < geoReward; i++)
                 {
-                    GeoView geo = _factory.Create(2);
+                    GeoView geo = _factory.Create(1);
                     geo.transform.position = deadEnemy.collider.Value.bounds.center;
                 }
             }

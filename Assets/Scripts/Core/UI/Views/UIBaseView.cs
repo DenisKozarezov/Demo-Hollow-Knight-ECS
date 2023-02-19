@@ -1,5 +1,5 @@
-﻿using DG.Tweening;
-using UnityEngine;
+﻿using UnityEngine;
+using DG.Tweening;
 
 namespace Core.ECS.Behaviours
 {

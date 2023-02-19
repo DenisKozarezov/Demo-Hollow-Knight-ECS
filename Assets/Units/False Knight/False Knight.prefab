@@ -9,8 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1232479590742949638}
+  - component: {fileID: 4571754841311870578}
   m_Layer: 0
-  m_Name: Bottom
+  m_Name: Hit Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,6 +32,22 @@ Transform:
   m_Father: {fileID: 7559006615654855929}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &4571754841311870578
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 27475719534755907}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 1.35, y: 0.75}
+  serializedVersion: 2
+  m_Radius: 1.2
 --- !u!1 &772452078050274188
 GameObject:
   m_ObjectHideFlags: 0
@@ -41,8 +58,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1868826296777391452}
   - component: {fileID: 6383853959322688258}
-  m_Layer: 7
-  m_Name: GameObject
+  m_Layer: 0
+  m_Name: Shadow Caster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -97,7 +114,7 @@ MonoBehaviour:
   - {x: -0.067321956, y: 0.5778159, z: 0}
   m_ShapePathHash: -673745541
   m_Mesh: {fileID: 0}
-  m_InstanceId: 29090
+  m_InstanceId: 48930
 --- !u!1 &7559006615654855930
 GameObject:
   m_ObjectHideFlags: 0
@@ -121,6 +138,7 @@ GameObject:
   - component: {fileID: -6938646912654286841}
   - component: {fileID: -8616651699144699453}
   - component: {fileID: -8368728950299801736}
+  - component: {fileID: 2739715023986876932}
   - component: {fileID: -7283127247196815769}
   m_Layer: 7
   m_Name: False Knight
@@ -279,6 +297,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _model: {fileID: 11400000, guid: 6d97df0212fdf2844a304116d3c9c52a, type: 2}
   _AI: {fileID: 11400000, guid: b2ab2da4a8b0e1e4d897e0687cac03c3, type: 2}
+  _hitCollider: {fileID: 4571754841311870578}
 --- !u!114 &5064754672443488787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -388,6 +407,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 6990455316024280043}
+--- !u!114 &2739715023986876932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7559006615654855930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aee2617f530bd944a6a50a92ce8ae87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _collider: {fileID: 3578999376991806574}
 --- !u!114 &-7283127247196815769
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -12,31 +12,31 @@ public static class GameComponentsLookup {
     public const int AnyCameraShakeListener = 1;
     public const int AnyEnergyReducedListener = 2;
     public const int AnyEnteredBossZoneListener = 3;
-    public const int AnyObtainedGeoListener = 4;
-    public const int AnyPlayerTalkingWithNPCEventListener = 5;
-    public const int AttackingListener = 6;
-    public const int CollisionRegistry = 7;
-    public const int CoroutineRunner = 8;
-    public const int Geo = 9;
-    public const int Identifiers = 10;
-    public const int Interactable = 11;
-    public const int InteractablePrompt = 12;
-    public const int Logger = 13;
-    public const int Physics = 14;
-    public const int AttackCooldown = 15;
-    public const int CanInteract = 16;
-    public const int CurrentEnergy = 17;
-    public const int CurrentGeo = 18;
-    public const int EnergyReduced = 19;
-    public const int EnteredBossZone = 20;
-    public const int Interacting = 21;
-    public const int MaxEnergy = 22;
-    public const int ObtainedGeo = 23;
-    public const int Player = 24;
-    public const int PlayerTalkingWithNPCEvent = 25;
-    public const int RestoredHealth = 26;
-    public const int Time = 27;
-    public const int GameUI = 28;
+    public const int AnyPlayerTalkingWithNPCEventListener = 4;
+    public const int AttackingListener = 5;
+    public const int CollisionRegistry = 6;
+    public const int CoroutineRunner = 7;
+    public const int Geo = 8;
+    public const int Identifiers = 9;
+    public const int Interactable = 10;
+    public const int InteractablePrompt = 11;
+    public const int Logger = 12;
+    public const int Physics = 13;
+    public const int AttackCooldown = 14;
+    public const int CanInteract = 15;
+    public const int CurrentEnergy = 16;
+    public const int CurrentGeo = 17;
+    public const int EnergyReduced = 18;
+    public const int EnteredBossZone = 19;
+    public const int Interacting = 20;
+    public const int MaxEnergy = 21;
+    public const int Player = 22;
+    public const int PlayerTalkingWithNPCEvent = 23;
+    public const int RestoredHealth = 24;
+    public const int Time = 25;
+    public const int AddingGeo = 26;
+    public const int GameUI = 27;
+    public const int GeoUI = 28;
     public const int HealthUI = 29;
     public const int Vignette = 30;
     public const int Animator = 31;
@@ -95,7 +95,6 @@ public static class GameComponentsLookup {
         "AnyCameraShakeListener",
         "AnyEnergyReducedListener",
         "AnyEnteredBossZoneListener",
-        "AnyObtainedGeoListener",
         "AnyPlayerTalkingWithNPCEventListener",
         "AttackingListener",
         "CollisionRegistry",
@@ -114,12 +113,13 @@ public static class GameComponentsLookup {
         "EnteredBossZone",
         "Interacting",
         "MaxEnergy",
-        "ObtainedGeo",
         "Player",
         "PlayerTalkingWithNPCEvent",
         "RestoredHealth",
         "Time",
+        "AddingGeo",
         "GameUI",
+        "GeoUI",
         "HealthUI",
         "Vignette",
         "Animator",
@@ -177,7 +177,6 @@ public static class GameComponentsLookup {
         typeof(AnyCameraShakeListenerComponent),
         typeof(AnyEnergyReducedListenerComponent),
         typeof(AnyEnteredBossZoneListenerComponent),
-        typeof(AnyObtainedGeoListenerComponent),
         typeof(AnyPlayerTalkingWithNPCEventListenerComponent),
         typeof(AttackingListenerComponent),
         typeof(Core.ECS.Components.CollisionRegistry),
@@ -196,12 +195,13 @@ public static class GameComponentsLookup {
         typeof(Core.ECS.Components.Player.EnteredBossZone),
         typeof(Core.ECS.Components.Player.Interacting),
         typeof(Core.ECS.Components.Player.MaxEnergy),
-        typeof(Core.ECS.Components.Player.ObtainedGeo),
         typeof(Core.ECS.Components.Player.Player),
         typeof(Core.ECS.Components.Player.PlayerTalkingWithNPCEvent),
         typeof(Core.ECS.Components.Player.RestoredHealth),
         typeof(Core.ECS.Components.Time),
+        typeof(Core.ECS.Components.UI.AddingGeo),
         typeof(Core.ECS.Components.UI.GameUI),
+        typeof(Core.ECS.Components.UI.GeoUI),
         typeof(Core.ECS.Components.UI.HealthUI),
         typeof(Core.ECS.Components.UI.Vignette),
         typeof(Core.ECS.Components.Units.AnimatorComponent),

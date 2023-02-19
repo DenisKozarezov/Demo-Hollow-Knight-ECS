@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using Core.Models;
 
 namespace Core.ECS.Behaviours
@@ -9,6 +10,8 @@ namespace Core.ECS.Behaviours
         private FalseKnightModel _model;
         [SerializeField]
         private BehaviourTree.Runtime.BehaviourTree _AI;
+        [SerializeField]
+        private CircleCollider2D _hitCollider;
 
         private void Start()
         {
@@ -28,9 +31,20 @@ namespace Core.ECS.Behaviours
             Entity.AddBehaviourTree(_AI.Clone().Init(Entity));
         }
 
-        public void OnCameraShakeWhenAttack_UnityEditor()
+        public void OnAttack_UnityEditor()
         {
             ECSExtensions.Empty().AddCameraShake(newShakeDuration: 0.15f, newShakeForce: 0.3f);
+
+            foreach (GameEntity enemy in GetEnemiesOnHit())
+            {
+                if (enemy is null) continue;
+
+                enemy.AddDamageTaken(_model.BaseDamage);
+            }
+        }
+        public IEnumerable<GameEntity> GetEnemiesOnHit()
+        {
+            return Game.physics.Value.RaycastCircle(_hitCollider.bounds.center, _hitCollider.radius, 1 << Constants.PlayerLayer);
         }
     }
 }

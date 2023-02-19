@@ -17,7 +17,6 @@ namespace Core.ECS.Components.Player
     public sealed class Interacting : IComponent { }
 
     // Player Events
-    [Event(Any), Cleanup(RemoveComponent)] public sealed class ObtainedGeo : IComponent { public int Value; }
     [Event(Self), Cleanup(RemoveComponent)] public sealed class RestoredHealth : IComponent { public int Value; }
     [Event(Any), Cleanup(RemoveComponent)] public sealed class EnergyReduced : IComponent { public float Value; }
     [Event(Any), Cleanup(RemoveComponent)] public sealed class PlayerTalkingWithNPCEvent : IComponent { public NPC NPC; }

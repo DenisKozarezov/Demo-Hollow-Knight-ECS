@@ -8,34 +8,40 @@ namespace Core.ECS.Behaviours
         [SerializeField]
         protected LayerMask _triggeringLayers;
 
-        protected virtual void OnTriggerEnter2D(Collider2D other) => TriggerBy(other);
-        protected virtual void OnTriggerStay2D(Collider2D other) => TriggerBy(other);
-        protected virtual void OnTriggerExit2D(Collider2D other) => ResetTriggerBy(other);
-        protected virtual void OnCollisionEnter2D(Collision2D other) => TriggerBy(other.collider);
-        protected virtual void OnCollisionExit2D(Collision2D other) => ResetTriggerBy(other.collider);
+        protected virtual void OnTriggerEnter2D(Collider2D other) 
+            => TriggerBy(other, out GameEntity _);
+        protected virtual void OnTriggerExit2D(Collider2D other) 
+            => ResetTriggerBy(other, out GameEntity _);
+        protected virtual void OnCollisionEnter2D(Collision2D other) 
+            => TriggerBy(other.collider, out GameEntity _);
+        protected virtual void OnCollisionExit2D(Collision2D other) 
+            => ResetTriggerBy(other.collider, out GameEntity _);
 
-        private void TriggerBy(Collider2D collision)
+        protected bool TriggerBy(Collider2D collision, out GameEntity entered)
         {
-            if (Entity.hasCollided) return;
+            entered = null;
 
             if (collision.Matches(_triggeringLayers))
             {
-                GameEntity entered = Game
+                entered = Game
                   .collisionRegistry.Value
                   .Take(collision.GetInstanceID())
                   .Entity;
 
                 Entity?.ReplaceCollided(entered.id.Value);
                 entered?.ReplaceCollided(Entity.id.Value);
+                return true;
             }
+            return false;
         }
-        private void ResetTriggerBy(Collider2D collision)
+        protected bool ResetTriggerBy(Collider2D collision, out GameEntity exit)
         {
-            if (!Entity.hasCollided) return;
+            exit = null;
+            if (!Entity.hasCollided) return false;
 
             if (collision.Matches(_triggeringLayers))
             {
-                GameEntity exit = Game
+                exit = Game
                   .collisionRegistry.Value
                   .Take(collision.GetInstanceID())
                   .Entity;
@@ -44,8 +50,10 @@ namespace Core.ECS.Behaviours
                 {
                     Entity.With(x => x.RemoveCollided(), Entity.hasCollided);
                     exit.With(x => x.RemoveCollided(), exit.hasCollided);
+                    return true;
                 }
             }
+            return false;
         }
     }
 }

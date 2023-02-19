@@ -10,13 +10,11 @@ namespace Core.ECS.Behaviours
 
         protected override void OnTriggerEnter2D(Collider2D other)
         {
-            if (!other.Matches(_triggeringLayers)) return;
-
-            Game.collisionRegistry.Value
-                       .Take(other.GetInstanceID())?
-                       .With(x => x.Entity?.With(e => e.AddEnteredBossZone(_boss)));
-
-            Entity.isDestroyed = true;
+            if (TriggerBy(other, out GameEntity entered))
+            {
+                entered.AddEnteredBossZone(_boss);
+                Entity.isDestroyed = true;
+            }
         }
     }
 }

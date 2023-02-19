@@ -11,7 +11,6 @@ public sealed class GameCleanupSystems : Feature {
     public GameCleanupSystems(Contexts contexts) {
         Add(new DestroyCameraShakeGameSystem(contexts));
         Add(new DestroyCameraFadeGameSystem(contexts));
-        Add(new RemoveObtainedGeoGameSystem(contexts));
         Add(new RemoveRestoredHealthGameSystem(contexts));
         Add(new RemoveEnergyReducedGameSystem(contexts));
         Add(new RemovePlayerTalkingWithNPCEventGameSystem(contexts));

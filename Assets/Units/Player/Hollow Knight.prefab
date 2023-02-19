@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: -7531990146596059660}
   - component: {fileID: -4829130409686639569}
   - component: {fileID: -3931304891480881340}
+  - component: {fileID: 3872367796271608401}
   - component: {fileID: -8731107005008412908}
   m_Layer: 8
   m_Name: Hollow Knight
@@ -420,6 +421,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 339477802832129856}
+--- !u!114 &3872367796271608401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 339477802832129857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aee2617f530bd944a6a50a92ce8ae87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _collider: {fileID: 339477802832129859}
 --- !u!114 &-8731107005008412908
 MonoBehaviour:
   m_ObjectHideFlags: 0

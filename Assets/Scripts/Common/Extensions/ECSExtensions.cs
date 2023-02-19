@@ -5,7 +5,8 @@ namespace Core
 {
     public static class ECSExtensions
     {
-        public static GameEntity Empty() => Contexts.sharedInstance.game.CreateEntity();
+        public static GameContext Game() => Contexts.sharedInstance.game;
+        public static GameEntity Empty() => Game().CreateEntity();
         public static TEntity Duplicate<TEntity>(this TEntity entity) where TEntity : class, IEntity
         {
             TEntity duplicate = entity.Context().CreateEntity();

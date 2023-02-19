@@ -8,19 +8,21 @@ namespace Core.ECS.Behaviours
         protected override void OnTriggerExit2D(Collider2D collider) => UnmarkGrounded(collider);
         protected override void OnCollisionEnter2D(Collision2D other) => MarkGrounded(other.collider);
         protected override void OnCollisionExit2D(Collision2D other) => UnmarkGrounded(other.collider);
-        protected override void OnTriggerStay2D(Collider2D collider) => MarkGrounded(collider);
+        private void OnTriggerStay2D(Collider2D collider) => MarkGrounded(collider);
 
         private void MarkGrounded(Collider2D collider)
         {
-            Game.collisionRegistry.Value
-                      .Take(collider.GetInstanceID())?
-                      .With(x => x.Entity?.With(e => e.isGrounded = true));
+            if (TriggerBy(collider, out GameEntity entered))
+            {
+                entered.isGrounded = true;
+            }
         }
         private void UnmarkGrounded(Collider2D collider)
         {
-            Game.collisionRegistry.Value
-                .Take(collider.GetInstanceID())?
-                .With(x => x.Entity?.With(e => e.isGrounded = false));
+            if (ResetTriggerBy(collider, out GameEntity exit))
+            {
+                exit.isGrounded = false;
+            }
         }
     }
 }

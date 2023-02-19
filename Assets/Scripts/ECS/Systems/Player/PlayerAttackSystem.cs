@@ -32,13 +32,14 @@ namespace Core.ECS.Systems.Player
             {
                 foreach (GameEntity player in _players.GetEntities())
                 {
-                    switch (input.vertical.Value)
+                    AttackDirection direction = input.vertical.Value switch
                     {
-                        case 0f:    player.AddAttacking(AttackDirection.Default);   break;
-                        case 1f:    player.AddAttacking(AttackDirection.Up);        break;
-                        case -1f:   player.AddAttacking(AttackDirection.Down);      break;
-                        default:    player.AddAttacking(AttackDirection.Default);   break;
-                    }
+                        0f  => AttackDirection.Default,
+                        1f  => AttackDirection.Up,
+                        -1f => AttackDirection.Down,
+                        _   => AttackDirection.Default
+                    };
+                    player.AddAttacking(direction);
                 }
             }
         }

@@ -7,7 +7,7 @@ namespace Core.ECS.Behaviours
 {
     public abstract class EntityBehaviour : MonoBehaviour, IDisposable
     {
-        protected GameContext Game => Contexts.sharedInstance.game;
+        protected GameContext Game => ECSExtensions.Game();
         public GameEntity Entity { get; private set; }
 
         protected virtual void Awake()
