@@ -36,7 +36,6 @@ namespace Core.ECS.Components.Units
     public sealed class Channelling : IComponent { }
 
     public sealed class Hittable : IComponent { }
-    public sealed class Collided : IComponent { public int CollidedID; }
 
     public sealed class ViewControllerComponent : IComponent { public IViewController Value; }
 
@@ -48,6 +47,7 @@ namespace Core.ECS.Components.Units
     [Event(Self), Cleanup(RemoveComponent)] public sealed class Attacking : IComponent { public AttackDirection Value; }
     [Event(Self), Cleanup(RemoveComponent)] public sealed class DamageTaken : IComponent { public int Value; }
     [Event(Self), Cleanup(RemoveComponent)] public sealed class StoppedMoving : IComponent { }
+    [Event(Self), Cleanup(RemoveComponent)] public sealed class Collided : IComponent { public int CollidedID; }
 
     [Game, Event(Self)] public sealed class Position : IComponent { public Vector2 Value; }
     [Game, Event(Self)] public sealed class Direction : IComponent { public float Value; }

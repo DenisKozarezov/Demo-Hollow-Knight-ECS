@@ -19,7 +19,6 @@ namespace Core.ECS.ViewListeners
         public void UnregisterListeners()
         {
             _entity.RemoveMovingListener();
-            _entity.RemoveStoppedMovingListener();
         }
         public void OnJumping(GameEntity entity) => _animator.PlayJump();
     }

@@ -7,16 +7,17 @@ namespace Core.ECS.Systems
     public sealed class CreateDustCloudSystem : ReactiveSystem<GameEntity>
     {
         private readonly string PrefabPath = "Prefabs/VFX/Smoke/Dust";
+        private readonly GameObject _cloudPrefab;
 
-        public CreateDustCloudSystem(GameContext game) : base(game) { }
-
-        private GameObject InstantiatePrefab(Vector2 point, Vector3 scale)
+        public CreateDustCloudSystem(GameContext game) : base(game) 
         {
-            var asset = Resources.Load(PrefabPath) as GameObject;
-            GameObject prefab = GameObject.Instantiate(asset, point, Quaternion.identity);
-            prefab.transform.localScale = scale;
-            return prefab;
+            _cloudPrefab = Resources.Load<GameObject>(PrefabPath);
         }
+
+        private GameObject InstantiatePrefab(Vector2 point, Vector3 scale) =>
+            GameObject
+            .Instantiate(_cloudPrefab, point, Quaternion.identity)
+            .With(x => x.transform.localScale = scale);
 
         protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
         {

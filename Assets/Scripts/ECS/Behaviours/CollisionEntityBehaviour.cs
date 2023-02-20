@@ -37,7 +37,6 @@ namespace Core.ECS.Behaviours
         protected bool ResetTriggerBy(Collider2D collision, out GameEntity exit)
         {
             exit = null;
-            if (!Entity.hasCollided) return false;
 
             if (collision.Matches(_triggeringLayers))
             {
@@ -46,12 +45,9 @@ namespace Core.ECS.Behaviours
                   .Take(collision.GetInstanceID())
                   .Entity;
 
-                if (exit?.id.Value == Entity.collided.CollidedID)
-                {
-                    Entity.With(x => x.RemoveCollided(), Entity.hasCollided);
-                    exit.With(x => x.RemoveCollided(), exit.hasCollided);
-                    return true;
-                }
+                Entity.With(x => x.RemoveCollided(), Entity.hasCollided);
+                exit.With(x => x.RemoveCollided(), exit.hasCollided);
+                return true;
             }
             return false;
         }

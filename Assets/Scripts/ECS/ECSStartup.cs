@@ -10,7 +10,7 @@ using Core.Services;
 
 namespace Core.ECS
 {
-    public sealed class ECSStartup : ITickable
+    public sealed class ECSStartup : IInitializable, ITickable
     {
         private readonly AllSystems _allSystems;
 
@@ -42,6 +42,10 @@ namespace Core.ECS
             _allSystems.Initialize();
         }
 
+        public void Initialize()
+        {
+            ECSExtensions.Empty().AddCameraFade(newFadeTime: 3f, newFadeMode: FadeMode.Off);
+        }
         public void Tick() 
         {
             _allSystems.Execute();

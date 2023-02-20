@@ -14,7 +14,6 @@
             Add(new PlayerHealingSystem(contexts.game));
             Add(new PlayerAttackSystem(contexts.game, contexts.input));
             //Add(new PlayerAttackCooldownSystem(context.InputSystem));
-            Add(new PlayerCanInteractSystem(contexts.game));
             Add(new PlayerInteractingSystem(contexts.game, contexts.input));
             Add(new PlayerObtainedGeoSystem(contexts.game));
         }

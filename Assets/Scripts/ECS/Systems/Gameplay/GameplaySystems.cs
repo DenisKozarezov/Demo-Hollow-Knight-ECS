@@ -14,6 +14,7 @@ namespace Core.ECS.Systems
             Add(new UnitsSystems(contexts));
             Add(new PlayerSystems(contexts));
             Add(new DamageSystem(contexts.game));
+            Add(new VFXWhenRecievedDamageSystem(contexts.game));
             //Add(new DialogueSystem(context.DiContainer.Resolve<DialogueUIView>()));
             Add(new BehaviourTreeSystem(contexts.game));
             //Add(new EnemyDiedSystem());

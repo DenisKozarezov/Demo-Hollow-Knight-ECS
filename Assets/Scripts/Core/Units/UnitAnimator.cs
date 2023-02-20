@@ -1,6 +1,6 @@
-﻿using Core.ECS.Components.Units;
+﻿using UnityEngine;
 using DG.Tweening;
-using UnityEngine;
+using Core.ECS.Components.Units;
 
 namespace Core.Units
 {
@@ -39,9 +39,9 @@ namespace Core.Units
         }
         public void PlayGrounded()
         {
-            _animator.SetBool(_onGroundHash, true);
             _animator.ResetTrigger(_jumpHash);
             _animator.SetBool(_jumpingHash, false);
+            _animator.SetBool(_onGroundHash, true);
         }
         public void PlayDamageTaken()
         {
@@ -87,7 +87,6 @@ namespace Core.Units
             _animator.ResetTrigger(_hitHash);
             _animator.ResetTrigger(_attackHash);
             _animator.ResetTrigger(_deathHash);
-            PlayIdle();
         }
     }
 }

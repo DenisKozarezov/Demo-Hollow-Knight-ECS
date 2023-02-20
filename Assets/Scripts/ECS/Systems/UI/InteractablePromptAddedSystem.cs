@@ -13,7 +13,7 @@ namespace Core.ECS.Systems.UI
 
         protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
         {
-            return context.CreateCollector(GameMatcher.Collided.Added());
+            return context.CreateCollector(GameMatcher.CanInteract.Added());
         }
         protected override bool Filter(GameEntity entity)
         {
