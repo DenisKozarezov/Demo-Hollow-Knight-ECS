@@ -34,4 +34,4 @@ The prototype uses the following architectural patterns:
 
 ## Project Status
 
-At the moment, the project is under development and is regularly being updated.
+At the moment, the project is under development.
